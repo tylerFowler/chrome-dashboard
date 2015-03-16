@@ -1,0 +1,8 @@
+{
+  "manifest_version": 2,
+  "name": "chrome-dashboard",
+  "description": "Custom tab page dashboard of your dreams",
+  "version": "0.0.1",
+  "permissions": [ "management" ],
+  "chrome_url_overrides": { "newtab": "public/index.html" }
+}
