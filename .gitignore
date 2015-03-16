@@ -1,5 +1,8 @@
 # Created by https://www.gitignore.io
 
+# Don't include our JSX build directory
+src/app/_build/*
+
 ### OSX ###
 .DS_Store
 .AppleDouble
@@ -83,4 +86,5 @@ bower_components
 ### CodeKit ###
 # General CodeKit files to ignore
 config.codekit
+.codekit-cache
 /min
