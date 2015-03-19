@@ -1,6 +1,18 @@
 var React = require('react');
 
+// Components
+var Clock = require('./components/clock');
+
+
+var App = React.createClass({
+  render: function() {
+    return (
+      <Clock />
+    );
+  }
+});
+
 React.render(
-  React.createElement('h1', null, 'Hello, worlds!'),
+  <App />,
   document.getElementById('content')
 );

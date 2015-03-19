@@ -7,14 +7,14 @@
           src: [],
           dest: 'public/js/vendor.js',
           options: {
-            require: ['jquery']
+            require: [ 'jquery', 'react' ]
           }
         },
         client: {
           src: ['src/app/_build/**/*.js', 'src/app/_build/*.js'],
           dest: 'public/js/app.js',
           options: {
-            external: ['jquery']
+            external: [ 'jquery', 'react' ]
           }
         }
       },

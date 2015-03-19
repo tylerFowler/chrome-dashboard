@@ -85,6 +85,6 @@ bower_components
 
 ### CodeKit ###
 # General CodeKit files to ignore
-config.codekit
+# config.codekit - we want this for the build process
 .codekit-cache
 /min
