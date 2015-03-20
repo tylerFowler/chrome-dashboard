@@ -9,7 +9,6 @@ var Clock = React.createClass({
   },
 
   updateTimeData: function() {
-    console.log('Updating time...');
     var curDate = new Date();
     var timeObj = {};
 
@@ -32,19 +31,18 @@ var Clock = React.createClass({
   },
 
   componentDidMount: function() {
-    console.log('Clock component mounted');
     this.updateTimeData();
     setInterval(this.updateTimeData, 1000); // update every second
   },
 
   render: function() {
     return (
-      <div classname="clock">
-        <div classname="time">
+      <div className="clock">
+        <div className="time">
           <span id="cur-time">{this.state.time.hours}:{this.state.time.minutes} {this.state.time.period}</span>
         </div>
-        <div classname="divider"></div>
-        <div classname="date">
+        <div className="divider"></div>
+        <div className="date">
           <span id="cur-date">{this.state.time.month} {this.state.time.day}, {this.state.time.year}</span>
         </div>
       </div>
