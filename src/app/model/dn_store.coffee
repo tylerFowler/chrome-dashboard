@@ -1,10 +1,10 @@
 $ = require 'jquery'
 _ = require 'underscore'
 
-dnSettings = localStorage.getItem('settings').dn
+dnSettings = JSON.parse(localStorage.getItem('settings')).dn
 
 class DesignerNews
-  constructor: (@clientId, @clientSecret, @redirectUri, @onlyTop) ->
+  constructor: (@clientId, @clientSecret, @redirectUri) ->
     @dnUri = 'https://api-news.layervault.com/api/v1'
 
   ###
@@ -61,6 +61,5 @@ class DesignerNews
 module.exports = new DesignerNews(
   dnSettings.client_id,
   dnSettings.client_secret,
-  dnSettings.redirect_uri,
-  dnSettings.only_top_stories
+  dnSettings.redirect_uri
 )

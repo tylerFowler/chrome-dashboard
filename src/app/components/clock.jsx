@@ -24,7 +24,7 @@ var Clock = React.createClass({
 
     timeObj.minutes = curDate.getMinutes();
     timeObj.month = monthNames[curDate.getMonth()];
-    timeObj.day = curDate.getDay();
+    timeObj.day = curDate.getDate();
     timeObj.year = curDate.getFullYear();
 
     this.setState({ time: timeObj });

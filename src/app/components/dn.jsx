@@ -5,9 +5,9 @@ var dn    = require('../model/dn_store');
 // - DNList : the overall list of items, simple wrapper w/ div structure
 // - DNItem : each individual article, decorates the stories
 
-var DN = React.createClass({
+var DNList = React.createClass({
   getInitialState: function() {
-    return { stories: [] }
+    return { stories: [], err: null }
   },
 
   componentDidMount: function() {
@@ -15,6 +15,18 @@ var DN = React.createClass({
     // http://stackoverflow.com/questions/1831152/how-to-stop-setinterval
     if (this.props.showTop === true) {
       // do call here to dn.topStories and figure out how to make the cb work
+      dn.getTopStories(this.props.maxStories, function(err, stories) {
+        if (err) this.setState({ stories: [], err: err });
+        else if (stories.length === 0) {
+          this.setState({
+            stories: [],
+            err: new Error("we didn't get any stories!")
+          });
+        } else this.setState({ stories: stories, err: null });
+
+      });
+    } else {
+
     }
   }
 })

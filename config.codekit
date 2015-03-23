@@ -33,17 +33,6 @@
 		"outputStyle": 2,
 		"syntaxCheckerStyle": 0
 		},
-	"\/public\/js\/model\/dn_store.js": {
-		"fileType": 64,
-		"ignore": 1,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/public\/js\/model\/dn_store.js",
-		"outputAbbreviatedPath": "\/public\/js\/dn_store-min.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 2,
-		"syntaxCheckerStyle": 0
-		},
 	"\/public\/js\/model\/settings.js": {
 		"fileType": 64,
 		"ignore": 1,
@@ -106,6 +95,39 @@
 		"outputStyle": 2,
 		"syntaxCheckerStyle": 0
 		},
+	"\/src\/app\/_build\/components\/dn.js": {
+		"fileType": 64,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/src\/app\/_build\/components\/dn.js",
+		"outputAbbreviatedPath": "\/public\/js\/dn-min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 2,
+		"syntaxCheckerStyle": 0
+		},
+	"\/src\/app\/_build\/dn_store.js": {
+		"fileType": 64,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/src\/app\/_build\/dn_store.js",
+		"outputAbbreviatedPath": "\/public\/js\/dn_store-min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 2,
+		"syntaxCheckerStyle": 0
+		},
+	"\/src\/app\/_build\/model\/dn_store.js": {
+		"fileType": 64,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/src\/app\/_build\/model\/dn_store.js",
+		"outputAbbreviatedPath": "\/public\/js\/dn_store-min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 2,
+		"syntaxCheckerStyle": 0
+		},
 	"\/src\/app\/app.jsx": {
 		"fileType": 8192,
 		"ignore": 0,
@@ -124,14 +146,23 @@
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
+	"\/src\/app\/components\/dn.jsx": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/src\/app\/components\/dn.jsx",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
 	"\/src\/app\/model\/dn_store.coffee": {
-		"createSourceMap": 1,
+		"createSourceMap": 0,
 		"fileType": 32,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/src\/app\/model\/dn_store.coffee",
 		"minifyOutput": 1,
-		"outputAbbreviatedPath": "\/public\/js\/model\/dn_store.js",
+		"outputAbbreviatedPath": "\/src\/app\/_build\/model\/dn_store.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 1,
 		"outputStyle": 0,
@@ -144,7 +175,7 @@
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/src\/app\/model\/hn_store.coffee",
 		"minifyOutput": 1,
-		"outputAbbreviatedPath": "\/public\/js\/model\/hn_store.js",
+		"outputAbbreviatedPath": "\/src\/app\/_build\/model\/hn_store.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 0,
@@ -153,11 +184,11 @@
 	"\/src\/app\/model\/public_settings.coffee": {
 		"createSourceMap": 0,
 		"fileType": 32,
-		"ignore": 1,
-		"ignoreWasSetByUser": 1,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/src\/app\/model\/public_settings.coffee",
 		"minifyOutput": 1,
-		"outputAbbreviatedPath": "\/public\/js\/model\/public_settings.js",
+		"outputAbbreviatedPath": "\/src\/app\/_build\/model\/public_settings.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 0,
@@ -170,9 +201,9 @@
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/src\/app\/model\/settings.coffee",
 		"minifyOutput": 1,
-		"outputAbbreviatedPath": "\/public\/js\/model\/settings.js",
+		"outputAbbreviatedPath": "\/public\/js\/settings.js",
 		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
+		"outputPathIsSetByUser": 1,
 		"outputStyle": 0,
 		"syntaxCheckerStyle": 1
 		},
@@ -267,7 +298,7 @@
 	"browserRefreshDelay": 0,
 	"coffeeAutoOutputPathEnabled": 1,
 	"coffeeAutoOutputPathFilenamePattern": "*.js",
-	"coffeeAutoOutputPathRelativePath": "public\/js\/model",
+	"coffeeAutoOutputPathRelativePath": "src\/app\/_build\/model",
 	"coffeeAutoOutputPathReplace1": "",
 	"coffeeAutoOutputPathReplace2": "",
 	"coffeeAutoOutputPathStyle": 1,

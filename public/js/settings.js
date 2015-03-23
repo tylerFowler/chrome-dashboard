@@ -1,0 +1,1 @@
+(function(){var e,a;a="settings",localStorage.getItem(a)||(e={dn:{refresh_interval_ms:5e3,client_id:"7235a5a5a7d72a47f921b1e0eb21b213d209e0d3761c6a3bcd3d018d6d31d26f",client_secret:"87b4a0a8897f4ac6cdd615cd98b65cbbf0eb80ac949baf3a4f2826a9b1630cd7",redirect_uri:"urn:ietf:wg:oauth:2.0:oob"}},localStorage.setItem(a,JSON.stringify(e)))}).call(this);

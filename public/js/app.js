@@ -19756,7 +19756,7 @@ var Clock = React.createClass({displayName: "Clock",
 
     timeObj.minutes = curDate.getMinutes();
     timeObj.month = monthNames[curDate.getMonth()];
-    timeObj.day = curDate.getDay();
+    timeObj.day = curDate.getDate();
     timeObj.year = curDate.getFullYear();
 
     this.setState({ time: timeObj });
@@ -19785,5 +19785,42 @@ var Clock = React.createClass({displayName: "Clock",
 module.exports = Clock;
 
 },{"react":156}],159:[function(require,module,exports){
+var React = require('react');
+var dn    = require('../model/dn_store');
 
-},{}]},{},[157,158,159]);
+// TODO: need a couple components here:
+// - DNList : the overall list of items, simple wrapper w/ div structure
+// - DNItem : each individual article, decorates the stories
+
+var DNList = React.createClass({displayName: "DNList",
+  getInitialState: function() {
+    return { stories: [], err: null }
+  },
+
+  componentDidMount: function() {
+    // See this for how to stop setInterval after it's started
+    // http://stackoverflow.com/questions/1831152/how-to-stop-setinterval
+    if (this.props.showTop === true) {
+      // do call here to dn.topStories and figure out how to make the cb work
+      dn.getTopStories(this.props.maxStories, function(err, stories) {
+        if (err) this.setState({ stories: [], err: err });
+        else if (stories.length === 0) {
+          this.setState({
+            stories: [],
+            err: new Error("we didn't get any stories!")
+          });
+        } else this.setState({ stories: stories, err: null });
+
+      });
+    } else {
+
+    }
+  }
+})
+
+},{"../model/dn_store":161,"react":156}],160:[function(require,module,exports){
+(function(){var $,t,e,n;$=require("jquery"),n=require("underscore"),e=localStorage.getItem("settings").dn,t=function(){function t(t,e,n,r){this.clientId=t,this.clientSecret=e,this.redirectUri=n,this.onlyTop=r,this.dnUri="https://api-news.layervault.com/api/v1"}return t.prototype.getTopStories=function(t,e){return $.getJSON(""+this.dnUri+"/stories?client_id="+this.clientId,{}).done(function(n){return processStories(n.stories.slice(0,t),function(t){return e(null,t)})}).fail(function(t,n,r){return e(r)})},t.prototype.getRecentStories=function(t,e){return $.getJSON(""+this.dnUri+"/stories/recent?client_id="+this.clientId,{}).done(function(n){return processStories(n.stories.slice(0,t),function(t){return e(null,t)})}).fail(function(t,n,r){return e(r)})},t.prototype.processStories=function(t,e){var r;return r=[],n.each(t,function(t,n){var i;return i={title:t.title,url:t.url,upvotes:t.vote_count,author:t.user_display_name,comment_count:t.comments.length},r.push(i),n===limit-1?e(r):void 0})},t}(),module.exports=new t(e.client_id,e.client_secret,e.redirect_uri,e.only_top_stories)}).call(this);
+//# sourceMappingURL=./dn_store.js.map
+},{"jquery":"jquery","underscore":"underscore"}],161:[function(require,module,exports){
+(function(){var $,t,e,r;$=require("jquery"),r=require("underscore"),e=JSON.parse(localStorage.getItem("settings")).dn,t=function(){function t(t,e,r){this.clientId=t,this.clientSecret=e,this.redirectUri=r,this.dnUri="https://api-news.layervault.com/api/v1"}return t.prototype.getTopStories=function(t,e){return $.getJSON(""+this.dnUri+"/stories?client_id="+this.clientId,{}).done(function(r){return processStories(r.stories.slice(0,t),function(t){return e(null,t)})}).fail(function(t,r,n){return e(n)})},t.prototype.getRecentStories=function(t,e){return $.getJSON(""+this.dnUri+"/stories/recent?client_id="+this.clientId,{}).done(function(r){return processStories(r.stories.slice(0,t),function(t){return e(null,t)})}).fail(function(t,r,n){return e(n)})},t.prototype.processStories=function(t,e){var n;return n=[],r.each(t,function(t,r){var i;return i={title:t.title,url:t.url,upvotes:t.vote_count,author:t.user_display_name,comment_count:t.comments.length},n.push(i),r===limit-1?e(n):void 0})},t}(),module.exports=new t(e.client_id,e.client_secret,e.redirect_uri)}).call(this);
+},{"jquery":"jquery","underscore":"underscore"}]},{},[157,158,159,160,161]);
