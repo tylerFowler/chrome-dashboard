@@ -10,23 +10,25 @@ var DNList = React.createClass({
     return { stories: [], err: null }
   },
 
-  componentDidMount: function() {
-    // See this for how to stop setInterval after it's started
-    // http://stackoverflow.com/questions/1831152/how-to-stop-setinterval
-    if (this.props.showTop === true) {
-      // do call here to dn.topStories and figure out how to make the cb work
-      dn.getTopStories(this.props.maxStories, function(err, stories) {
-        if (err) this.setState({ stories: [], err: err });
-        else if (stories.length === 0) {
-          this.setState({
-            stories: [],
-            err: new Error("we didn't get any stories!")
-          });
-        } else this.setState({ stories: stories, err: null });
-
+  dnCb: function(err, stories) {
+    if (err) this.setState({ stories: [], err: err });
+    else if (stories.length === 0) {
+      this.setState({
+        stories: [],
+        err: new Error("We didn't get any stories!")
       });
-    } else {
+    } else this.setState({ stories: stories, err: null });
+  },
 
-    }
+  loadDnStories: function(limit) {
+    if (this.props.showTop === true)
+      dn.getTopStories(limit, this.dnCb);
+    else
+      dn.getRecentStories(limit, this.dnCb);
+  },
+
+  componentDidMount: function() {
+    this.loadDnStories(this.props.maxStories);
+    setInterval(function() {this.loadDnStories}, dn.refreshInterval);
   }
 })

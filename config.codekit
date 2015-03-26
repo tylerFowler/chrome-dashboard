@@ -44,6 +44,17 @@
 		"outputStyle": 2,
 		"syntaxCheckerStyle": 0
 		},
+	"\/public\/js\/settings.js": {
+		"fileType": 64,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/public\/js\/settings.js",
+		"outputAbbreviatedPath": "\/public\/js\/settings-min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 2,
+		"syntaxCheckerStyle": 0
+		},
 	"\/public\/js\/vendor.js": {
 		"fileType": 64,
 		"ignore": 1,
@@ -79,50 +90,6 @@
 		"ignoreWasSetByUser": 1,
 		"inputAbbreviatedPath": "\/src\/app\/_build\/app.js",
 		"outputAbbreviatedPath": "\/public\/js\/app-min.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 2,
-		"syntaxCheckerStyle": 0
-		},
-	"\/src\/app\/_build\/components\/clock.js": {
-		"fileType": 64,
-		"ignore": 1,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/src\/app\/_build\/components\/clock.js",
-		"outputAbbreviatedPath": "\/public\/js\/clock-min.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 2,
-		"syntaxCheckerStyle": 0
-		},
-	"\/src\/app\/_build\/components\/dn.js": {
-		"fileType": 64,
-		"ignore": 1,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/src\/app\/_build\/components\/dn.js",
-		"outputAbbreviatedPath": "\/public\/js\/dn-min.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 2,
-		"syntaxCheckerStyle": 0
-		},
-	"\/src\/app\/_build\/dn_store.js": {
-		"fileType": 64,
-		"ignore": 1,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/src\/app\/_build\/dn_store.js",
-		"outputAbbreviatedPath": "\/public\/js\/dn_store-min.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 2,
-		"syntaxCheckerStyle": 0
-		},
-	"\/src\/app\/_build\/model\/dn_store.js": {
-		"fileType": 64,
-		"ignore": 1,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/src\/app\/_build\/model\/dn_store.js",
-		"outputAbbreviatedPath": "\/public\/js\/dn_store-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 2,

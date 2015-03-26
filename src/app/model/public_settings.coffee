@@ -15,7 +15,6 @@ unless localStorage.getItem settingsKeyName
     ### Designer News Settings ###
     dn:
       refresh_interval_ms: 5000 # can't go over 300 reqs/hour!
-      only_top_stories: true # just streams the latest if false
       client_id: '<insert yours>'
       client_secret: '<insert yours>'
       redirect_uri: '<insert yours>'

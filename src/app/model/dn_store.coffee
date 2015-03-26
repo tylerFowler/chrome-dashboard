@@ -4,7 +4,7 @@ _ = require 'underscore'
 dnSettings = JSON.parse(localStorage.getItem('settings')).dn
 
 class DesignerNews
-  constructor: (@clientId, @clientSecret, @redirectUri) ->
+  constructor: (@clientId, @clientSecret, @redirectUri, @refreshInterval) ->
     @dnUri = 'https://api-news.layervault.com/api/v1'
 
   ###
@@ -61,5 +61,6 @@ class DesignerNews
 module.exports = new DesignerNews(
   dnSettings.client_id,
   dnSettings.client_secret,
-  dnSettings.redirect_uri
+  dnSettings.redirect_uri,
+  dnSettings.refresh_interval_ms
 )
