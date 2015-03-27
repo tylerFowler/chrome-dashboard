@@ -2,12 +2,16 @@ var React = require('react');
 
 // Components
 var Clock = require('./components/clock');
+var DNList = require('./components/dn');
 
 
 var App = React.createClass({
   render: function() {
     return (
-      <Clock />
+      <div id="mystuff">
+        <Clock />
+        <DNList showTop={true} maxStories={10} />
+      </div>
     );
   }
 });

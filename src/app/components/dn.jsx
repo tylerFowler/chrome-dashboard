@@ -21,6 +21,8 @@ var DNList = React.createClass({
   },
 
   loadDnStories: function(limit) {
+    console.log("Limit is " + limit);
+
     if (this.props.showTop === true)
       dn.getTopStories(limit, this.dnCb);
     else
@@ -29,6 +31,17 @@ var DNList = React.createClass({
 
   componentDidMount: function() {
     this.loadDnStories(this.props.maxStories);
-    setInterval(function() {this.loadDnStories}, dn.refreshInterval);
+
+    setInterval((function() {
+      this.loadDnStories(this.props.maxStories)
+    }).bind(this), dn.refreshInterval);
+  },
+
+  render: function() {
+    return (
+      <span>Stories Count: {this.state.stories.length}</span>
+    );
   }
-})
+});
+
+module.exports = DNList;

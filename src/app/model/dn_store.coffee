@@ -15,8 +15,8 @@ class DesignerNews
   ###
   getTopStories: (limit, cb) ->
     $.getJSON "#{@dnUri}/stories?client_id=#{@clientId}", {}
-    .done (data) ->
-      processStories data.stories.slice(0, limit), (processedStories) ->
+    .done (data) =>
+      @.processStories data.stories.slice(0, limit), limit, (processedStories) ->
         cb null, processedStories
     .fail (xhr, errMsg, err) ->
       cb err
@@ -29,8 +29,8 @@ class DesignerNews
   ###
   getRecentStories: (limit, cb) ->
     $.getJSON "#{@dnUri}/stories/recent?client_id=#{@clientId}", {}
-    .done (data) ->
-      processStories data.stories.slice(0, limit), (processedStories) ->
+    .done (data) =>
+      @.processStories data.stories.slice(0, limit), limit, (processedStories) ->
         cb null, processedStories
     .fail (xhr, errMsg, err) ->
       cb err
@@ -39,9 +39,10 @@ class DesignerNews
    # DesignerNews#processStories
    # @desc : processes raw DN story data into a stripped down api
    # @param : [ { stories } ]
+   # @param : limit
    # @calls : cb([{ title, url, upvotes, author, comment_count }])
   ###
-  processStories: (stories, cb) ->
+  processStories: (stories, limit, cb) ->
     processedStories = []
 
     # strip away unnecessary information to give to the client

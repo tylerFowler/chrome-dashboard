@@ -7,14 +7,14 @@
           src: [],
           dest: 'public/js/vendor.js',
           options: {
-            require: ['jquery', 'underscore']
+            require: ['jquery', 'underscore', 'react']
           }
         },
         client: {
           src: ['src/app/_build/**/*.js', 'src/app/_build/*.js'],
           dest: 'public/js/app.js',
           options: {
-            external: ['jquery', 'underscore']
+            external: ['jquery', 'underscore', 'react']
           }
         }
       },
