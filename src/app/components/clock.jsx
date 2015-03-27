@@ -16,9 +16,12 @@ var Clock = React.createClass({
     if (curDate.getHours() > 12) {
       timeObj.hours = curDate.getHours() - 12;
       timeObj.period = 'PM';
+    } else if (curDate.getHours() === 0) {
+      timeObj.hours = 12;
+      timeObj.period = 'AM';
     } else {
       timeObj.hours = curDate.getHours();
-      timeObj.peroid = 'AM';
+      timeObj.period = 'AM';
     }
 
 

@@ -41,9 +41,12 @@ var Clock = React.createClass({displayName: "Clock",
     if (curDate.getHours() > 12) {
       timeObj.hours = curDate.getHours() - 12;
       timeObj.period = 'PM';
+    } else if (curDate.getHours() === 0) {
+      timeObj.hours = 12;
+      timeObj.period = 'AM';
     } else {
       timeObj.hours = curDate.getHours();
-      timeObj.peroid = 'AM';
+      timeObj.period = 'AM';
     }
 
 
@@ -85,7 +88,7 @@ var dn    = require('../model/dn_store');
 // - DNList : the overall list of items, simple wrapper w/ div structure
 // - DNItem : each individual article, decorates the stories
 
-var DNList = React.createClass({displayName: "DNList",
+DNList = React.createClass({displayName: "DNList",
   getInitialState: function() {
     return { stories: [], err: null }
   },
@@ -117,9 +120,71 @@ var DNList = React.createClass({displayName: "DNList",
     }).bind(this), dn.refreshInterval);
   },
 
+  // renderError: function(err) {
+  //   return (
+  //
+  //   )
+  // },
+
   render: function() {
+    var dnlist = this.state.stories.map(function(story, index) {
+      return (
+        React.createElement(DNItem, {storyId: index, 
+          title: story.title, 
+          url: story.url, 
+          dnurl: story.dnurl, 
+          upvotes: story.upvotes, 
+          author: story.author, 
+          commentCount: story.commentCount}
+        )
+      );
+    });
+
+    console.dir(dnlist);
+
     return (
-      React.createElement("span", null, "Stories Count: ", this.state.stories.length)
+      React.createElement("div", {className: "dn-container"}, 
+        React.createElement("div", {className: "dn-header component-header"}, 
+          React.createElement("span", null, "Designer News")
+        ), 
+
+        React.createElement("div", {className: "dnlist"}, 
+          dnlist
+        )
+      )
+    );
+  }
+});
+
+var DNItem = React.createClass({displayName: "DNItem",
+  render: function() {
+    var itemId = 'dnitem-' + this.props.storyId;
+
+    // maybe do the index as a ::before element
+    return (
+      React.createElement("div", {className: "dn-item article-item", id: itemId}, 
+
+        React.createElement("div", {className: "article-index"}, 
+          React.createElement("span", null, this.props.storyId + 1)
+        ), 
+
+        React.createElement("div", {className: "article-title"}, 
+          React.createElement("a", {href: this.props.url}, this.props.title)
+        ), 
+
+        React.createElement("div", {className: "article-metadata"}, 
+          React.createElement("span", {className: "article-upvote"}, this.props.upvotes), 
+          React.createElement("div", {className: "upvote-icon"}), 
+
+          React.createElement("span", {className: "article-author"}, this.props.author), 
+          React.createElement("div", {className: "article-data-divider"}), 
+
+          React.createElement("a", {className: "article-comments", href: this.props.dnurl}, 
+            this.props.commentCount, " comments"
+          )
+
+        )
+      )
     );
   }
 });
@@ -127,7 +192,7 @@ var DNList = React.createClass({displayName: "DNList",
 module.exports = DNList;
 
 },{"../model/dn_store":4,"react":"react"}],4:[function(require,module,exports){
-(function(){var $,t,e,r;$=require("jquery"),r=require("underscore"),e=JSON.parse(localStorage.getItem("settings")).dn,t=function(){function t(t,e,r,n){this.clientId=t,this.clientSecret=e,this.redirectUri=r,this.refreshInterval=n,this.dnUri="https://api-news.layervault.com/api/v1"}return t.prototype.getTopStories=function(t,e){return $.getJSON(""+this.dnUri+"/stories?client_id="+this.clientId,{}).done(function(r){return function(n){return r.processStories(n.stories.slice(0,t),t,function(t){return e(null,t)})}}(this)).fail(function(t,r,n){return e(n)})},t.prototype.getRecentStories=function(t,e){return $.getJSON(""+this.dnUri+"/stories/recent?client_id="+this.clientId,{}).done(function(r){return function(n){return r.processStories(n.stories.slice(0,t),t,function(t){return e(null,t)})}}(this)).fail(function(t,r,n){return e(n)})},t.prototype.processStories=function(t,e,n){var i;return i=[],r.each(t,function(t,r){var o;return o={title:t.title,url:t.url,upvotes:t.vote_count,author:t.user_display_name,comment_count:t.comments.length},i.push(o),r===e-1?n(i):void 0})},t}(),module.exports=new t(e.client_id,e.client_secret,e.redirect_uri,e.refresh_interval_ms)}).call(this);
+(function(){var $,t,e,r;$=require("jquery"),r=require("underscore"),e=JSON.parse(localStorage.getItem("settings")).dn,t=function(){function t(t,e,r,n){this.clientId=t,this.clientSecret=e,this.redirectUri=r,this.refreshInterval=n,this.dnUri="https://api-news.layervault.com/api/v1"}return t.prototype.getTopStories=function(t,e){return $.getJSON(""+this.dnUri+"/stories?client_id="+this.clientId,{}).done(function(r){return function(n){return r.processStories(n.stories.slice(0,t),t,function(t){return e(null,t)})}}(this)).fail(function(t,r,n){return e(n)})},t.prototype.getRecentStories=function(t,e){return $.getJSON(""+this.dnUri+"/stories/recent?client_id="+this.clientId,{}).done(function(r){return function(n){return r.processStories(n.stories.slice(0,t),t,function(t){return e(null,t)})}}(this)).fail(function(t,r,n){return e(n)})},t.prototype.processStories=function(t,e,n){var i;return i=[],r.each(t,function(t,r){var o;return o={title:t.title,url:t.url,dnurl:t.site_url,upvotes:t.vote_count,author:t.user_display_name,commentCount:t.comments.length},i.push(o),r===e-1?n(i):void 0})},t}(),module.exports=new t(e.client_id,e.client_secret,e.redirect_uri,e.refresh_interval_ms)}).call(this);
 },{"jquery":"jquery","underscore":"underscore"}],5:[function(require,module,exports){
 (function(){}).call(this);
 },{}]},{},[1,2,3,4,5]);

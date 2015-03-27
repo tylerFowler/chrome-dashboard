@@ -50,9 +50,10 @@ class DesignerNews
       processed =
         title: story.title
         url: story.url
+        dnurl: story.site_url
         upvotes: story.vote_count
         author: story.user_display_name
-        comment_count: story.comments.length
+        commentCount: story.comments.length
 
       processedStories.push processed
 

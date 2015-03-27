@@ -5,7 +5,7 @@ var dn    = require('../model/dn_store');
 // - DNList : the overall list of items, simple wrapper w/ div structure
 // - DNItem : each individual article, decorates the stories
 
-var DNList = React.createClass({
+DNList = React.createClass({
   getInitialState: function() {
     return { stories: [], err: null }
   },
@@ -37,9 +37,71 @@ var DNList = React.createClass({
     }).bind(this), dn.refreshInterval);
   },
 
+  // renderError: function(err) {
+  //   return (
+  //
+  //   )
+  // },
+
   render: function() {
+    var dnlist = this.state.stories.map(function(story, index) {
+      return (
+        <DNItem storyId={index}
+          title={story.title}
+          url={story.url}
+          dnurl={story.dnurl}
+          upvotes={story.upvotes}
+          author={story.author}
+          commentCount={story.commentCount}
+        />
+      );
+    });
+
+    console.dir(dnlist);
+
     return (
-      <span>Stories Count: {this.state.stories.length}</span>
+      <div className="dn-container">
+        <div className="dn-header component-header">
+          <span>Designer News</span>
+        </div>
+
+        <div className="dnlist">
+          {dnlist}
+        </div>
+      </div>
+    );
+  }
+});
+
+var DNItem = React.createClass({
+  render: function() {
+    var itemId = 'dnitem-' + this.props.storyId;
+
+    // maybe do the index as a ::before element
+    return (
+      <div className="dn-item article-item" id={itemId}>
+
+        <div className="article-index">
+          <span>{this.props.storyId + 1}</span>
+        </div>
+
+        <div className="article-title">
+          <a href={this.props.url}>{this.props.title}</a>
+        </div>
+
+        <div className="article-metadata">
+          <span className="article-upvote">{this.props.upvotes}</span>
+          <div className="upvote-icon"></div>
+
+          <span className="article-author">{this.props.author}</span>
+          <div className="article-data-divider"></div>
+
+          <a className="article-comments" href={this.props.dnurl}>
+            {this.props.commentCount} comments
+          </a>
+
+        </div>
+      </div>
     );
   }
 });
