@@ -10,7 +10,7 @@ var App = React.createClass({
     return (
       <div id="mystuff">
         <Clock />
-        <DNList showTop={true} maxStories={10} />
+        <DNList showTop={true} maxStories={5} />
       </div>
     );
   }

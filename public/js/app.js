@@ -11,7 +11,7 @@ var App = React.createClass({displayName: "App",
     return (
       React.createElement("div", {id: "mystuff"}, 
         React.createElement(Clock, null), 
-        React.createElement(DNList, {showTop: true, maxStories: 10})
+        React.createElement(DNList, {showTop: true, maxStories: 5})
       )
     );
   }
@@ -144,7 +144,7 @@ DNList = React.createClass({displayName: "DNList",
 
     return (
       React.createElement("div", {className: "dn-container"}, 
-        React.createElement("div", {className: "dn-header component-header"}, 
+        React.createElement("div", {className: "component-header dn-header"}, 
           React.createElement("span", null, "Designer News")
         ), 
 
@@ -162,14 +162,14 @@ var DNItem = React.createClass({displayName: "DNItem",
 
     // maybe do the index as a ::before element
     return (
-      React.createElement("div", {className: "dn-item article-item", id: itemId}, 
+      React.createElement("div", {className: "article-item dn-item", id: itemId}, 
 
         React.createElement("div", {className: "article-index"}, 
           React.createElement("span", null, this.props.storyId + 1)
         ), 
 
         React.createElement("div", {className: "article-title"}, 
-          React.createElement("a", {href: this.props.url}, this.props.title)
+          React.createElement("a", {href: this.props.url, target: "_blank"}, this.props.title)
         ), 
 
         React.createElement("div", {className: "article-metadata"}, 
@@ -179,7 +179,7 @@ var DNItem = React.createClass({displayName: "DNItem",
           React.createElement("span", {className: "article-author"}, this.props.author), 
           React.createElement("div", {className: "article-data-divider"}), 
 
-          React.createElement("a", {className: "article-comments", href: this.props.dnurl}, 
+          React.createElement("a", {className: "article-comments", href: this.props.dnurl, target: "_blank"}, 
             this.props.commentCount, " comments"
           )
 

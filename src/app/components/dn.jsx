@@ -61,7 +61,7 @@ DNList = React.createClass({
 
     return (
       <div className="dn-container">
-        <div className="dn-header component-header">
+        <div className="component-header dn-header">
           <span>Designer News</span>
         </div>
 
@@ -79,14 +79,14 @@ var DNItem = React.createClass({
 
     // maybe do the index as a ::before element
     return (
-      <div className="dn-item article-item" id={itemId}>
+      <div className="article-item dn-item" id={itemId}>
 
         <div className="article-index">
           <span>{this.props.storyId + 1}</span>
         </div>
 
         <div className="article-title">
-          <a href={this.props.url}>{this.props.title}</a>
+          <a href={this.props.url} target="_blank">{this.props.title}</a>
         </div>
 
         <div className="article-metadata">
@@ -96,7 +96,7 @@ var DNItem = React.createClass({
           <span className="article-author">{this.props.author}</span>
           <div className="article-data-divider"></div>
 
-          <a className="article-comments" href={this.props.dnurl}>
+          <a className="article-comments" href={this.props.dnurl} target="_blank">
             {this.props.commentCount} comments
           </a>
 

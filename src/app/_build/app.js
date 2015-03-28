@@ -10,7 +10,7 @@ var App = React.createClass({displayName: "App",
     return (
       React.createElement("div", {id: "mystuff"}, 
         React.createElement(Clock, null), 
-        React.createElement(DNList, {showTop: true, maxStories: 10})
+        React.createElement(DNList, {showTop: true, maxStories: 5})
       )
     );
   }
