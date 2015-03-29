@@ -49,7 +49,7 @@ DNList = React.createClass({
     return (
       <div className="pane dn-container">
         <div className="pane-header dn-header">
-          <span>Designer News</span>
+          <h2>Designer News</h2>
         </div>
 
         <div className="story-list dnlist">

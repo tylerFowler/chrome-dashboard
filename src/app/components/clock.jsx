@@ -25,7 +25,10 @@ var Clock = React.createClass({
     }
 
 
-    timeObj.minutes = curDate.getMinutes();
+    // we always want the time to be 2 digis (i.e. 09 instead of 9)
+    mins = curDate.getMinutes();
+    timeObj.minutes = mins > 9 ? '' + mins : '0' + mins;
+
     timeObj.month = monthNames[curDate.getMonth()];
     timeObj.day = curDate.getDate();
     timeObj.year = curDate.getFullYear();

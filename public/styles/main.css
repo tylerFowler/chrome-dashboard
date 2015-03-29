@@ -52,10 +52,12 @@ html {
   height: 100px;
   width: 100%;
   border-bottom: 2px solid #4F4F4F; }
-  .pane-header span {
+  .pane-header h2 {
     font-family: Montserrat;
+    font-weight: normal;
+    font-size: 39.81312px;
     margin: auto 10%;
-    font-size: 33.1776px; }
+    padding-top: 20px; }
 
 html, body, #content {
   width: 100%;

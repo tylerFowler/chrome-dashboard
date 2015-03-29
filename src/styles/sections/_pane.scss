@@ -11,9 +11,12 @@ $pane-header-border: #4F4F4F;
   width: 100%;
   border-bottom: 2px solid $pane-header-border;
 
-  span {
+  h2 {
     font-family: Montserrat;
+    font-weight: normal;
+    font-size: modular-scale(5);
+
     margin: auto 10%;
-    font-size: modular-scale(4);
+    padding-top: 20px;
   }
 }
