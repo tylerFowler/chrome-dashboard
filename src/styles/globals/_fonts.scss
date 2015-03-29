@@ -2,8 +2,29 @@
 $modular-scale-ratio: $minor-third;
 $modular-scale-base: 16px;
 
-// Load custom fonts:
+// font weights
+$font-light: 300;
+$font-normal: 400;
+$font-bold: 700;
+
+$fonts-dir: '../fonts';
+
+// Montserrat
+$Montserrat: Montserrat, 'Helvetica Neue', arial, sans-serif;
 @font-face {
-  font-family: "Montserrat";
-  src: url('../fonts/monsterrat-regular.ttf') format("truetype");
+  font-family: 'Montserrat';
+  src: url("#{$fonts-dir}/montserrat-regular.ttf") format('truetype');
+  font-weight: $font-normal;
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  src: url("#{$fonts-dir}/montserrat-bold.ttf") format('truetype');
+  font-weight: $font-bold;
+}
+
+@font-face {
+  font-family: 'OpenSans';
+  src: url("#{$fonts-dir}/opensans-light.ttf") format('truetype');
+  font-weight: $font-light;
 }

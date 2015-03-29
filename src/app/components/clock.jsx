@@ -45,7 +45,8 @@ var Clock = React.createClass({
     return (
       <div className="clock">
         <div className="time">
-          <span id="cur-time">{this.state.time.hours}:{this.state.time.minutes} {this.state.time.period}</span>
+          <h1 id="cur-time">{this.state.time.hours}:{this.state.time.minutes}</h1>
+          <span id="cur-period">{this.state.time.period}</span>
         </div>
         <div className="divider"></div>
         <div className="date">
