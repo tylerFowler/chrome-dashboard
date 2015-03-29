@@ -9,6 +9,9 @@
 @import 'components/hn';
 
 html, body, #content {
+  background: $page-bg-color;
+  overflow: hidden;
+
   width: 100%;
   height: 100%;
 }
@@ -19,8 +22,6 @@ html {
 
 // main background
 body {
-  background: $page-bg-color;
-
   min-width: 600px;
 }
 

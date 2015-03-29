@@ -4,6 +4,7 @@ $pane-header-border: #4f4f4f;
 .pane {
   height: 100%;
   background: #e7e9e9;
+  overflow: hidden;
 }
 
 .pane-header {
