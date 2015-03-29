@@ -25,7 +25,7 @@ class DesignerNews
    # DesignerNews#getRecentStories
    # @desc : retrieves the latest stream of stories from designer news
    # @param : limit - max number of stories to grab
-   # @calls : cb(err, [{ title, url, upvotes, author, comment_count }])
+   # @calls : cb(err, [{ title, url, dnurl, upvotes, author, commentCount }])
   ###
   getRecentStories: (limit, cb) ->
     $.getJSON "#{@dnUri}/stories/recent?client_id=#{@clientId}", {}
@@ -40,7 +40,7 @@ class DesignerNews
    # @desc : processes raw DN story data into a stripped down api
    # @param : [ { stories } ]
    # @param : limit
-   # @calls : cb([{ title, url, upvotes, author, comment_count }])
+   # @calls : cb([{ title, url, dnurl, upvotes, author, commentCount }])
   ###
   processStories: (stories, limit, cb) ->
     processedStories = []

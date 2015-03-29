@@ -9,14 +9,25 @@
 
 settingsKeyName = 'settings'
 
-# don't overwrite settings! These are just defaults
-unless localStorage.getItem settingsKeyName
-  settings =
-    ### Designer News Settings ###
-    dn:
-      refresh_interval_ms: 5000 # can't go over 300 reqs/hour!
-      client_id: '<insert yours>'
-      client_secret: '<insert yours>'
-      redirect_uri: '<insert yours>'
+# Helper function for development
+window.resetSettings = ->
+  localStorage.clear()
+  location.reload()
 
-  localStorage.setItem settingsKeyName, JSON.stringify settings
+# don't overwrite settings! These are just defaults
+setSettings = ->
+  unless localStorage.getItem settingsKeyName
+    settings =
+      ### Designer News Settings ###
+      dn:
+        refresh_interval_ms: 15 * 60 * 1000 # can't go over 300 reqs/hour!
+        client_id: '<insert yours>'
+        client_secret: '<insert yours>'
+        redirect_uri: '<insert yours>'
+      ### Hacker News Settings ###
+      hn:
+        refresh_interval_ms: 15 * 60 * 1000
+
+    localStorage.setItem settingsKeyName, JSON.stringify settings
+
+setSettings()

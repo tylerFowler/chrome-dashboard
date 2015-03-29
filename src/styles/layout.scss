@@ -1,3 +1,24 @@
 // This is the top level layout
 @import 'common';
 @import 'lib/neat/neat';
+
+// top level container for the app, React app will be drawn here
+.container {
+  @include outer-container();
+}
+
+.left-pane, .center-pane, .right-pane {
+  border: 1px solid black;
+}
+
+.left-pane {
+  @include span-columns(4);
+}
+
+.center-pane {
+  @include span-columns(4);
+}
+
+.right-pane {
+  @include span-columns(4);
+}

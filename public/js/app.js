@@ -9,9 +9,18 @@ var DNList = require('./components/dn');
 var App = React.createClass({displayName: "App",
   render: function() {
     return (
-      React.createElement("div", {id: "mystuff"}, 
-        React.createElement(Clock, null), 
-        React.createElement(DNList, {showTop: true, maxStories: 5})
+      React.createElement("div", {className: "container"}, 
+        React.createElement("div", {className: "left-pane"}, 
+          React.createElement(DNList, {showTop: true, maxStories: 5})
+        ), 
+
+        React.createElement("div", {className: "center-pane"}, 
+          React.createElement(Clock, null)
+        ), 
+
+        React.createElement("div", {className: "right-pane"}, 
+          React.createElement("span", null, "HN")
+        )
       )
     );
   }
@@ -194,5 +203,5 @@ module.exports = DNList;
 },{"../model/dn_store":4,"react":"react"}],4:[function(require,module,exports){
 (function(){var $,t,e,r;$=require("jquery"),r=require("underscore"),e=JSON.parse(localStorage.getItem("settings")).dn,t=function(){function t(t,e,r,n){this.clientId=t,this.clientSecret=e,this.redirectUri=r,this.refreshInterval=n,this.dnUri="https://api-news.layervault.com/api/v1"}return t.prototype.getTopStories=function(t,e){return $.getJSON(""+this.dnUri+"/stories?client_id="+this.clientId,{}).done(function(r){return function(n){return r.processStories(n.stories.slice(0,t),t,function(t){return e(null,t)})}}(this)).fail(function(t,r,n){return e(n)})},t.prototype.getRecentStories=function(t,e){return $.getJSON(""+this.dnUri+"/stories/recent?client_id="+this.clientId,{}).done(function(r){return function(n){return r.processStories(n.stories.slice(0,t),t,function(t){return e(null,t)})}}(this)).fail(function(t,r,n){return e(n)})},t.prototype.processStories=function(t,e,n){var i;return i=[],r.each(t,function(t,r){var o;return o={title:t.title,url:t.url,dnurl:t.site_url,upvotes:t.vote_count,author:t.user_display_name,commentCount:t.comments.length},i.push(o),r===e-1?n(i):void 0})},t}(),module.exports=new t(e.client_id,e.client_secret,e.redirect_uri,e.refresh_interval_ms)}).call(this);
 },{"jquery":"jquery","underscore":"underscore"}],5:[function(require,module,exports){
-(function(){}).call(this);
-},{}]},{},[1,2,3,4,5]);
+(function(){var $,e,t,r;$=require("jquery"),r=require("underscore"),t=JSON.parse(localstorage.getItem("settings")).hn,e=function(){function e(e){this.refresh_interval=e,this.hnUri="https://hacker-news.firebaseio.com/v0/"}return e.prototype.getTopStories=function(e,t){return $.getJSON(""+this.hnUri+"/topstories",{}).done(function(r){return function(n){var i;return i=n.slice(0,e),r.getStories(i,function(e,r){return e?t(e):0===r.length?t(new Error("Received zero stories")):t(null,r)})}}(this)).fail(function(e,r,n){return t(n)})},e.prototype.getRecentStories=function(e,t){return $.getJSON(""+this.hnUri+"/newstories",{}).done(function(r){return function(n){var i;return i=n.slice(0,e),r.getStories(i,function(e,r){return e?t(e):0===r.length?t(new Error("Received zero stories")):t(null,r)})}}(this)).fail(function(e,r,n){return t(n)})},e.prototype.getStories=function(e,t){var n;return n=[],r.each(e,function(r,i){return $.getJSON(""+this.hnUri+"/item/"+r,{}).done(function(r){var o;return o={title:r.title,url:r.url,score:r.score,author:r.by,commentCount:r.kids.length},n.push(o),i===e.length-1?t(n):void 0}).fail(function(e,r,n){return t(n)})})},e}(),module.exports=new e(t.refresh_interval_ms)}).call(this);
+},{"jquery":"jquery","underscore":"underscore"}]},{},[1,2,3,4,5]);
