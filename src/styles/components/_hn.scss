@@ -1,1 +1,10 @@
-// Hacker News specific stuff
+$hn-brand-color: #ff6600;
+$hn-text-color: #404040;
+
+.hn-header {
+  background: $hn-brand-color;
+
+  h2 {
+    color: $hn-text-color;
+  }
+}

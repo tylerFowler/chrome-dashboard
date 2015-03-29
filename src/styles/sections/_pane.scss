@@ -1,9 +1,9 @@
 // TODO: this is the general pane stuff, shared across DN/HN/Music/Dev
-$pane-header-border: #4F4F4F;
+$pane-header-border: #4f4f4f;
 
 .pane {
   height: 100%;
-  background: #E7E9E9;
+  background: #e7e9e9;
 }
 
 .pane-header {
@@ -16,7 +16,7 @@ $pane-header-border: #4F4F4F;
     font-weight: normal;
     font-size: modular-scale(5);
 
-    margin: auto 10%;
+    margin: auto 7%;
     padding-top: 20px;
   }
 }

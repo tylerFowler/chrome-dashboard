@@ -1,1 +1,10 @@
-// Designer News Specific stuff
+$dn-brand-color: #2d72d9;
+$dn-text-color: #fff;
+
+.dn-header {
+  background: $dn-brand-color;
+
+  h2 {
+    color: $dn-text-color;
+  }
+}
