@@ -41,7 +41,7 @@ HNList = React.createClass({
     });
 
     return (
-      <div className="hn-container">
+      <div className="pane hn-container">
         <div className="pane-header hn-header">
           <span>Hacker News</span>
         </div>

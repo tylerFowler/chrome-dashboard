@@ -4,11 +4,14 @@
 
 // top level container for the app, React app will be drawn here
 .container {
-  @include outer-container();
+  // we want this container to touch the edges of the page
+  @include outer-container(100%);
+  height: 100%;
 }
 
+// grids
 .left-pane, .center-pane, .right-pane {
-  border: 1px solid black;
+  height: 100%;
 }
 
 .left-pane {
