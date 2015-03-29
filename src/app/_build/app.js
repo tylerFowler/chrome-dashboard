@@ -3,6 +3,7 @@ var React = require('react');
 // Components
 var Clock = require('./components/clock');
 var DNList = require('./components/dn');
+var HNList = require('./components/hn');
 
 
 var App = React.createClass({displayName: "App",
@@ -18,7 +19,7 @@ var App = React.createClass({displayName: "App",
         ), 
 
         React.createElement("div", {className: "right-pane"}, 
-          React.createElement("span", null, "HN")
+          React.createElement(HNList, {showTop: true, maxStories: 5})
         )
       )
     );

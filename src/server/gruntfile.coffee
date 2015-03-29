@@ -8,13 +8,15 @@ module.exports = (grunt) ->
       vendor:
         src: [],
         dest: 'public/js/vendor.js',
-        options:
-          require: [ 'jquery', 'underscore' ]
+        options: { require: [ 'jquery', 'underscore' ] }
 
       client:
         src: [ 'src/app/_build/**/*.js', 'src/app/_build/*.js' ],
         dest: 'public/js/app.js',
-        options: { external: [ 'jquery', 'underscore' ] }
+        options:
+          external: [ 'jquery', 'underscore' ]
+          browserifyOptions:
+            debug: true
 
     react:
       client:

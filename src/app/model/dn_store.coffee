@@ -16,8 +16,10 @@ class DesignerNews
   getTopStories: (limit, cb) ->
     $.getJSON "#{@dnUri}/stories?client_id=#{@clientId}", {}
     .done (data) =>
-      @.processStories data.stories.slice(0, limit), limit, (processedStories) ->
-        cb null, processedStories
+      @.processStories data.stories.slice(0, limit), (stories) ->
+        return cb new Error 'Received zero stories' if stories.length is 0
+        cb null, stories
+
     .fail (xhr, errMsg, err) ->
       cb err
 
@@ -30,8 +32,10 @@ class DesignerNews
   getRecentStories: (limit, cb) ->
     $.getJSON "#{@dnUri}/stories/recent?client_id=#{@clientId}", {}
     .done (data) =>
-      @.processStories data.stories.slice(0, limit), limit, (processedStories) ->
-        cb null, processedStories
+      @.processStories data.stories.slice(0, limit), (stories) ->
+        return cb new Error 'Received zero stories' if stories.length is 0
+        cb null, stories
+
     .fail (xhr, errMsg, err) ->
       cb err
 
@@ -42,7 +46,7 @@ class DesignerNews
    # @param : limit
    # @calls : cb([{ title, url, dnurl, upvotes, author, commentCount }])
   ###
-  processStories: (stories, limit, cb) ->
+  processStories: (stories, cb) ->
     processedStories = []
 
     # strip away unnecessary information to give to the client
@@ -57,7 +61,7 @@ class DesignerNews
 
       processedStories.push processed
 
-      cb processedStories if index is limit - 1
+      cb processedStories if index is stories.length - 1
 
 
 module.exports = new DesignerNews(

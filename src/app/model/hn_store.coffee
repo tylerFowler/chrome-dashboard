@@ -1,11 +1,11 @@
 $ = require 'jquery'
 _ = require 'underscore'
 
-hnSettings = JSON.parse(localstorage.getItem 'settings').hn
+hnSettings = JSON.parse(localStorage.getItem 'settings').hn
 
 class HackerNews
-  constructor: (@refresh_interval) ->
-    @hnUri = 'https://hacker-news.firebaseio.com/v0/'
+  constructor: (@refreshInterval) ->
+    @hnUri = 'https://hacker-news.firebaseio.com/v0'
 
   ###
    # HackerNews#getTopStories
@@ -14,7 +14,7 @@ class HackerNews
    # @calls : cb(err, )
   ###
   getTopStories: (limit, cb) ->
-    $.getJSON "#{@hnUri}/topstories", {}
+    $.getJSON "#{@hnUri}/topstories.json", {}
     .done (data) =>
       storyIds = data.slice 0, limit
       @.getStories storyIds, (err, stories) ->
@@ -24,8 +24,7 @@ class HackerNews
           return cb new Error 'Received zero stories'
         else
           cb null, stories
-    .fail (xhr, errMsg, err) ->
-      cb err
+    .fail (xhr, errMsg, err) -> cb err
 
   ###
    # HackerNews#getRecentStories
@@ -34,7 +33,7 @@ class HackerNews
    # @calls : cb(err, [{ title, url, score, author, commentCount }])
   ###
   getRecentStories: (limit, cb) ->
-    $.getJSON "#{@hnUri}/newstories", {}
+    $.getJSON "#{@hnUri}/newstories.json", {}
     .done (data) =>
       storyIds = data.slice 0, limit
       @.getStories storyIds, (err, stories) ->
@@ -44,8 +43,7 @@ class HackerNews
           cb new Error 'Received zero stories'
         else
           cb null, stories
-    .fail (xhr, errMsg, err) ->
-      cb err
+    .fail (xhr, errMsg, err) -> cb err
 
   ###
    # HackerNews#getStories
@@ -56,23 +54,27 @@ class HackerNews
   getStories: (ids, cb) ->
     stories = []
 
-    _.each ids, (id, index) ->
-      $.getJSON "#{@hnUri}/item/#{id}", {}
-      .done (story) ->
+    _.each ids, (id, index) =>
+      $.getJSON "#{@hnUri}/item/#{id}.json", {}
+      .done (story) =>
         processed =
           title: story.title
           url: story.url
+          hnurl: @.getHNStoryUrl story.id
           score: story.score
           author: story.by
           commentCount: story.kids.length
 
         stories.push processed
 
-        cb stories if index is ids.length - 1
+        cb null, stories if index is ids.length - 1
       .fail (xhr, errMsg, err) ->
         # TODO: this could get end up getting called more than once,
         # not sure what to do about it..
         cb err
+
+  getHNStoryUrl: (storyId) ->
+    "https://news.ycombinator.com/item?id=#{storyId}"
 
 module.exports = new HackerNews(
   hnSettings.refresh_interval_ms

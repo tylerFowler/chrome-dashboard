@@ -1,45 +1,39 @@
 var React = require('react');
-var dn    = require('../model/dn_store');
+var hn    = require('../model/hn_store');
 
-DNList = React.createClass({
+HNList = React.createClass({
   getInitialState: function() {
     return { stories: [], err: null }
   },
 
-  dnCb: function(err, stories) {
+  hnCb: function(err, stories) {
     if (err) this.setState({ stories: [], err: err });
     else this.setState({ stories: stories, err: null });
   },
 
-  loadDnStories: function(limit) {
+  loadHnStories: function(limit) {
     if (this.props.showTop === true)
-      dn.getTopStories(limit, this.dnCb);
+      hn.getTopStories(limit, this.hnCb);
     else
-      dn.getRecentStories(limit, this.dnCb);
+      hn.getRecentStories(limit, this.hnCb);
   },
 
   componentDidMount: function() {
-    this.loadDnStories(this.props.maxStories);
+    this.loadHnStories(this.props.maxStories);
 
     setInterval((function() {
-      this.loadDnStories(this.props.maxStories)
-    }).bind(this), dn.refreshInterval);
+      this.loadHnStories(this.props.maxStories)
+    }).bind(this), hn.refreshInterval);
   },
 
-  // renderError: function(err) {
-  //   return (
-  //
-  //   )
-  // },
-
   render: function() {
-    var dnlist = this.state.stories.map(function(story, index) {
+    var hnlist = this.state.stories.map(function(story, index) {
       return (
-        <DNItem storyId={index}
+        <HNItem storyId={index}
           title={story.title}
           url={story.url}
-          dnurl={story.dnurl}
-          upvotes={story.upvotes}
+          hnurl={story.hnurl}
+          score={story.score}
           author={story.author}
           commentCount={story.commentCount}
         />
@@ -47,26 +41,25 @@ DNList = React.createClass({
     });
 
     return (
-      <div className="dn-container">
-        <div className="pane-header dn-header">
-          <span>Designer News</span>
+      <div className="hn-container">
+        <div className="pane-header hn-header">
+          <span>Hacker News</span>
         </div>
 
-        <div className="story-list dnlist">
-          {dnlist}
+        <div className="story-list hnlist">
+          {hnlist}
         </div>
       </div>
     );
   }
 });
 
-var DNItem = React.createClass({
+var HNItem = React.createClass({
   render: function() {
-    var itemId = 'dnitem-' + this.props.storyId;
+    var itemId = 'hnitem-' + this.props.storyId;
 
-    // maybe do the index as a ::before element
     return (
-      <div className="story-item dn-item" id={itemId}>
+      <div className="story-item hn-item" id={itemId}>
 
         <div className="story-index">
           <span>{this.props.storyId + 1}</span>
@@ -77,13 +70,13 @@ var DNItem = React.createClass({
         </div>
 
         <div className="story-metadata">
-          <span className="story-upvotes">{this.props.upvotes}</span>
+          <span className="story-upvotes">{this.props.score}</span>
           <div className="upvote-icon"></div>
 
           <span className="story-author">{this.props.author}</span>
           <div className="story-data-divider"></div>
 
-          <a className="story-comments" href={this.props.dnurl} target="_blank">
+          <a className="story-comments" href={this.props.hnurl} target="_blank">
             {this.props.commentCount} comments
           </a>
 
@@ -93,4 +86,4 @@ var DNItem = React.createClass({
   }
 });
 
-module.exports = DNList;
+module.exports = HNList;
