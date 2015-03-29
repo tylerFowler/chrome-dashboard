@@ -12,6 +12,8 @@ $pane-header-border: #4F4F4F;
   border-bottom: 2px solid $pane-header-border;
 
   span {
+    font-family: Montserrat;
     margin: auto 10%;
+    font-size: modular-scale(4);
   }
 }

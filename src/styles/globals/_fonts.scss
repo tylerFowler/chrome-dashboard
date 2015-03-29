@@ -1,0 +1,9 @@
+// Font Scale: Minor Third
+$modular-scale-ratio: $minor-third;
+$modular-scale-base: 16px;
+
+// Load custom fonts:
+@font-face {
+  font-family: "Montserrat";
+  src: url('../fonts/monsterrat-regular.ttf') format("truetype");
+}

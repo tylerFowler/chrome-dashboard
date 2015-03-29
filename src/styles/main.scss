@@ -1,4 +1,5 @@
 @import 'common';
+@import 'globals/fonts';
 @import 'layout';
 
 @import 'sections/pane';
@@ -8,7 +9,9 @@ html, body, #content {
   height: 100%;
 }
 
-html { }
+html {
+  font-size: $modular-scale-base;
+}
 
 // main background
 body {
