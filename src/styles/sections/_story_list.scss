@@ -1,13 +1,24 @@
 @import '../lib/bourbon/bourbon';
+@import '../globals/helpers';
 
 $story-bg: #fafafa;
+$story-title-color: #404040;
+$story-meta-color: #a0a0a0;
+
+$title-line-height: 1.5;
+
 $index-size: 80px;
 
 .story-item {
   @include clearfix;
+  overflow: hidden;
   background: $story-bg;
 
   width: 90%;
+  height: $index-size;
+  max-height: $index-size;
+  min-height: $index-size;
+
   margin: auto;
   margin-top: 15px
 }
@@ -31,7 +42,60 @@ $index-size: 80px;
   }
 }
 
-.story-title, .story-metadata {
+%article-data-box {
   @include calc(width, "100% - #{$index-size}");
   float: right;
+  padding-left: 1rem;
+}
+
+.story-title {
+  @extend %article-data-box;
+
+  font-family: $Lora;
+  font-size: modular-scale(-1);
+  line-height: $title-line-height;
+  -webkit-line-clamp: 2;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  $title-height: $index-size - 40px;
+  height: $title-height;
+  min-height: $title-height;
+  max-height: $title-height;
+
+  padding-right: 3%;
+  margin-top: 3%;
+  margin-bottom: 5px;
+
+  a {
+    color: $story-title-color;
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+}
+
+.story-metadata {
+  @extend %article-data-box;
+
+  font-family: $OpenSans;
+  font-weight: $font-light;
+  color: $story-meta-color;
+  font-size: modular-scale(-2);
+
+  .story-upvotes, .story-author, .story-comments {
+    float: left;
+    margin-right: .5em;
+  }
+
+  .story-data-divider::after {
+    content: '|';
+    display: inline-block;
+    float: left;
+    margin-right: .5em;
+    margin-left: 0;
+  }
 }

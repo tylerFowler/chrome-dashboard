@@ -1,2 +1,52 @@
 .hidden { display: none; } // isn't drawn on the DOM
 .hide { opacity: 0; } // is drawn on the DOM
+
+
+// This doesn't realy work except for justified text...
+@mixin multiline-ellipsis($font-size, $line-height, $max-lines) {
+  $height: $font-size * $line-height * $max-lines;
+
+  display: block; // fallback for non-webkit
+  display: -webkit-box;
+  height: $height; // fallback for non-webkit
+  min-height: $height;
+  max-height: $height;
+  margin: 0 auto;
+  font-size: $font-size;
+  line-height: $line-height;
+  -webkit-line-clamp: $max-lines;
+  -webkit-box-orient: horizontal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+
+  &:before {
+    content: '';
+    float: left;
+    width: 5px;
+    height: $height;
+  }
+
+  & > *:first-child {
+    float: right;
+    width: 100%;
+    margin-left: -5px;
+  }
+
+  &:after {
+    content: '\02026';
+
+    box-sizing: content-box;
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+
+    float: right;
+    position: relative;
+    top: -25px;
+    left: 100%;
+    width: 3em;
+    margin-left: -3em;
+    padding-right: 5px;
+    text-align: right;
+  }
+}

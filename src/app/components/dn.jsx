@@ -64,7 +64,7 @@ var DNItem = React.createClass({
   render: function() {
     var itemId = 'dnitem-' + this.props.storyId;
 
-    // maybe do the index as a ::before element
+    // TODO: make it say 1 comment instead of 1 comments
     return (
       <div className="story-item dn-item" id={itemId}>
 
