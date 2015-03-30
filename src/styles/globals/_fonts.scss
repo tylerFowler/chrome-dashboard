@@ -1,3 +1,5 @@
+@import '../lib/bourbon/bourbon';
+
 // Font Scale: Minor Third
 $modular-scale-ratio: $minor-third;
 $modular-scale-base: 16px;
@@ -23,8 +25,16 @@ $Montserrat: Montserrat, 'Helvetica Neue', arial, sans-serif;
   font-weight: $font-bold;
 }
 
+$OpenSans: OpenSans, 'Helvetica Neue', arial, sans-serif;
 @font-face {
   font-family: 'OpenSans';
   src: url("#{$fonts-dir}/opensans-light.ttf") format('truetype');
   font-weight: $font-light;
+}
+
+$Lora: Lora, Times, serif;
+@font-face {
+  font-family: 'Lora';
+  src: url("#{$fonts-dir}/lora-regular.ttf") format('truetype');
+  font-weight: $font-normal;
 }

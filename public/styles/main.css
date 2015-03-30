@@ -10,6 +10,10 @@
   font-family: 'OpenSans';
   src: url("../fonts/opensans-light.ttf") format("truetype");
   font-weight: 300; }
+@font-face {
+  font-family: 'Lora';
+  src: url("../fonts/lora-regular.ttf") format("truetype");
+  font-weight: 400; }
 html {
   box-sizing: border-box; }
 
@@ -68,6 +72,33 @@ html {
     font-size: 39.81312px;
     margin: auto 7%;
     padding-top: 20px; }
+
+.story-item {
+  background: #fafafa;
+  width: 90%;
+  margin: auto;
+  margin-top: 15px; }
+  .story-item::after {
+    clear: both;
+    content: "";
+    display: table; }
+
+.story-index {
+  float: left;
+  display: inline-block;
+  background: #d8d8d8;
+  width: 80px;
+  height: 80px;
+  padding: 8px 29.999999625px; }
+  .story-index span {
+    font-family: Montserrat, "Helvetica Neue", arial, sans-serif;
+    font-size: 47.775744px;
+    text-align: center; }
+
+.story-title, .story-metadata {
+  width: -webkit-calc(100% - 80px);
+  width: calc(100% - 80px);
+  float: right; }
 
 .clock {
   background: #fff;
