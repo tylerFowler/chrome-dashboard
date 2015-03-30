@@ -8,3 +8,10 @@ $dn-text-color: #fff;
     color: $dn-text-color;
   }
 }
+
+.dn-item {
+  .story-index {
+    background: $dn-brand-color;
+    color: $dn-text-color;
+  }
+}

@@ -37,7 +37,7 @@ $index-size: 80px;
   height: $index-size;
 
   // this won't work for every size but it's a good approximation
-  padding: ($index-size / 10) ($index-size / 2.6666667);
+  padding: ($index-size / 10) ($index-size / 2.9);
 
   // we have to use a span, h1 will cause weird spacing
   span {
@@ -50,7 +50,7 @@ $index-size: 80px;
 %article-data-box {
   @include calc(width, "100% - #{$index-size}");
   float: right;
-  padding-left: 1rem;
+  padding-left: .5rem;
 }
 
 .story-title {
@@ -104,5 +104,10 @@ $index-size: 80px;
     float: left;
     margin-right: .5em;
     margin-left: 0;
+  }
+
+  .story-comments {
+    text-decoration: none;
+    color: $story-meta-color;
   }
 }

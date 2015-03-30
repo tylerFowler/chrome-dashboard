@@ -64,7 +64,7 @@ var DNItem = React.createClass({
   render: function() {
     var itemId = 'dnitem-' + this.props.storyId;
 
-    var commentText = this.props.commentCount > 1 ? 'comments' : 'comment';
+    var commentText = this.props.commentCount === 1 ? 'comment' : 'comments';
 
     // TODO: make it say 1 comment instead of 1 comments
     return (

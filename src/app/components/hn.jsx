@@ -58,7 +58,7 @@ HNList = React.createClass({
 var HNItem = React.createClass({
   render: function() {
     var itemId = 'hnitem-' + this.props.storyId;
-    var commentText = this.props.commentCount > 1 ? 'comments' : 'comment';
+    var commentText = this.props.commentCount === 1 ? 'comment' : 'comments';
 
     return (
       <div className="story-item hn-item" id={itemId}>

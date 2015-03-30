@@ -106,7 +106,7 @@ html {
   background: #d8d8d8;
   width: 80px;
   height: 80px;
-  padding: 8px 29.999999625px; }
+  padding: 8px 27.5862068966px; }
   .story-index span {
     font-family: Montserrat, "Helvetica Neue", arial, sans-serif;
     font-size: 47.775744px;
@@ -116,7 +116,7 @@ html {
   width: -webkit-calc(100% - 80px);
   width: calc(100% - 80px);
   float: right;
-  padding-left: 1rem; }
+  padding-left: .5rem; }
 
 .story-title {
   font-family: Lora, Times, serif;
@@ -152,6 +152,9 @@ html {
     float: left;
     margin-right: .5em;
     margin-left: 0; }
+  .story-metadata .story-comments {
+    text-decoration: none;
+    color: #a0a0a0; }
 
 .clock {
   background: #fff;
@@ -198,10 +201,18 @@ html {
   .dn-header h2 {
     color: #fff; }
 
+.dn-item .story-index {
+  background: #2d72d9;
+  color: #fff; }
+
 .hn-header {
   background: #ff6600; }
   .hn-header h2 {
-    color: #404040; }
+    color: #303030; }
+
+.hn-item .story-index {
+  background: #ff6600;
+  color: #303030; }
 
 html, body, #content {
   background: #f0f0f0;
