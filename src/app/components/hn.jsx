@@ -28,7 +28,6 @@ HNList = React.createClass({
 
   render: function() {
     var hnlist = this.state.stories.map(function(story, index) {
-      console.log('Mapping story number ' + index);
       return (
         <HNItem storyId={index}
           title={story.title}
@@ -72,7 +71,7 @@ var HNItem = React.createClass({
         </div>
 
         <div className="story-metadata">
-          <span className="story-upvotes">{this.props.score}</span>
+          <span className="story-upvotes">{this.props.score} upvotes</span>
           <div className="upvote-icon"></div>
 
           <span className="story-author">{this.props.author}</span>

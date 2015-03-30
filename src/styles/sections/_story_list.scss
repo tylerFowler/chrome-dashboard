@@ -98,6 +98,10 @@ $index-size: 80px;
     margin-right: .5em;
   }
 
+  .story-author {
+    margin-left: 1.5em;
+  }
+
   .story-data-divider::after {
     content: '|';
     display: inline-block;

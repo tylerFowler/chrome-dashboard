@@ -146,6 +146,8 @@ html {
   .story-metadata .story-upvotes, .story-metadata .story-author, .story-metadata .story-comments {
     float: left;
     margin-right: .5em; }
+  .story-metadata .story-author {
+    margin-left: 1.5em; }
   .story-metadata .story-data-divider::after {
     content: '|';
     display: inline-block;

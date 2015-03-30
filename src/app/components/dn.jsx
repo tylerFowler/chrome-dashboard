@@ -79,7 +79,7 @@ var DNItem = React.createClass({
         </div>
 
         <div className="story-metadata">
-          <span className="story-upvotes">{this.props.upvotes}</span>
+          <span className="story-upvotes">{this.props.upvotes} upvotes</span>
           <div className="upvote-icon"></div>
 
           <span className="story-author">{this.props.author}</span>
