@@ -7,8 +7,8 @@ src/app/_build/*
 src/app/model/settings.coffee
 
 # Don't include our built js & styles
-public/js/*
-public/styles/*
+public/js
+public/styles
 
 ### OSX ###
 .DS_Store
