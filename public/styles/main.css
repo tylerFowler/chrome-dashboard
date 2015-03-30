@@ -37,7 +37,7 @@ html {
   float: left;
   display: block;
   margin-right: 2.3576515979%;
-  width: 31.7615656014%; }
+  width: 30.9085851714%; }
   .left-pane:last-child {
     margin-right: 0; }
 
@@ -45,7 +45,7 @@ html {
   float: left;
   display: block;
   margin-right: 2.3576515979%;
-  width: 31.7615656014%; }
+  width: 33.4675264613%; }
   .center-pane:last-child {
     margin-right: 0; }
 
@@ -53,12 +53,13 @@ html {
   float: left;
   display: block;
   margin-right: 2.3576515979%;
-  width: 31.7615656014%; }
+  width: 30.9085851714%; }
   .right-pane:last-child {
     margin-right: 0; }
 
 .pane {
   height: 100%;
+  width: 100%;
   background: #e7e9e9;
   overflow: hidden; }
 
@@ -78,6 +79,12 @@ html {
 
 .hide {
   opacity: 0; }
+
+.story-list {
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  overflow: scroll; }
 
 .story-item {
   overflow: hidden;
@@ -114,7 +121,7 @@ html {
 .story-title {
   font-family: Lora, Times, serif;
   font-size: 13.3333333333px;
-  line-height: 1.5;
+  line-height: 1.6;
   -webkit-line-clamp: 2;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -123,7 +130,7 @@ html {
   max-height: 40px;
   padding-right: 3%;
   margin-top: 3%;
-  margin-bottom: 5px; }
+  margin-bottom: 10px; }
   .story-title a {
     color: #404040;
     text-decoration: none; }
@@ -131,6 +138,7 @@ html {
     text-decoration: underline; }
 
 .story-metadata {
+  white-space: nowrap;
   font-family: OpenSans, "Helvetica Neue", arial, sans-serif;
   font-weight: 300;
   color: #a0a0a0;
@@ -204,7 +212,7 @@ html, body, #content {
 html {
   font-size: 16px; }
 
-body {
-  min-width: 600px; }
+#content {
+  min-width: 975px; }
 
 /*# sourceMappingURL=main.css.map */

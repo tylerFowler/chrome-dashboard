@@ -15,13 +15,13 @@
 }
 
 .left-pane {
-  @include span-columns(4);
+  @include span-columns(3.9);
 }
 
 .center-pane {
-  @include span-columns(4);
+  @include span-columns(4.2);
 }
 
 .right-pane {
-  @include span-columns(4);
+  @include span-columns(3.9);
 }

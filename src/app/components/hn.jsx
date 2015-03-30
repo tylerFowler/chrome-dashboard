@@ -28,6 +28,7 @@ HNList = React.createClass({
 
   render: function() {
     var hnlist = this.state.stories.map(function(story, index) {
+      console.log('Mapping story number ' + index);
       return (
         <HNItem storyId={index}
           title={story.title}
@@ -57,6 +58,7 @@ HNList = React.createClass({
 var HNItem = React.createClass({
   render: function() {
     var itemId = 'hnitem-' + this.props.storyId;
+    var commentText = this.props.commentCount > 1 ? 'comments' : 'comment';
 
     return (
       <div className="story-item hn-item" id={itemId}>
@@ -77,7 +79,7 @@ var HNItem = React.createClass({
           <div className="story-data-divider"></div>
 
           <a className="story-comments" href={this.props.hnurl} target="_blank">
-            {this.props.commentCount} comments
+            {this.props.commentCount} {commentText}
           </a>
 
         </div>

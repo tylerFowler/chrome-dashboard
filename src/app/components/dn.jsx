@@ -64,6 +64,8 @@ var DNItem = React.createClass({
   render: function() {
     var itemId = 'dnitem-' + this.props.storyId;
 
+    var commentText = this.props.commentCount > 1 ? 'comments' : 'comment';
+
     // TODO: make it say 1 comment instead of 1 comments
     return (
       <div className="story-item dn-item" id={itemId}>
@@ -84,7 +86,7 @@ var DNItem = React.createClass({
           <div className="story-data-divider"></div>
 
           <a className="story-comments" href={this.props.dnurl} target="_blank">
-            {this.props.commentCount} comments
+            {this.props.commentCount} {commentText}
           </a>
 
         </div>
