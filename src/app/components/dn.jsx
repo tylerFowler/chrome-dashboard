@@ -23,6 +23,7 @@ DNList = React.createClass({
 
     setInterval((function() {
       this.loadDnStories(this.props.maxStories)
+      console.log('Updating DN...');
     }).bind(this), dn.refreshInterval);
   },
 
