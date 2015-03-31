@@ -55,6 +55,7 @@ DNList = React.createClass({
 
         <div className="story-list dnlist">
           {dnlist}
+          <div className="icon-refresh"></div>
         </div>
       </div>
     );

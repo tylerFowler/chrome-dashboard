@@ -136,7 +136,6 @@ html {
     text-decoration: underline; }
 
 .story-metadata {
-  white-space: nowrap;
   position: relative;
   bottom: 2px;
   font-family: OpenSans, "Helvetica Neue", arial, sans-serif;
@@ -147,7 +146,7 @@ html {
     float: left;
     margin-right: .5em; }
   .story-metadata .story-author {
-    margin-left: 1.5em; }
+    margin-left: 2%; }
   .story-metadata .story-data-divider::after {
     content: '|';
     display: inline-block;
@@ -157,6 +156,16 @@ html {
   .story-metadata .story-comments {
     text-decoration: none;
     color: #a0a0a0; }
+
+.icon-refresh {
+  background: url("../img/refresh-small.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: relative;
+  top: 25px;
+  left: 25px;
+  width: 18px;
+  height: 18px; }
 
 .clock {
   background: #fff;

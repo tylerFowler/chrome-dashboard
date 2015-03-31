@@ -53,6 +53,8 @@ HNList = React.createClass({
         <div className="story-list hnlist">
           {hnlist}
         </div>
+
+        <div className="icon-refresh"></div>
       </div>
     );
   }
