@@ -24,7 +24,8 @@ class HackerNews
           return cb new Error 'Received zero stories'
         else
           cb null, stories
-    .fail (xhr, errMsg, err) -> cb err
+    .fail (xhr, errMsg, err) ->
+      cb err
 
   ###
    # HackerNews#getRecentStories
@@ -53,25 +54,28 @@ class HackerNews
   ###
   getStories: (ids, cb) ->
     stories = []
+    ajaxErr = null
 
     _.each ids, (id, index) =>
       $.getJSON "#{@hnUri}/item/#{id}.json", {}
       .done (story) =>
+        console.log "Processing HN article #{id}; index is #{index}"
         processed =
           title: story.title
           url: story.url
           hnurl: @.getHNStoryUrl story.id
           score: story.score
           author: story.by
-          commentCount: story.kids.length
+          commentCount: if story.kids then story.kids.length else 0
 
         stories.push processed
 
-        cb null, stories if index is ids.length - 1
+        cb null, stories if stories.length is ids.length
       .fail (xhr, errMsg, err) ->
         # TODO: this could get end up getting called more than once,
         # not sure what to do about it..
         cb err
+
 
   getHNStoryUrl: (storyId) ->
     "https://news.ycombinator.com/item?id=#{storyId}"

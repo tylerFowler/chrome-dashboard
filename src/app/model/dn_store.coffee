@@ -51,6 +51,7 @@ class DesignerNews
 
     # strip away unnecessary information to give to the client
     _.each stories, (story, index) ->
+      console.log "Processing DN article #{story.id}; index is #{index}"
       processed =
         title: story.title
         url: story.url

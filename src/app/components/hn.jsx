@@ -8,7 +8,10 @@ HNList = React.createClass({
 
   hnCb: function(err, stories) {
     if (err) this.setState({ stories: [], err: err });
-    else this.setState({ stories: stories, err: null });
+    else {
+      console.log('Got back ' + stories.length + ' stories');
+      this.setState({ stories: stories, err: null });
+    }
   },
 
   loadHnStories: function(limit) {
