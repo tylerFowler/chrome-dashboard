@@ -6,6 +6,7 @@ $hn-text-color: #303030;
 
   h2 {
     color: $hn-text-color;
+    float: left;
   }
 }
 
@@ -14,4 +15,19 @@ $hn-text-color: #303030;
     background: $hn-brand-color;
     color: $hn-text-color;
   }
+}
+
+// Refresh Icon //
+.hn-container .icon-refresh {
+  background: url('../img/refresh-dark-small.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+
+  position: absolute;
+  top: 7px;
+  right: 7px;
+
+  $size: 12px;
+  width: $size;
+  height: $size;
 }

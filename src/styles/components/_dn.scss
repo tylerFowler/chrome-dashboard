@@ -6,6 +6,7 @@ $dn-text-color: #fff;
 
   h2 {
     color: $dn-text-color;
+    float: right;
   }
 }
 
@@ -14,4 +15,19 @@ $dn-text-color: #fff;
     background: $dn-brand-color;
     color: $dn-text-color;
   }
+}
+
+// Refresh Icon //
+.dn-container .icon-refresh {
+  background: url('../img/refresh-light-small.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+
+  position: absolute;
+  top: 7px;
+  left: 7px;
+
+  $size: 12px;
+  width: $size;
+  height: $size;
 }

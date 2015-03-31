@@ -33,6 +33,8 @@ DNList = React.createClass({
   //   )
   // },
 
+  test: function() { alert('hello!'); },
+
   render: function() {
     var dnlist = this.state.stories.map(function(story, index) {
       return (
@@ -55,7 +57,6 @@ DNList = React.createClass({
 
         <div className="story-list dnlist">
           {dnlist}
-          <div className="icon-refresh"></div>
         </div>
       </div>
     );

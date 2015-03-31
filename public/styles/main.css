@@ -68,10 +68,11 @@ html {
   width: 100%;
   border-bottom: 2px solid #4f4f4f; }
   .pane-header h2 {
+    white-space: nowrap;
     font-family: Montserrat;
     font-weight: normal;
     font-size: 39.81312px;
-    margin: auto 7%;
+    margin: auto 11%;
     padding-top: 20px; }
 
 .hidden {
@@ -157,16 +158,6 @@ html {
     text-decoration: none;
     color: #a0a0a0; }
 
-.icon-refresh {
-  background: url("../img/refresh-small.png");
-  background-repeat: no-repeat;
-  background-size: contain;
-  position: relative;
-  top: 25px;
-  left: 25px;
-  width: 18px;
-  height: 18px; }
-
 .clock {
   background: #fff;
   border: 3px solid #4f4f4f;
@@ -211,20 +202,42 @@ html {
 .dn-header {
   background: #2d72d9; }
   .dn-header h2 {
-    color: #fff; }
+    color: #fff;
+    float: right; }
 
 .dn-item .story-index {
   background: #2d72d9;
   color: #fff; }
 
+.dn-container .icon-refresh {
+  background: url("../img/refresh-light-small.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: absolute;
+  top: 7px;
+  left: 7px;
+  width: 12px;
+  height: 12px; }
+
 .hn-header {
   background: #ff6600; }
   .hn-header h2 {
-    color: #303030; }
+    color: #303030;
+    float: left; }
 
 .hn-item .story-index {
   background: #ff6600;
   color: #303030; }
+
+.hn-container .icon-refresh {
+  background: url("../img/refresh-dark-small.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  width: 12px;
+  height: 12px; }
 
 html, body, #content {
   background: #f0f0f0;
@@ -236,6 +249,6 @@ html {
   font-size: 16px; }
 
 #content {
-  min-width: 975px; }
+  min-width: 1100px; }
 
 /*# sourceMappingURL=main.css.map */

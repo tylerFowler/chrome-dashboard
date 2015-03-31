@@ -14,11 +14,13 @@ $pane-header-border: #4f4f4f;
   border-bottom: 2px solid $pane-header-border;
 
   h2 {
+    white-space: nowrap;
+
     font-family: Montserrat;
     font-weight: normal;
     font-size: modular-scale(5);
 
-    margin: auto 7%;
+    margin: auto 11%;
     padding-top: 20px;
   }
 }
