@@ -13,7 +13,10 @@ var Clock = React.createClass({
     var timeObj = {};
 
     // hours are in military time
-    if (curDate.getHours() > 12) {
+    if (curDate.getHours() === 12) {
+      timeObj.hours = 12;
+      timeObj.period = 'PM';
+    } else if (curDate.getHours() > 12) {
       timeObj.hours = curDate.getHours() - 12;
       timeObj.period = 'PM';
     } else if (curDate.getHours() === 0) {
