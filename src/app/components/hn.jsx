@@ -3,7 +3,7 @@ var hn    = require('../model/hn_store');
 
 HNList = React.createClass({
   getInitialState: function() {
-    return { stories: [], err: null }
+    return { stories: [], err: null };
   },
 
   hnCb: function(err, stories) {
@@ -25,7 +25,7 @@ HNList = React.createClass({
     this.loadHnStories(this.props.maxStories);
 
     setInterval((function() {
-      this.loadHnStories(this.props.maxStories)
+      this.loadHnStories(this.props.maxStories);
       console.log('Updating HN...');
     }).bind(this), hn.refreshInterval);
   },

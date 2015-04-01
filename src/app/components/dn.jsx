@@ -3,7 +3,7 @@ var dn    = require('../model/dn_store');
 
 DNList = React.createClass({
   getInitialState: function() {
-    return { stories: [], err: null }
+    return { stories: [], err: null };
   },
 
   dnCb: function(err, stories) {
@@ -22,7 +22,7 @@ DNList = React.createClass({
     this.loadDnStories(this.props.maxStories);
 
     setInterval((function() {
-      this.loadDnStories(this.props.maxStories)
+      this.loadDnStories(this.props.maxStories);
       console.log('Updating DN...');
     }).bind(this), dn.refreshInterval);
   },
