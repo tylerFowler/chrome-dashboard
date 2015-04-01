@@ -11,7 +11,7 @@ var App = React.createClass({
     return (
       <div className="container">
         <div className="left-pane">
-          <DNList showTop={true} maxStories={5} />
+          <DNList showTop={false} maxStories={5} />
         </div>
 
         <div className="center-pane">
@@ -19,7 +19,7 @@ var App = React.createClass({
         </div>
 
         <div className="right-pane">
-          <HNList showTop={true} maxStories={5} />
+          <HNList showTop={false} maxStories={5} />
         </div>
       </div>
     );
