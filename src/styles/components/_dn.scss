@@ -17,17 +17,13 @@ $dn-text-color: #fff;
   }
 }
 
-// Refresh Icon //
-.dn-container .icon-refresh {
-  background: url('../img/refresh-light-small.png');
-  background-repeat: no-repeat;
-  background-size: contain;
+// Loading Animation
+.dn-loading {
+  &::before {
+    background: rgba($dn-brand-color, .75);
+  }
 
-  position: absolute;
-  top: 7px;
-  left: 7px;
-
-  $size: 12px;
-  width: $size;
-  height: $size;
+  &::after {
+    border-color: rgba($dn-brand-color, .1);
+  }
 }

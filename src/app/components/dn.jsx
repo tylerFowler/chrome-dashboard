@@ -12,12 +12,10 @@ DNList = React.createClass({
   },
 
   loadDnStories: function(limit) {
-    // commented out for testing purposes only!
-    // if (this.props.showTop === true)
-    //   dn.getTopStories(limit, this.dnCb);
-    // else
-    //   dn.getRecentStories(limit, this.dnCb);
-    this.setState({ stories: [], err: null });
+    if (this.props.showTop === true)
+      dn.getTopStories(limit, this.dnCb);
+    else
+      dn.getRecentStories(limit, this.dnCb);
   },
 
   componentDidMount: function() {

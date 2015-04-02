@@ -17,17 +17,13 @@ $hn-text-color: #303030;
   }
 }
 
-// Refresh Icon //
-.hn-container .icon-refresh {
-  background: url('../img/refresh-dark-small.png');
-  background-repeat: no-repeat;
-  background-size: contain;
+// Loading Animation
+.hn-loading {
+  &::before {
+    background: rgba($hn-brand-color, .75);
+  }
 
-  position: absolute;
-  top: 7px;
-  right: 7px;
-
-  $size: 12px;
-  width: $size;
-  height: $size;
+  &::after {
+    border-color: rgba($hn-brand-color, .1);
+  }
 }

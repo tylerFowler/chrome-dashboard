@@ -319,15 +319,10 @@ html {
   background: #2d72d9;
   color: #fff; }
 
-.dn-container .icon-refresh {
-  background: url("../img/refresh-light-small.png");
-  background-repeat: no-repeat;
-  background-size: contain;
-  position: absolute;
-  top: 7px;
-  left: 7px;
-  width: 12px;
-  height: 12px; }
+.dn-loading::before {
+  background: rgba(45, 114, 217, 0.75); }
+.dn-loading::after {
+  border-color: rgba(45, 114, 217, 0.1); }
 
 .hn-header {
   background: #ff6600; }
@@ -339,15 +334,10 @@ html {
   background: #ff6600;
   color: #303030; }
 
-.hn-container .icon-refresh {
-  background: url("../img/refresh-dark-small.png");
-  background-repeat: no-repeat;
-  background-size: contain;
-  position: absolute;
-  top: 7px;
-  right: 7px;
-  width: 12px;
-  height: 12px; }
+.hn-loading::before {
+  background: rgba(255, 102, 0, 0.75); }
+.hn-loading::after {
+  border-color: rgba(255, 102, 0, 0.1); }
 
 html, body, #content {
   background: #f0f0f0;

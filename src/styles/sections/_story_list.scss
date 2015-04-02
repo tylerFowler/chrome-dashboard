@@ -119,24 +119,14 @@ $index-size: 80px;
 // customized
 
 // Loading Animation Settings:
-$primary-color: #2d72d9;
-$secondary-color: #ececec;
 $spinner-color: #000;
 
 $spinner-size: 8px;
 $spinner-radius: 32px;
 
 .feed-loading-anim {
-  $background: false;
-  @if ($background) {
-    $test-bg-color: #404040;
-    background: $test-bg-color;
-    border-radius: 50%;
-  }
-
   height: $spinner-radius;
   width: $spinner-radius;
-
 
   margin: auto;
   position: relative;

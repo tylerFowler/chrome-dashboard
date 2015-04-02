@@ -12,12 +12,10 @@ HNList = React.createClass({
   },
 
   loadHnStories: function(limit) {
-    // Commented out for testing purposes only!
-    // if (this.props.showTop === true)
-    //   hn.getTopStories(limit, this.hnCb);
-    // else
-    //   hn.getRecentStories(limit, this.hnCb);
-    this.setState({ stories: [], err: null });
+    if (this.props.showTop === true)
+      hn.getTopStories(limit, this.hnCb);
+    else
+      hn.getRecentStories(limit, this.hnCb);
   },
 
   componentDidMount: function() {
@@ -31,7 +29,7 @@ HNList = React.createClass({
 
   renderLoading: function() {
     return (
-      <div className="feed-loading-anim dn-loading">
+      <div className="feed-loading-anim hn-loading">
       </div>
     );
   },
