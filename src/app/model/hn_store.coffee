@@ -59,11 +59,12 @@ class HackerNews
     _.each ids, (id, index) =>
       $.getJSON "#{@hnUri}/item/#{id}.json", {}
       .done (story) =>
-        console.log "Processing HN article #{id}; index is #{index}"
+        hnurl = @.getHNStoryUrl story.id
+
         processed =
           title: story.title
-          url: story.url
-          hnurl: @.getHNStoryUrl story.id
+          url: if story.url then story.url else hnurl
+          hnurl: hnurl
           score: story.score
           author: story.by
           commentCount: if story.kids then story.kids.length else 0

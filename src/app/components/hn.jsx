@@ -8,10 +8,7 @@ HNList = React.createClass({
 
   hnCb: function(err, stories) {
     if (err) this.setState({ stories: [], err: err });
-    else {
-      console.log('Got back ' + stories.length + ' stories');
-      this.setState({ stories: stories, err: null });
-    }
+    else this.setState({ stories: stories, err: null });
   },
 
   loadHnStories: function(limit) {
@@ -30,6 +27,14 @@ HNList = React.createClass({
     }).bind(this), hn.refreshInterval);
   },
 
+  renderLoading: function() {
+    return (
+      <div className="feed-loading-anim dn-loading">
+        <h1>Loading...</h1>
+      </div>
+    );
+  },
+
   render: function() {
     var hnlist = this.state.stories.map(function(story, index) {
       return (
@@ -44,6 +49,12 @@ HNList = React.createClass({
       );
     });
 
+    var loading;
+    if (hnlist.length === 0)
+      loading = this.renderLoading();
+    else
+      loading = undefined;
+
     return (
       <div className="pane hn-container">
         <div className="pane-header hn-header">
@@ -51,6 +62,7 @@ HNList = React.createClass({
         </div>
 
         <div className="story-list hnlist">
+          {loading}
           {hnlist}
         </div>
       </div>

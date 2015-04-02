@@ -33,7 +33,13 @@ DNList = React.createClass({
   //   )
   // },
 
-  test: function() { alert('hello!'); },
+  renderLoading: function() {
+    return (
+      <div className="feed-loading-anim dn-loading">
+        <h1>Loading...</h1>
+      </div>
+    );
+  },
 
   render: function() {
     var dnlist = this.state.stories.map(function(story, index) {
@@ -49,6 +55,12 @@ DNList = React.createClass({
       );
     });
 
+    var loading;
+    if (dnlist.length === 0)
+      loading = this.renderLoading();
+    else
+      loading = '';
+
     return (
       <div className="pane dn-container">
         <div className="pane-header dn-header">
@@ -56,6 +68,7 @@ DNList = React.createClass({
         </div>
 
         <div className="story-list dnlist">
+          {loading}
           {dnlist}
         </div>
       </div>

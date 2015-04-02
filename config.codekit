@@ -108,15 +108,6 @@
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/public\/styles\/layout.css": {
-		"fileType": 16,
-		"ignore": 1,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/public\/styles\/layout.css",
-		"outputAbbreviatedPath": "No Output Path",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0
-		},
 	"\/public\/styles\/main.css": {
 		"fileType": 16,
 		"ignore": 1,
@@ -190,12 +181,12 @@
 		"outputStyle": 2,
 		"syntaxCheckerStyle": 0
 		},
-	"\/src\/app\/_build\/model\/hn_store.js": {
+	"\/src\/app\/_build\/model\/settings.js": {
 		"fileType": 64,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/src\/app\/_build\/model\/hn_store.js",
-		"outputAbbreviatedPath": "\/public\/js\/hn_store-min.js",
+		"inputAbbreviatedPath": "\/src\/app\/_build\/model\/settings.js",
+		"outputAbbreviatedPath": "\/public\/js\/settings-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 2,
@@ -2031,7 +2022,7 @@
 		"useLibsass": 0
 		},
 	"\/src\/styles\/normalize.scss": {
-		"createSourceMap": 0,
+		"createSourceMap": 1,
 		"debugStyle": 0,
 		"decimalPrecision": 10,
 		"fileType": 4,
