@@ -11,7 +11,7 @@ var App = React.createClass({displayName: "App",
     return (
       React.createElement("div", {className: "container"}, 
         React.createElement("div", {className: "left-pane"}, 
-          React.createElement(DNList, {showTop: false, maxStories: 5})
+          React.createElement(DNList, {showTop: false, maxStories: 9})
         ), 
 
         React.createElement("div", {className: "center-pane"}, 
@@ -19,7 +19,7 @@ var App = React.createClass({displayName: "App",
         ), 
 
         React.createElement("div", {className: "right-pane"}, 
-          React.createElement(HNList, {showTop: false, maxStories: 5})
+          React.createElement(HNList, {showTop: false, maxStories: 9})
         )
       )
     );
