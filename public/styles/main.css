@@ -72,7 +72,8 @@ html {
     font-family: Montserrat;
     font-weight: normal;
     font-size: 39.81312px;
-    margin: auto 11%;
+    margin: auto;
+    text-align: center;
     padding-top: 20px; }
 
 .hidden {
@@ -330,8 +331,7 @@ html {
 .dn-header {
   background: #2d72d9; }
   .dn-header h2 {
-    color: #fff;
-    float: right; }
+    color: #fff; }
 
 .dn-item .story-index {
   background: #2d72d9;
@@ -345,8 +345,7 @@ html {
 .hn-header {
   background: #ff6600; }
   .hn-header h2 {
-    color: #303030;
-    float: left; }
+    color: #303030; }
 
 .hn-item .story-index {
   background: #ff6600;
