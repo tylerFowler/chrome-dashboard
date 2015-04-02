@@ -12,10 +12,12 @@ DNList = React.createClass({
   },
 
   loadDnStories: function(limit) {
-    if (this.props.showTop === true)
-      dn.getTopStories(limit, this.dnCb);
-    else
-      dn.getRecentStories(limit, this.dnCb);
+    // commented out for testing purposes only!
+    // if (this.props.showTop === true)
+    //   dn.getTopStories(limit, this.dnCb);
+    // else
+    //   dn.getRecentStories(limit, this.dnCb);
+    this.setState({ stories: [], err: null });
   },
 
   componentDidMount: function() {
@@ -36,7 +38,6 @@ DNList = React.createClass({
   renderLoading: function() {
     return (
       <div className="feed-loading-anim dn-loading">
-        <h1>Loading...</h1>
       </div>
     );
   },

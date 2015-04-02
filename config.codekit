@@ -181,6 +181,17 @@
 		"outputStyle": 2,
 		"syntaxCheckerStyle": 0
 		},
+	"\/src\/app\/_build\/model\/hn_store.js": {
+		"fileType": 64,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/src\/app\/_build\/model\/hn_store.js",
+		"outputAbbreviatedPath": "\/public\/js\/hn_store-min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 2,
+		"syntaxCheckerStyle": 0
+		},
 	"\/src\/app\/_build\/model\/settings.js": {
 		"fileType": 64,
 		"ignore": 1,

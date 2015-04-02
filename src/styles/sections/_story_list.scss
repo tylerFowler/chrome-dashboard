@@ -110,7 +110,100 @@ $index-size: 80px;
   }
 
   .story-comments {
-    text-decoration: none;
     color: $story-meta-color;
+    text-decoration: none;
+  }
+}
+
+// This is the loading animation for news feeds, intended to be color
+// customized
+
+// Loading Animation Settings:
+$primary-color: #2d72d9;
+$secondary-color: #ececec;
+$spinner-color: #000;
+
+$spinner-size: 8px;
+$spinner-radius: 32px;
+
+.feed-loading-anim {
+  $background: false;
+  @if ($background) {
+    $test-bg-color: #404040;
+    background: $test-bg-color;
+    border-radius: 50%;
+  }
+
+  height: $spinner-radius;
+  width: $spinner-radius;
+
+
+  margin: auto;
+  position: relative;
+  top: 25%;
+
+  // spinner
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -20px;
+    margin: -4px 0 0;
+    width: $spinner-size;
+    height: $spinner-size;
+    border-radius: 50%;
+    background: rgba($spinner-color, .9);
+    opacity: 0;
+    @include transform-origin(35px 50%);
+
+    @include animation-name(loading-effect-during, loading-effect-after);
+    @include animation-duration(5s, .7s);
+    @include animation-iteration-count(1, infinite);
+    @include animation-timing-function(ease, linear);
+    @include animation-fill-mode(forwards);
+  }
+
+  &:after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -35px 0 0 -35px;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    content: '';
+    opacity: 1;
+    pointer-events: none;
+
+    border: $spinner-size solid rgba($spinner-color, .1);
+    @include animation(loading-effect-outer-ring 5s ease-in 1);
+  }
+}
+
+@include keyframes(loading-effect-outer-ring) {
+  0%, 5% {
+    opacity: 0;
+    @include transform(scale3d(0, 0, 1));
+  }
+
+  10%, 100% {
+    opacity: 1;
+    @include transform(scale3d(1, 1, 1));
+  }
+}
+
+@include keyframes(loading-effect-during) {
+  0%, 5% {
+    opacity: 0;
+  }
+
+  10%, 100% {
+    opacity: 1;
+  }
+}
+
+@include keyframes(loading-effect-after) {
+  100% {
+    @include transform(rotate3d(0, 0, 1, 360deg))
   }
 }
