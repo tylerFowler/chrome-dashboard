@@ -24,7 +24,14 @@ $index-size: 80px;
   min-height: $index-size;
 
   margin: auto;
-  margin-top: 15px
+  margin-top: 15px;
+
+  @include animation(story-item-fadein .25s);
+}
+
+@include keyframes (story-item-fadein) {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 .story-index {
@@ -120,9 +127,9 @@ $index-size: 80px;
 
 // Loading Animation Settings:
 $spinner-color: #000;
-
 $spinner-size: 8px;
 $spinner-radius: 32px;
+$spinner-fadein-speed: 3s;
 
 .feed-loading-anim {
   height: $spinner-radius;
@@ -143,11 +150,11 @@ $spinner-radius: 32px;
     height: $spinner-size;
     border-radius: 50%;
     background: rgba($spinner-color, .9);
-    opacity: 1;
+    opacity: 0;
     @include transform-origin(25px 50%);
 
-    @include animation-name(loading-effect-during, loading-effect-after);
-    @include animation-duration(5s, .7s);
+    @include animation-name(loading-effect-spinner-fadein, loading-effect-spin);
+    @include animation-duration($spinner-fadein-speed, .7s);
     @include animation-iteration-count(1, infinite);
     @include animation-timing-function(ease, linear);
     @include animation-fill-mode(forwards);
@@ -166,7 +173,7 @@ $spinner-radius: 32px;
     pointer-events: none;
 
     border: $spinner-size solid rgba($spinner-color, .1);
-    @include animation(loading-effect-outer-ring 5s ease-in 1);
+    @include animation(loading-effect-outer-ring $spinner-fadein-speed ease-in 1);
   }
 }
 
@@ -182,7 +189,7 @@ $spinner-radius: 32px;
   }
 }
 
-@include keyframes(loading-effect-during) {
+@include keyframes(loading-effect-spinner-fadein) {
   0%, 5% {
     opacity: 0;
   }
@@ -192,7 +199,7 @@ $spinner-radius: 32px;
   }
 }
 
-@include keyframes(loading-effect-after) {
+@include keyframes(loading-effect-spin) {
   100% {
     @include transform(rotate3d(0, 0, 1, 360deg))
   }

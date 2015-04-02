@@ -94,12 +94,30 @@ html {
   max-height: 80px;
   min-height: 80px;
   margin: auto;
-  margin-top: 15px; }
+  margin-top: 15px;
+  -webkit-animation: story-item-fadein 0.25s;
+  -moz-animation: story-item-fadein 0.25s;
+  animation: story-item-fadein 0.25s; }
   .story-item::after {
     clear: both;
     content: "";
     display: table; }
 
+@-webkit-keyframes story-item-fadein {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+@-moz-keyframes story-item-fadein {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+@keyframes story-item-fadein {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
 .story-index {
   float: left;
   display: inline-block;
@@ -174,18 +192,18 @@ html {
     height: 8px;
     border-radius: 50%;
     background: rgba(0, 0, 0, 0.9);
-    opacity: 1;
+    opacity: 0;
     -webkit-transform-origin: 25px 50%;
     -moz-transform-origin: 25px 50%;
     -ms-transform-origin: 25px 50%;
     -o-transform-origin: 25px 50%;
     transform-origin: 25px 50%;
-    -webkit-animation-name: loading-effect-during, loading-effect-after;
-    -moz-animation-name: loading-effect-during, loading-effect-after;
-    animation-name: loading-effect-during, loading-effect-after;
-    -webkit-animation-duration: 5s, 0.7s;
-    -moz-animation-duration: 5s, 0.7s;
-    animation-duration: 5s, 0.7s;
+    -webkit-animation-name: loading-effect-spinner-fadein, loading-effect-spin;
+    -moz-animation-name: loading-effect-spinner-fadein, loading-effect-spin;
+    animation-name: loading-effect-spinner-fadein, loading-effect-spin;
+    -webkit-animation-duration: 3s, 0.7s;
+    -moz-animation-duration: 3s, 0.7s;
+    animation-duration: 3s, 0.7s;
     -webkit-animation-iteration-count: 1, infinite;
     -moz-animation-iteration-count: 1, infinite;
     animation-iteration-count: 1, infinite;
@@ -207,9 +225,9 @@ html {
     opacity: 1;
     pointer-events: none;
     border: 8px solid rgba(0, 0, 0, 0.1);
-    -webkit-animation: loading-effect-outer-ring 5s ease-in 1;
-    -moz-animation: loading-effect-outer-ring 5s ease-in 1;
-    animation: loading-effect-outer-ring 5s ease-in 1; }
+    -webkit-animation: loading-effect-outer-ring 3s ease-in 1;
+    -moz-animation: loading-effect-outer-ring 3s ease-in 1;
+    animation: loading-effect-outer-ring 3s ease-in 1; }
 
 @-webkit-keyframes loading-effect-outer-ring {
   0%, 5% {
@@ -240,28 +258,28 @@ html {
     -ms-transform: scale3d(1, 1, 1);
     -o-transform: scale3d(1, 1, 1);
     transform: scale3d(1, 1, 1); } }
-@-webkit-keyframes loading-effect-during {
+@-webkit-keyframes loading-effect-spinner-fadein {
   0%, 5% {
     opacity: 0; }
   10%, 100% {
     opacity: 1; } }
-@-moz-keyframes loading-effect-during {
+@-moz-keyframes loading-effect-spinner-fadein {
   0%, 5% {
     opacity: 0; }
   10%, 100% {
     opacity: 1; } }
-@keyframes loading-effect-during {
+@keyframes loading-effect-spinner-fadein {
   0%, 5% {
     opacity: 0; }
   10%, 100% {
     opacity: 1; } }
-@-webkit-keyframes loading-effect-after {
+@-webkit-keyframes loading-effect-spin {
   100% {
     -webkit-transform: rotate3d(0, 0, 1, 360deg); } }
-@-moz-keyframes loading-effect-after {
+@-moz-keyframes loading-effect-spin {
   100% {
     -moz-transform: rotate3d(0, 0, 1, 360deg); } }
-@keyframes loading-effect-after {
+@keyframes loading-effect-spin {
   100% {
     -webkit-transform: rotate3d(0, 0, 1, 360deg);
     -moz-transform: rotate3d(0, 0, 1, 360deg);
