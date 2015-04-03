@@ -1,0 +1,17 @@
+%widget-card {
+  @include span-columns(5.8);
+
+  height: 100%;
+  background: #fff;
+  border: 1px solid #eee;
+}
+
+.left-widget {
+  @extend %widget-card;
+  float: left;
+}
+
+.right-widget {
+  @extend %widget-card;
+  float: right;
+}

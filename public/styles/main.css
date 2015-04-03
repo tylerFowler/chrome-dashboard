@@ -57,6 +57,15 @@ html {
   .right-pane:last-child {
     margin-right: 0; }
 
+.widget-container {
+  margin-top: 5%;
+  width: 100%;
+  height: 20%; }
+
+.bookmark-container {
+  width: 100%;
+  height: 53%; }
+
 .pane {
   height: 100%;
   width: 100%;
@@ -292,6 +301,23 @@ html {
     -ms-transform: rotate3d(0, 0, 1, 360deg);
     -o-transform: rotate3d(0, 0, 1, 360deg);
     transform: rotate3d(0, 0, 1, 360deg); } }
+.left-widget, .right-widget {
+  float: left;
+  display: block;
+  margin-right: 2.3576515979%;
+  width: 47.1152133411%;
+  height: 100%;
+  background: #fff;
+  border: 1px solid #eee; }
+  .left-widget:last-child, .right-widget:last-child {
+    margin-right: 0; }
+
+.left-widget {
+  float: left; }
+
+.right-widget {
+  float: right; }
+
 .clock {
   background: #fff;
   border: 3px solid #4f4f4f;

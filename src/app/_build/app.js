@@ -15,7 +15,20 @@ var App = React.createClass({displayName: "App",
         ), 
 
         React.createElement("div", {className: "center-pane"}, 
-          React.createElement(Clock, null)
+          React.createElement(Clock, null), 
+
+          React.createElement("div", {className: "widget-container"}, 
+            React.createElement("div", {className: "left-widget weather-card"}
+            ), 
+
+            React.createElement("div", {className: "right-widget sunrise-card"}
+            )
+          ), 
+
+          React.createElement("div", {className: "bookmark-container"}
+
+          )
+
         ), 
 
         React.createElement("div", {className: "right-pane"}, 

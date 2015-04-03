@@ -16,6 +16,19 @@ var App = React.createClass({
 
         <div className="center-pane">
           <Clock />
+
+          <div className="widget-container">
+            <div className="left-widget weather-card">
+            </div>
+
+            <div className="right-widget sunrise-card">
+            </div>
+          </div>
+
+          <div className="bookmark-container">
+
+          </div>
+
         </div>
 
         <div className="right-pane">
