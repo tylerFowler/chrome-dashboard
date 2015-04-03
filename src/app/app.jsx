@@ -1,9 +1,10 @@
 var React = require('react');
 
 // Components
-var Clock = require('./components/clock');
-var DNList = require('./components/dn');
-var HNList = require('./components/hn');
+var Clock       = require('./components/clock');
+var DNList      = require('./components/dn');
+var HNList      = require('./components/hn');
+var WeatherCard = require('./components/weather_card');
 
 
 var App = React.createClass({
@@ -18,7 +19,8 @@ var App = React.createClass({
           <Clock />
 
           <div className="widget-container">
-            <div className="left-widget weather-card">
+            <div className="left-widget">
+              <WeatherCard />
             </div>
 
             <div className="right-widget sunrise-card">
