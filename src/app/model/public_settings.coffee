@@ -19,6 +19,7 @@ setSettings = ->
   unless localStorage.getItem settingsKeyName
     settings =
       ### Designer News Settings ###
+      # Rate Limit: 300 reqs / hour
       dn:
         refresh_interval_ms: 15 * 60 * 1000 # can't go over 300 reqs/hour!
         client_id: '<insert yours>'
@@ -30,6 +31,7 @@ setSettings = ->
       ### Forecast.io Settings ###
       forecastio:
         # Park Central: 39.0628168,-94.5809449,17z
+        # Rate Limit: 1000 reqs / day
         api_key: '<insert yours>'
         city_name: 'KC'
         latitude: '39.0628168'
