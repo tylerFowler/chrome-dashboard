@@ -30,18 +30,20 @@ WeatherCard = React.createClass({
 
       currentWeather: {
         temp: 72,
-        condition: 'Sunny'
+        condition: 'sunny'
       },
 
       futureWeather: {
         timeOfDay: 'Tonight',
         temp: 64,
-        condition: 'Stormy'
+        condition: 'sunny'
       }
     });
   },
 
   componentDidMount: function() {
+    // render gets called before this
+
     this.fillMockupData();
   },
 
@@ -50,6 +52,26 @@ WeatherCard = React.createClass({
       <div className="weather-card">
         <div className="city">
           <span>{this.state.city}</span>
+        </div>
+
+        <div className="weather-current">
+          <div className={"condition " + this.state.currentWeather.condition}>
+          </div>
+
+          <div className="temp">
+            {this.state.currentWeather.temp}&deg;
+          </div>
+        </div>
+
+        <div className="weather-future">
+          <span className="time-of-day">{this.state.futureWeather.timeOfDay}:</span>
+
+          <div className="temp">
+            {this.state.futureWeather.temp}&deg;
+          </div>
+
+          <div className={"condition " + this.state.futureWeather.condition}>
+          </div>
         </div>
       </div>
     );

@@ -57,6 +57,17 @@
 		"outputPathIsSetByUser": 0,
 		"processed": 0
 		},
+	"\/public\/img\/sunny-small.png": {
+		"fileType": 32768,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 1294,
+		"inputAbbreviatedPath": "\/public\/img\/sunny-small.png",
+		"outputAbbreviatedPath": "\/public\/img\/sunny-small.png",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
 	"\/public\/index.html": {
 		"fileType": 8192,
 		"ignore": 0,
@@ -65,6 +76,17 @@
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
+		},
+	"\/public\/js\/app.js": {
+		"fileType": 64,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/public\/js\/app.js",
+		"outputAbbreviatedPath": "\/public\/js\/app-min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 2,
+		"syntaxCheckerStyle": 0
 		},
 	"\/public\/js\/settings.js": {
 		"fileType": 64,
@@ -114,6 +136,17 @@
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
+		},
+	"\/src\/app\/_build\/app.js": {
+		"fileType": 64,
+		"ignore": 1,
+		"ignoreWasSetByUser": 1,
+		"inputAbbreviatedPath": "\/src\/app\/_build\/app.js",
+		"outputAbbreviatedPath": "\/public\/js\/app-min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 2,
+		"syntaxCheckerStyle": 0
 		},
 	"\/src\/app\/_build\/components\/clock.js": {
 		"fileType": 64,
@@ -191,6 +224,15 @@
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 2,
 		"syntaxCheckerStyle": 0
+		},
+	"\/src\/app\/app.jsx": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/src\/app\/app.jsx",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
 		},
 	"\/src\/app\/components\/clock.jsx": {
 		"fileType": 8192,
@@ -350,6 +392,22 @@
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/src\/styles\/components\/_hn.scss",
 		"outputAbbreviatedPath": "\/public\/styles\/_hn.css",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 0,
+		"shouldRunAutoprefixer": 0,
+		"shouldRunBless": 0,
+		"useLibsass": 0
+		},
+	"\/src\/styles\/components\/_weather_card.scss": {
+		"createSourceMap": 1,
+		"debugStyle": 0,
+		"decimalPrecision": 10,
+		"fileType": 4,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/src\/styles\/components\/_weather_card.scss",
+		"outputAbbreviatedPath": "\/public\/styles\/_weather_card.css",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 0,

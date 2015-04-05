@@ -1,0 +1,93 @@
+@import '../lib/bourbon/bourbon';
+
+// Weather Icons //
+.condition {
+  &.sunny {
+    background: url('../img/sunny-small.png') left no-repeat;
+    background-size: contain;
+  }
+}
+
+// Weather Card Settings //
+$curcondition-size: 42px;
+$futurecondition-size: 28px;
+$temp-color: #333;
+
+.weather-card .city {
+  color: $font-color-dark;
+  font-family: $Raleway;
+  font-size: modular-scale(4);
+  font-weight: $font-light;
+  text-align: center;
+}
+
+.weather-card .weather-current {
+  @include clearfix;
+
+  width: 100%;
+  height: 20%;
+
+  margin-top: -3%;
+
+  .condition {
+    float: left;
+
+    height: $curcondition-size;
+    width: $curcondition-size;
+
+    margin-top: 4px;
+    margin-left: 10%;
+  }
+
+  .temp {
+    float: right;
+
+    color: rgba($temp-color, .75);
+    font-family: $Montserrat;
+    font-size: modular-scale(5);
+    font-weight: $font-normal;
+
+    margin-right: 5px;
+  }
+}
+
+.weather-card .weather-future {
+  @include clearfix;
+
+  width: 100%;
+  margin-top: 3%;
+
+  .time-of-day {
+    float: left;
+
+    color: $font-color-dark;
+    font-family: $Raleway;
+    font-size: modular-scale(2);
+    font-weight: $font-normal;
+
+    margin-top: 2.5%;
+    margin-left: 10px;
+  }
+
+  .condition {
+    float: right;
+
+    margin-top: 2.5%;
+    margin-right: 5%;
+
+    width: $futurecondition-size;
+    height: $futurecondition-size;
+  }
+
+  .temp {
+    float: right;
+
+    margin-top: 6px;
+    margin-right: 10px;
+
+    color: rgba($temp-color, .5);
+    font-family: $Montserrat;
+    font-size: modular-scale(2);
+    font-weight: $font-normal;
+  }
+}

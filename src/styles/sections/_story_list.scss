@@ -43,6 +43,8 @@ $index-size: 80px;
 }
 
 .story-index {
+  @include user-select(none);
+  cursor: default;
   float: left;
   display: inline-block;
   background: #d8d8d8;
