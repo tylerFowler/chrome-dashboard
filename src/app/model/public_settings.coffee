@@ -27,6 +27,14 @@ setSettings = ->
       ### Hacker News Settings ###
       hn:
         refresh_interval_ms: 15 * 60 * 1000
+      ### Forecast.io Settings ###
+      forecastio:
+        # Park Central: 39.0628168,-94.5809449,17z
+        api_key: '<insert yours>'
+        city_name: 'KC'
+        latitude: '39.0628168'
+        longitude: '-94.5809449'
+        timezone: '17z'
 
     localStorage.setItem settingsKeyName, JSON.stringify settings
 

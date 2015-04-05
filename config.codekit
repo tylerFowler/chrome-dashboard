@@ -214,17 +214,6 @@
 		"outputStyle": 2,
 		"syntaxCheckerStyle": 0
 		},
-	"\/src\/app\/_build\/model\/settings.js": {
-		"fileType": 64,
-		"ignore": 1,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/src\/app\/_build\/model\/settings.js",
-		"outputAbbreviatedPath": "\/public\/js\/settings-min.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 2,
-		"syntaxCheckerStyle": 0
-		},
 	"\/src\/app\/app.jsx": {
 		"fileType": 8192,
 		"ignore": 0,
