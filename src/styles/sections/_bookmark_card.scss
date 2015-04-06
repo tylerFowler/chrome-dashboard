@@ -1,0 +1,18 @@
+%bookmark-card {
+  background: $card-bg-color;
+  overflow: hidden;
+
+  height: 80px;
+  width: 45%;
+}
+
+// Bookmark Card Layout //
+//// as specified by ids
+
+#bookmark-1 {
+  @extend %bookmark-card;
+
+  position: relative;
+  top: 5%;
+  left: 7%;
+}

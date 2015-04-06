@@ -29,7 +29,10 @@ var App = React.createClass({
           </div>
 
           <div className="bookmark-container">
+            { /* Note that the bookmarks are laid out by id number */ }
 
+            <Bookmark bookmarkId="bookmark-1" customClass="bookmark-flipboard"
+              link="https://flipboard.com" />
           </div>
 
         </div>

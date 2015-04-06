@@ -28,8 +28,11 @@ var App = React.createClass({displayName: "App",
             )
           ), 
 
-          React.createElement("div", {className: "bookmark-container"}
+          React.createElement("div", {className: "bookmark-container"}, 
+            /* Note that the bookmarks are laid out by id number */ 
 
+            React.createElement(Bookmark, {bookmarkId: "bookmark-1", customClass: "bookmark-flipboard", 
+              link: "https://flipboard.com"})
           )
 
         ), 
