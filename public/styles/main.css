@@ -338,16 +338,32 @@ html {
 .right-widget {
   float: right; }
 
-#bookmark-1 {
+#bookmark-1, #bookmark-2, #bookmark-3, #bookmark-4 {
   background: #fff;
   overflow: hidden;
-  height: 80px;
-  width: 45%; }
+  height: 30%;
+  width: 40%;
+  position: relative; }
 
 #bookmark-1 {
-  position: relative;
-  top: 5%;
-  left: 7%; }
+  float: left;
+  top: 10%;
+  left: 5%; }
+
+#bookmark-2 {
+  float: right;
+  top: 10%;
+  right: 5%; }
+
+#bookmark-3 {
+  float: left;
+  top: 25%;
+  left: 0%; }
+
+#bookmark-4 {
+  float: right;
+  top: 25%;
+  right: 0%; }
 
 .clock {
   background: #fff;
