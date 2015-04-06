@@ -13,57 +13,112 @@
 		"outputStyle": 2,
 		"syntaxCheckerStyle": 0
 		},
-	"\/public\/img\/refresh-dark-small.png": {
+	"\/public\/img\/weather-icons\/clear-day.png": {
 		"fileType": 32768,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"initialSize": 739,
-		"inputAbbreviatedPath": "\/public\/img\/refresh-dark-small.png",
-		"outputAbbreviatedPath": "\/public\/img\/refresh-dark-small.png",
+		"initialSize": 2526,
+		"inputAbbreviatedPath": "\/public\/img\/weather-icons\/clear-day.png",
+		"outputAbbreviatedPath": "\/public\/img\/weather-icons\/clear-day.png",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"processed": 0
 		},
-	"\/public\/img\/refresh-full-size.png": {
+	"\/public\/img\/weather-icons\/clear-night-alt.png": {
 		"fileType": 32768,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"initialSize": 23096,
-		"inputAbbreviatedPath": "\/public\/img\/refresh-full-size.png",
-		"outputAbbreviatedPath": "\/public\/img\/refresh-full-size.png",
+		"initialSize": 76248,
+		"inputAbbreviatedPath": "\/public\/img\/weather-icons\/clear-night-alt.png",
+		"outputAbbreviatedPath": "\/public\/img\/weather-icons\/clear-night-alt.png",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"processed": 0
 		},
-	"\/public\/img\/refresh-light-small.png": {
+	"\/public\/img\/weather-icons\/clear-night.png": {
 		"fileType": 32768,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"initialSize": 526,
-		"inputAbbreviatedPath": "\/public\/img\/refresh-light-small.png",
-		"outputAbbreviatedPath": "\/public\/img\/refresh-light-small.png",
+		"initialSize": 82333,
+		"inputAbbreviatedPath": "\/public\/img\/weather-icons\/clear-night.png",
+		"outputAbbreviatedPath": "\/public\/img\/weather-icons\/clear-night.png",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"processed": 0
 		},
-	"\/public\/img\/refresh-small.png": {
+	"\/public\/img\/weather-icons\/cloudy.png": {
 		"fileType": 32768,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"initialSize": 1224,
-		"inputAbbreviatedPath": "\/public\/img\/refresh-small.png",
-		"outputAbbreviatedPath": "\/public\/img\/refresh-small.png",
+		"initialSize": 1676,
+		"inputAbbreviatedPath": "\/public\/img\/weather-icons\/cloudy.png",
+		"outputAbbreviatedPath": "\/public\/img\/weather-icons\/cloudy.png",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"processed": 0
 		},
-	"\/public\/img\/sunny-small.png": {
+	"\/public\/img\/weather-icons\/partly-cloudy-day.png": {
 		"fileType": 32768,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"initialSize": 1294,
-		"inputAbbreviatedPath": "\/public\/img\/sunny-small.png",
-		"outputAbbreviatedPath": "\/public\/img\/sunny-small.png",
+		"initialSize": 1681,
+		"inputAbbreviatedPath": "\/public\/img\/weather-icons\/partly-cloudy-day.png",
+		"outputAbbreviatedPath": "\/public\/img\/weather-icons\/partly-cloudy-day.png",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
+	"\/public\/img\/weather-icons\/partly-cloudy-night-alt.png": {
+		"fileType": 32768,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 30582,
+		"inputAbbreviatedPath": "\/public\/img\/weather-icons\/partly-cloudy-night-alt.png",
+		"outputAbbreviatedPath": "\/public\/img\/weather-icons\/partly-cloudy-night-alt.png",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
+	"\/public\/img\/weather-icons\/partly-cloudy-night.png": {
+		"fileType": 32768,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 31385,
+		"inputAbbreviatedPath": "\/public\/img\/weather-icons\/partly-cloudy-night.png",
+		"outputAbbreviatedPath": "\/public\/img\/weather-icons\/partly-cloudy-night.png",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
+	"\/public\/img\/weather-icons\/rain.png": {
+		"fileType": 32768,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 23994,
+		"inputAbbreviatedPath": "\/public\/img\/weather-icons\/rain.png",
+		"outputAbbreviatedPath": "\/public\/img\/weather-icons\/rain.png",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
+	"\/public\/img\/weather-icons\/snow.png": {
+		"fileType": 32768,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 1330,
+		"inputAbbreviatedPath": "\/public\/img\/weather-icons\/snow.png",
+		"outputAbbreviatedPath": "\/public\/img\/weather-icons\/snow.png",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
+	"\/public\/img\/weather-icons\/unknown.png": {
+		"fileType": 32768,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 1037,
+		"inputAbbreviatedPath": "\/public\/img\/weather-icons\/unknown.png",
+		"outputAbbreviatedPath": "\/public\/img\/weather-icons\/unknown.png",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"processed": 0
@@ -198,6 +253,17 @@
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/src\/app\/_build\/model\/dn_store.js",
 		"outputAbbreviatedPath": "\/public\/js\/dn_store-min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 2,
+		"syntaxCheckerStyle": 0
+		},
+	"\/src\/app\/_build\/model\/forecastio.js": {
+		"fileType": 64,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/src\/app\/_build\/model\/forecastio.js",
+		"outputAbbreviatedPath": "\/public\/js\/forecastio-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 2,

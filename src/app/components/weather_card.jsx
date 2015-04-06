@@ -12,13 +12,13 @@ WeatherCard = React.createClass({
       city: undefined,
 
       currentWeather: {
-        temp: undefined,
+        temp: '00',
         condition: undefined
       },
 
       futureWeather: {
-        timeOfDay: undefined,
-        temp: undefined,
+        timeOfDay: 'Tonight',
+        temp: '00',
         condition: undefined
       }
     };
@@ -104,7 +104,10 @@ WeatherCard = React.createClass({
         </div>
 
         <div className="weather-future">
-          <span className="time-of-day">{this.state.futureWeather.timeOfDay}:</span>
+          <span className={"time-of-day " +
+            (this.state.futureWeather.timeOfDay === 'Tonight' ? '' : 'wide')}>
+              {this.state.futureWeather.timeOfDay}:
+          </span>
 
           <div className="temp">
             {this.state.futureWeather.temp}&deg;

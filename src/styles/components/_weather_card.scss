@@ -1,16 +1,27 @@
 @import '../lib/bourbon/bourbon';
 
 // Weather Icons //
+@mixin weather-icon($icon-name) {
+  background: url("../img/weather-icons/#{$icon-name}.png") left no-repeat;
+  background-size: contain;
+}
+
 .condition {
-  &.sunny {
-    background: url('../img/sunny-small.png') left no-repeat;
-    background-size: contain;
-  }
+  // default
+  @include weather-icon('unknown');
+
+  &.clear-day { @include weather-icon('clear-day'); }
+  &.clear-night { @include weather-icon('clear-night'); }
+  &.cloudy { @include weather-icon('cloudy'); }
+  &.partly-cloudy-day { @include weather-icon('partly-cloudy-day'); }
+  &.partly-cloudy-night { @include weather-icon('partly-cloudy-night'); }
+  &.rain { @include weather-icon('rain'); }
+  &.snow { @include weather-icon('snow'); }
 }
 
 // Weather Card Settings //
-$curcondition-size: 42px;
-$futurecondition-size: 28px;
+$curcondition-size: 48px;
+$futurecondition-size: 22px;
 $temp-color: #333;
 
 .weather-card .city {
@@ -69,11 +80,16 @@ $temp-color: #333;
     margin-left: 10px;
   }
 
+  // 'Tomorrow' value will cause image to wrap, pull it left
+  .wide {
+    margin-left: 3px;
+  }
+
   .condition {
     float: right;
 
     margin-top: 2.5%;
-    margin-right: 5%;
+    margin-right: 2%;
 
     width: $futurecondition-size;
     height: $futurecondition-size;

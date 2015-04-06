@@ -327,7 +327,8 @@ html {
   width: 47.1152133411%;
   background: #fff;
   border: 1px solid #eee;
-  height: 100%; }
+  height: 100%;
+  overflow: hidden; }
   .left-widget:last-child, .right-widget:last-child {
     margin-right: 0; }
 
@@ -406,9 +407,30 @@ html {
 .hn-loading::after {
   border-color: rgba(255, 102, 0, 0.1); }
 
-.condition.sunny {
-  background: url("../img/sunny-small.png") left no-repeat;
+.condition {
+  background: url("../img/weather-icons/unknown.png") left no-repeat;
   background-size: contain; }
+  .condition.clear-day {
+    background: url("../img/weather-icons/clear-day.png") left no-repeat;
+    background-size: contain; }
+  .condition.clear-night {
+    background: url("../img/weather-icons/clear-night.png") left no-repeat;
+    background-size: contain; }
+  .condition.cloudy {
+    background: url("../img/weather-icons/cloudy.png") left no-repeat;
+    background-size: contain; }
+  .condition.partly-cloudy-day {
+    background: url("../img/weather-icons/partly-cloudy-day.png") left no-repeat;
+    background-size: contain; }
+  .condition.partly-cloudy-night {
+    background: url("../img/weather-icons/partly-cloudy-night.png") left no-repeat;
+    background-size: contain; }
+  .condition.rain {
+    background: url("../img/weather-icons/rain.png") left no-repeat;
+    background-size: contain; }
+  .condition.snow {
+    background: url("../img/weather-icons/snow.png") left no-repeat;
+    background-size: contain; }
 
 .weather-card .city {
   color: #404040;
@@ -427,8 +449,8 @@ html {
     display: table; }
   .weather-card .weather-current .condition {
     float: left;
-    height: 42px;
-    width: 42px;
+    height: 48px;
+    width: 48px;
     margin-top: 4px;
     margin-left: 10%; }
   .weather-card .weather-current .temp {
@@ -454,12 +476,14 @@ html {
     font-weight: 400;
     margin-top: 2.5%;
     margin-left: 10px; }
+  .weather-card .weather-future .wide {
+    margin-left: 3px; }
   .weather-card .weather-future .condition {
     float: right;
     margin-top: 2.5%;
-    margin-right: 5%;
-    width: 28px;
-    height: 28px; }
+    margin-right: 2%;
+    width: 22px;
+    height: 22px; }
   .weather-card .weather-future .temp {
     float: right;
     margin-top: 6px;
