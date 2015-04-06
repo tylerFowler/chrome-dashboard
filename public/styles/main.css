@@ -549,6 +549,14 @@ html {
   background: transparent;
   border: 2px solid #231f20;
   box-shadow: 2px 1px 4px 0 rgba(111, 114, 114, 0.5); }
+  .bookmark-newyorker .bookmark-logo {
+    background-image: url("../img/bookmark-icons/newyorker.svg");
+    background-repeat: repeat-none;
+    background-position: center center;
+    background-size: contain;
+    width: 90%;
+    height: 100%;
+    margin: 0 auto; }
 
 .bookmark-qz {
   background: #333333;

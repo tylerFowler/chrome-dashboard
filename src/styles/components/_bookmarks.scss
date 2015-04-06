@@ -59,6 +59,17 @@ $qz-shadow-color: #424242;
   background: rgba(0, 0, 0, 0);
   border: $bkmk-border-thickness solid $newyorker-brand;
   box-shadow: 2px 1px 4px 0 rgba($newyorker-shadow-color, .5);
+
+  .bookmark-logo {
+    background-image: url('../img/bookmark-icons/newyorker.svg');
+    background-repeat: repeat-none;
+    background-position: center center;
+    background-size: contain;
+
+    width: 90%;
+    height: 100%;
+    margin: 0 auto;
+  }
 }
 
 // Quartz //
