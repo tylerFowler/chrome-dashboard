@@ -26,22 +26,13 @@ var BookmarkList = React.createClass({
 });
 
 var Bookmark = React.createClass({
-  click: function() {
-    // when the container is clicked, forward it to the <a> hyperlink
-    $('.' + this.props.customClass).click(function() {
-      $(this).children('a').trigger('click');
-    });
-  },
-
   render: function() {
     return (
-      <div id={this.props.bookmarkId}
-        className={"bookmark-card " + this.props.customClass}
-        onclick={this.click}>
+      <a href={this.props.link} target="_blank" id={this.props.bookmarkId}
+        className={"bookmark-card " + this.props.customClass}>
 
         <div className="bookmark-logo"></div>
-        <a href={this.props.link} className="hidden"></a>
-      </div>
+      </a>
     );
   }
 });
