@@ -1,0 +1,40 @@
+// Settings //
+$bkmk-border-thickness: 2px;
+
+$flipboard-brand: #e12828;
+$flipboard-bg: #f7f7f7;
+$flipboard-shadow-color: #faeaea;
+
+$simple-brand: #346b83;
+$simple-bg: #f3f3f3;
+$simple-shadow-color: #386c7f;
+
+$newyorker-brand: #231f20;
+
+$qz-brand: #333333;
+
+// Flipboard //
+.bookmark-flipboard {
+  background: $flipboard-bg;
+  border: $bkmk-border-thickness solid $flipboard-brand;
+  box-shadow: 3px 4px 5px 0 rgba($flipboard-shadow-color, .75);
+}
+
+// Simple //
+.bookmark-simple {
+  background: $simple-bg;
+  border: $bkmk-border-thickness solid $simple-brand;
+  box-shadow: 3px 4px 8px 0 rgba($simple-shadow-color, .25);
+}
+
+// New Yorker //
+.bookmark-newyorker {
+  background: rgba(0, 0, 0, 0); // transparent
+  border: $bkmk-border-thickness solid $newyorker-brand;
+}
+
+// Quartz //
+.bookmark-qz {
+  background: $qz-brand;
+  border: $bkmk-border-thickness solid $qz-brand;
+}

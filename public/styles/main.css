@@ -339,7 +339,6 @@ html {
   float: right; }
 
 #bookmark-1, #bookmark-2, #bookmark-3, #bookmark-4 {
-  background: #fff;
   overflow: hidden;
   height: 30%;
   width: 40%;
@@ -519,6 +518,24 @@ html {
     font-family: Montserrat, "Helvetica Neue", arial, sans-serif;
     font-size: 23.04px;
     font-weight: 400; }
+
+.bookmark-flipboard {
+  background: #f7f7f7;
+  border: 2px solid #e12828;
+  box-shadow: 3px 4px 5px 0 rgba(250, 234, 234, 0.75); }
+
+.bookmark-simple {
+  background: #f3f3f3;
+  border: 2px solid #346b83;
+  box-shadow: 3px 4px 8px 0 rgba(56, 108, 127, 0.25); }
+
+.bookmark-newyorker {
+  background: transparent;
+  border: 2px solid #231f20; }
+
+.bookmark-qz {
+  background: #333333;
+  border: 2px solid #333333; }
 
 html, body, #content {
   background: #f0f0f0;
