@@ -523,19 +523,45 @@ html {
   background: #f7f7f7;
   border: 2px solid #e12828;
   box-shadow: 3px 4px 5px 0 rgba(250, 234, 234, 0.75); }
+  .bookmark-flipboard .bookmark-logo {
+    background: url("../img/bookmark-icons/flipboard-red.png");
+    background-repeat: no-repeat;
+    background-position: left;
+    background-size: contain;
+    width: 90%;
+    height: 100%;
+    margin: 0 auto; }
 
 .bookmark-simple {
   background: #f3f3f3;
   border: 2px solid #346b83;
   box-shadow: 3px 4px 8px 0 rgba(56, 108, 127, 0.25); }
+  .bookmark-simple .bookmark-logo {
+    background: url("../img/bookmark-icons/simple-bank.png");
+    background-repeat: no-repeat;
+    background-position: left;
+    background-size: contain;
+    width: 90%;
+    height: 100%;
+    margin: 0 auto; }
 
 .bookmark-newyorker {
   background: transparent;
-  border: 2px solid #231f20; }
+  border: 2px solid #231f20;
+  box-shadow: 2px 1px 4px 0 rgba(111, 114, 114, 0.5); }
 
 .bookmark-qz {
   background: #333333;
-  border: 2px solid #333333; }
+  border: 2px solid #333333;
+  box-shadow: 3px 4px 5px 0 rgba(66, 66, 66, 0.5); }
+  .bookmark-qz .bookmark-logo {
+    background-image: url("../img/bookmark-icons/quartz.svg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
+    width: 95%;
+    height: 100%;
+    margin: 0 auto; }
 
 html, body, #content {
   background: #f0f0f0;
