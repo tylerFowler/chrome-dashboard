@@ -13,6 +13,39 @@
 		"outputStyle": 2,
 		"syntaxCheckerStyle": 0
 		},
+	"\/public\/img\/bookmark-icons\/flipboard-black.png": {
+		"fileType": 32768,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 2364,
+		"inputAbbreviatedPath": "\/public\/img\/bookmark-icons\/flipboard-black.png",
+		"outputAbbreviatedPath": "\/public\/img\/bookmark-icons\/flipboard-black.png",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
+	"\/public\/img\/bookmark-icons\/flipboard-red.png": {
+		"fileType": 32768,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 2376,
+		"inputAbbreviatedPath": "\/public\/img\/bookmark-icons\/flipboard-red.png",
+		"outputAbbreviatedPath": "\/public\/img\/bookmark-icons\/flipboard-red.png",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
+	"\/public\/img\/bookmark-icons\/simple-bank.png": {
+		"fileType": 32768,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 1459,
+		"inputAbbreviatedPath": "\/public\/img\/bookmark-icons\/simple-bank.png",
+		"outputAbbreviatedPath": "\/public\/img\/bookmark-icons\/simple-bank.png",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
 	"\/public\/img\/weather-icons\/clear-day.png": {
 		"fileType": 32768,
 		"ignore": 0,
@@ -264,17 +297,6 @@
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/src\/app\/_build\/model\/dn_store.js",
 		"outputAbbreviatedPath": "\/public\/js\/dn_store-min.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 2,
-		"syntaxCheckerStyle": 0
-		},
-	"\/src\/app\/_build\/model\/forecastio.js": {
-		"fileType": 64,
-		"ignore": 1,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/src\/app\/_build\/model\/forecastio.js",
-		"outputAbbreviatedPath": "\/public\/js\/forecastio-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 2,

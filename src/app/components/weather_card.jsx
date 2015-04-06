@@ -82,9 +82,11 @@ WeatherCard = React.createClass({
   },
 
   componentDidMount: function() {
-    // render gets called before this
-
     this.updateForecast();
+
+    setInterval(function() {
+      this.updateForecast();
+    }.bind(this), forecastio.refresh);
   },
 
   render: function() {

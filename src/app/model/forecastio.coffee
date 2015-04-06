@@ -3,8 +3,7 @@ $ = require 'jquery'
 forecastioSettings = JSON.parse(localStorage.getItem('settings')).forecastio
 
 class ForecastIO
-  constructor: (@apiKey, @forecastRefresh, @location,
-                @tonightHour, @tomorrowHour) ->
+  constructor: (@apiKey, @refresh, @location, @tonightHour, @tomorrowHour) ->
     @forecastioUri = 'https://api.forecast.io/forecast'
     @cityName = forecastioSettings.city_name
 

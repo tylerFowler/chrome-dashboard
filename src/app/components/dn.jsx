@@ -21,9 +21,9 @@ DNList = React.createClass({
   componentDidMount: function() {
     this.loadDnStories(this.props.maxStories);
 
-    setInterval((function() {
+    setInterval(function() {
       this.loadDnStories(this.props.maxStories);
-    }).bind(this), dn.refreshInterval);
+    }.bind(this), dn.refreshInterval);
   },
 
   // renderError: function(err) {
