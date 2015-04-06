@@ -6,6 +6,9 @@ src/app/_build/*
 # Don't include our settings file, this contains API keys!
 src/app/model/settings.coffee
 
+# Don't commit our Paw files
+*.paw
+
 # Don't include our built js & styles
 public/js
 public/styles
