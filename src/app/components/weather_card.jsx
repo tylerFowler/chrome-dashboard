@@ -1,4 +1,5 @@
-var React = require('react');
+var React      = require('react');
+var forecastio = require('../model/forecastio');
 
 // TODO: this component should have 2 props:
 // - cityName : Colloquial name for the city (i.e. 'KC')
@@ -23,28 +24,67 @@ WeatherCard = React.createClass({
     };
   },
 
-  fillMockupData: function() {
-    this.setState({
-      err: null,
-      city: 'KC',
+  // Gets the future 'tense' to use based on the current time:
+  //   5 am to 6 pm - Tonight
+  //   7pm to 4am - Tomorrow
+  getFutureTense: function() {
+    var curHour = (new Date()).getHours();
+    return (curHour >= 5 && curHour <= 18) ? 'Tonight' : 'Tomorrow';
+  },
 
-      currentWeather: {
-        temp: 72,
-        condition: 'sunny'
-      },
+  getFutureTime: function(futureTense) {
+    var curTime = new Date();
 
-      futureWeather: {
-        timeOfDay: 'Tonight',
-        temp: 64,
-        condition: 'sunny'
-      }
-    });
+    if (futureTense === 'Tonight') {
+      curTime.setHours(forecastio.tonightHour);
+      return curTime;
+    } else if (futureTense === 'Tomorrow') {
+      // since we want 'tomorrow' to be even technically the same day when it's
+      // between midnight and 4 am we need a bit of extra logic
+      if (curTime.getHours() >= 19) // are we at or after 7pm?
+        curTime.setDate(curTime.getDate() + 1); // get us to tomorrow
+
+      curTime.setHours(forecastio.tomorrowHour);
+      return curTime;
+    } else this.setState({err: new Error(futureTense + ' is not recognized')});
+  },
+
+  updateForecast: function() {
+    this.setState({city: forecastio.cityName});
+
+    // update current temp
+    forecastio.getForecast(null, function(err, forecast) {
+      if (err) return this.setState({err: err});
+
+      this.setState({
+        currentWeather: {
+          temp: forecast.temp.toFixed(),
+          condition: forecast.condition
+        }
+      });
+    }.bind(this));
+
+    // get the future time & get forecast for it
+    var futureTense = this.getFutureTense();
+    var futureTime = this.getFutureTime(futureTense);
+
+    forecastio.getForecast(futureTime, function(err, forecast) {
+      if (err) return this.setState({err: err});
+
+      this.setState({
+        futureWeather: {
+          timeOfDay: futureTense,
+          temp: forecast.temp.toFixed(),
+          condition: forecast.condition
+        }
+      });
+    }.bind(this));
   },
 
   componentDidMount: function() {
     // render gets called before this
 
-    this.fillMockupData();
+    this.updateForecast();
   },
 
   render: function() {

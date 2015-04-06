@@ -33,6 +33,9 @@ setSettings = ->
         # Park Central: 39.0628168,-94.5809449,17z
         # Rate Limit: 1000 reqs / day
         api_key: '<insert yours>'
+        forecast_refresh: 60 * 60 * 1000 # every hour
+        tonight_hour: 21
+        tomorrow_hour: 12
         city_name: 'KC'
         latitude: '39.0628168'
         longitude: '-94.5809449'

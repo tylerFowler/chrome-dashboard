@@ -214,6 +214,28 @@
 		"outputStyle": 2,
 		"syntaxCheckerStyle": 0
 		},
+	"\/src\/app\/_build\/model\/public_settings.js": {
+		"fileType": 64,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/src\/app\/_build\/model\/public_settings.js",
+		"outputAbbreviatedPath": "\/public\/js\/public_settings-min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 2,
+		"syntaxCheckerStyle": 0
+		},
+	"\/src\/app\/_build\/model\/settings.js": {
+		"fileType": 64,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/src\/app\/_build\/model\/settings.js",
+		"outputAbbreviatedPath": "\/public\/js\/settings-min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 2,
+		"syntaxCheckerStyle": 0
+		},
 	"\/src\/app\/app.jsx": {
 		"fileType": 8192,
 		"ignore": 0,
@@ -272,6 +294,19 @@
 		"outputStyle": 0,
 		"syntaxCheckerStyle": 1
 		},
+	"\/src\/app\/model\/forecastio.coffee": {
+		"createSourceMap": 0,
+		"fileType": 32,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/src\/app\/model\/forecastio.coffee",
+		"minifyOutput": 0,
+		"outputAbbreviatedPath": "\/src\/app\/_build\/model\/forecastio.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 0,
+		"syntaxCheckerStyle": 1
+		},
 	"\/src\/app\/model\/hn_store.coffee": {
 		"createSourceMap": 0,
 		"fileType": 32,
@@ -305,9 +340,9 @@
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/src\/app\/model\/settings.coffee",
 		"minifyOutput": 0,
-		"outputAbbreviatedPath": "\/src\/app\/_build\/model\/settings.js",
+		"outputAbbreviatedPath": "\/public\/js\/settings.js",
 		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
+		"outputPathIsSetByUser": 1,
 		"outputStyle": 0,
 		"syntaxCheckerStyle": 1
 		},

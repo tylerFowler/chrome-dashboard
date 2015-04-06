@@ -23,7 +23,6 @@ HNList = React.createClass({
 
     setInterval((function() {
       this.loadHnStories(this.props.maxStories);
-      console.log('Updating HN...');
     }).bind(this), hn.refreshInterval);
   },
 
