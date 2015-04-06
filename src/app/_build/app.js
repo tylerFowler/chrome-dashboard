@@ -5,6 +5,7 @@ var Clock       = require('./components/clock');
 var DNList      = require('./components/dn');
 var HNList      = require('./components/hn');
 var WeatherCard = require('./components/weather_card');
+var Bookmark    = require('./components/bookmark');
 
 
 var App = React.createClass({displayName: "App",
