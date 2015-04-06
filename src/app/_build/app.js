@@ -1,11 +1,11 @@
 var React = require('react');
 
 // Components
-var Clock       = require('./components/clock');
-var DNList      = require('./components/dn');
-var HNList      = require('./components/hn');
-var WeatherCard = require('./components/weather_card');
-var Bookmark    = require('./components/bookmark');
+var Clock         = require('./components/clock');
+var DNList        = require('./components/dn');
+var HNList        = require('./components/hn');
+var WeatherCard   = require('./components/weather_card');
+var BookmarkList  = require('./components/bookmark');
 
 
 var App = React.createClass({displayName: "App",
@@ -28,12 +28,7 @@ var App = React.createClass({displayName: "App",
             )
           ), 
 
-          React.createElement("div", {className: "bookmark-container"}, 
-            /* Note that the bookmarks are laid out by id number */ 
-
-            React.createElement(Bookmark, {bookmarkId: "bookmark-1", customClass: "bookmark-flipboard", 
-              link: "https://flipboard.com"})
-          )
+          React.createElement(BookmarkList, null)
 
         ), 
 
