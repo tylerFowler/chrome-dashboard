@@ -3,6 +3,12 @@
   "name": "chrome-dashboard",
   "description": "Custom tab page dashboard of your dreams",
   "version": "0.0.1",
-  "permissions": [ "management" ],
+  "permissions": [
+    "management",
+    "contentSettings",
+    "https://hacker-news.firebaseio.com/*",
+    "https://api-news.layervault.com/*",
+    "https://api.forecast.io/forecast/*"
+    ],
   "chrome_url_overrides": { "newtab": "index.html" }
 }
