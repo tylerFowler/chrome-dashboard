@@ -21,17 +21,20 @@ class ForecastIO
     queryString = "#{@location.latitude},#{@location.longitude}"
     queryString += ",#{@.getValidTimeString time}" if time
 
-    # Note: make sure the '?callback=?' is on the end or else we'll get
-    # a cross origin request error (JSONP)
-    $.getJSON "#{@forecastioUri}/#{@apiKey}/#{queryString}?callback=?", {}
-    .done (forecastData) ->
-      forecast =
-        temp: forecastData.currently.apparentTemperature
-        condition: forecastData.currently.icon
-
-      cb null, forecast
-    .fail (xhr, errMsg, err) ->
-      cb err
+    # Note: we ned to make sure we specify cross domain and add the access
+    # control header, otherwise Google will complain about a CORS problem
+    $.ajax(
+      url: "#{@forecastioUri}/#{@apiKey}/#{queryString}"
+      type: 'GET'
+      crossDomain: true
+      headers: { 'Access-Control-Allow-Origin', '*' }
+      dataType: 'json'
+      success: (forecastData) ->
+        cb null,
+          temp: forecastData.currently.apparentTemperature
+          condition: forecastData.currently.icon
+      error: (xhr, errMsg, err) -> cb err
+    )
 
 module.exports = new ForecastIO(
   forecastioSettings.api_key,
