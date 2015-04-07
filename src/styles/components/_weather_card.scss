@@ -24,6 +24,8 @@ $curcondition-size: 48px;
 $futurecondition-size: 22px;
 $temp-color: #333;
 
+.weather-card { @include user-select(none); cursor: default; }
+
 .weather-card .city {
   color: $font-color-dark;
   font-family: $Raleway;

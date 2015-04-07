@@ -458,6 +458,13 @@ html {
     background: url("../img/weather-icons/snow.png") left no-repeat;
     background-size: contain; }
 
+.weather-card {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: default; }
+
 .weather-card .city {
   color: #404040;
   font-family: Raleway, "Helvetica Neue", arial, sans-serif;
