@@ -331,6 +331,7 @@ html {
   background: #fff;
   border: 1px solid #f0f0f0;
   height: 100%;
+  min-height: 125px;
   overflow: hidden; }
   .left-widget:last-child, .right-widget:last-child {
     margin-right: 0; }
@@ -463,9 +464,33 @@ html {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  cursor: default; }
+  cursor: default;
+  height: 100%;
+  padding: 5px 0;
+  min-height: 115px; }
+  .weather-card .city-container, .weather-card .future-container {
+    display: block;
+    height: 28.75%; }
+    .weather-card .city-container::after, .weather-card .future-container::after {
+      clear: both;
+      content: "";
+      display: table; }
+  .weather-card .current-container {
+    display: block;
+    height: 42%; }
+    .weather-card .current-container::after {
+      clear: both;
+      content: "";
+      display: table; }
 
 .weather-card .city {
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
   color: #404040;
   font-family: Raleway, "Helvetica Neue", arial, sans-serif;
   font-size: 33.1776px;
@@ -473,53 +498,72 @@ html {
   text-align: center; }
 
 .weather-card .weather-current {
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
   width: 100%;
-  height: 20%;
-  margin-top: -3%; }
+  height: 48px;
+  text-align: center; }
   .weather-card .weather-current::after {
     clear: both;
     content: "";
     display: table; }
+  .weather-card .weather-current .condition, .weather-card .weather-current .temp {
+    height: 100%; }
   .weather-card .weather-current .condition {
     float: left;
-    height: 48px;
-    width: 48px;
-    margin-top: 4px;
-    margin-left: 10%; }
+    width: 42px;
+    height: 100%;
+    margin-left: 10%;
+    background-size: contain; }
   .weather-card .weather-current .temp {
     float: right;
+    margin-right: 5px;
     color: rgba(51, 51, 51, 0.75);
     font-family: Montserrat, "Helvetica Neue", arial, sans-serif;
     font-size: 39.81312px;
-    font-weight: 400;
-    margin-right: 5px; }
+    font-weight: 400; }
 
 .weather-card .weather-future {
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
   width: 100%;
-  margin-top: 3%; }
+  height: 33px;
+  padding-bottom: 2px; }
   .weather-card .weather-future::after {
     clear: both;
     content: "";
     display: table; }
+  .weather-card .weather-future span, .weather-card .weather-future .temp {
+    height: 100%;
+    vertical-align: sub; }
   .weather-card .weather-future .time-of-day {
     float: left;
     color: #404040;
     font-family: Raleway, "Helvetica Neue", arial, sans-serif;
     font-size: 23.04px;
     font-weight: 400;
-    margin-top: 2.5%;
     margin-left: 10px; }
   .weather-card .weather-future .wide {
     margin-left: 3px; }
   .weather-card .weather-future .condition {
     float: right;
-    margin-top: 2.5%;
-    margin-right: 2%;
+    margin-right: 4%;
+    margin-top: 3px;
     width: 22px;
-    height: 22px; }
+    height: 100%;
+    background-size: contain; }
   .weather-card .weather-future .temp {
     float: right;
-    margin-top: 6px;
     margin-right: 10px;
     color: rgba(51, 51, 51, 0.5);
     font-family: Montserrat, "Helvetica Neue", arial, sans-serif;

@@ -92,30 +92,37 @@ WeatherCard = React.createClass({
   render: function() {
     return (
       <div className="weather-card">
-        <div className="city">
-          <span>{this.state.city}</span>
-        </div>
 
-        <div className="weather-current">
-          <div className={"condition " + this.state.currentWeather.condition}>
-          </div>
-
-          <div className="temp">
-            {this.state.currentWeather.temp}&deg;
+        <div className="city-container">
+          <div className="city">
+            <span>{this.state.city}</span>
           </div>
         </div>
 
-        <div className="weather-future">
-          <span className={"time-of-day " +
-            (this.state.futureWeather.timeOfDay === 'Tonight' ? '' : 'wide')}>
-              {this.state.futureWeather.timeOfDay}:
-          </span>
+        <div className="current-container">
+          <div className="weather-current">
+            <div className={"condition " + this.state.currentWeather.condition}>
+            </div>
 
-          <div className="temp">
-            {this.state.futureWeather.temp}&deg;
+            <div className="temp">
+              {this.state.currentWeather.temp}&deg;
+            </div>
           </div>
+        </div>
 
-          <div className={"condition " + this.state.futureWeather.condition}>
+        <div className="future-container">
+          <div className="weather-future">
+            <span className={"time-of-day " +
+              (this.state.futureWeather.timeOfDay === 'Tonight' ? '' : 'wide')}>
+                {this.state.futureWeather.timeOfDay}:
+            </span>
+
+            <div className="temp">
+              {this.state.futureWeather.temp}&deg;
+            </div>
+
+            <div className={"condition " + this.state.futureWeather.condition}>
+            </div>
           </div>
         </div>
       </div>

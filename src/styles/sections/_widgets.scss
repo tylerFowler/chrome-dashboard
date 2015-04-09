@@ -1,9 +1,14 @@
+$min-widget-height: 125px;
+$widget-height: 100%;
+
 %widget-card {
   @include span-columns(6);
 
   background: $card-bg-color;
   border: $card-border;
-  height: 100%;
+  height: $widget-height;
+  min-height: $min-widget-height;
+  // max-height: $min-widget-height;
 
   overflow: hidden;
 }

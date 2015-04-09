@@ -1,6 +1,11 @@
 .hidden { display: none; } // isn't drawn on the DOM
 .hide { opacity: 0; } // is drawn on the DOM
 
+@mixin center-vertically() {
+  position: relative;
+  top: 50%;
+  @include transform(translateY(-50%));
+}
 
 // This doesn't realy work except for justified text...
 @mixin multiline-ellipsis($font-size, $line-height, $max-lines) {
