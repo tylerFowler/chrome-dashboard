@@ -124,7 +124,10 @@ html {
   margin-top: 15px;
   -webkit-animation: story-item-fadein 0.25s;
   -moz-animation: story-item-fadein 0.25s;
-  animation: story-item-fadein 0.25s; }
+  animation: story-item-fadein 0.25s;
+  -webkit-transition: all 0.25s ease-in;
+  -moz-transition: all 0.25s ease-in;
+  transition: all 0.25s ease-in; }
   .story-item::after {
     clear: both;
     content: "";
@@ -562,7 +565,7 @@ html {
   box-shadow: 2px 1px 4px 0 rgba(111, 114, 114, 0.5); }
   .bookmark-newyorker .bookmark-logo {
     background-image: url("../img/bookmark-icons/newyorker.svg");
-    background-repeat: repeat-none;
+    background-repeat: no-repeat;
     background-position: center center;
     background-size: contain;
     width: 90%;

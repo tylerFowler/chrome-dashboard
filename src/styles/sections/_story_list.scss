@@ -31,6 +31,7 @@ $index-size: 80px;
   margin-top: 15px;
 
   @include animation(story-item-fadein .25s);
+  @include transition(all .25s ease-in);
 
   &:last-child {
     margin-bottom: $index-size * 2;
