@@ -1,5 +1,5 @@
 %widget-card {
-  @include span-columns(5.8);
+  @include span-columns(6);
 
   background: $card-bg-color;
   border: $card-border;
@@ -10,10 +10,9 @@
 
 .left-widget {
   @extend %widget-card;
-  float: left;
+  @include shift(3);
 }
 
 .right-widget {
   @extend %widget-card;
-  float: right;
 }

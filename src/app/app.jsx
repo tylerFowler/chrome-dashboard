@@ -23,9 +23,6 @@ var App = React.createClass({
             <div className="left-widget">
               <WeatherCard />
             </div>
-
-            <div className="right-widget sunrise-card">
-            </div>
           </div>
 
           <BookmarkList />

@@ -22,9 +22,6 @@ var App = React.createClass({displayName: "App",
           React.createElement("div", {className: "widget-container"}, 
             React.createElement("div", {className: "left-widget"}, 
               React.createElement(WeatherCard, null)
-            ), 
-
-            React.createElement("div", {className: "right-widget sunrise-card"}
             )
           ), 
 
