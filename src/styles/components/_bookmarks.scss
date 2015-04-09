@@ -1,3 +1,5 @@
+@import '../lib/bourbon/bourbon';
+
 // Settings //
 $logo-dir: '../img/bookmark-icons';
 
@@ -29,11 +31,20 @@ $newyorker-shadow-color: #6f7272;
 $qz-brand: #333333;
 $qz-shadow-color: #424242;
 
+// Hover Effect //
+.bookmark-card {
+  @include transition(all .25s ease-in-out);
+
+  &:hover {
+    box-shadow: none;
+  }
+}
+
 // Flipboard //
 .bookmark-flipboard {
   background: $flipboard-bg;
   border: $bkmk-border-thickness solid $flipboard-brand;
-  box-shadow: 3px 4px 5px 0 rgba($flipboard-shadow-color, .75);
+  box-shadow: 3px 4px 8px 0 rgba($flipboard-shadow-color, .75);
 
   .bookmark-logo {
     @include set-bookmark-img('flipboard-red');

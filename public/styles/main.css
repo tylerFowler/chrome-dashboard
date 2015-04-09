@@ -526,10 +526,17 @@ html {
     font-size: 23.04px;
     font-weight: 400; }
 
+.bookmark-card {
+  -webkit-transition: all 0.25s ease-in-out;
+  -moz-transition: all 0.25s ease-in-out;
+  transition: all 0.25s ease-in-out; }
+  .bookmark-card:hover {
+    box-shadow: none; }
+
 .bookmark-flipboard {
   background: #f7f7f7;
   border: 2px solid #e12828;
-  box-shadow: 3px 4px 5px 0 rgba(250, 234, 234, 0.75); }
+  box-shadow: 3px 4px 8px 0 rgba(250, 234, 234, 0.75); }
   .bookmark-flipboard .bookmark-logo {
     background: url("../img/bookmark-icons/flipboard-red.png");
     background-repeat: no-repeat;

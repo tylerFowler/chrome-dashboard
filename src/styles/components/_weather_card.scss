@@ -24,7 +24,15 @@ $curcondition-size: 48px;
 $futurecondition-size: 22px;
 $temp-color: #333;
 
-.weather-card { @include user-select(none); cursor: default; }
+.weather-card {
+  @include user-select(none);
+  cursor: default;
+  // See this for distributing contents evenly (vertically)
+  // http://stackoverflow.com/questions/6865194/fluid-width-with-equally-spaced-divs/6880421#6880421
+
+  // height: 100%;
+  // width: 100%;
+}
 
 .weather-card .city {
   color: $font-color-dark;
