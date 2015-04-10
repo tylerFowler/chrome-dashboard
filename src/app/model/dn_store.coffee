@@ -24,11 +24,12 @@ class DesignerNews
           return cb new Error 'Received zero stories' if stories.length is 0
           cb null, stories
       error: (xhr, msg, err) =>
-        return cb err unless msg is 'timeout'
+        errMsg = 'Could not reach DN.\nAre you offline?'
+        return cb new Error errMsg unless msg is 'timeout'
 
         if retryCount >= 3
           console.log "Retry count is #{retryCount} - return an error"
-          cb new Error 'Could not reach DN.\nAre you offline?'
+          cb new Error errMsg
         else
           console.log "Retry count is #{retryCount} - try again"
           @.getTopStories limit, cb, retryCount + 1
@@ -51,11 +52,12 @@ class DesignerNews
           return cb new Error 'Received zero stories' if stories.length is 0
           cb null, stories
       error: (xhr, msg, err) =>
-        return cb err unless msg is 'timeout'
+        errMsg = 'Could not reach DN.\nAre you offline?'
+        return cb new Error errMsg unless msg is 'timeout'
 
         if retryCount >= 3
           console.log "Retry count is #{retryCount} - return an error"
-          cb new Error 'Could not reach DN.\nAre you offline?'
+          cb new Error errMsg
         else
           console.log "Retry count is #{retryCount} - try again"
           @.getRecentStories limit, cb, retryCount + 1

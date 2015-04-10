@@ -33,7 +33,23 @@ HNList = React.createClass({
     );
   },
 
+  handleError: function(err) {
+    return (
+      <div className="feed-error hn-error">
+        <div className="feed-error-icon">
+          <p className="error-msg">{err.toString()}</p>
+        </div>
+      </div>
+    );
+  },
+
   render: function() {
+    var error;
+    if (this.state.err)
+      error = this.handleError(this.state.err);
+    else
+      error = undefined;
+
     var hnlist = this.state.stories.map(function(story, index) {
       return (
         <HNItem storyId={index}
@@ -48,7 +64,7 @@ HNList = React.createClass({
     });
 
     var loading;
-    if (hnlist.length === 0)
+    if (!error && hnlist.length === 0)
       loading = this.renderLoading();
     else
       loading = undefined;
@@ -60,6 +76,7 @@ HNList = React.createClass({
         </div>
 
         <div className="story-list hnlist">
+          {error}
           {loading}
           {hnlist}
         </div>

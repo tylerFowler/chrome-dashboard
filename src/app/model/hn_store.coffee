@@ -29,13 +29,14 @@ class HackerNews
           else
             cb null, stories
       error: (xhr, msg, err) =>
-        return cb err unless msg is 'timeout'
+        errMsg = 'Could not reach HN.\nAre you offline?'
+        return cb new Error errMsg unless msg is 'timeout'
 
         if retryCount >= 3
           console.log "Retry count is #{retryCount} - return an error"
-          cb new Error 'Could not reach HN.\nAre you offline?'
+          cb new Error errMsg
         else
-          console.log "Rety count is #{retryCount} - try again"
+          console.log "Retry count is #{retryCount} - try again"
           @.getTopStories limit, cb, retryCount + 1
     )
 
@@ -61,13 +62,14 @@ class HackerNews
           else
             cb null, stories
       error: (xhr, msg, err) =>
-        return cb err unless msg is 'timeout'
+        errMsg = 'Could not reach HN.\nAre you offline?'
+        return cb new Error errMsg unless msg is 'timeout'
 
         if retryCount >= 3
           console.log "Retry count is #{retryCount} - return an error"
-          cb new Error 'Could not reach HN.\nAre you offline?'
+          cb new Error errMsg
         else
-          console.log "Rety count is #{retryCount} - try again"
+          console.log "Retry count is #{retryCount} - try again"
           @.getRecentStories limit, cb, retryCount + 1
     )
 

@@ -26,12 +26,6 @@ DNList = React.createClass({
     }.bind(this), dn.refreshInterval);
   },
 
-  // renderError: function(err) {
-  //   return (
-  //
-  //   )
-  // },
-
   renderLoading: function() {
     return (
       <div className="feed-loading-anim dn-loading">
@@ -39,7 +33,23 @@ DNList = React.createClass({
     );
   },
 
+  handleError: function(err) {
+    return (
+      <div className="feed-error dn-error">
+        <div className="feed-error-icon">
+          <p className="error-msg">{err.toString()}</p>
+        </div>
+      </div>
+    );
+  },
+
   render: function() {
+    var error;
+    if (this.state.err)
+      error = this.handleError(this.state.err);
+    else
+      error = undefined;
+
     var dnlist = this.state.stories.map(function(story, index) {
       return (
         <DNItem storyId={index}
@@ -54,7 +64,7 @@ DNList = React.createClass({
     });
 
     var loading;
-    if (dnlist.length === 0)
+    if (!error && dnlist.length === 0)
       loading = this.renderLoading();
     else
       loading = '';
@@ -66,6 +76,7 @@ DNList = React.createClass({
         </div>
 
         <div className="story-list dnlist">
+          {error}
           {loading}
           {dnlist}
         </div>
