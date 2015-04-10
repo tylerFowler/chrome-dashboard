@@ -8,6 +8,11 @@
 // =============================================================================
 
 
+// CUSTOM //
+
+// remove Chrome's selection outlines from it's User Agent
+*:focus { outline: none !important; }
+
 // Set to true if you want to add support for IE6 and IE7
 // Notice: setting to true might render some elements
 // slightly differently than when set to false

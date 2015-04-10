@@ -190,6 +190,8 @@ html {
     text-decoration: none; }
   .story-title a:hover {
     text-decoration: underline; }
+  .story-title a:visited {
+    color: #a0a0a0; }
 
 .story-metadata {
   position: relative;
