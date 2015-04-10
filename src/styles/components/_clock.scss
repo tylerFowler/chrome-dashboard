@@ -15,6 +15,8 @@ $period-scale: $time-scale / 3;
   border-top: none;
 
   width: 83%;
+  max-width: 400px;
+
   margin: auto;
   height: $clock-height;
 }

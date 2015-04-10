@@ -34,6 +34,12 @@ html {
 *, *::after, *::before {
   box-sizing: inherit; }
 
+html {
+  box-sizing: border-box; }
+
+*, *::after, *::before {
+  box-sizing: inherit; }
+
 .container {
   max-width: 100%;
   margin-left: auto;
@@ -47,13 +53,21 @@ html {
 .left-pane, .center-pane, .right-pane {
   height: 100%; }
 
-.left-pane {
+.left-pane, .right-pane {
   float: left;
   display: block;
   margin-right: 2.3576515979%;
   width: 30.9085851714%; }
-  .left-pane:last-child {
+  .left-pane:last-child, .right-pane:last-child {
     margin-right: 0; }
+  @media screen and (min-width: 1440px) {
+    .left-pane, .right-pane {
+      float: left;
+      display: block;
+      margin-right: 2.3576515979%;
+      width: 32.1880558164%; }
+      .left-pane:last-child, .right-pane:last-child {
+        margin-right: 0; } }
 
 .center-pane {
   float: left;
@@ -62,14 +76,14 @@ html {
   width: 33.4675264613%; }
   .center-pane:last-child {
     margin-right: 0; }
-
-.right-pane {
-  float: left;
-  display: block;
-  margin-right: 2.3576515979%;
-  width: 30.9085851714%; }
-  .right-pane:last-child {
-    margin-right: 0; }
+  @media screen and (min-width: 1440px) {
+    .center-pane {
+      float: left;
+      display: block;
+      margin-right: 2.3576515979%;
+      width: 30.9085851714%; }
+      .center-pane:last-child {
+        margin-right: 0; } }
 
 .widget-container {
   margin-top: 5%;
@@ -334,6 +348,7 @@ html {
   border: 1px solid #f0f0f0;
   height: 100%;
   min-height: 125px;
+  max-height: 190px;
   overflow: hidden; }
   .left-widget:last-child, .right-widget:last-child {
     margin-right: 0; }
@@ -345,6 +360,8 @@ html {
   overflow: hidden;
   height: 30%;
   width: 40%;
+  max-height: 140px;
+  max-width: 220px;
   position: relative; }
 
 #bookmark-1 {
@@ -372,6 +389,7 @@ html {
   border: 3px solid #4f4f4f;
   border-top: none;
   width: 83%;
+  max-width: 400px;
   margin: auto;
   height: 150px; }
 

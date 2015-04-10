@@ -1,8 +1,11 @@
 %bookmark-card {
   overflow: hidden;
-
+  
   height: 30%;
   width: 40%;
+
+  max-height: 140px;
+  max-width: 220px;
 
   position: relative;
 }
