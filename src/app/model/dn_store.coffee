@@ -11,33 +11,55 @@ class DesignerNews
    # DesignerNews#getTopStories
    # @desc : retrieves the top stories from designer news
    # @param : limit - max number of stories to grab
+   # @param : retryCount [Default: 0]
    # @calls : cb(err, [{ title, url, upvotes, author, comment_count }])
   ###
-  getTopStories: (limit, cb) ->
-    $.getJSON "#{@dnUri}/stories?client_id=#{@clientId}", {}
-    .done (data) =>
-      @.processStories data.stories.slice(0, limit), (stories) ->
-        return cb new Error 'Received zero stories' if stories.length is 0
-        cb null, stories
+  getTopStories: (limit, cb, retryCount = 0) ->
+    $.ajax(
+      dataType: 'json'
+      url: "#{@dnUri}/stories?client_id=#{@clientId}"
+      timeout: 3000
+      success: (data) =>
+        @.processStories data.stories.slice(0, limit), (stories) ->
+          return cb new Error 'Received zero stories' if stories.length is 0
+          cb null, stories
+      error: (xhr, msg, err) =>
+        return cb err unless msg is 'timeout'
 
-    .fail (xhr, errMsg, err) ->
-      cb err
+        if retryCount >= 3
+          console.log "Retry count is #{retryCount} - return an error"
+          cb new Error 'Could not reach DN.\nAre you offline?'
+        else
+          console.log "Retry count is #{retryCount} - try again"
+          @.getTopStories limit, cb, retryCount + 1
+    )
 
   ###
    # DesignerNews#getRecentStories
    # @desc : retrieves the latest stream of stories from designer news
    # @param : limit - max number of stories to grab
+   # @param : retryCount [Default: 0]
    # @calls : cb(err, [{ title, url, dnurl, upvotes, author, commentCount }])
   ###
-  getRecentStories: (limit, cb) ->
-    $.getJSON "#{@dnUri}/stories/recent?client_id=#{@clientId}", {}
-    .done (data) =>
-      @.processStories data.stories.slice(0, limit), (stories) ->
-        return cb new Error 'Received zero stories' if stories.length is 0
-        cb null, stories
+  getRecentStories: (limit, cb, retryCount = 0) ->
+    $.ajax(
+      dataType: 'json'
+      url: "#{@dnUri}/stories/recent?client_id=#{@clientId}"
+      timeout: 3000
+      success: (data) =>
+        @.processStories data.stories.slice(0, limit), (stories) ->
+          return cb new Error 'Received zero stories' if stories.length is 0
+          cb null, stories
+      error: (xhr, msg, err) =>
+        return cb err unless msg is 'timeout'
 
-    .fail (xhr, errMsg, err) ->
-      cb err
+        if retryCount >= 3
+          console.log "Retry count is #{retryCount} - return an error"
+          cb new Error 'Could not reach DN.\nAre you offline?'
+        else
+          console.log "Retry count is #{retryCount} - try again"
+          @.getRecentStories limit, cb, retryCount + 1
+    )
 
   ###
    # DesignerNews#processStories

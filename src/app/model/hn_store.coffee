@@ -11,40 +11,65 @@ class HackerNews
    # HackerNews#getTopStories
    # @desc : retrieves the top stories from Hacker News
    # @param : limit - max number of stories to grab
+   # @param : retryCount [Default: 0]
    # @calls : cb(err, )
   ###
-  getTopStories: (limit, cb) ->
-    $.getJSON "#{@hnUri}/topstories.json", {}
-    .done (data) =>
-      storyIds = data.slice 0, limit
-      @.getStories storyIds, (err, stories) ->
-        if err
-          return cb err
-        else if stories.length is 0
-          return cb new Error 'Received zero stories'
+  getTopStories: (limit, cb, retryCount = 0) ->
+    $.ajax(
+      dataType: 'json'
+      url: "#{@hnUri}/topstories.json"
+      timeout: 3000
+      success: (data) =>
+        storyIds = data.slice 0, limit
+        @.getStories storyIds, (err, stories) ->
+          if err
+            return cb err
+          else if stories.length is 0
+            return cb new Error 'Received zero stories'
+          else
+            cb null, stories
+      error: (xhr, msg, err) =>
+        return cb err unless msg is 'timeout'
+
+        if retryCount >= 3
+          console.log "Retry count is #{retryCount} - return an error"
+          cb new Error 'Could not reach HN.\nAre you offline?'
         else
-          cb null, stories
-    .fail (xhr, errMsg, err) ->
-      cb err
+          console.log "Rety count is #{retryCount} - try again"
+          @.getTopStories limit, cb, retryCount + 1
+    )
 
   ###
    # HackerNews#getRecentStories
    # @desc : retrieves the latest stream of stories from hacker news
    # @param : limit - max number of stories to grab
+   # @param : retryCount [Default: 0]
    # @calls : cb(err, [{ title, url, score, author, commentCount }])
   ###
-  getRecentStories: (limit, cb) ->
-    $.getJSON "#{@hnUri}/newstories.json", {}
-    .done (data) =>
-      storyIds = data.slice 0, limit
-      @.getStories storyIds, (err, stories) ->
-        if err
-          cb err
-        else if stories.length is 0
-          cb new Error 'Received zero stories'
+  getRecentStories: (limit, cb, retryCount = 0) ->
+    $.ajax(
+      dataType: 'json'
+      url: "#{@hnUri}/newstories.json"
+      timeout: 3000
+      success: (data) =>
+        storyIds = data.slice 0, limit
+        @.getStories storyIds, (err, stories) ->
+          if err
+            return cb err
+          else if stories.length is 0
+            return cb new Error 'Received zero stories'
+          else
+            cb null, stories
+      error: (xhr, msg, err) =>
+        return cb err unless msg is 'timeout'
+
+        if retryCount >= 3
+          console.log "Retry count is #{retryCount} - return an error"
+          cb new Error 'Could not reach HN.\nAre you offline?'
         else
-          cb null, stories
-    .fail (xhr, errMsg, err) -> cb err
+          console.log "Rety count is #{retryCount} - try again"
+          @.getRecentStories limit, cb, retryCount + 1
+    )
 
   ###
    # HackerNews#getStories
@@ -57,25 +82,26 @@ class HackerNews
     ajaxErr = null
 
     _.each ids, (id, index) =>
-      $.getJSON "#{@hnUri}/item/#{id}.json", {}
-      .done (story) =>
-        hnurl = @.getHNStoryUrl story.id
+      $.ajax(
+        dataType: 'json'
+        url: "#{@hnUri}/item/#{id}.json"
+        success: (story) =>
+          hnurl = @.getHNStoryUrl story.id
 
-        processed =
-          title: story.title
-          url: if story.url then story.url else hnurl
-          hnurl: hnurl
-          score: story.score
-          author: story.by
-          commentCount: if story.kids then story.kids.length else 0
+          processed =
+            title: story.title
+            url: if story.url then story.url else hnurl
+            hnurl: hnurl
+            score: story.score
+            author: story.by
+            commentCount: if story.kids then story.kids.length else 0
 
-        stories.push processed
+          stories.push processed
 
-        cb null, stories if stories.length is ids.length
-      .fail (xhr, errMsg, err) ->
-        # TODO: this could get end up getting called more than once,
-        # not sure what to do about it..
-        cb err
+          cb null, stories if stories.length is ids.length
+        error: (xhr, msg, err) -> cb err
+      )
+
 
 
   getHNStoryUrl: (storyId) ->
