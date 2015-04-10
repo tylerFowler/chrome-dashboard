@@ -19,7 +19,7 @@ $bkmk-border-thickness: 2px;
 
 $flipboard-brand: #e12828;
 $flipboard-bg: #f7f7f7;
-$flipboard-shadow-color: #faeaea;
+$flipboard-shadow-color: #eadada;
 
 $simple-brand: #346b83;
 $simple-bg: #f3f3f3;
@@ -44,13 +44,10 @@ $qz-shadow-color: #424242;
 .bookmark-flipboard {
   background: $flipboard-bg;
   border: $bkmk-border-thickness solid $flipboard-brand;
-  box-shadow: 3px 4px 8px 0 rgba($flipboard-shadow-color, .75);
+  box-shadow: 3px 4px 8px 0 rgba($flipboard-shadow-color, .9);
 
   .bookmark-logo {
     @include set-bookmark-img('flipboard-red');
-
-    // TODO: might wanna set max widths based on the image size so it
-    // doesn't stretch too much
   }
 }
 

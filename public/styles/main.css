@@ -175,7 +175,7 @@ html {
   background: #d8d8d8;
   width: 80px;
   height: 80px;
-  padding: 8px 27.5862068966px; }
+  padding: 8px 25.8064516129px; }
   .story-index span {
     font-family: Montserrat, "Helvetica Neue", arial, sans-serif;
     font-size: 47.775744px;
@@ -600,7 +600,7 @@ html {
 .bookmark-flipboard {
   background: #f7f7f7;
   border: 2px solid #e12828;
-  box-shadow: 3px 4px 8px 0 rgba(250, 234, 234, 0.75); }
+  box-shadow: 3px 4px 8px 0 rgba(234, 218, 218, 0.9); }
   .bookmark-flipboard .bookmark-logo {
     background: url("../img/bookmark-icons/flipboard-red.png");
     background-repeat: no-repeat;

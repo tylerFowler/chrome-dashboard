@@ -54,7 +54,7 @@ $index-size: 80px;
   height: $index-size;
 
   // this won't work for every size but it's a good approximation
-  padding: ($index-size / 10) ($index-size / 2.9);
+  padding: ($index-size / 10) ($index-size / 3.1);
 
   // we have to use a span, h1 will cause weird spacing
   span {
