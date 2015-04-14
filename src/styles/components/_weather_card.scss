@@ -10,7 +10,7 @@
 
 .condition {
   // default
-  @include weather-icon('unknown');
+  @include weather-icon('snow');
 
   &.clear-day { @include weather-icon('clear-day'); }
   &.clear-night { @include weather-icon('clear-night'); }
@@ -19,11 +19,12 @@
   &.partly-cloudy-night { @include weather-icon('partly-cloudy-night'); }
   &.rain { @include weather-icon('rain'); }
   &.snow { @include weather-icon('snow'); }
+  &.wind { @include weather-icon('wind'); }
 }
 
 // Weather Card Settings //
-$curcondition-size: 42px;
-$futurecondition-size: 22px;
+$curcondition-size: 48px;
+$futurecondition-size: 28px;
 $temp-color: #333;
 
 $small-section-ratio: 28.75%;

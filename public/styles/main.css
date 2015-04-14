@@ -479,7 +479,7 @@ html {
   border-color: rgba(255, 102, 0, 0.1); }
 
 .condition {
-  background: url("../img/weather-icons/unknown.png") left no-repeat;
+  background: url("../img/weather-icons/snow.png") left no-repeat;
   background-size: contain; }
   .condition.clear-day {
     background: url("../img/weather-icons/clear-day.png") left no-repeat;
@@ -501,6 +501,9 @@ html {
     background-size: contain; }
   .condition.snow {
     background: url("../img/weather-icons/snow.png") left no-repeat;
+    background-size: contain; }
+  .condition.wind {
+    background: url("../img/weather-icons/wind.png") left no-repeat;
     background-size: contain; }
 
 .weather-card {
@@ -560,7 +563,7 @@ html {
     height: 100%; }
   .weather-card .weather-current .condition {
     float: left;
-    width: 42px;
+    width: 48px;
     height: 100%;
     margin-left: 10%;
     background-size: contain; }
@@ -603,7 +606,7 @@ html {
     float: right;
     margin-right: 4%;
     margin-top: 3px;
-    width: 22px;
+    width: 28px;
     height: 100%;
     background-size: contain; }
   .weather-card .weather-future .temp {
