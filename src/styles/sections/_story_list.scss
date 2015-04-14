@@ -219,3 +219,37 @@ $spinner-fadein-speed: 3s;
     @include transform(rotate3d(0, 0, 1, 360deg))
   }
 }
+
+// Error Styles //
+.feed-error {
+  @include user-select(none);
+  color: rgba($story-meta-color, .8);
+
+  margin: 35% auto;
+  width: 75%;
+
+  // font-size: modular-scale(7);
+  $inset-shadow-color: #f5f5f5;
+  text-shadow: 1px 4px 6px $inset-shadow-color,
+    0 0 0 #404040,
+    1px 4px 6px $inset-shadow-color;
+}
+
+.feed-error .error-msg {
+  cursor: default;
+  text-align: center;
+  font-family: $OpenSans;
+  font-size: modular-scale(-1);
+}
+
+.feed-error-icon {
+  background: url('../img/connection-error.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+
+  $icon-size: 75px;
+  width: $icon-size;
+  height: $icon-size;
+
+  margin: 10px auto;
+}

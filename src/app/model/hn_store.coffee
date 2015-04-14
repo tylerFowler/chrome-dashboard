@@ -50,7 +50,7 @@ class HackerNews
   getRecentStories: (limit, cb, retryCount = 0) ->
     $.ajax(
       dataType: 'json'
-      url: "#{@hnUri}/newstories.json"
+      url: "#{@hnUri}/newstoriess.json"
       timeout: 3000
       success: (data) =>
         storyIds = data.slice 0, limit

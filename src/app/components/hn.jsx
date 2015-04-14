@@ -36,9 +36,8 @@ HNList = React.createClass({
   handleError: function(err) {
     return (
       <div className="feed-error hn-error">
-        <div className="feed-error-icon">
-          <p className="error-msg">{err.toString()}</p>
-        </div>
+        <div className="feed-error-icon"></div>
+        <p className="error-msg">{err.toString()}</p>
       </div>
     );
   },

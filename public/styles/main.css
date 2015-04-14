@@ -339,6 +339,30 @@ html {
     -ms-transform: rotate3d(0, 0, 1, 360deg);
     -o-transform: rotate3d(0, 0, 1, 360deg);
     transform: rotate3d(0, 0, 1, 360deg); } }
+.feed-error {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  color: rgba(160, 160, 160, 0.8);
+  margin: 35% auto;
+  width: 75%;
+  text-shadow: 1px 4px 6px #f5f5f5, 0 0 0 #404040, 1px 4px 6px #f5f5f5; }
+
+.feed-error .error-msg {
+  cursor: default;
+  text-align: center;
+  font-family: OpenSans, "Helvetica Neue", arial, sans-serif;
+  font-size: 13.3333333333px; }
+
+.feed-error-icon {
+  background: url("../img/connection-error.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 75px;
+  height: 75px;
+  margin: 10px auto; }
+
 .left-widget, .right-widget {
   float: left;
   display: block;
