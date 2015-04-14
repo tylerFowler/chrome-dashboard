@@ -45,7 +45,7 @@ class DesignerNews
   getRecentStories: (limit, cb, retryCount = 0) ->
     $.ajax(
       dataType: 'json'
-      url: "#{@dnUri}/storiess/recent?client_id=#{@clientId}"
+      url: "#{@dnUri}/stories/recent?client_id=#{@clientId}"
       timeout: 3000
       success: (data) =>
         @.processStories data.stories.slice(0, limit), (stories) ->
