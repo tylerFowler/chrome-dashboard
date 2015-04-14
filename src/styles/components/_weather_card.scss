@@ -10,7 +10,7 @@
 
 .condition {
   // default
-  @include weather-icon('unknown');
+  @include weather-icon('rain');
 
   &.clear-day { @include weather-icon('clear-day'); }
   &.clear-night { @include weather-icon('clear-night'); }
