@@ -479,7 +479,7 @@ html {
   border-color: rgba(255, 102, 0, 0.1); }
 
 .condition {
-  background: url("../img/weather-icons/snow.png") left no-repeat;
+  background: url("../img/weather-icons/unknown.png") left no-repeat;
   background-size: contain; }
   .condition.clear-day {
     background: url("../img/weather-icons/clear-day.png") left no-repeat;
