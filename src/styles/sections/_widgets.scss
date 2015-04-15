@@ -1,17 +1,29 @@
-%widget-card {
-  @include span-columns(5.8);
+$min-widget-height: 125px;
+$widget-height: 100%;
 
+%widget-card {
+  @include span-columns(6);
+
+  background: $card-bg-color;
+  border: $card-border;
+  height: $widget-height;
+  min-height: $min-widget-height;
+  max-height: 190px;
+
+<<<<<<< HEAD
   height: 100%;
   // background: #fff;
   // border: 1px solid #eee;
+=======
+  overflow: hidden;
+>>>>>>> develop
 }
 
 .left-widget {
   @extend %widget-card;
-  float: left;
+  @include shift(3);
 }
 
 .right-widget {
   @extend %widget-card;
-  float: right;
 }

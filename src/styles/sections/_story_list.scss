@@ -31,6 +31,7 @@ $index-size: 80px;
   margin-top: 15px;
 
   @include animation(story-item-fadein .25s);
+  @include transition(all .25s ease-in);
 
   &:last-child {
     margin-bottom: $index-size * 2;
@@ -43,6 +44,8 @@ $index-size: 80px;
 }
 
 .story-index {
+  @include user-select(none);
+  cursor: default;
   float: left;
   display: inline-block;
   background: #d8d8d8;
@@ -51,7 +54,7 @@ $index-size: 80px;
   height: $index-size;
 
   // this won't work for every size but it's a good approximation
-  padding: ($index-size / 10) ($index-size / 2.9);
+  padding: ($index-size / 10) ($index-size / 3.1);
 
   // we have to use a span, h1 will cause weird spacing
   span {
@@ -93,6 +96,10 @@ $index-size: 80px;
 
   a:hover {
     text-decoration: underline;
+  }
+
+  a:visited {
+    color: #a0a0a0;
   }
 }
 
@@ -211,4 +218,39 @@ $spinner-fadein-speed: 3s;
   100% {
     @include transform(rotate3d(0, 0, 1, 360deg))
   }
+}
+
+// Error Styles //
+.feed-error {
+  @include user-select(none);
+  color: rgba($story-meta-color, .8);
+
+  margin: 35% auto;
+  width: 75%;
+
+  // font-size: modular-scale(7);
+  $inset-shadow-color: #f5f5f5;
+  text-shadow: 1px 4px 6px $inset-shadow-color,
+    0 0 0 #404040,
+    1px 4px 6px $inset-shadow-color;
+}
+
+.feed-error .error-msg {
+  cursor: default;
+  text-align: center;
+  font-family: $OpenSans;
+  font-weight: 200;
+  font-size: modular-scale(-1);
+}
+
+.feed-error-icon {
+  background: url('../img/connection-error.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+
+  $icon-size: 75px;
+  width: $icon-size;
+  height: $icon-size;
+
+  margin: 10px auto;
 }

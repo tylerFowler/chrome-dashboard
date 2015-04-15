@@ -21,17 +21,10 @@ DNList = React.createClass({
   componentDidMount: function() {
     this.loadDnStories(this.props.maxStories);
 
-    setInterval((function() {
+    setInterval(function() {
       this.loadDnStories(this.props.maxStories);
-      console.log('Updating DN...');
-    }).bind(this), dn.refreshInterval);
+    }.bind(this), dn.refreshInterval);
   },
-
-  // renderError: function(err) {
-  //   return (
-  //
-  //   )
-  // },
 
   renderLoading: function() {
     return (
@@ -40,7 +33,22 @@ DNList = React.createClass({
     );
   },
 
+  handleError: function(err) {
+    return (
+      <div className="feed-error dn-error">
+        <div className="feed-error-icon"></div>
+        <p className="error-msg">{err.toString()}</p>
+      </div>
+    );
+  },
+
   render: function() {
+    var error;
+    if (this.state.err)
+      error = this.handleError(this.state.err);
+    else
+      error = undefined;
+
     var dnlist = this.state.stories.map(function(story, index) {
       return (
         <DNItem storyId={index}
@@ -55,7 +63,7 @@ DNList = React.createClass({
     });
 
     var loading;
-    if (dnlist.length === 0)
+    if (!error && dnlist.length === 0)
       loading = this.renderLoading();
     else
       loading = '';
@@ -67,6 +75,7 @@ DNList = React.createClass({
         </div>
 
         <div className="story-list dnlist">
+          {error}
           {loading}
           {dnlist}
         </div>

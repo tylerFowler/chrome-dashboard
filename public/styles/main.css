@@ -1,19 +1,39 @@
 @font-face {
   font-family: 'Montserrat';
   src: url("../fonts/montserrat-regular.ttf") format("truetype");
-  font-weight: 400; }
+  font-weight: 400;
+  font-style: normal; }
 @font-face {
   font-family: 'Montserrat';
   src: url("../fonts/montserrat-bold.ttf") format("truetype");
-  font-weight: 700; }
+  font-weight: 700;
+  font-style: normal; }
 @font-face {
   font-family: 'OpenSans';
   src: url("../fonts/opensans-light.ttf") format("truetype");
-  font-weight: 300; }
+  font-weight: 300;
+  font-style: normal; }
 @font-face {
   font-family: 'Lora';
   src: url("../fonts/lora-regular.ttf") format("truetype");
-  font-weight: 400; }
+  font-weight: 400;
+  font-style: normal; }
+@font-face {
+  font-family: 'Raleway';
+  src: url("../fonts/raleway-light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal; }
+@font-face {
+  font-family: 'Raleway';
+  src: url("../fonts/raleway-regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal; }
+html {
+  box-sizing: border-box; }
+
+*, *::after, *::before {
+  box-sizing: inherit; }
+
 html {
   box-sizing: border-box; }
 
@@ -33,13 +53,21 @@ html {
 .left-pane, .center-pane, .right-pane {
   height: 100%; }
 
-.left-pane {
+.left-pane, .right-pane {
   float: left;
   display: block;
   margin-right: 2.3576515979%;
   width: 30.9085851714%; }
-  .left-pane:last-child {
+  .left-pane:last-child, .right-pane:last-child {
     margin-right: 0; }
+  @media screen and (min-width: 1440px) {
+    .left-pane, .right-pane {
+      float: left;
+      display: block;
+      margin-right: 2.3576515979%;
+      width: 32.1880558164%; }
+      .left-pane:last-child, .right-pane:last-child {
+        margin-right: 0; } }
 
 .center-pane {
   float: left;
@@ -48,14 +76,14 @@ html {
   width: 33.4675264613%; }
   .center-pane:last-child {
     margin-right: 0; }
-
-.right-pane {
-  float: left;
-  display: block;
-  margin-right: 2.3576515979%;
-  width: 30.9085851714%; }
-  .right-pane:last-child {
-    margin-right: 0; }
+  @media screen and (min-width: 1440px) {
+    .center-pane {
+      float: left;
+      display: block;
+      margin-right: 2.3576515979%;
+      width: 30.9085851714%; }
+      .center-pane:last-child {
+        margin-right: 0; } }
 
 .widget-container {
   margin-top: 5%;
@@ -110,7 +138,10 @@ html {
   margin-top: 15px;
   -webkit-animation: story-item-fadein 0.25s;
   -moz-animation: story-item-fadein 0.25s;
-  animation: story-item-fadein 0.25s; }
+  animation: story-item-fadein 0.25s;
+  -webkit-transition: all 0.25s ease-in;
+  -moz-transition: all 0.25s ease-in;
+  transition: all 0.25s ease-in; }
   .story-item::after {
     clear: both;
     content: "";
@@ -134,12 +165,17 @@ html {
   to {
     opacity: 1; } }
 .story-index {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: default;
   float: left;
   display: inline-block;
   background: #d8d8d8;
   width: 80px;
   height: 80px;
-  padding: 8px 27.5862068966px; }
+  padding: 8px 25.8064516129px; }
   .story-index span {
     font-family: Montserrat, "Helvetica Neue", arial, sans-serif;
     font-size: 47.775744px;
@@ -152,7 +188,7 @@ html {
   padding-left: .5rem; }
 
 .story-title {
-  font-family: Lora, Times, serif;
+  font-family: Lora, Georgia, Times, serif;
   font-size: 13.3333333333px;
   line-height: 1.6;
   -webkit-line-clamp: 2;
@@ -168,6 +204,8 @@ html {
     text-decoration: none; }
   .story-title a:hover {
     text-decoration: underline; }
+  .story-title a:visited {
+    color: #a0a0a0; }
 
 .story-metadata {
   position: relative;
@@ -301,26 +339,87 @@ html {
     -ms-transform: rotate3d(0, 0, 1, 360deg);
     -o-transform: rotate3d(0, 0, 1, 360deg);
     transform: rotate3d(0, 0, 1, 360deg); } }
+.feed-error {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  color: rgba(160, 160, 160, 0.8);
+  margin: 35% auto;
+  width: 75%;
+  text-shadow: 1px 4px 6px #f5f5f5, 0 0 0 #404040, 1px 4px 6px #f5f5f5; }
+
+.feed-error .error-msg {
+  cursor: default;
+  text-align: center;
+  font-family: OpenSans, "Helvetica Neue", arial, sans-serif;
+  font-weight: 200;
+  font-size: 13.3333333333px; }
+
+.feed-error-icon {
+  background: url("../img/connection-error.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 75px;
+  height: 75px;
+  margin: 10px auto; }
+
 .left-widget, .right-widget {
   float: left;
   display: block;
   margin-right: 2.3576515979%;
+<<<<<<< HEAD
   width: 47.1152133411%;
   height: 100%; }
+=======
+  width: 48.821174201%;
+  background: #fff;
+  border: 1px solid #f0f0f0;
+  height: 100%;
+  min-height: 125px;
+  max-height: 190px;
+  overflow: hidden; }
+>>>>>>> develop
   .left-widget:last-child, .right-widget:last-child {
     margin-right: 0; }
 
 .left-widget {
-  float: left; }
+  margin-left: 25.5894128995%; }
 
-.right-widget {
-  float: right; }
+#bookmark-1, #bookmark-2, #bookmark-3, #bookmark-4 {
+  overflow: hidden;
+  height: 30%;
+  width: 40%;
+  max-height: 140px;
+  max-width: 220px;
+  position: relative; }
+
+#bookmark-1 {
+  float: left;
+  top: 10%;
+  left: 5%; }
+
+#bookmark-2 {
+  float: right;
+  top: 10%;
+  right: 5%; }
+
+#bookmark-3 {
+  float: left;
+  top: 25%;
+  left: 0%; }
+
+#bookmark-4 {
+  float: right;
+  top: 25%;
+  right: 0%; }
 
 .clock {
   background: #fff;
   border: 3px solid #4f4f4f;
   border-top: none;
   width: 83%;
+  max-width: 400px;
   margin: auto;
   height: 150px; }
 
@@ -338,7 +437,7 @@ html {
   .time #cur-period {
     font-size: 27.648px;
     position: relative;
-    left: 75%;
+    left: 76.5%;
     bottom: 68.79707136px; }
 
 .divider {
@@ -385,8 +484,206 @@ html {
 .hn-loading::after {
   border-color: rgba(255, 102, 0, 0.1); }
 
+.condition {
+  background: url("../img/weather-icons/unknown.png") left no-repeat;
+  background-size: contain; }
+  .condition.clear-day {
+    background: url("../img/weather-icons/clear-day.png") left no-repeat;
+    background-size: contain; }
+  .condition.clear-night {
+    background: url("../img/weather-icons/clear-night.png") left no-repeat;
+    background-size: contain; }
+  .condition.cloudy {
+    background: url("../img/weather-icons/cloudy.png") left no-repeat;
+    background-size: contain; }
+  .condition.partly-cloudy-day {
+    background: url("../img/weather-icons/partly-cloudy-day.png") left no-repeat;
+    background-size: contain; }
+  .condition.partly-cloudy-night {
+    background: url("../img/weather-icons/partly-cloudy-night.png") left no-repeat;
+    background-size: contain; }
+  .condition.rain {
+    background: url("../img/weather-icons/rain.png") left no-repeat;
+    background-size: contain; }
+  .condition.snow {
+    background: url("../img/weather-icons/snow.png") left no-repeat;
+    background-size: contain; }
+  .condition.wind {
+    background: url("../img/weather-icons/wind.png") left no-repeat;
+    background-size: contain; }
+
+.weather-card {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: default;
+  height: 100%;
+  padding: 5px 0;
+  min-height: 115px; }
+  .weather-card .city-container, .weather-card .future-container {
+    display: block;
+    height: 28.75%; }
+    .weather-card .city-container::after, .weather-card .future-container::after {
+      clear: both;
+      content: "";
+      display: table; }
+  .weather-card .current-container {
+    display: block;
+    height: 42%; }
+    .weather-card .current-container::after {
+      clear: both;
+      content: "";
+      display: table; }
+
+.weather-card .city {
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+  color: #404040;
+  font-family: Raleway, "Helvetica Neue", arial, sans-serif;
+  font-size: 33.1776px;
+  font-weight: 300;
+  text-align: center; }
+
+.weather-card .weather-current {
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+  width: 100%;
+  height: 48px;
+  text-align: center; }
+  .weather-card .weather-current::after {
+    clear: both;
+    content: "";
+    display: table; }
+  .weather-card .weather-current .condition, .weather-card .weather-current .temp {
+    height: 100%; }
+  .weather-card .weather-current .condition {
+    float: left;
+    width: 48px;
+    height: 100%;
+    margin-left: 10%;
+    background-size: contain; }
+  .weather-card .weather-current .temp {
+    float: right;
+    margin-right: 5px;
+    color: rgba(51, 51, 51, 0.75);
+    font-family: Montserrat, "Helvetica Neue", arial, sans-serif;
+    font-size: 39.81312px;
+    font-weight: 400; }
+
+.weather-card .weather-future {
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+  width: 100%;
+  height: 33px;
+  padding-bottom: 2px; }
+  .weather-card .weather-future::after {
+    clear: both;
+    content: "";
+    display: table; }
+  .weather-card .weather-future span, .weather-card .weather-future .temp {
+    height: 100%;
+    vertical-align: sub; }
+  .weather-card .weather-future .time-of-day {
+    float: left;
+    color: #404040;
+    font-family: Raleway, "Helvetica Neue", arial, sans-serif;
+    font-size: 23.04px;
+    font-weight: 400;
+    margin-left: 10px; }
+  .weather-card .weather-future .wide {
+    margin-left: 3px; }
+  .weather-card .weather-future .condition {
+    float: right;
+    margin-right: 4%;
+    margin-top: 3px;
+    width: 28px;
+    height: 100%;
+    background-size: contain; }
+  .weather-card .weather-future .temp {
+    float: right;
+    margin-right: 10px;
+    color: rgba(51, 51, 51, 0.5);
+    font-family: Montserrat, "Helvetica Neue", arial, sans-serif;
+    font-size: 23.04px;
+    font-weight: 400; }
+
+.bookmark-card {
+  -webkit-transition: all 0.25s ease-in-out;
+  -moz-transition: all 0.25s ease-in-out;
+  transition: all 0.25s ease-in-out; }
+  .bookmark-card:hover {
+    box-shadow: none; }
+
+.bookmark-flipboard {
+  background: #f7f7f7;
+  border: 2px solid #e12828;
+  box-shadow: 3px 4px 8px 0 rgba(234, 218, 218, 0.9); }
+  .bookmark-flipboard .bookmark-logo {
+    background: url("../img/bookmark-icons/flipboard-red.png");
+    background-repeat: no-repeat;
+    background-position: left;
+    background-size: contain;
+    width: 90%;
+    height: 100%;
+    margin: 0 auto; }
+
+.bookmark-simple {
+  background: #f3f3f3;
+  border: 2px solid #346b83;
+  box-shadow: 3px 4px 8px 0 rgba(56, 108, 127, 0.25); }
+  .bookmark-simple .bookmark-logo {
+    background: url("../img/bookmark-icons/simple-bank.png");
+    background-repeat: no-repeat;
+    background-position: left;
+    background-size: contain;
+    width: 90%;
+    height: 100%;
+    margin: 0 auto; }
+
+.bookmark-newyorker {
+  background: transparent;
+  border: 2px solid #231f20;
+  box-shadow: 2px 1px 4px 0 rgba(111, 114, 114, 0.5); }
+  .bookmark-newyorker .bookmark-logo {
+    background-image: url("../img/bookmark-icons/newyorker.svg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
+    width: 90%;
+    height: 100%;
+    margin: 0 auto; }
+
+.bookmark-qz {
+  background: #333333;
+  border: 2px solid #333333;
+  box-shadow: 3px 4px 5px 0 rgba(66, 66, 66, 0.5); }
+  .bookmark-qz .bookmark-logo {
+    background-image: url("../img/bookmark-icons/quartz.svg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
+    width: 95%;
+    height: 100%;
+    margin: 0 auto; }
+
 html, body, #content {
-  background: #f0f0f0;
+  background: #f5f5f5;
   overflow: hidden;
   width: 100%;
   height: 100%; }

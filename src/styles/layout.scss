@@ -14,16 +14,20 @@
   height: 100%;
 }
 
-.left-pane {
+.left-pane, .right-pane {
   @include span-columns(3.9);
+
+  @include media($large-screen) {
+    @include span-columns(4.05);
+  }
 }
 
 .center-pane {
   @include span-columns(4.2);
-}
 
-.right-pane {
-  @include span-columns(3.9);
+  @include media($large-screen) {
+    @include span-columns(3.9);
+  }
 }
 
 // Center Pane Contents

@@ -13,46 +13,167 @@
 		"outputStyle": 2,
 		"syntaxCheckerStyle": 0
 		},
-	"\/public\/img\/refresh-dark-small.png": {
+	"\/public\/img\/bookmark-icons\/flipboard-black.png": {
 		"fileType": 32768,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"initialSize": 739,
-		"inputAbbreviatedPath": "\/public\/img\/refresh-dark-small.png",
-		"outputAbbreviatedPath": "\/public\/img\/refresh-dark-small.png",
+		"initialSize": 2364,
+		"inputAbbreviatedPath": "\/public\/img\/bookmark-icons\/flipboard-black.png",
+		"outputAbbreviatedPath": "\/public\/img\/bookmark-icons\/flipboard-black.png",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"processed": 0
 		},
-	"\/public\/img\/refresh-full-size.png": {
+	"\/public\/img\/bookmark-icons\/flipboard-red.png": {
 		"fileType": 32768,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"initialSize": 23096,
-		"inputAbbreviatedPath": "\/public\/img\/refresh-full-size.png",
-		"outputAbbreviatedPath": "\/public\/img\/refresh-full-size.png",
+		"initialSize": 2376,
+		"inputAbbreviatedPath": "\/public\/img\/bookmark-icons\/flipboard-red.png",
+		"outputAbbreviatedPath": "\/public\/img\/bookmark-icons\/flipboard-red.png",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"processed": 0
 		},
-	"\/public\/img\/refresh-light-small.png": {
+	"\/public\/img\/bookmark-icons\/simple-bank.png": {
 		"fileType": 32768,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"initialSize": 526,
-		"inputAbbreviatedPath": "\/public\/img\/refresh-light-small.png",
-		"outputAbbreviatedPath": "\/public\/img\/refresh-light-small.png",
+		"initialSize": 1459,
+		"inputAbbreviatedPath": "\/public\/img\/bookmark-icons\/simple-bank.png",
+		"outputAbbreviatedPath": "\/public\/img\/bookmark-icons\/simple-bank.png",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"processed": 0
 		},
-	"\/public\/img\/refresh-small.png": {
+	"\/public\/img\/connection-error.png": {
 		"fileType": 32768,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"initialSize": 1224,
-		"inputAbbreviatedPath": "\/public\/img\/refresh-small.png",
-		"outputAbbreviatedPath": "\/public\/img\/refresh-small.png",
+		"initialSize": 687,
+		"inputAbbreviatedPath": "\/public\/img\/connection-error.png",
+		"outputAbbreviatedPath": "\/public\/img\/connection-error.png",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
+	"\/public\/img\/weather-icons\/clear-day.png": {
+		"fileType": 32768,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 2526,
+		"inputAbbreviatedPath": "\/public\/img\/weather-icons\/clear-day.png",
+		"outputAbbreviatedPath": "\/public\/img\/weather-icons\/clear-day.png",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
+	"\/public\/img\/weather-icons\/clear-night-alt.png": {
+		"fileType": 32768,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 76248,
+		"inputAbbreviatedPath": "\/public\/img\/weather-icons\/clear-night-alt.png",
+		"outputAbbreviatedPath": "\/public\/img\/weather-icons\/clear-night-alt.png",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
+	"\/public\/img\/weather-icons\/clear-night.png": {
+		"fileType": 32768,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 82333,
+		"inputAbbreviatedPath": "\/public\/img\/weather-icons\/clear-night.png",
+		"outputAbbreviatedPath": "\/public\/img\/weather-icons\/clear-night.png",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
+	"\/public\/img\/weather-icons\/cloudy.png": {
+		"fileType": 32768,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 1676,
+		"inputAbbreviatedPath": "\/public\/img\/weather-icons\/cloudy.png",
+		"outputAbbreviatedPath": "\/public\/img\/weather-icons\/cloudy.png",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
+	"\/public\/img\/weather-icons\/partly-cloudy-day.png": {
+		"fileType": 32768,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 1681,
+		"inputAbbreviatedPath": "\/public\/img\/weather-icons\/partly-cloudy-day.png",
+		"outputAbbreviatedPath": "\/public\/img\/weather-icons\/partly-cloudy-day.png",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
+	"\/public\/img\/weather-icons\/partly-cloudy-night-alt.png": {
+		"fileType": 32768,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 30582,
+		"inputAbbreviatedPath": "\/public\/img\/weather-icons\/partly-cloudy-night-alt.png",
+		"outputAbbreviatedPath": "\/public\/img\/weather-icons\/partly-cloudy-night-alt.png",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
+	"\/public\/img\/weather-icons\/partly-cloudy-night.png": {
+		"fileType": 32768,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 31385,
+		"inputAbbreviatedPath": "\/public\/img\/weather-icons\/partly-cloudy-night.png",
+		"outputAbbreviatedPath": "\/public\/img\/weather-icons\/partly-cloudy-night.png",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
+	"\/public\/img\/weather-icons\/rain.png": {
+		"fileType": 32768,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 23994,
+		"inputAbbreviatedPath": "\/public\/img\/weather-icons\/rain.png",
+		"outputAbbreviatedPath": "\/public\/img\/weather-icons\/rain.png",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
+	"\/public\/img\/weather-icons\/snow.png": {
+		"fileType": 32768,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 1330,
+		"inputAbbreviatedPath": "\/public\/img\/weather-icons\/snow.png",
+		"outputAbbreviatedPath": "\/public\/img\/weather-icons\/snow.png",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
+	"\/public\/img\/weather-icons\/unknown.png": {
+		"fileType": 32768,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 1037,
+		"inputAbbreviatedPath": "\/public\/img\/weather-icons\/unknown.png",
+		"outputAbbreviatedPath": "\/public\/img\/weather-icons\/unknown.png",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
+	"\/public\/img\/weather-icons\/wind.png": {
+		"fileType": 32768,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 19398,
+		"inputAbbreviatedPath": "\/public\/img\/weather-icons\/wind.png",
+		"outputAbbreviatedPath": "\/public\/img\/weather-icons\/wind.png",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"processed": 0
@@ -129,9 +250,31 @@
 	"\/src\/app\/_build\/app.js": {
 		"fileType": 64,
 		"ignore": 1,
-		"ignoreWasSetByUser": 1,
+		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/src\/app\/_build\/app.js",
 		"outputAbbreviatedPath": "\/public\/js\/app-min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 2,
+		"syntaxCheckerStyle": 0
+		},
+	"\/src\/app\/_build\/components\/bookmark.js": {
+		"fileType": 64,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/src\/app\/_build\/components\/bookmark.js",
+		"outputAbbreviatedPath": "\/public\/js\/bookmark-min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 2,
+		"syntaxCheckerStyle": 0
+		},
+	"\/src\/app\/_build\/components\/calendar_card.js": {
+		"fileType": 64,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/src\/app\/_build\/components\/calendar_card.js",
+		"outputAbbreviatedPath": "\/public\/js\/calendar_card-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 2,
@@ -170,6 +313,17 @@
 		"outputStyle": 2,
 		"syntaxCheckerStyle": 0
 		},
+	"\/src\/app\/_build\/components\/weather_card.js": {
+		"fileType": 64,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/src\/app\/_build\/components\/weather_card.js",
+		"outputAbbreviatedPath": "\/public\/js\/weather_card-min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 2,
+		"syntaxCheckerStyle": 0
+		},
 	"\/src\/app\/_build\/model\/dn_store.js": {
 		"fileType": 64,
 		"ignore": 1,
@@ -181,12 +335,34 @@
 		"outputStyle": 2,
 		"syntaxCheckerStyle": 0
 		},
+	"\/src\/app\/_build\/model\/forecastio.js": {
+		"fileType": 64,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/src\/app\/_build\/model\/forecastio.js",
+		"outputAbbreviatedPath": "\/public\/js\/forecastio-min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 2,
+		"syntaxCheckerStyle": 0
+		},
 	"\/src\/app\/_build\/model\/hn_store.js": {
 		"fileType": 64,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/src\/app\/_build\/model\/hn_store.js",
 		"outputAbbreviatedPath": "\/public\/js\/hn_store-min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 2,
+		"syntaxCheckerStyle": 0
+		},
+	"\/src\/app\/_build\/model\/public_settings.js": {
+		"fileType": 64,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/src\/app\/_build\/model\/public_settings.js",
+		"outputAbbreviatedPath": "\/public\/js\/public_settings-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 2,
@@ -208,6 +384,15 @@
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/src\/app\/app.jsx",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/src\/app\/components\/bookmark.jsx": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/src\/app\/components\/bookmark.jsx",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
@@ -239,6 +424,15 @@
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
+	"\/src\/app\/components\/weather_card.jsx": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/src\/app\/components\/weather_card.jsx",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
 	"\/src\/app\/model\/dn_store.coffee": {
 		"createSourceMap": 0,
 		"fileType": 32,
@@ -249,6 +443,19 @@
 		"outputAbbreviatedPath": "\/src\/app\/_build\/model\/dn_store.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 1,
+		"outputStyle": 0,
+		"syntaxCheckerStyle": 1
+		},
+	"\/src\/app\/model\/forecastio.coffee": {
+		"createSourceMap": 0,
+		"fileType": 32,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/src\/app\/model\/forecastio.coffee",
+		"minifyOutput": 0,
+		"outputAbbreviatedPath": "\/src\/app\/_build\/model\/forecastio.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
 		"outputStyle": 0,
 		"syntaxCheckerStyle": 1
 		},
@@ -285,9 +492,9 @@
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/src\/app\/model\/settings.coffee",
 		"minifyOutput": 0,
-		"outputAbbreviatedPath": "\/src\/app\/_build\/model\/settings.js",
+		"outputAbbreviatedPath": "\/public\/js\/settings.js",
 		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
+		"outputPathIsSetByUser": 1,
 		"outputStyle": 0,
 		"syntaxCheckerStyle": 1
 		},
@@ -313,6 +520,22 @@
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/src\/styles\/common.scss",
 		"outputAbbreviatedPath": "\/public\/styles\/common.css",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 0,
+		"shouldRunAutoprefixer": 0,
+		"shouldRunBless": 0,
+		"useLibsass": 0
+		},
+	"\/src\/styles\/components\/_bookmarks.scss": {
+		"createSourceMap": 1,
+		"debugStyle": 0,
+		"decimalPrecision": 10,
+		"fileType": 4,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/src\/styles\/components\/_bookmarks.scss",
+		"outputAbbreviatedPath": "\/public\/styles\/_bookmarks.css",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 0,
@@ -368,6 +591,22 @@
 		"shouldRunBless": 0,
 		"useLibsass": 0
 		},
+	"\/src\/styles\/components\/_weather_card.scss": {
+		"createSourceMap": 1,
+		"debugStyle": 0,
+		"decimalPrecision": 10,
+		"fileType": 4,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/src\/styles\/components\/_weather_card.scss",
+		"outputAbbreviatedPath": "\/public\/styles\/_weather_card.css",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 0,
+		"shouldRunAutoprefixer": 0,
+		"shouldRunBless": 0,
+		"useLibsass": 0
+		},
 	"\/src\/styles\/globals\/_fonts.scss": {
 		"createSourceMap": 1,
 		"debugStyle": 0,
@@ -393,6 +632,22 @@
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/src\/styles\/globals\/_helpers.scss",
 		"outputAbbreviatedPath": "\/public\/styles\/_helpers.css",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 0,
+		"shouldRunAutoprefixer": 0,
+		"shouldRunBless": 0,
+		"useLibsass": 0
+		},
+	"\/src\/styles\/globals\/_media_queries.scss": {
+		"createSourceMap": 1,
+		"debugStyle": 0,
+		"decimalPrecision": 10,
+		"fileType": 4,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/src\/styles\/globals\/_media_queries.scss",
+		"outputAbbreviatedPath": "\/public\/styles\/_media_queries.css",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 0,
@@ -2048,6 +2303,22 @@
 		"shouldRunBless": 0,
 		"useLibsass": 0
 		},
+	"\/src\/styles\/sections\/_bookmark_card.scss": {
+		"createSourceMap": 1,
+		"debugStyle": 0,
+		"decimalPrecision": 10,
+		"fileType": 4,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/src\/styles\/sections\/_bookmark_card.scss",
+		"outputAbbreviatedPath": "\/public\/styles\/_bookmark_card.css",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 0,
+		"shouldRunAutoprefixer": 0,
+		"shouldRunBless": 0,
+		"useLibsass": 0
+		},
 	"\/src\/styles\/sections\/_pane.scss": {
 		"createSourceMap": 1,
 		"debugStyle": 0,
@@ -2101,20 +2372,20 @@
 	{
 		"enabled": 1,
 		"hookType": 1,
-		"name": "Grunt Browserify Client",
-		"predicateDataBase64Encoded": "YnBsaXN0MDDUAQIDBAUGb3BYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK8QFgcIDxQcJicqMjY7PEFFS1BRVl1jaGpVJG51bGzTCQoLDA0OXxAXTlNDb21wb3VuZFByZWRpY2F0ZVR5cGVfEA9OU1N1YnByZWRpY2F0ZXNWJGNsYXNzEAKAAoAV0hALERNaTlMub2JqZWN0c6ESgAOAFNQLFRYXGBkaG18QEU5TUmlnaHRFeHByZXNzaW9uXxAQTlNMZWZ0RXhwcmVzc2lvbl8QE05TUHJlZGljYXRlT3BlcmF0b3KAE4AOgASAEdUdHh8gCyEiIyQlWU5TT3BlcmFuZF5OU1NlbGVjdG9yTmFtZV8QEE5TRXhwcmVzc2lvblR5cGVbTlNBcmd1bWVudHOABoAFEAOACIANXHZhbHVlRm9yS2V5OtIfCygpEAGAB9IrLC0uWiRjbGFzc25hbWVYJGNsYXNzZXNfEBBOU1NlbGZFeHByZXNzaW9uoy8wMV8QEE5TU2VsZkV4cHJlc3Npb25cTlNFeHByZXNzaW9uWE5TT2JqZWN00hALMzWhNIAJgAzTCx83ODk6WU5TS2V5UGF0aIALEAqACl1pbnB1dEZpbGVuYW1l0issPT5fEBxOU0tleVBhdGhTcGVjaWZpZXJFeHByZXNzaW9uoz9AMV8QHE5TS2V5UGF0aFNwZWNpZmllckV4cHJlc3Npb25cTlNFeHByZXNzaW9u0issQkNeTlNNdXRhYmxlQXJyYXmjQkQxV05TQXJyYXnSKyxGR18QE05TS2V5UGF0aEV4cHJlc3Npb26kSElKMV8QE05TS2V5UGF0aEV4cHJlc3Npb25fEBROU0Z1bmN0aW9uRXhwcmVzc2lvblxOU0V4cHJlc3Npb27TTB8LTU5PXxAPTlNDb25zdGFudFZhbHVlgA8QAIAQVy5jb2ZmZWXSKyxSU18QGU5TQ29uc3RhbnRWYWx1ZUV4cHJlc3Npb26jVFUxXxAZTlNDb25zdGFudFZhbHVlRXhwcmVzc2lvblxOU0V4cHJlc3Npb27VC1dYWVpbTigoXFpOU01vZGlmaWVyV05TRmxhZ3NaTlNQb3NpdGlvbl5OU09wZXJhdG9yVHlwZYASEAnSKyxeX18QHE5TU3Vic3RyaW5nUHJlZGljYXRlT3BlcmF0b3KkYGFiMV8QHE5TU3Vic3RyaW5nUHJlZGljYXRlT3BlcmF0b3JfEBlOU1N0cmluZ1ByZWRpY2F0ZU9wZXJhdG9yXxATTlNQcmVkaWNhdGVPcGVyYXRvctIrLGRlXxAVTlNDb21wYXJpc29uUHJlZGljYXRlo2ZnMV8QFU5TQ29tcGFyaXNvblByZWRpY2F0ZVtOU1ByZWRpY2F0ZdIrLERpokQx0issa2xfEBNOU0NvbXBvdW5kUHJlZGljYXRlo21uMV8QE05TQ29tcG91bmRQcmVkaWNhdGVbTlNQcmVkaWNhdGVfEA9OU0tleWVkQXJjaGl2ZXLRcXJUcm9vdIABAAgAEQAaACMALQAyADcAUABWAF0AdwCJAJAAkgCUAJYAmwCmAKgAqgCsALUAyQDcAPIA9AD2APgA+gEFAQ8BHgExAT0BPwFBAUMBRQFHAVQBWQFbAV0BYgFtAXYBiQGNAaABrQG2AbsBvQG\/AcEByAHSAdQB1gHYAeYB6wIKAg4CLQI6Aj8CTgJSAloCXwJ1AnoCkAKnArQCuwLNAs8C0QLTAtsC4AL8AwADHAMpAzQDPwNHA1IDYQNjA2UDagOJA44DrQPJA98D5AP8BAAEGAQkBCkELAQxBEcESwRhBG0EfwSCBIcAAAAAAAACAQAAAAAAAABzAAAAAAAAAAAAAAAAAAAEiQ==",
-		"runOrder": 2,
-		"scriptSourceString": "PATH=\/usr\/local\/bin:$PATH\ngrunt browserify:client\n",
-		"uuidString": "14DD4924-78F2-40DD-A995-1BAA541368A2"
-		},
-	{
-		"enabled": 1,
-		"hookType": 1,
 		"name": "Grunt Compile JSX",
 		"predicateDataBase64Encoded": "YnBsaXN0MDDUAQIDBAUGb3BYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK8QFgcIDxQcJicqMjY7PEFFS1BRVl1jaGpVJG51bGzTCQoLDA0OXxAXTlNDb21wb3VuZFByZWRpY2F0ZVR5cGVfEA9OU1N1YnByZWRpY2F0ZXNWJGNsYXNzEAKAAoAV0hALERNaTlMub2JqZWN0c6ESgAOAFNQLFRYXGBkaG18QEU5TUmlnaHRFeHByZXNzaW9uXxAQTlNMZWZ0RXhwcmVzc2lvbl8QE05TUHJlZGljYXRlT3BlcmF0b3KAE4AOgASAEdUdHh8gCyEiIyQlWU5TT3BlcmFuZF5OU1NlbGVjdG9yTmFtZV8QEE5TRXhwcmVzc2lvblR5cGVbTlNBcmd1bWVudHOABoAFEAOACIANXHZhbHVlRm9yS2V5OtIfCygpEAGAB9IrLC0uWiRjbGFzc25hbWVYJGNsYXNzZXNfEBBOU1NlbGZFeHByZXNzaW9uoy8wMV8QEE5TU2VsZkV4cHJlc3Npb25cTlNFeHByZXNzaW9uWE5TT2JqZWN00hALMzWhNIAJgAzTCx83ODk6WU5TS2V5UGF0aIALEAqACl1pbnB1dEZpbGVuYW1l0issPT5fEBxOU0tleVBhdGhTcGVjaWZpZXJFeHByZXNzaW9uoz9AMV8QHE5TS2V5UGF0aFNwZWNpZmllckV4cHJlc3Npb25cTlNFeHByZXNzaW9u0issQkNeTlNNdXRhYmxlQXJyYXmjQkQxV05TQXJyYXnSKyxGR18QE05TS2V5UGF0aEV4cHJlc3Npb26kSElKMV8QE05TS2V5UGF0aEV4cHJlc3Npb25fEBROU0Z1bmN0aW9uRXhwcmVzc2lvblxOU0V4cHJlc3Npb27TTB8LTU5PXxAPTlNDb25zdGFudFZhbHVlgA8QAIAQVC5qc3jSKyxSU18QGU5TQ29uc3RhbnRWYWx1ZUV4cHJlc3Npb26jVFUxXxAZTlNDb25zdGFudFZhbHVlRXhwcmVzc2lvblxOU0V4cHJlc3Npb27VC1dYWVpbTigoXFpOU01vZGlmaWVyV05TRmxhZ3NaTlNQb3NpdGlvbl5OU09wZXJhdG9yVHlwZYASEAnSKyxeX18QHE5TU3Vic3RyaW5nUHJlZGljYXRlT3BlcmF0b3KkYGFiMV8QHE5TU3Vic3RyaW5nUHJlZGljYXRlT3BlcmF0b3JfEBlOU1N0cmluZ1ByZWRpY2F0ZU9wZXJhdG9yXxATTlNQcmVkaWNhdGVPcGVyYXRvctIrLGRlXxAVTlNDb21wYXJpc29uUHJlZGljYXRlo2ZnMV8QFU5TQ29tcGFyaXNvblByZWRpY2F0ZVtOU1ByZWRpY2F0ZdIrLERpokQx0issa2xfEBNOU0NvbXBvdW5kUHJlZGljYXRlo21uMV8QE05TQ29tcG91bmRQcmVkaWNhdGVbTlNQcmVkaWNhdGVfEA9OU0tleWVkQXJjaGl2ZXLRcXJUcm9vdIABAAgAEQAaACMALQAyADcAUABWAF0AdwCJAJAAkgCUAJYAmwCmAKgAqgCsALUAyQDcAPIA9AD2APgA+gEFAQ8BHgExAT0BPwFBAUMBRQFHAVQBWQFbAV0BYgFtAXYBiQGNAaABrQG2AbsBvQG\/AcEByAHSAdQB1gHYAeYB6wIKAg4CLQI6Aj8CTgJSAloCXwJ1AnoCkAKnArQCuwLNAs8C0QLTAtgC3QL5Av0DGQMmAzEDPANEA08DXgNgA2IDZwOGA4sDqgPGA9wD4QP5A\/0EFQQhBCYEKQQuBEQESAReBGoEfAR\/BIQAAAAAAAACAQAAAAAAAABzAAAAAAAAAAAAAAAAAAAEhg==",
 		"runOrder": 0,
 		"scriptSourceString": "PATH=\/usr\/local\/bin:$PATH\ngrunt default\n",
 		"uuidString": "C12867FE-AD8B-44AF-A08E-11FF904F402A"
+		},
+	{
+		"enabled": 1,
+		"hookType": 1,
+		"name": "Grunt Browserify Client",
+		"predicateDataBase64Encoded": "YnBsaXN0MDDUAQIDBAUGb3BYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK8QFgcIDxQcJicqMjY7PEFFS1BRVl1jaGpVJG51bGzTCQoLDA0OXxAXTlNDb21wb3VuZFByZWRpY2F0ZVR5cGVfEA9OU1N1YnByZWRpY2F0ZXNWJGNsYXNzEAKAAoAV0hALERNaTlMub2JqZWN0c6ESgAOAFNQLFRYXGBkaG18QEU5TUmlnaHRFeHByZXNzaW9uXxAQTlNMZWZ0RXhwcmVzc2lvbl8QE05TUHJlZGljYXRlT3BlcmF0b3KAE4AOgASAEdUdHh8gCyEiIyQlWU5TT3BlcmFuZF5OU1NlbGVjdG9yTmFtZV8QEE5TRXhwcmVzc2lvblR5cGVbTlNBcmd1bWVudHOABoAFEAOACIANXHZhbHVlRm9yS2V5OtIfCygpEAGAB9IrLC0uWiRjbGFzc25hbWVYJGNsYXNzZXNfEBBOU1NlbGZFeHByZXNzaW9uoy8wMV8QEE5TU2VsZkV4cHJlc3Npb25cTlNFeHByZXNzaW9uWE5TT2JqZWN00hALMzWhNIAJgAzTCx83ODk6WU5TS2V5UGF0aIALEAqACl1pbnB1dEZpbGVuYW1l0issPT5fEBxOU0tleVBhdGhTcGVjaWZpZXJFeHByZXNzaW9uoz9AMV8QHE5TS2V5UGF0aFNwZWNpZmllckV4cHJlc3Npb25cTlNFeHByZXNzaW9u0issQkNeTlNNdXRhYmxlQXJyYXmjQkQxV05TQXJyYXnSKyxGR18QE05TS2V5UGF0aEV4cHJlc3Npb26kSElKMV8QE05TS2V5UGF0aEV4cHJlc3Npb25fEBROU0Z1bmN0aW9uRXhwcmVzc2lvblxOU0V4cHJlc3Npb27TTB8LTU5PXxAPTlNDb25zdGFudFZhbHVlgA8QAIAQVy5jb2ZmZWXSKyxSU18QGU5TQ29uc3RhbnRWYWx1ZUV4cHJlc3Npb26jVFUxXxAZTlNDb25zdGFudFZhbHVlRXhwcmVzc2lvblxOU0V4cHJlc3Npb27VC1dYWVpbTigoXFpOU01vZGlmaWVyV05TRmxhZ3NaTlNQb3NpdGlvbl5OU09wZXJhdG9yVHlwZYASEAnSKyxeX18QHE5TU3Vic3RyaW5nUHJlZGljYXRlT3BlcmF0b3KkYGFiMV8QHE5TU3Vic3RyaW5nUHJlZGljYXRlT3BlcmF0b3JfEBlOU1N0cmluZ1ByZWRpY2F0ZU9wZXJhdG9yXxATTlNQcmVkaWNhdGVPcGVyYXRvctIrLGRlXxAVTlNDb21wYXJpc29uUHJlZGljYXRlo2ZnMV8QFU5TQ29tcGFyaXNvblByZWRpY2F0ZVtOU1ByZWRpY2F0ZdIrLERpokQx0issa2xfEBNOU0NvbXBvdW5kUHJlZGljYXRlo21uMV8QE05TQ29tcG91bmRQcmVkaWNhdGVbTlNQcmVkaWNhdGVfEA9OU0tleWVkQXJjaGl2ZXLRcXJUcm9vdIABAAgAEQAaACMALQAyADcAUABWAF0AdwCJAJAAkgCUAJYAmwCmAKgAqgCsALUAyQDcAPIA9AD2APgA+gEFAQ8BHgExAT0BPwFBAUMBRQFHAVQBWQFbAV0BYgFtAXYBiQGNAaABrQG2AbsBvQG\/AcEByAHSAdQB1gHYAeYB6wIKAg4CLQI6Aj8CTgJSAloCXwJ1AnoCkAKnArQCuwLNAs8C0QLTAtsC4AL8AwADHAMpAzQDPwNHA1IDYQNjA2UDagOJA44DrQPJA98D5AP8BAAEGAQkBCkELAQxBEcESwRhBG0EfwSCBIcAAAAAAAACAQAAAAAAAABzAAAAAAAAAAAAAAAAAAAEiQ==",
+		"runOrder": 2,
+		"scriptSourceString": "PATH=\/usr\/local\/bin:$PATH\ngrunt browserify:client\n",
+		"uuidString": "14DD4924-78F2-40DD-A995-1BAA541368A2"
 		}
 	],
 "lastSavedByUser": "Tyler Fowler",

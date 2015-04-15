@@ -1,0 +1,52 @@
+%bookmark-card {
+  overflow: hidden;
+  
+  height: 30%;
+  width: 40%;
+
+  max-height: 140px;
+  max-width: 220px;
+
+  position: relative;
+}
+
+// Bookmark Card Layout //
+//// as specified by ids
+
+$top-layer-side-offset: 5%;
+$top-layer-top-offset: 10%;
+
+$mid-layer-side-offset: 0%;
+$mid-layer-top-offset: 25%;
+
+#bookmark-1 {
+  @extend %bookmark-card;
+
+  float: left;
+  top: $top-layer-top-offset;
+  left: $top-layer-side-offset;
+}
+
+#bookmark-2 {
+  @extend %bookmark-card;
+
+  float: right;
+  top: $top-layer-top-offset;
+  right: $top-layer-side-offset;
+}
+
+#bookmark-3 {
+  @extend %bookmark-card;
+
+  float: left;
+  top: $mid-layer-top-offset;
+  left: $mid-layer-side-offset;
+}
+
+#bookmark-4 {
+  @extend %bookmark-card;
+
+  float: right;
+  top: $mid-layer-top-offset;
+  right: $mid-layer-side-offset;
+}

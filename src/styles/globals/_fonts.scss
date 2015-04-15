@@ -17,24 +17,46 @@ $Montserrat: Montserrat, 'Helvetica Neue', arial, sans-serif;
   font-family: 'Montserrat';
   src: url("#{$fonts-dir}/montserrat-regular.ttf") format('truetype');
   font-weight: $font-normal;
+  font-style: normal;
 }
 
 @font-face {
   font-family: 'Montserrat';
   src: url("#{$fonts-dir}/montserrat-bold.ttf") format('truetype');
   font-weight: $font-bold;
+  font-style: normal;
 }
 
+// Open Sans
 $OpenSans: OpenSans, 'Helvetica Neue', arial, sans-serif;
 @font-face {
   font-family: 'OpenSans';
   src: url("#{$fonts-dir}/opensans-light.ttf") format('truetype');
   font-weight: $font-light;
+  font-style: normal;
 }
 
-$Lora: Lora, Times, serif;
+// Lora
+$Lora: Lora, Georgia, Times, serif;
 @font-face {
   font-family: 'Lora';
   src: url("#{$fonts-dir}/lora-regular.ttf") format('truetype');
   font-weight: $font-normal;
+  font-style: normal;
+}
+
+// Raleway
+$Raleway: Raleway, 'Helvetica Neue', arial, sans-serif;
+@font-face {
+  font-family: 'Raleway';
+  src: url("#{$fonts-dir}/raleway-light.ttf") format('truetype');
+  font-weight: $font-light;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Raleway';
+  src: url("#{$fonts-dir}/raleway-regular.ttf") format('truetype');
+  font-weight: $font-normal;
+  font-style: normal;
 }
