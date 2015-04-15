@@ -353,6 +353,7 @@ html {
   cursor: default;
   text-align: center;
   font-family: OpenSans, "Helvetica Neue", arial, sans-serif;
+  font-weight: 200;
   font-size: 13.3333333333px; }
 
 .feed-error-icon {
@@ -479,7 +480,7 @@ html {
   border-color: rgba(255, 102, 0, 0.1); }
 
 .condition {
-  background: url("../img/weather-icons/rain.png") left no-repeat;
+  background: url("../img/weather-icons/unknown.png") left no-repeat;
   background-size: contain; }
   .condition.clear-day {
     background: url("../img/weather-icons/clear-day.png") left no-repeat;
