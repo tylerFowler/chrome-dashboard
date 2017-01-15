@@ -2,20 +2,12 @@
   "name": "chrome-dash",
   "version": "0.0.1",
   "author": "Tyler Fowler <tylerfowler.1337@gmail.com",
-  "description": "The new tab page of my dreams",
+  "description": "New tab page replacement featuring newsfeeds and bookmarks",
   "private": true,
   "repository": {
     "type": "git",
     "url": "https://github.com/tylerFowler/chrome-dashboard.git"
   },
-  "dependencies": {
-    "jquery": "^2.1.3",
-    "react": "^0.13.0",
-    "underscore": "^1.8.2"
-  },
-  "devDependencies": {
-    "grunt": "^0.4.5",
-    "grunt-browserify": "^3.5.0",
-    "grunt-react": "^0.12.0"
-  }
+  "dependencies": {},
+  "devDependencies": {}
 }
