@@ -1,13 +1,32 @@
 {
-  "name": "chrome-dash",
-  "version": "0.0.1",
-  "author": "Tyler Fowler <tylerfowler.1337@gmail.com",
-  "description": "New tab page replacement featuring newsfeeds and bookmarks",
-  "private": true,
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/tylerFowler/chrome-dashboard.git"
+  "name": "chrome-dashboard",
+  "description": "A Chrome new tab page featuring HN/DN news feeds and other customizations",
+  "author": "Tyler Fowler <tylerfowler.1337@gmail.com>",
+  "version": "0.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "gulp build"
   },
-  "dependencies": {},
-  "devDependencies": {}
+  "dependencies": {
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "react-redux": "^5.0.2",
+    "redux": "^3.6.0"
+  },
+  "devDependencies": {
+    "babel-preset-es2015-rollup": "^3.0.0",
+    "babel-preset-react": "^6.22.0",
+    "eslint-plugin-babel": "^4.0.1",
+    "eslint-plugin-react": "^6.9.0",
+    "gulp": "^3.9.1",
+    "gulp-clean": "^0.3.2",
+    "gulp-sourcemaps": "^2.4.1",
+    "rollup": "^0.41.4",
+    "rollup-plugin-babel": "^2.7.1",
+    "rollup-plugin-commonjs": "^7.0.0",
+    "rollup-plugin-eslint": "^3.0.0",
+    "rollup-plugin-node-resolve": "^2.0.0",
+    "rollup-plugin-replace": "^1.1.1",
+    "rollup-plugin-uglify": "^1.0.1"
+  }
 }
