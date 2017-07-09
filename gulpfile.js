@@ -1,5 +1,6 @@
-const gulp  = require('gulp');
-const clean = require('gulp-clean');
+const gulp       = require('gulp');
+const clean      = require('gulp-clean');
+const gulpEslint = require('gulp-eslint');
 
 /** Rollup-specific imports **/
 const {rollup} = require('rollup');
@@ -51,6 +52,13 @@ gulp.task('build:app', [ 'clean:app' ], () =>
     dest: 'public/js/build.min.js',
     sourcemap: 'inline'
   }))
+);
+
+gulp.task('lint:app', () =>
+  gulp.src([ 'app/*.js', 'app/**/*.js' ])
+  .pipe(gulpEslint({ configFile: '.eslintrc' }))
+  .pipe(gulpEslint.format())
+  .pipe(gulpEslint.failAfterError())
 );
 
 gulp.task('build', [ 'build:app' ]);
