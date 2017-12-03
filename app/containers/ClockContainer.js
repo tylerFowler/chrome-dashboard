@@ -1,9 +1,18 @@
 import { connect } from 'react-redux';
+import { tick } from '../actions/clock';
 import Clock from '../components/Clock';
 
-const mapStateToProps = state => ({
-  time: state.clock.time,
-  date: state.clock.date
+const mapStateToProps = ({ clock }) => ({
+  useTwelveHourClock: clock.useTwelveHourClock,
+  time: clock.time,
+  date: clock.date
 });
 
-export default connect(mapStateToProps)(Clock);
+const mapDispatchToProps = dispatch => ({
+  ticker() { return dispatch(tick(new Date())); }
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Clock);

@@ -50,10 +50,27 @@ const ClockDate = styled.h2`
   font-weight: 200;
   text-transform: uppercase;
   margin: .5em auto;
+  letter-spacing: 4px;
 `;
 
 export default class Clock extends Component {
-  constructor(props) { super(props); }
+  constructor(props) {
+    super(props);
+  }
+
+  componentDidMount() {
+    this.props.ticker();
+    const tickInterval = setInterval(() => { this.props.ticker(); }, 60 * 1000);
+
+    this.setState(prevState => {
+      if (prevState && prevState.tickInterval) clearInterval(prevState.tickInterval);
+      return { tickInterval };
+    });
+  }
+
+  comonentWillUnmount() {
+    if (this.state.tickInterval) clearInterval(this.state.tickInterval);
+  }
 
   render() {
     const { time, date } = this.props;
