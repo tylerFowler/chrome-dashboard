@@ -2,7 +2,7 @@ const initialState = {
   time: {
     hour: 10,
     minute: 32,
-    modifier: 'PM'
+    period: 'PM'
   },
   date: {
     month: 'August',
