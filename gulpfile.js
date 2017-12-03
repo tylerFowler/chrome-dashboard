@@ -28,8 +28,15 @@ const reactNamedExports = {
 
 // Clean tasks
 gulp.task('clean:app', () =>
-  gulp.src('public/js/build.min.js', { read: false })
-    .pipe(clean())
+  gulp.src('public/js/build.min.js', { read: false }).pipe(clean())
+);
+
+gulp.task('clean:normalize', () =>
+  gulp.src('public/normalize.css', { read: false }).pipe(clean())
+);
+
+gulp.task('inject:normalize', [ 'clean:normalize' ], () =>
+  gulp.src('node_modules/normalize.css/normalize.css').pipe(gulp.dest('public'))
 );
 
 gulp.task('build:app', [ 'clean:app' ], () =>
@@ -60,7 +67,7 @@ gulp.task('lint:app', () =>
     .pipe(gulpEslint.failAfterError())
 );
 
-gulp.task('build', [ 'build:app' ]);
+gulp.task('build', [ 'build:app', 'inject:normalize' ]);
 gulp.task('default', [ 'build' ]);
 
 gulp.task('watch', () => gulp.watch([ 'app/*.js', 'app/**/*.js' ], [ 'build' ]));
