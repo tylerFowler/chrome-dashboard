@@ -17,30 +17,29 @@ const env = JSON.stringify(process.env.NODE_ENV || 'development');
 // to export things, see this for more information:
 // https://github.com/rollup/rollup-plugin-commonjs#custom-named-exports
 const reactNamedExports = {
-  'node_modules/react/react.js': [
+  'node_modules/react/index.js': [
     'Children', 'Component', 'PureComponent', 'createElement', 'cloneElement',
-    'isValidElement', 'PropTypes', 'createClass', 'createFactory', 
-    'createMixin', 'DOM', 'version'
+    'isValidElement', 'createFactory', 'version'
   ],
   'node_modules/react-dom/index.js': [
-    'findDOMNode', 'render', 'unmountComponentAtNode', 'version'
+    'findDOMNode', 'render', 'unmountComponentAtNode'
   ]
 };
 
 // Clean tasks
 gulp.task('clean:app', () =>
   gulp.src('public/js/build.min.js', { read: false })
-  .pipe(clean())
+    .pipe(clean())
 );
 
 gulp.task('build:app', [ 'clean:app' ], () =>
   rollup({
-    entry: 'app/index.js',
+    input: 'app/index.js',
     plugins: [
       eslint({ throwError: env === 'production', configFile: '.eslintrc' }),
       resolve({ jsnext: true, browser: true }),
-      commonjs({ namedExports: reactNamedExports }),
       babel({ exclude: 'node_modules/**' }),
+      commonjs({ namedExports: reactNamedExports }),
       replace({
         ENV: env,
         'process.env.NODE_ENV': env
@@ -48,17 +47,17 @@ gulp.task('build:app', [ 'clean:app' ], () =>
       env === 'production' && uglify()
     ]
   }).then(bundle => bundle.write({
+    file: 'public/js/build.min.js',
     format: 'iife',
-    dest: 'public/js/build.min.js',
     sourcemap: 'inline'
   }))
 );
 
 gulp.task('lint:app', () =>
   gulp.src([ 'app/*.js', 'app/**/*.js' ])
-  .pipe(gulpEslint({ configFile: '.eslintrc' }))
-  .pipe(gulpEslint.format())
-  .pipe(gulpEslint.failAfterError())
+    .pipe(gulpEslint({ configFile: '.eslintrc' }))
+    .pipe(gulpEslint.format())
+    .pipe(gulpEslint.failAfterError())
 );
 
 gulp.task('build', [ 'build:app' ]);
