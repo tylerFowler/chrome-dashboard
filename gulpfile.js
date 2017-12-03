@@ -62,3 +62,5 @@ gulp.task('lint:app', () =>
 
 gulp.task('build', [ 'build:app' ]);
 gulp.task('default', [ 'build' ]);
+
+gulp.task('watch', () => gulp.watch([ 'app/*.js', 'app/**/*.js' ], [ 'build' ]));
