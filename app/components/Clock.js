@@ -74,11 +74,12 @@ export default class Clock extends Component {
 
   render() {
     const { useTwelveHourClock, time, date } = this.props;
+    const clockHour = useTwelveHourClock && time.hour > 12 ? time.hour - 12 : time.hour;
 
     return (
       <ClockContainer>
         <TimeContainer>
-          <Time>{useTwelveHourClock && time > 12 ? 12 - time.hour : time.hour}:{time.minute}</Time>
+          <Time>{clockHour}:{time.minute}</Time>
           <TimePeriod>{time.period}</TimePeriod>
         </TimeContainer>
 
