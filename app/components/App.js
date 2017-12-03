@@ -1,5 +1,8 @@
 import React from 'react';
+import ClockContainer from '../containers/ClockContainer';
 
-const App = () => <h1>Hello world!</h1>;
+const App = () =>
+  <ClockContainer />
+;
 
 export default App;

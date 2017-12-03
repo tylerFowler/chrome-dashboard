@@ -19,3 +19,61 @@ This is a project I started as something that I found I wanted to use on a daily
   - A list of the user's most commonly accessed repositories*
 
 
+# State Shape
+```js
+{
+  hnFeed: {
+    loadingPosts: <Boolean>,
+    loadError: <Error>,
+    itemCap: <Number>,
+    siteUrl: <URL>,
+    items: [
+      {
+        id: <Number>,
+        author: <String>,
+        title: <String>,
+        upvotes: <Number>,
+        commentCount: <Number>,
+        postedAt: <Date>
+      },
+      ...
+    ]
+  },
+  dnFeed: {},
+  clock: {
+    time: {
+      hour: <Number>,
+      minute: <Number>,
+      modifier: <String>(AM/PM),
+    },
+    date: {
+      month: <String>,
+      day: <Number>,
+      year: <Number>
+    },
+  },
+  weather: {
+    zip: <Number>,
+    cityDisplayName: <String>,
+    condition: <String>, // corresponds to 'sunny' or 'rainy' or 'cloudy'
+    temp: <Number>,
+    tempType: <Farenheit|Celsius>,
+    upcomingWeather: {
+      descriptor: <Tonight|Tomorrow>,
+      condition: <String>,
+      temp: <Number>,
+      tempType: <Farenheit|Celsius>
+    }
+  },
+  links: {
+    topLeft: {
+      url: <String>,
+      icon: <imgUrl>,
+      color: <Hex>
+    },
+    bottomLeft: { ... },
+    topRight: { ... },
+    bottomRight: { ... }
+  }
+}
+```
