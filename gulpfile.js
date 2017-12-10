@@ -1,15 +1,18 @@
 const gulp       = require('gulp');
 const clean      = require('gulp-clean');
 const gulpEslint = require('gulp-eslint');
+const livereload = require('gulp-livereload');
+const imagemin   = require('gulp-imagemin');
+const { exec }   = require('child_process');
 
 /** Rollup-specific imports **/
-const {rollup} = require('rollup');
-const babel    = require('rollup-plugin-babel');
-const eslint   = require('rollup-plugin-eslint');
-const uglify   = require('rollup-plugin-uglify');
-const replace  = require('rollup-plugin-replace');
-const resolve  = require('rollup-plugin-node-resolve');
-const commonjs = require('rollup-plugin-commonjs');
+const { rollup } = require('rollup');
+const babel      = require('rollup-plugin-babel');
+const eslint     = require('rollup-plugin-eslint');
+const uglify     = require('rollup-plugin-uglify');
+const replace    = require('rollup-plugin-replace');
+const resolve    = require('rollup-plugin-node-resolve');
+const commonjs   = require('rollup-plugin-commonjs');
 
 const env = JSON.stringify(process.env.NODE_ENV || 'development');
 
@@ -57,7 +60,7 @@ gulp.task('build:app', [ 'clean:app' ], () =>
     file: 'public/js/build.min.js',
     format: 'iife',
     sourcemap: 'inline'
-  }))
+  })).then(livereload())
 );
 
 gulp.task('lint:app', () =>
@@ -67,7 +70,25 @@ gulp.task('lint:app', () =>
     .pipe(gulpEslint.failAfterError())
 );
 
-gulp.task('build', [ 'build:app', 'inject:normalize' ]);
+gulp.task('build:images', () =>
+  gulp.src([ 'assets/*', 'assets/**/*' ])
+    .pipe(imagemin())
+    .pipe(gulp.dest('public/assets'))
+);
+
+gulp.task('watch', () => {
+  livereload.listen();
+  gulp.watch([ 'app/*.js', 'app/**/*.js' ], [ 'build:app' ]);
+  gulp.watch([ 'assets/**', 'assets/*' ], [ 'build:images' ]);
+});
+
+gulp.task('browser', done => exec('open public/index.html', (err, stdout, stderr) => {
+  if (stdout.trim()) console.log(stdout);
+  if (stderr.trim()) console.error(stderr);
+  done(err);
+}));
+
+gulp.task('develop', [ 'watch', 'browser' ]);
+gulp.task('build', [ 'build:app', 'inject:normalize', 'build:images' ]);
 gulp.task('default', [ 'build' ]);
 
-gulp.task('watch', () => gulp.watch([ 'app/*.js', 'app/**/*.js' ], [ 'build' ]));
