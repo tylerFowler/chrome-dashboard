@@ -79,7 +79,7 @@ export default class Clock extends Component {
     return (
       <ClockContainer>
         <TimeContainer>
-          <Time>{clockHour}:{time.minute}</Time>
+          <Time>{clockHour}:{`${time.minute}`.padStart(2, '0')}</Time>
           <TimePeriod>{time.period}</TimePeriod>
         </TimeContainer>
 
