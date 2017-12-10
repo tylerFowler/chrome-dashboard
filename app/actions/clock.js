@@ -6,7 +6,6 @@ const monthNames = [
 ];
 
 export function tick(d) {
-  console.log('Month', d.getMonth(), monthNames[d.getMonth()]);
   return {
     type: actionTypes.TICK,
     time: {
