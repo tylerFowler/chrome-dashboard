@@ -61,8 +61,7 @@ This is a project I started as something that I found I wanted to use on a daily
     upcomingWeather: {
       descriptor: <Tonight|Tomorrow>,
       condition: <String>,
-      temp: <Number>,
-      tempType: <Farenheit|Celsius>
+      temp: <Number>
     }
   },
   links: {
