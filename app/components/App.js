@@ -1,5 +1,6 @@
 import React from 'react';
 import ClockContainer from '../containers/ClockContainer';
+import WeatherCardContainer from '../containers/WeatherCardContainer';
 import styled from 'styled-components';
 
 const BaseSection = styled.div`
@@ -14,6 +15,7 @@ const BaseSection = styled.div`
 
 const LeftSection = styled(BaseSection)`
   flex: 3;
+  margin-left: 0;
 `;
 
 const MidSection = styled(BaseSection)`
@@ -22,6 +24,7 @@ const MidSection = styled(BaseSection)`
 
 const RightSection = styled(BaseSection)`
   flex: 3;
+  margin-right: 0;
 `;
 
 const App = () =>
@@ -30,6 +33,7 @@ const App = () =>
 
     <MidSection>
       <ClockContainer />
+      <WeatherCardContainer />
     </MidSection>
 
     <RightSection></RightSection>

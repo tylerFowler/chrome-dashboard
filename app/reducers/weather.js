@@ -1,3 +1,6 @@
+// TODO we'll need a fn (reducer?) to convert our weather
+// source's 'condition' to ours (belongs to the specific service)
+
 const initialState = {
   longitude: 39.103243,
   latitude: -94.582919,
