@@ -27,7 +27,7 @@
     "gulp-imagemin": "^4.0.0",
     "gulp-livereload": "^3.8.1",
     "gulp-sourcemaps": "^2.6.2",
-    "rollup": "^0.53.0",
+    "rollup": "^0.53.1",
     "rollup-plugin-babel": "^3.0.3",
     "rollup-plugin-commonjs": "^8.2.6",
     "rollup-plugin-eslint": "^4.0.0",
