@@ -1,0 +1,32 @@
+{
+  "files": [
+    "app/main.tsx"
+  ],
+  "exclude": [
+    "public",
+    "**/*.spec.ts"
+  ],
+  "compilerOptions": {
+    "target": "ES6",
+    "lib": [
+      "ES6",
+      "DOM"
+    ],
+    "types": [
+      "react",
+      "react-dom",
+      "react-redux"
+    ],
+    "typeRoots": [ "node_modules/@types", "node_modules" ],
+    "module": "ES6",
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "noImplicitAny": false,
+    "noImplicitThis": true,
+    "strictFunctionTypes": false,
+    "baseUrl": "./",
+    "noEmit": true,
+    "forceConsistentCasingInFileNames": true,
+    "jsx": "Preserve"
+  }
+}

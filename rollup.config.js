@@ -1,3 +1,4 @@
+import typescript from 'rollup-plugin-typescript';
 import babel from 'rollup-plugin-babel';
 import eslint from 'rollup-plugin-eslint';
 import uglify from 'rollup-plugin-uglify';
@@ -5,7 +6,7 @@ import replace from 'rollup-plugin-replace';
 import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
 
-const env = process.env.NODE_ENV || 'development';
+const env = JSON.stringify(process.env.NODE_ENV || 'development');
 
 const namedExports = {
   'node_modules/react/index.js': [
@@ -18,9 +19,10 @@ const namedExports = {
 };
 
 export default {
-  input: 'app/index.js',
+  input: 'app/main.tsx',
   plugins: [
     eslint({ throwError: env === 'production', configFile: '.eslintrc' }),
+    typescript({ typescript: require('typescript') }),
     resolve({ jsnext: true, browser: true }),
     babel({ exclude: 'node_modules/**' }),
     commonjs({ namedExports: namedExports }),
