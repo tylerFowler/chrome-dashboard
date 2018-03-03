@@ -5,7 +5,8 @@
   "version": "0.0.0",
   "main": "index.js",
   "scripts": {
-    "build": "gulp build"
+    "build": "npx rollup -c",
+    "build_assets": "npx gulp"
   },
   "dependencies": {
     "normalize.css": "^7.0.0",
