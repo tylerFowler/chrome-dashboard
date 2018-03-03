@@ -31,7 +31,7 @@ export default {
     env === 'production' && uglify()
   ],
   output: {
-    file: 'public/js/build.min.js',
+    file: 'public/js/app.min.js',
     format: 'iife',
     sourcemap: 'inline'
   }
