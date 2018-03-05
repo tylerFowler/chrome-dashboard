@@ -142,6 +142,7 @@
     "spaced-comment": [2, "always"],
     "no-multi-spaces": 0,
     "prefer-spread": 2,
-    "react/prop-types": 0
+    "react/prop-types": 0,
+    "react/react-in-jsx-scope": 0
   }
 }
