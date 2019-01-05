@@ -17,16 +17,24 @@
       "react-dom",
       "react-redux"
     ],
+    "paths": {
+      "*": [ "node_modules/*" ]
+    },
     "typeRoots": [ "node_modules/@types", "node_modules" ],
+    "outDir": "build/bundle.js",
+    "sourceMap": true,
     "module": "ES6",
     "moduleResolution": "node",
+    "allowJs": true,
     "allowSyntheticDefaultImports": true,
-    "noImplicitAny": false,
+    "noImplicitAny": true,
     "noImplicitThis": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
     "strictFunctionTypes": false,
     "baseUrl": "./",
-    "noEmit": true,
+    "noEmit": false,
     "forceConsistentCasingInFileNames": true,
-    "jsx": "Preserve"
+    "jsx": "React"
   }
 }

@@ -1,10 +1,9 @@
 import typescript from 'rollup-plugin-typescript';
-import babel from 'rollup-plugin-babel';
-import eslint from 'rollup-plugin-eslint';
-import uglify from 'rollup-plugin-uglify';
-import replace from 'rollup-plugin-replace';
+import tslint from 'rollup-plugin-tslint';
 import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
+import copy from 'rollup-plugin-copy-glob';
+import replace from 'rollup-plugin-replace';
 
 const env = JSON.stringify(process.env.NODE_ENV || 'development');
 
@@ -15,25 +14,38 @@ const namedExports = {
   ],
   'node_modules/react-dom/index.js': [
     'findDOMNode', 'render', 'unmountComponentAtNode'
-  ]
+  ],
+  'node_modules/react-is/index.js': [
+    'isValidElementType',
+  ],
 };
 
+// TODO reintroduce uglify for vendoring, this may warrant having a different
+// file for vendor code since TypeScript can minify for us
 export default {
-  input: 'app/main.tsx',
   plugins: [
-    eslint({ throwError: env === 'production', configFile: '.eslintrc' }),
-    typescript({ typescript: require('typescript') }),
-    resolve({ jsnext: true, browser: true }),
-    babel({ exclude: 'node_modules/**' }),
-    commonjs({ namedExports: namedExports }),
-    replace({
-      ENV: env,
-      'process.env.NODE_ENV': env
+    tslint({
+      throwOnError: false, // TODO change to true
+      configuration: './tslint.json',
+      include: [
+        'app/*.ts', 'app/*.tsx',
+        'app/**/*.ts', 'app/**/*.tsx',
+      ]
     }),
-    env === 'production' && uglify()
+    typescript({ typescript: require('typescript') }),
+    replace({ ENV: env, 'process.env.NODE_ENV': env }),
+    resolve({
+      jsnext: true, browser: true,
+      customResolveOptions: { moduleDirectory: 'node_modules' }
+    }),
+    commonjs({ namedExports }),
+    copy([
+      { files: 'node_modules/normalize.css/normalize.css', dest: 'public/' }
+    ]),
   ],
+  input: 'app/main.tsx',
   output: {
-    file: 'public/js/app.min.js',
+    file: 'public/js/bundle.js',
     format: 'iife',
     sourcemap: 'inline'
   }
