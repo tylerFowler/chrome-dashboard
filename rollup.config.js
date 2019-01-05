@@ -28,8 +28,8 @@ export default {
       throwOnError: false, // TODO change to true
       configuration: './tslint.json',
       include: [
-        'app/*.ts', 'app/*.tsx',
-        'app/**/*.ts', 'app/**/*.tsx',
+        'lib/*.ts', 'lib/*.tsx',
+        'lib/**/*.ts', 'lib/**/*.tsx',
       ]
     }),
     typescript({ typescript: require('typescript') }),
@@ -43,7 +43,7 @@ export default {
       { files: 'node_modules/normalize.css/normalize.css', dest: 'public/' }
     ]),
   ],
-  input: 'app/main.tsx',
+  input: 'lib/main.tsx',
   output: {
     file: 'public/js/bundle.js',
     format: 'iife',

@@ -1,6 +1,6 @@
 {
   "files": [
-    "app/main.tsx"
+    "lib/main.tsx"
   ],
   "exclude": [
     "public",

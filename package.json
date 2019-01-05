@@ -3,7 +3,7 @@
   "description": "A Chrome new tab page featuring HN/DN news feeds and other customizations",
   "author": "Tyler Fowler <tylerfowler.1337@gmail.com>",
   "version": "0.0.0",
-  "main": "app/main.tsx",
+  "main": "lib/main.tsx",
   "scripts": {
     "build": "rollup -c rollup.config.js",
     "build_assets": "npx imagemin 'assets' --out-dir 'public/assets'",
