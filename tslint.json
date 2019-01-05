@@ -7,6 +7,7 @@
     "rules": {
       "quotemark": [ true, "single", "jsx-double" ],
       "trailing-comma": [ true, { "multiline": "always", "singleline": "never" } ],
-      "interface-name": [ true, "never-prefix" ]
+      "interface-name": [ true, "never-prefix" ],
+      "semicolon": [ true, "always" ]
     }
 }
