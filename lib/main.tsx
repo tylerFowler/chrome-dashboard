@@ -7,5 +7,5 @@ render(
   <Provider store={store}>
     <p>Hello world</p>
   </Provider>,
-  document.getElementById('app-container')
+  document.getElementById('app-container'),
 );

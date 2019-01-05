@@ -1,6 +1,10 @@
 import { createStore } from 'redux';
 
-const defaultReducer = (state: any): any => state;
+export interface GlobalState {
+  placeholder: {};
+}
+
+const defaultReducer = (state: GlobalState) => state;
 
 const store = createStore(defaultReducer);
 
