@@ -1,6 +1,7 @@
-public/js/*.min.js
+public/js/*
 public/normalize.css
 public/assets/
+dist/
 
 # Created by https://www.gitignore.io/api/macos,node,vim,windows,linux,sass
 
