@@ -1,4 +1,5 @@
 import { applyMiddleware, compose, createStore } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
 import createSagaMiddleware from 'redux-saga';
 
 declare const ENV: string;
@@ -11,10 +12,9 @@ const defaultReducer = (state: GlobalState) => state;
 
 const saga = createSagaMiddleware();
 
-let middlewareComposer: typeof compose;
+let middlewareComposer: any;
 if (ENV === 'development') {
   // tslint:disable-next-line
-  const composeWithDevTools = require('redux-devtools-extension');
   middlewareComposer = composeWithDevTools;
 } else {
   middlewareComposer = compose;
