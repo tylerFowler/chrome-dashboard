@@ -8,6 +8,7 @@
       "quotemark": [ true, "single", "jsx-double" ],
       "trailing-comma": [ true, { "multiline": "always", "singleline": "never" } ],
       "interface-name": [ true, "never-prefix" ],
-      "semicolon": [ true, "always" ]
+      "semicolon": [ true, "always" ],
+      "no-console": false
     }
 }
