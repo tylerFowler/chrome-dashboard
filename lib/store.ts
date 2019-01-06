@@ -14,7 +14,6 @@ const saga = createSagaMiddleware();
 
 let middlewareComposer: any;
 if (ENV === 'development') {
-  // tslint:disable-next-line
   middlewareComposer = composeWithDevTools;
 } else {
   middlewareComposer = compose;
