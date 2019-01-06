@@ -13,6 +13,7 @@
       "DOM"
     ],
     "types": [
+      "node",
       "react",
       "react-dom",
       "react-redux"
@@ -33,7 +34,7 @@
     "noUnusedParameters": true,
     "strictFunctionTypes": false,
     "baseUrl": "./",
-    "noEmit": false,
+    "noEmit": true,
     "forceConsistentCasingInFileNames": true,
     "jsx": "React"
   }
