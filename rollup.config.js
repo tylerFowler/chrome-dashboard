@@ -1,4 +1,4 @@
-import typescript from 'rollup-plugin-typescript';
+import typescript from 'rollup-plugin-typescript2';
 import tslint from 'rollup-plugin-tslint';
 import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
@@ -25,7 +25,7 @@ const namedExports = {
 export default {
   plugins: [
     tslint({
-      throwOnError: false, // TODO change to true
+      throwOnError: true,
       configuration: './tslint.json',
       include: [
         'lib/*.ts', 'lib/*.tsx',

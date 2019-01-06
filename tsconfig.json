@@ -9,8 +9,8 @@
   "compilerOptions": {
     "target": "ES6",
     "lib": [
-      "ES6",
-      "DOM"
+      "es6",
+      "dom"
     ],
     "types": [
       "node",
@@ -36,6 +36,6 @@
     "baseUrl": "./",
     "noEmit": true,
     "forceConsistentCasingInFileNames": true,
-    "jsx": "React"
+    "jsx": "react"
   }
 }
