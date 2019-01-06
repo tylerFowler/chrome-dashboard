@@ -24,6 +24,9 @@ const namedExports = {
 // file for vendor code since TypeScript can minify for us
 export default {
   plugins: [
+    copy([
+      { files: 'node_modules/normalize.css/normalize.css', dest: 'public/' }
+    ]),
     tslint({
       throwOnError: true,
       configuration: './tslint.json',
@@ -32,21 +35,20 @@ export default {
         'lib/**/*.ts', 'lib/**/*.tsx',
       ]
     }),
-    typescript({ typescript: require('typescript') }),
-    replace({ ENV: env, 'process.env.NODE_ENV': env }),
-    resolve({
-      jsnext: true, browser: true,
+    resolve({ // resolve must be placed before typescript to get the correct resolutions
+      browser: true, module: true,
       customResolveOptions: { moduleDirectory: 'node_modules' }
     }),
+    typescript({ typescript: require('typescript') }),
+    replace({ ENV: env, 'process.env.NODE_ENV': env }),
     commonjs({ namedExports }),
-    copy([
-      { files: 'node_modules/normalize.css/normalize.css', dest: 'public/' }
-    ]),
   ],
   input: 'lib/main.tsx',
   output: {
     file: 'public/js/bundle.js',
+    name: 'ChromeDashboard',
     format: 'iife',
-    sourcemap: 'inline'
+    sourcemap: env === 'development',
+    preferConst: true,
   }
 };
