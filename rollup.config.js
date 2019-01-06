@@ -10,13 +10,13 @@ const env = JSON.stringify(process.env.NODE_ENV || 'development');
 const namedExports = {
   'node_modules/react/index.js': [
     'Children', 'Component', 'PureComponent', 'createElement', 'cloneElement',
-    'isValidElement', 'createFactory', 'version'
+    'isValidElement', 'createFactory', 'version', 'createContext',
   ],
   'node_modules/react-dom/index.js': [
     'findDOMNode', 'render', 'unmountComponentAtNode'
   ],
   'node_modules/react-is/index.js': [
-    'isValidElementType',
+    'isValidElementType', 'isElement', 'ForwardRef',
   ],
 };
 
