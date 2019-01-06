@@ -44,6 +44,10 @@ export default {
     commonjs({ namedExports }),
   ],
   input: 'lib/main.tsx',
+  watch: {
+    include: 'lib/**',
+    clearScreen: true,
+  },
   output: {
     file: 'public/js/bundle.js',
     name: 'ChromeDashboard',
