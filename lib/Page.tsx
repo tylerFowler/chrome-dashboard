@@ -1,8 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
+import * as Styles from './styles';
 
 const PageBackground = styled.div`
-  background-color: #f0f0f0;
+  width: 100%;
+  height: 100%;
+
+  font-size: ${Styles.fontSize};
+  font-family: ${Styles.fontFamily};
+
+  color: ${Styles.colors.fontColorMain};
+  background-color: ${Styles.colors.backgroundMain};
 `;
 
 const Page: React.FunctionComponent = () =>
