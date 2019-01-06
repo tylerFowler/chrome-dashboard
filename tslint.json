@@ -5,7 +5,7 @@
     ],
     "jsRules": {},
     "rules": {
-      "quotemark": [ true, "single", "jsx-double" ],
+      "quotemark": [ true, "single", "jsx-double", "avoid-escape" ],
       "trailing-comma": [ true, { "multiline": "always", "singleline": "never" } ],
       "interface-name": [ true, "never-prefix" ],
       "semicolon": [ true, "always" ],
