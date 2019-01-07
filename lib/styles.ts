@@ -6,13 +6,15 @@ export const fontFamily = "Lora, 'Times New Roman', Times, Georgia, serif";
 export const typeScale = Scale({
   base: fontSize,
   interval: Ratio.MAJOR_THIRD,
-  unit: 'em',
+  unit: 'px',
 });
 
 export const fontStacks = {
   Montserrat: 'Montserrat, Helvetica, Verdana, sans-serif',
+  OpenSans: "'Open Sans', 'Helvetica Neue', Helvetica, Verdana, sans-serif",
 };
 
+// TODO see if we can replace this w/ a theme
 export const colors = {
   backgroundMain: '#f0f0f0',
 
