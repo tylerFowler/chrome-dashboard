@@ -1,5 +1,6 @@
 export interface AppTheme {
   backgroundLight: string;
+  backgroundExtraLight: string;
   backgroundLightDark: string;
   backgroundDark: string;
   typeDark: string;
@@ -12,6 +13,7 @@ export interface AppTheme {
 export default {
   backgroundDark: '#7a7a7a',
   backgroundLight: '#f0f0f0',
+  backgroundExtraLight: '#fafafa',
   backgroundLightDark: '#e7e9e9',
 
   typeLight: '#fff',

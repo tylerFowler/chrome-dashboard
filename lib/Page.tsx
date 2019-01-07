@@ -1,6 +1,7 @@
 import styled, { ThemeProvider } from 'lib/styled-components';
 import React from 'react';
 import ClockPanel from './clock/ClockPanel';
+import FeedPanel from './panel/components/FeedPanel';
 import Panel from './panel/components/Panel';
 import * as Styles from './styles';
 import mainTheme from './theme';
@@ -32,7 +33,7 @@ const panelContainerStyles: React.CSSProperties = {
 const Page: React.FunctionComponent = () =>
   <ThemeProvider theme={mainTheme}>
     <PageBackground>
-      <Panel title="Left Panel" panelOrientation="left" style={panelContainerStyles} />
+      <FeedPanel title="Designer News" panelOrientation="left" style={panelContainerStyles} />
 
       <CenterPane>
         <ClockPanel />

@@ -17,7 +17,7 @@ export interface PanelState {
 }
 
 const PanelContainer = styled('section')<{isCollapsed: boolean}>`
-  overflow: hidden;
+  overflow-x: hidden;
   background-color: ${props => props.theme.backgroundLightDark};
   height: 100%;
 

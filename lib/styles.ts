@@ -6,11 +6,12 @@ export const typeScale = Scale({
   unit: 'px',
 });
 
-// TODO consider moving these to the theme definition
-export const fontSize = '16px';
-export const fontFamily = "Lora, 'Times New Roman', Times, Georgia, serif";
-
 export const fontStacks = {
   Montserrat: 'Montserrat, Helvetica, Verdana, sans-serif',
   OpenSans: "'Open Sans', 'Helvetica Neue', Helvetica, Verdana, sans-serif",
+  Lora: "Lora, 'Times New Roman', Times, Georgia, serif",
 };
+
+// TODO consider moving these to the theme definition
+export const fontSize = '16px';
+export const fontFamily = fontStacks.Lora;
