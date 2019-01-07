@@ -22,12 +22,13 @@ const PageBackground = styled.div`
 `;
 
 const CenterPane = styled.section`
-  flex: 8 450px;
+  flex: 5 450px;
   overflow: hidden;
 `;
 
 const panelContainerStyles: React.CSSProperties = {
-  flex: '6 200px',
+  flex: '4 200px',
+  maxWidth: '750px',
 };
 
 const Page: React.FunctionComponent = () =>
