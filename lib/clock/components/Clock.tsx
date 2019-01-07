@@ -1,6 +1,5 @@
+import styled from 'lib/styled-components';
 import React from 'react';
-import styled from 'styled-components';
-import { colors } from '../../styles';
 import DateDisplay from './Date';
 import Time from './Time';
 
@@ -23,7 +22,7 @@ const Panel = styled.div`
 
 const Divider = styled.hr`
   border: 0;
-  border-top: 5px dashed ${colors.borderDarkLight};
+  border-top: 5px dashed ${props => props.theme.borderDarkLight};
   width: 75%;
   margin: 1rem auto;
 `;

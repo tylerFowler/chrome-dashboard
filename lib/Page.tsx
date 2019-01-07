@@ -1,7 +1,8 @@
+import styled, { ThemeProvider } from 'lib/styled-components';
 import React from 'react';
-import styled from 'styled-components';
 import ClockPanel from './clock/ClockPanel';
 import * as Styles from './styles';
+import mainTheme from './theme';
 
 const PageBackground = styled.div`
   width: 100%;
@@ -10,14 +11,16 @@ const PageBackground = styled.div`
   font-size: ${Styles.fontSize};
   font-family: ${Styles.fontFamily};
 
-  color: ${Styles.colors.typeDark};
-  background-color: ${Styles.colors.backgroundMain};
+  color: ${props => props.theme.typeDark};
+  background-color: ${props => props.theme.backgroundLight};
 `;
 
 const Page: React.FunctionComponent = () =>
-  <PageBackground>
-    <ClockPanel />
-  </PageBackground>
+  <ThemeProvider theme={mainTheme}>
+    <PageBackground>
+      <ClockPanel />
+    </PageBackground>
+  </ThemeProvider>
 ;
 
 export default Page;

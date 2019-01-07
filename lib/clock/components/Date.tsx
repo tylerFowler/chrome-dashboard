@@ -1,9 +1,9 @@
+import styled from 'lib/styled-components';
 import React from 'react';
-import styled from 'styled-components';
-import { colors, fontStacks, typeScale } from '../../styles';
+import { fontStacks, typeScale } from '../../styles';
 
 const DateText = styled.span`
-  color: ${colors.typeDarkLight};
+  color: ${props => props.theme.typeDarkLight}
   font-family: ${fontStacks.OpenSans};
   font-size: ${typeScale(6)}
   font-weight: 300;
