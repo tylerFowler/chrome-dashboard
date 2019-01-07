@@ -1,15 +1,23 @@
 export interface AppTheme {
   backgroundLight: string;
+  backgroundLightDark: string;
+  backgroundDark: string;
   typeDark: string;
   typeDarkLight: string;
+  typeLight: string;
+  borderDark: string;
   borderDarkLight: string;
 }
 
 export default {
+  backgroundDark: '#7a7a7a',
   backgroundLight: '#f0f0f0',
+  backgroundLightDark: '#e7e9e9',
 
+  typeLight: '#fff',
   typeDark: '#404040',
   typeDarkLight: '#a0a0a0',
 
+  borderDark: '#4f4f4f',
   borderDarkLight: '#767676',
 };

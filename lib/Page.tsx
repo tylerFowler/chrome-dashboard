@@ -21,12 +21,10 @@ const PageBackground = styled.div`
 `;
 
 const CenterPane = styled.section`
-  border: 1px solid red;
   flex: 8 450px;
 `;
 
 const panelContainerStyles = `
-  border: 1px solid red;
   flex: 6 200px;
 `;
 
@@ -42,7 +40,7 @@ const Page: React.FunctionComponent = () =>
   <ThemeProvider theme={mainTheme}>
     <PageBackground>
       <LeftPanel>
-        <Panel />
+        <Panel title="Left Panel" panelOrientation="left" />
       </LeftPanel>
 
       <CenterPane>
@@ -50,7 +48,7 @@ const Page: React.FunctionComponent = () =>
       </CenterPane>
 
       <RightPanel>
-        <Panel />
+        <Panel title="Right Panel" panelOrientation="right" />
       </RightPanel>
     </PageBackground>
   </ThemeProvider>
