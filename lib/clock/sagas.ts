@@ -7,7 +7,7 @@ function awaitTick(ms: number) {
 
 export default function* rootSaga() {
   while (true) {
-    const tickAction = yield call(awaitTick, 1000);
+    const tickAction = yield call(awaitTick, 15 * 1000);
     yield(put(tickAction));
   }
 }
