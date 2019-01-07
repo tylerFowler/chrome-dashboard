@@ -7,7 +7,7 @@ export const typeScale = Scale({
 });
 
 // TODO consider moving these to the theme definition
-export const fontSize = 16;
+export const fontSize = '16px';
 export const fontFamily = "Lora, 'Times New Roman', Times, Georgia, serif";
 
 export const fontStacks = {
