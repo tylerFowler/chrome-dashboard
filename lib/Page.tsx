@@ -9,7 +9,7 @@ const PageBackground = styled.div`
   font-size: ${Styles.fontSize};
   font-family: ${Styles.fontFamily};
 
-  color: ${Styles.colors.fontColorMain};
+  color: ${Styles.colors.typeDark};
   background-color: ${Styles.colors.backgroundMain};
 `;
 

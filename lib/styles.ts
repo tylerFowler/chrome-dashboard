@@ -15,5 +15,9 @@ export const fontStacks = {
 
 export const colors = {
   backgroundMain: '#f0f0f0',
-  fontColorMain: '#404040',
+
+  typeDark: '#404040',
+  typeDarkLight: '#a0a0a0',
+
+  borderDarkLight: '#767676',
 };
