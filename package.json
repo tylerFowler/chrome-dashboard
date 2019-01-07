@@ -7,8 +7,9 @@
   "scripts": {
     "build": "npx rollup -c rollup.config.js",
     "lint": "npx tslint ./lib/*** --format stylish",
-    "build_assets": "npx imagemin 'assets' --out-dir 'public/assets'",
-    "build_dist": "NODE_ENV=production npm run build && npm run build_assets"
+    "start-dev": "rollup -c rollup-devserver.config.js --watch",
+    "build-assets": "npx imagemin 'assets' --out-dir 'public/assets'",
+    "build-dist": "NODE_ENV=production npm run build && npm run build_assets"
   },
   "dependencies": {
     "normalize.css": "^8.0.1",
@@ -31,8 +32,10 @@
     "rollup": "^1.0.2",
     "rollup-plugin-commonjs": "^9.2.0",
     "rollup-plugin-copy-glob": "^0.2.2",
+    "rollup-plugin-livereload": "^0.6.0",
     "rollup-plugin-node-resolve": "^4.0.0",
     "rollup-plugin-replace": "^2.1.0",
+    "rollup-plugin-serve": "^0.6.1",
     "rollup-plugin-tslint": "^0.1.38",
     "rollup-plugin-typescript2": "^0.18.1",
     "rollup-watch": "^4.3.1",
