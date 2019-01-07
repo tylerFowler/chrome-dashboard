@@ -33,6 +33,7 @@ const FeedNumber = styled.span`
 
   background-color: ${props => props.theme.primaryColor};
 
+  user-select: none;
   text-align: center;
   line-height: ${feedItemSize}px;
   font-family: ${fontStacks.Montserrat};
@@ -52,6 +53,19 @@ const ContentContainer = styled.div`
   font-size: ${typeScale(4)};
 `;
 
+const UpvoteIcon = styled.div`
+  display: inline-block;
+  vertical-align: baseline;
+  height: 0;
+  width: 0;
+  margin: 0 .5em 0 0;
+
+  border-top: .65em solid transparent;
+  border-right: .5em solid transparent;
+  border-left: .5em solid transparent;
+  border-bottom: .65em solid ${props => props.theme.backgroundDark};
+`;
+
 const ItemDetail = styled.div`
   font-family: ${fontStacks.OpenSans};
   font-weight: 300;
@@ -60,9 +74,14 @@ const ItemDetail = styled.div`
   position: absolute;
   bottom: .5em;
 
-  span, a {
-    margin: 0 .25em;
-  }
+  span, a { margin: 0 .125em; }
+`;
+
+const CommentLink = styled.a.attrs({
+  target: '_blank',
+})`
+  text-decoration: none;
+  color: inherit;
 `;
 
 const FeedItem: React.FC<FeedItemProps> = props => {
@@ -77,7 +96,7 @@ const FeedItem: React.FC<FeedItemProps> = props => {
 
   let commentDetail = <span>{commentCount} comments</span>;
   if (commentLink) {
-    commentDetail = <a href={commentLink}>{commentCount} comments</a>;
+    commentDetail = <CommentLink href={commentLink}>{commentCount} comments</CommentLink>;
   }
 
   // TODO include the upvote icon
@@ -88,9 +107,9 @@ const FeedItem: React.FC<FeedItemProps> = props => {
         {abbreviatedTitle}
 
         <ItemDetail>
-          {upvotes && <span>{upvotes}</span>}
+          {upvotes && <span>{upvotes} <UpvoteIcon></UpvoteIcon></span>}
           {author && <span>{author}</span>}
-          {(upvotes || author) && '|'}
+          {(upvotes || author) && <span style={{userSelect: 'none'}}>|</span>}
           {commentCount && commentDetail}
         </ItemDetail>
       </ContentContainer>

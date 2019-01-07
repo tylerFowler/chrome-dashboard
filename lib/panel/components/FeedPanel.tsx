@@ -10,12 +10,10 @@ export interface FeedProps extends PanelProps {
 const FeedList = styled.ul`
   list-style-type: none;
   margin: 0;
-  padding: 2em .5em 1em;
+  padding: 2em .75em 1em;
   overflow: scroll;
 
-  li {
-    margin-bottom: 1em;
-  }
+  li { margin-bottom: 1em; }
 `;
 
 const feedData: FeedItemProps[] = [
@@ -26,7 +24,7 @@ const feedData: FeedItemProps[] = [
   { index: 3, title: 'Rio 2016 Olympics Branding',
     upvotes: 7, author: 'Catalin Campanu', commentCount: 6 },
   { index: 4, title: 'Ask DN: What side projects are you working on this weekend?',
-    upvotes: 11, author: 'Jonathan Svrdn', commentCount: 49 },
+    upvotes: 11, author: 'Jonathan Svrdn', commentCount: 49, commentLink: 'https://google.com' },
   { index: 5, title: 'The climate movements needs rebranding, but these Milton House cookies are too good',
     upvotes: 4, author: 'Mark Massie', commentCount: 1 },
 ];
