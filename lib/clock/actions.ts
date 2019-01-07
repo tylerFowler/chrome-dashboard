@@ -8,5 +8,4 @@ export type ClockAction = ActionType<
   | typeof tick
 >;
 
-console.log('Action is', action);
 export const tick = () => action.action(Actions.Tick);

@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import ClockPanel from './clock/ClockPanel';
 import * as Styles from './styles';
 
 const PageBackground = styled.div`
@@ -15,7 +16,7 @@ const PageBackground = styled.div`
 
 const Page: React.FunctionComponent = () =>
   <PageBackground>
-    Hello World
+    <ClockPanel />
   </PageBackground>
 ;
 
