@@ -10,7 +10,7 @@ export interface FeedProps extends PanelProps {
 const FeedList = styled.ul`
   list-style-type: none;
   margin: 0;
-  padding: 1em .5em;
+  padding: 2em .5em 1em;
   overflow: scroll;
 
   li {
