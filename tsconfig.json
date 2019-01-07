@@ -10,7 +10,8 @@
     "target": "ES6",
     "lib": [
       "es6",
-      "dom"
+      "dom",
+      "es2017.string"
     ],
     "types": [
       "node",
