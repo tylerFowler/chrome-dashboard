@@ -1,4 +1,4 @@
-import styled from 'lib/styled-components';
+import styled from 'panel/styled-components';
 import React from 'react';
 import { Alignment } from './Panel';
 

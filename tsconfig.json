@@ -20,7 +20,8 @@
       "react-redux"
     ],
     "paths": {
-      "lib/styled-components": [ "lib/styled-components.ts" ]
+      "lib/styled-components": [ "lib/styled-components.ts" ],
+      "panel/styled-components": [ "lib/panel/styled-components.ts" ]
     },
     "typeRoots": [ "node_modules/@types", "node_modules" ],
     "outDir": "build/bundle.js",

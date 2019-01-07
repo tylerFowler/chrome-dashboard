@@ -1,10 +1,10 @@
-import styled from 'lib/styled-components';
+import styled from 'panel/styled-components';
 import { fontStacks, typeScale } from '../../styles';
 import { Alignment } from './Panel';
 
 const PanelHeader = styled('header')<{alignment: Alignment}>`
-  color: ${props => props.theme.typeLight};
-  background-color: ${props => props.theme.backgroundDark};
+  color: ${props => props.theme.fontColor};
+  background-color: ${props => props.theme.primaryColor};
   border-bottom: 2px solid ${props => props.theme.borderDark};
   padding: 1em .5em;
 
