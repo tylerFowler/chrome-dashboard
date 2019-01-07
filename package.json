@@ -12,6 +12,7 @@
     "build-dist": "NODE_ENV=production npm run build && npm run build_assets"
   },
   "dependencies": {
+    "natural-scale": "^2.0.0",
     "normalize.css": "^8.0.1",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
