@@ -9,6 +9,7 @@
       "trailing-comma": [ true, { "multiline": "always", "singleline": "never" } ],
       "interface-name": [ true, "never-prefix" ],
       "semicolon": [ true, "always" ],
-      "no-console": false
+      "no-console": false,
+      "arrow-parens": [ true, "ban-single-arg-parens" ]
     }
 }
