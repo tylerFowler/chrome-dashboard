@@ -35,10 +35,17 @@ export default class Time extends React.Component<TimeProps> {
 
   public getFormattedTime(): { hours: number, minutes: number } {
     const { date, twelveHour } = this.props;
-    return {
-      hours: twelveHour && date.getHours() > 12 ? date.getHours() - 12 : date.getHours(),
-      minutes: date.getMinutes(),
-    };
+
+    let hours = date.getHours();
+    if (twelveHour) {
+      if (hours === 0) {
+        hours = 12;
+      } else if (hours > 12) {
+        hours = hours - 12;
+      }
+    }
+
+    return { hours, minutes: date.getMinutes() };
   }
 
   public getPeriod(): 'am'|'pm' {
