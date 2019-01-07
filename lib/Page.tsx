@@ -22,34 +22,23 @@ const PageBackground = styled.div`
 
 const CenterPane = styled.section`
   flex: 8 450px;
+  overflow: hidden;
 `;
 
-const panelContainerStyles = `
-  flex: 6 200px;
-`;
-
-const LeftPanel = styled.section`
-  ${panelContainerStyles}
-`;
-
-const RightPanel = styled.section`
-  ${panelContainerStyles}
-`;
+const panelContainerStyles: React.CSSProperties = {
+  flex: '6 200px',
+};
 
 const Page: React.FunctionComponent = () =>
   <ThemeProvider theme={mainTheme}>
     <PageBackground>
-      <LeftPanel>
-        <Panel title="Left Panel" panelOrientation="left" />
-      </LeftPanel>
+      <Panel title="Left Panel" panelOrientation="left" style={panelContainerStyles} />
 
       <CenterPane>
         <ClockPanel />
       </CenterPane>
 
-      <RightPanel>
-        <Panel title="Right Panel" panelOrientation="right" />
-      </RightPanel>
+      <Panel title="Right Panel" panelOrientation="right" style={panelContainerStyles} />
     </PageBackground>
   </ThemeProvider>
 ;
