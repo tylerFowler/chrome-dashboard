@@ -1,7 +1,7 @@
 import { Actions, ClockAction } from './actions';
 
 export interface State {
-  date: Date;
+  readonly date: Date;
 }
 
 export const defaultState = {
