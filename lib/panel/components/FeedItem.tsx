@@ -2,6 +2,7 @@ import styled from 'panel/styled-components';
 import React from 'react';
 import { fontStacks, typeScale } from '../../styles';
 
+// TODO add article link
 export interface FeedItemProps {
   readonly index: number;
   readonly title: string;
@@ -94,9 +95,12 @@ const FeedItem: React.FC<FeedItemProps> = props => {
     abbreviatedTitle = `${title.slice(0, 55)}...`;
   }
 
-  let commentDetail = <span>{commentCount} comments</span>;
+  let commentDetail = <span>
+    {commentCount} {commentCount === 1 ? 'comment' : 'comments'}
+  </span>;
+
   if (commentLink) {
-    commentDetail = <CommentLink href={commentLink}>{commentCount} comments</CommentLink>;
+    commentDetail = <CommentLink href={commentLink}>{commentDetail}</CommentLink>;
   }
 
   // TODO include the upvote icon
