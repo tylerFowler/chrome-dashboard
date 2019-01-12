@@ -2,7 +2,7 @@ import styled, { ThemeProvider } from 'lib/styled-components';
 import React from 'react';
 import ClockPanel from './clock/ClockPanel';
 import DNFeedPanel from './dn/components/DNFeedPanel';
-import HNFeedPanel from './hn/components/HNFeedPanel';
+import HNFeedPanel from './hn/HNFeedPanel';
 import * as Styles from './styles';
 import mainTheme from './theme';
 

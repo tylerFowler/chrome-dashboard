@@ -2,7 +2,11 @@ import React from 'react';
 import FeedPanel, { FeedProps } from '../../panel/components/FeedPanel';
 import hnTheme from '../theme';
 
-export type HNFeedPanelProps = Pick<FeedProps, Exclude<keyof FeedProps, 'title'>>;
+export interface HNFeedPanelProps extends FeedProps {
+  title: never;
+  startHNFeedRefresh(): void;
+  stopHNFeedRefresh(): void;
+}
 
 export default class HNFeedPanel extends React.Component<HNFeedPanelProps> {
   public render() {

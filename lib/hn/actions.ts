@@ -5,6 +5,8 @@ export enum Actions {
   FetchPosts = 'HN_FETCH_POSTS',
   FetchPostsFailure = 'HN_FETCH_POSTS_FAILURE',
   ReceivePosts = 'HN_RECV_POSTS',
+  StartAutoRefresh = 'HN_START_AUTOREFRESH',
+  StopAutoRefresh = 'HN_STOP_AUTOREFRESH',
 }
 
 export type HNAction = ActionType<
@@ -19,3 +21,6 @@ export const fetchPostsError = (error: Error) =>
 
 export const receivePosts = (posts: ReadonlyArray<HNPost>) =>
   action.action(Actions.ReceivePosts, { posts });
+
+export const startAutoRefresh = () => action.action(Actions.StartAutoRefresh);
+export const stopAutoRefresh = () => action.action(Actions.StopAutoRefresh);
