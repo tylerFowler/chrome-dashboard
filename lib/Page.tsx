@@ -1,8 +1,8 @@
 import styled, { ThemeProvider } from 'lib/styled-components';
 import React from 'react';
 import ClockPanel from './clock/ClockPanel';
-import FeedPanel from './panel/components/FeedPanel';
-import Panel from './panel/components/Panel';
+import DNFeedPanel from './dn/components/DNFeedPanel';
+import HNFeedPanel from './hn/components/HNFeedPanel';
 import * as Styles from './styles';
 import mainTheme from './theme';
 
@@ -34,13 +34,13 @@ const panelContainerStyles: React.CSSProperties = {
 const Page: React.FunctionComponent = () =>
   <ThemeProvider theme={mainTheme}>
     <PageBackground>
-      <FeedPanel title="Designer News" panelOrientation="left" style={panelContainerStyles} />
+      <DNFeedPanel panelOrientation="left" style={panelContainerStyles} />
 
       <CenterPane>
         <ClockPanel />
       </CenterPane>
 
-      <Panel title="Right Panel" panelOrientation="right" style={panelContainerStyles} />
+      <HNFeedPanel panelOrientation="right" style={panelContainerStyles} />
     </PageBackground>
   </ThemeProvider>
 ;
