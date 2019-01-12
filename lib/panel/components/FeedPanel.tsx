@@ -31,7 +31,7 @@ const feedData: FeedItemProps[] = [
 
 export default class FeedPanel extends React.Component<FeedProps> {
   public render() {
-    const { ...panelProps } = this.props;
+    const { children, ...panelProps } = this.props;
 
     const itms = feedData.map(itm => <li key={itm.index}>
       <FeedItem {...itm} />
@@ -40,7 +40,7 @@ export default class FeedPanel extends React.Component<FeedProps> {
     return (
       <Panel {...panelProps}>
         <FeedList>
-          {itms}
+          {children || itms}
         </FeedList>
       </Panel>
     );
