@@ -3,6 +3,7 @@ import { Actions, HNAction } from './actions';
 export interface HNPost {
   readonly id: number;
   readonly title: string;
+  readonly time: number;
   readonly author: string;
   readonly url: string;
   readonly score: number;
