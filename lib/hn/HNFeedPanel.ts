@@ -3,7 +3,7 @@ import { GlobalState } from '../store';
 import { startAutoRefresh, stopAutoRefresh } from './actions';
 import HNFeedPanel, { HNFeedPanelProps } from './components/HNFeedPanel';
 
-const mapStateToProps = (state: GlobalState, ownProps: Partial<HNFeedPanelProps>): Partial<HNFeedPanelProps> => ({
+const mapStateToProps = (_: GlobalState, ownProps: Partial<HNFeedPanelProps>): Partial<HNFeedPanelProps> => ({
   ...ownProps,
 });
 
