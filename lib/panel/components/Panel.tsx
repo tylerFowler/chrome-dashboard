@@ -24,7 +24,9 @@ const PanelContainer = styled('section')<{isCollapsed: boolean}>`
   ${props => props.isCollapsed && 'width: 0; flex: 0 !important;'}
 `;
 
-const PanelBody = styled.section``;
+const PanelBody = styled.section`
+  height: 100%;
+`;
 
 export default class Panel extends React.Component<PanelProps, PanelState> {
   public static defaultProps: Partial<PanelProps> = {
