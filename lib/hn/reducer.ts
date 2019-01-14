@@ -6,6 +6,7 @@ export interface HNPost {
   readonly time: number;
   readonly author: string;
   readonly url: string;
+  readonly hnLink: string;
   readonly score: number;
   readonly commentCount: number;
 }

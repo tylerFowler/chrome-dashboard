@@ -1,6 +1,8 @@
 const HNApi = 'https://hacker-news.firebaseio.com/v0';
 import { HNPost } from './reducer';
 
+export type PostId = number;
+
 export enum PageType {
   TopStories = 'topstories',
   NewStories = 'newstories',
@@ -8,7 +10,8 @@ export enum PageType {
   ShowStories = 'showstories',
 }
 
-export type PostId = number;
+const getHNLinkForPost = (postId: PostId) => `https://news.ycombinator.com/item?id=${postId}`;
+
 export async function fetchStoryPage(type: PageType = PageType.NewStories, size: number = 10): Promise<PostId[]> {
   const response = await fetch(`${HNApi}/${type}.json`, { mode: 'cors' });
   if (!response.ok) {
@@ -52,5 +55,6 @@ export async function fetchStory(id: PostId): Promise<Readonly<HNPost>> {
     url: story.url,
     score: story.score,
     commentCount: story.descendants || -1,
+    hnLink: getHNLinkForPost(story.id),
   } as HNPost;
 }

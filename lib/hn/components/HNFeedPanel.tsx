@@ -35,6 +35,7 @@ export default class HNFeedPanel extends React.Component<HNFeedPanelProps> {
               upvotes={post.score}
               author={post.author}
               commentCount={post.commentCount}
+              commentLink={post.hnLink}
             />
           </li>,
         )}
