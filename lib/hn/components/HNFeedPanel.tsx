@@ -9,6 +9,9 @@ export interface HNFeedPanelProps extends FeedProps {
 }
 
 export default class HNFeedPanel extends React.Component<HNFeedPanelProps> {
+  public componentDidMount() { this.props.startHNFeedRefresh(); }
+  public componentWillUnmount() { this.props.stopHNFeedRefresh(); }
+
   public render() {
     return (
       <FeedPanel {...this.props} title="Hacker News" theme={hnTheme} />
