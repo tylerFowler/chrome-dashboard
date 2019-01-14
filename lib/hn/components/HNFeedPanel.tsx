@@ -6,7 +6,6 @@ import hnTheme from '../theme';
 
 export interface HNFeedPanelProps extends FeedProps {
   title: never;
-  readonly loading: boolean;
   readonly stories: ReadonlyArray<HNPost>;
   fetchPosts(): void;
   startHNFeedRefresh(): void;
