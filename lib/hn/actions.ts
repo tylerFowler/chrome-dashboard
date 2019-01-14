@@ -10,12 +10,12 @@ export enum Actions {
 }
 
 export type HNAction = ActionType<
-  | typeof postsFetched
+  | typeof fetchPosts
   | typeof fetchPostsError
   | typeof receivePosts
 >;
 
-export const postsFetched = () => action.action(Actions.FetchPosts);
+export const fetchPosts = () => action.action(Actions.FetchPosts);
 export const fetchPostsError = (error: Error) =>
   action.action(Actions.FetchPostsFailure, { error });
 
