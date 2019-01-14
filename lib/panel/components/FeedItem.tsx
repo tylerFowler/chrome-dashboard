@@ -117,7 +117,7 @@ const FeedItem: React.FC<FeedItemProps> = props => {
     <Article>
       <FeedNumber>{index}</FeedNumber>
       <ContentContainer>
-        <PostLink href={url}>{abbreviatedTitle}</PostLink>
+        <PostLink href={url} title={title}>{abbreviatedTitle}</PostLink>
 
         <ItemDetail>
           {upvotes && <span>{upvotes} <UpvoteIcon></UpvoteIcon></span>}
