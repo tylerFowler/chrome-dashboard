@@ -4,5 +4,5 @@ export default {
   ...defaultTheme,
   primaryColor: '#2d72d9',
   primaryColorRGB: { red: 45, green: 114, blue: 217 },
-  fontColor: '#ffffff',
+  fontColor: '#fff',
 } as PanelTheme;

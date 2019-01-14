@@ -79,12 +79,20 @@ const ItemDetail = styled.div`
   span, a { margin: 0 .125em; }
 `;
 
-const PostLink = styled.a.attrs({
+const Link = styled.a.attrs({
   target: '_blank',
 })`
   text-decoration: none;
   color: inherit;
 `;
+
+const PostLink = styled(Link)`
+  &:visited {
+    color: ${props => props.theme.typeDarkLight}
+  }
+`;
+
+const CommentLink = styled(Link)``;
 
 const FeedItem: React.FC<FeedItemProps> = props => {
   const {
@@ -101,7 +109,7 @@ const FeedItem: React.FC<FeedItemProps> = props => {
   </span>;
 
   if (commentLink) {
-    commentDetail = <PostLink href={commentLink}>{commentDetail}</PostLink>;
+    commentDetail = <CommentLink href={commentLink}>{commentDetail}</CommentLink>;
   }
 
   // TODO include the upvote icon
