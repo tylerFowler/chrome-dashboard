@@ -19,13 +19,16 @@ export interface PanelState {
 const PanelContainer = styled('section')<{isCollapsed: boolean}>`
   overflow-x: hidden;
   background-color: ${props => props.theme.backgroundLightDark};
+
+  display: flex;
+  flex-flow: column;
   height: 100%;
 
   ${props => props.isCollapsed && 'width: 0; flex: 0 !important;'}
 `;
 
 const PanelBody = styled.section`
-  height: 100%;
+  flex-grow: 1;
 `;
 
 export default class Panel extends React.Component<PanelProps, PanelState> {
