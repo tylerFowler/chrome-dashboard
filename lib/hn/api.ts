@@ -54,7 +54,7 @@ export async function fetchStory(id: PostId): Promise<Readonly<HNPost>> {
     author: story.by,
     url: story.url,
     score: story.score,
-    commentCount: story.descendants || -1,
+    commentCount: story.descendants || 0,
     hnLink: getHNLinkForPost(story.id),
   } as HNPost;
 }

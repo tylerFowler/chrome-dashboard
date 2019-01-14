@@ -123,7 +123,7 @@ const FeedItem: React.FC<FeedItemProps> = props => {
           {upvotes && <span>{upvotes} <UpvoteIcon></UpvoteIcon></span>}
           {author && <span>{author}</span>}
           {(upvotes || author) && <span style={{userSelect: 'none'}}>|</span>}
-          {commentCount && commentDetail}
+          {commentCount !== undefined && commentDetail}
         </ItemDetail>
       </ContentContainer>
     </Article>
