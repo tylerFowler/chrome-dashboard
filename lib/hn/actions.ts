@@ -22,5 +22,7 @@ export const fetchPostsError = (error: Error) =>
 export const receivePosts = (posts: ReadonlyArray<HNPost>) =>
   action.action(Actions.ReceivePosts, { posts });
 
-export const startAutoRefresh = () => action.action(Actions.StartAutoRefresh);
+export const startAutoRefresh = (intervalMs: number) =>
+  action.action(Actions.StartAutoRefresh, { interval: intervalMs });
+
 export const stopAutoRefresh = () => action.action(Actions.StopAutoRefresh);
