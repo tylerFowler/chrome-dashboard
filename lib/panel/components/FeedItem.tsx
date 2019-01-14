@@ -2,7 +2,6 @@ import styled from 'panel/styled-components';
 import React from 'react';
 import { fontStacks, typeScale } from '../../styles';
 
-// TODO add article link
 export interface FeedItemProps {
   readonly index: number;
   readonly title: string;
