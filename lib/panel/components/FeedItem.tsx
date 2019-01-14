@@ -6,6 +6,7 @@ import { fontStacks, typeScale } from '../../styles';
 export interface FeedItemProps {
   readonly index: number;
   readonly title: string;
+  readonly url: string;
   readonly maxTitleLength?: number;
   readonly upvotes?: number;
   readonly author?: string;
@@ -78,7 +79,7 @@ const ItemDetail = styled.div`
   span, a { margin: 0 .125em; }
 `;
 
-const CommentLink = styled.a.attrs({
+const PostLink = styled.a.attrs({
   target: '_blank',
 })`
   text-decoration: none;
@@ -87,7 +88,7 @@ const CommentLink = styled.a.attrs({
 
 const FeedItem: React.FC<FeedItemProps> = props => {
   const {
-    index, title, maxTitleLength, upvotes, author, commentCount, commentLink,
+    index, title, url, maxTitleLength, upvotes, author, commentCount, commentLink,
   } = props;
 
   let abbreviatedTitle = title;
@@ -100,7 +101,7 @@ const FeedItem: React.FC<FeedItemProps> = props => {
   </span>;
 
   if (commentLink) {
-    commentDetail = <CommentLink href={commentLink}>{commentDetail}</CommentLink>;
+    commentDetail = <PostLink href={commentLink}>{commentDetail}</PostLink>;
   }
 
   // TODO include the upvote icon
@@ -108,7 +109,7 @@ const FeedItem: React.FC<FeedItemProps> = props => {
     <Article>
       <FeedNumber>{index}</FeedNumber>
       <ContentContainer>
-        {abbreviatedTitle}
+        <PostLink href={url}>{abbreviatedTitle}</PostLink>
 
         <ItemDetail>
           {upvotes && <span>{upvotes} <UpvoteIcon></UpvoteIcon></span>}

@@ -29,7 +29,7 @@ const feedData: FeedItemProps[] = [
     upvotes: 11, author: 'Jonathan Svrdn', commentCount: 49, commentLink: 'https://google.com' },
   { index: 5, title: 'The climate movements needs rebranding, but these Milton House cookies are too good',
     upvotes: 4, author: 'Mark Massie', commentCount: 1 },
-];
+].map(itm => ({ ...itm, url: 'https://google.com' }));
 
 export default class FeedPanel extends React.Component<FeedProps> {
   public render() {
@@ -38,7 +38,6 @@ export default class FeedPanel extends React.Component<FeedProps> {
     const itms = feedData.map(itm => <li key={itm.index}>
       <FeedItem {...itm} />
     </li>);
-    console.log(itms);
 
     return (
       <Panel {...panelProps}>
