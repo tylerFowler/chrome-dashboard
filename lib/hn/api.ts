@@ -10,7 +10,7 @@ export enum PageType {
 
 export type PostId = number;
 export async function fetchStoryPage(type: PageType = PageType.NewStories, size: number = 10): Promise<PostId[]> {
-  const response = await fetch(`${HNApi}/${type}`);
+  const response = await fetch(`${HNApi}/${type}.json`, { mode: 'cors' });
   if (!response.ok) {
     throw new Error(await response.text());
   }
@@ -38,7 +38,7 @@ interface FetchStoryResponse {
 }
 
 export async function fetchStory(id: PostId): Promise<Readonly<HNPost>> {
-  const response = await fetch(`${HNApi}/item/${id}`);
+  const response = await fetch(`${HNApi}/item/${id}.json`);
   if (!response.ok) {
     throw new Error(await response.text());
   }
