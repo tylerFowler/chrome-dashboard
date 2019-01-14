@@ -2,9 +2,11 @@ import styled from 'panel/styled-components';
 import React from 'react';
 import FeedItem, { FeedItemProps } from './FeedItem';
 import Panel, { PanelProps } from './Panel';
+import Spinner from './Spinner';
 
 export interface FeedProps extends PanelProps {
   placeholder?: never;
+  loading?: boolean;
 }
 
 const FeedList = styled.ul`
@@ -31,17 +33,22 @@ const feedData: FeedItemProps[] = [
 
 export default class FeedPanel extends React.Component<FeedProps> {
   public render() {
-    const { children, ...panelProps } = this.props;
+    const { loading, children, ...panelProps } = this.props;
 
     const itms = feedData.map(itm => <li key={itm.index}>
       <FeedItem {...itm} />
     </li>);
+    console.log(itms);
 
     return (
       <Panel {...panelProps}>
-        <FeedList>
-          {children || itms}
-        </FeedList>
+        {loading && <Spinner topMargin="30%" />}
+
+        {!loading &&
+          <FeedList>
+            {children || itms}
+          </FeedList>
+        }
       </Panel>
     );
   }
