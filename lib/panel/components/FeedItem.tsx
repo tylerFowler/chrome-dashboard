@@ -111,7 +111,6 @@ const FeedItem: React.FC<FeedItemProps> = props => {
     commentDetail = <CommentLink href={commentLink}>{commentDetail}</CommentLink>;
   }
 
-  // TODO include the upvote icon
   return (
     <Article>
       <FeedNumber>{index}</FeedNumber>
