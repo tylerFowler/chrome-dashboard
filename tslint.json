@@ -12,6 +12,7 @@
       "no-console": false,
       "arrow-parens": [ true, "ban-single-arg-parens" ],
       "object-literal-sort-keys": false,
-      "ban-types": false
+      "ban-types": false,
+      "no-debugger": false
     }
 }
