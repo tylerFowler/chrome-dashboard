@@ -12,7 +12,7 @@ const mapStateToProps = (state: GlobalState, ownProps: Partial<HNFeedPanelProps>
 
 const mapDispatchToProps = (dispatch: Function): Partial<HNFeedPanelProps> => ({
   fetchPosts() { dispatch(fetchPosts()); },
-  // TODO get interval time from settings
+  // TODO get interval time from settings (and type)
   startHNFeedRefresh() { dispatch(startAutoRefresh(5 * 60 * 1000)); },
   stopHNFeedRefresh() { dispatch(stopAutoRefresh()); },
 });

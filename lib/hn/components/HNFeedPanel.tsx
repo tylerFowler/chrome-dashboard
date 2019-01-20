@@ -28,6 +28,7 @@ export default class HNFeedPanel extends React.Component<HNFeedPanelProps> {
         {this.props.stories.map((post, idx) =>
           <li key={idx}>
             <FeedItem
+              id={post.id}
               index={idx + 1} key={idx}
               title={post.title}
               url={post.url}

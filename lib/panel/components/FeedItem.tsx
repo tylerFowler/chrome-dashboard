@@ -1,8 +1,10 @@
 import styled from 'panel/styled-components';
 import React from 'react';
 import { fontStacks, typeScale } from '../../styles';
+import Upvotes from './Upvotes';
 
 export interface FeedItemProps {
+  readonly id: string|number;
   readonly index: number;
   readonly title: string;
   readonly url: string;
@@ -11,6 +13,8 @@ export interface FeedItemProps {
   readonly author?: string;
   readonly commentCount?: number;
   readonly commentLink?: string;
+
+  upvote?(id: string|number): void;
 }
 
 const feedItemSize = 80;
@@ -54,19 +58,6 @@ const ContentContainer = styled.div`
   font-size: ${typeScale(4)};
 `;
 
-const UpvoteIcon = styled.div`
-  display: inline-block;
-  vertical-align: baseline;
-  height: 0;
-  width: 0;
-  margin: 0 .5em 0 0;
-
-  border-top: .65em solid transparent;
-  border-right: .5em solid transparent;
-  border-left: .5em solid transparent;
-  border-bottom: .65em solid ${props => props.theme.backgroundDark};
-`;
-
 const ItemDetail = styled.div`
   font-family: ${fontStacks.OpenSans};
   font-weight: 300;
@@ -95,7 +86,8 @@ const CommentLink = styled(Link)``;
 
 const FeedItem: React.FC<FeedItemProps> = props => {
   const {
-    index, title, url, maxTitleLength, upvotes, author, commentCount, commentLink,
+    id, index, title, url, maxTitleLength, upvotes, author,
+    commentCount, commentLink, upvote,
   } = props;
 
   let abbreviatedTitle = title;
@@ -111,6 +103,11 @@ const FeedItem: React.FC<FeedItemProps> = props => {
     commentDetail = <CommentLink href={commentLink}>{commentDetail}</CommentLink>;
   }
 
+  let upvoteHandler;
+  if (upvote) {
+    upvoteHandler = () => upvote(id);
+  }
+
   return (
     <Article>
       <FeedNumber>{index}</FeedNumber>
@@ -118,7 +115,7 @@ const FeedItem: React.FC<FeedItemProps> = props => {
         <PostLink href={url} title={title}>{abbreviatedTitle}</PostLink>
 
         <ItemDetail>
-          {upvotes && <span>{upvotes} <UpvoteIcon></UpvoteIcon></span>}
+          {upvotes && <Upvotes count={upvotes} upvote={upvoteHandler} />}
           {author && <span>{author}</span>}
           {(upvotes || author) && <span style={{userSelect: 'none'}}>|</span>}
           {commentCount !== undefined && commentDetail}
