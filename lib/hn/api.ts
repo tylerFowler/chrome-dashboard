@@ -1,5 +1,7 @@
-const HNApi = 'https://hacker-news.firebaseio.com/v0';
 import { HNPost } from './reducer';
+
+export const HNApi = 'https://hacker-news.firebaseio.com/v0';
+export const HNSite = 'https://news.ycombinator.com';
 
 export type PostId = number;
 
@@ -10,7 +12,12 @@ export enum PageType {
   ShowStories = 'showstories',
 }
 
-const getHNLinkForPost = (postId: PostId) => `https://news.ycombinator.com/item?id=${postId}`;
+const getHNLinkForPost = (postId: PostId) => `${HNSite}/item?id=${postId}`;
+
+// TODO this doesn't work as it seems to break auth redirection, may not be able
+// to do this until the API officially supports it
+export const getUpvoteLinkForPost = (postId: PostId) =>
+  `${HNSite}/vote?id=${postId}&how=up&goto=item%3Fid%3D${postId}`;
 
 export async function fetchStoryPage(type: PageType = PageType.NewStories, size: number = 10): Promise<PostId[]> {
   const response = await fetch(`${HNApi}/${type}.json`, { mode: 'cors' });
