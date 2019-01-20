@@ -13,6 +13,7 @@
       "arrow-parens": [ true, "ban-single-arg-parens" ],
       "object-literal-sort-keys": false,
       "ban-types": false,
-      "no-debugger": false
+      "no-debugger": false,
+      "no-empty": false
     }
 }
