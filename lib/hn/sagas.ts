@@ -1,4 +1,4 @@
-import { buffers, Channel, eventChannel } from 'redux-saga';
+import { buffers, EventChannel, eventChannel } from 'redux-saga';
 import { all, call, put, race, take, takeEvery, takeLatest } from 'redux-saga/effects';
 import { ActionType } from 'typesafe-actions';
 import { Actions, fetchPostsError, receivePosts, startAutoRefresh } from './actions';
@@ -19,7 +19,7 @@ function* fetchPosts() {
   }
 }
 
-function refreshChan(intervalMs: number): Channel<boolean> {
+function refreshChan(intervalMs: number) {
   return eventChannel(publish => {
     const id = setInterval(() => publish(true), intervalMs);
     return () => clearInterval(id);
@@ -27,7 +27,7 @@ function refreshChan(intervalMs: number): Channel<boolean> {
 }
 
 function* feedRefresh({ payload }: ActionType<typeof startAutoRefresh>) {
-  const chan: Channel<boolean> = yield call(refreshChan, payload.interval);
+  const chan: EventChannel<boolean> = yield call(refreshChan, payload.interval);
   while (true) {
     const { cancel } = yield race({
       refreshTick: take(chan),
