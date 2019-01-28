@@ -1,5 +1,6 @@
 import styled from 'panel/styled-components';
 import React from 'react';
+import ErrorDisplay from './ErrorDisplay';
 import Panel, { PanelProps } from './Panel';
 import Spinner from './Spinner';
 
@@ -26,9 +27,15 @@ export default class FeedPanel extends React.Component<FeedProps> {
       <Panel {...panelProps}>
         {loading && <Spinner topMargin="30%" />}
 
+        {fetchError &&
+          <ErrorDisplay>
+            Error loading feed<br />
+            <em>{fetchError.toString()}</em>
+          </ErrorDisplay>
+        }
+
         {!loading &&
           <FeedList>
-            {fetchError && <span>Error: {fetchError.toString()}</span>}
             {children}
           </FeedList>
         }
