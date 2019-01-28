@@ -93,7 +93,7 @@ const FeedItem: React.FC<FeedItemProps> = props => {
 
   let abbreviatedTitle = title;
   if (title.length > maxTitleLength) {
-    abbreviatedTitle = `${title.slice(0, maxTitleLength - '...'.length)}...`;
+    abbreviatedTitle = `${title.slice(0, maxTitleLength - '...'.length).trim()}...`;
   }
 
   let commentDetail = <span>
