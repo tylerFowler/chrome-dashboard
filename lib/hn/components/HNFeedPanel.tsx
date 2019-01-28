@@ -31,7 +31,7 @@ export default class HNFeedPanel extends React.Component<HNFeedPanelProps> {
               id={post.id}
               index={idx + 1} key={idx}
               title={post.title}
-              url={post.url}
+              url={post.url || post.hnLink}
               upvotes={post.score}
               author={post.author}
               commentCount={post.commentCount}
