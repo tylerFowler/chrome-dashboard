@@ -1,4 +1,4 @@
-import styled from 'panel/styled-components';
+import styled, { keyframes } from 'panel/styled-components';
 import React from 'react';
 import ErrorDisplay from './ErrorDisplay';
 import Panel, { PanelProps } from './Panel';
@@ -10,13 +10,22 @@ export interface FeedProps extends PanelProps {
   fetchError: Error;
 }
 
+const feedListScrollIn = keyframes`
+  from { transform: translateY(100vh); }
+  to { transform: translateY(0); }
+`;
+
 const FeedList = styled.ul`
   list-style-type: none;
   margin: 0;
   padding: 2em .75em 1em;
   overflow: scroll;
 
-  li { margin-bottom: 1em; }
+  > li {
+    margin-bottom: 1em;
+
+    animation: ${feedListScrollIn} 1.5s cubic-bezier(0.43, 0.11, 0.48, 1.11);
+  }
 `;
 
 export default class FeedPanel extends React.Component<FeedProps> {
