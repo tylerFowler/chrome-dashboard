@@ -8,6 +8,7 @@ export interface ClockProps {
 }
 
 const Panel = styled.div`
+  user-select: none;
   background-color: #fff;
   border: 3px solid #4f4f4f;
   text-align: center;
