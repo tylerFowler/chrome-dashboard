@@ -2,11 +2,12 @@ import { connect } from 'react-redux';
 import { GlobalState } from '../store';
 import { fetchPosts, startAutoRefresh, stopAutoRefresh } from './actions';
 import HNFeedPanel, { HNFeedPanelProps } from './components/HNFeedPanel';
-import { getStoryPage, isLoadingStories } from './selectors';
+import { getFetchError, getStoryPage, isLoadingStories } from './selectors';
 
 const mapStateToProps = (state: GlobalState, ownProps: Partial<HNFeedPanelProps>): Partial<HNFeedPanelProps> => ({
   ...ownProps,
   loading: isLoadingStories(state),
+  fetchError: getFetchError(state),
   stories: getStoryPage(15, state),
 });
 

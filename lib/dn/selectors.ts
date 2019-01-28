@@ -2,6 +2,9 @@ import { GlobalState } from '../store';
 
 type State = Pick<GlobalState, 'dnFeed'>;
 
+export const isLoadingStories = ({ dnFeed }: State) => dnFeed.fetching;
+export const getFetchError = ({ dnFeed }: State) => dnFeed.pullError;
+
 export const getStoryPage = (limit: number, { dnFeed }: State) =>
   Object.entries(dnFeed.posts)
     .slice(0, limit)
@@ -17,5 +20,3 @@ export const getStoryPage = (limit: number, { dnFeed }: State) =>
 
       return 0;
     });
-
-export const isLoadingStories = ({ dnFeed }: State) => dnFeed.fetching;

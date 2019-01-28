@@ -6,6 +6,7 @@ import Spinner from './Spinner';
 export interface FeedProps extends PanelProps {
   placeholder?: never;
   loading?: boolean;
+  fetchError: Error;
 }
 
 const FeedList = styled.ul`
@@ -19,7 +20,7 @@ const FeedList = styled.ul`
 
 export default class FeedPanel extends React.Component<FeedProps> {
   public render() {
-    const { loading, children, ...panelProps } = this.props;
+    const { loading, fetchError, children, ...panelProps } = this.props;
 
     return (
       <Panel {...panelProps}>
@@ -27,6 +28,7 @@ export default class FeedPanel extends React.Component<FeedProps> {
 
         {!loading &&
           <FeedList>
+            {fetchError && <span>Error: {fetchError.toString()}</span>}
             {children}
           </FeedList>
         }

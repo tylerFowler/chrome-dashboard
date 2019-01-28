@@ -2,6 +2,9 @@ import { GlobalState } from '../store';
 
 type State = Pick<GlobalState, 'hnFeed'>;
 
+export const isLoadingStories = ({ hnFeed }: State) => hnFeed.fetching;
+export const getFetchError = ({ hnFeed }: State) => hnFeed.pullError;
+
 export const getStoryPage = (limit: number, { hnFeed }: State) =>
   Object.entries(hnFeed.posts)
     .slice(0, limit)
@@ -17,5 +20,3 @@ export const getStoryPage = (limit: number, { hnFeed }: State) =>
 
       return 0;
     });
-
-export const isLoadingStories = ({ hnFeed }: State) => hnFeed.fetching;
