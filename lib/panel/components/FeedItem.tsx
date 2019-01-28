@@ -73,6 +73,7 @@ const Link = styled.a.attrs({
   target: '_blank',
 })`
   text-decoration: none;
+  user-select: none;
   color: inherit;
 `;
 
