@@ -11,11 +11,20 @@ export interface FeedItemProps {
   readonly maxTitleLength?: number;
   readonly upvotes?: number;
   readonly author?: string;
+  readonly maxAuthorLength?: number;
   readonly commentCount?: number;
   readonly commentLink?: string;
 
   upvote?(id: string|number): void;
 }
+
+const abbreviateText = (text: string, tgtLength: number) => {
+  if (text.length < tgtLength) {
+    return text;
+  }
+
+  return `${text.slice(0, tgtLength - '...'.length)}...`;
+};
 
 const feedItemSize = 80;
 const Article = styled.article`
@@ -87,14 +96,9 @@ const CommentLink = styled(Link)``;
 
 const FeedItem: React.FC<FeedItemProps> = props => {
   const {
-    id, index, title, url, maxTitleLength, upvotes, author,
+    id, index, title, url, maxTitleLength, upvotes, author, maxAuthorLength,
     commentCount, commentLink, upvote,
   } = props;
-
-  let abbreviatedTitle = title;
-  if (title.length > maxTitleLength) {
-    abbreviatedTitle = `${title.slice(0, maxTitleLength - '...'.length).trim()}...`;
-  }
 
   let commentDetail = <span>
     {commentCount} {commentCount === 1 ? 'comment' : 'comments'}
@@ -113,11 +117,11 @@ const FeedItem: React.FC<FeedItemProps> = props => {
     <Article>
       <FeedNumber>{index}</FeedNumber>
       <ContentContainer>
-        <PostLink href={url} title={title}>{abbreviatedTitle}</PostLink>
+        <PostLink href={url} title={title}>{abbreviateText(title, maxTitleLength)}</PostLink>
 
         <ItemDetail>
           {upvotes && <Upvotes count={upvotes} upvote={upvoteHandler} />}
-          {author && <span>{author}</span>}
+          {author && <span>{abbreviateText(author, maxAuthorLength)}</span>}
           {(upvotes || author) && <span style={{userSelect: 'none'}}>|</span>}
           {commentCount !== undefined && commentDetail}
         </ItemDetail>
@@ -128,6 +132,7 @@ const FeedItem: React.FC<FeedItemProps> = props => {
 
 FeedItem.defaultProps = {
   maxTitleLength: 55,
+  maxAuthorLength: 20,
 };
 
 export default FeedItem;
