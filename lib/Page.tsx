@@ -3,6 +3,7 @@ import React from 'react';
 import ClockPanel from './clock/ClockPanel';
 import DNFeedPanel from './dn/DNFeedPanel';
 import HNFeedPanel from './hn/HNFeedPanel';
+import SettingsPanel from './settings/components/Panel';
 import * as Styles from './styles';
 import mainTheme from './theme';
 
@@ -31,18 +32,29 @@ const panelContainerStyles: React.CSSProperties = {
   maxWidth: '750px',
 };
 
-const Page: React.FunctionComponent = () =>
-  <ThemeProvider theme={mainTheme}>
-    <PageBackground>
-      <DNFeedPanel panelOrientation="left" style={panelContainerStyles} />
+export default class Page extends React.PureComponent<{}, { showSettings: boolean }> {
+  public state = { showSettings: true };
 
-      <CenterPane>
-        <ClockPanel />
-      </CenterPane>
+  public render() {
+    return (
+      <ThemeProvider theme={mainTheme}>
+        <PageBackground>
+          <DNFeedPanel panelOrientation="left" style={panelContainerStyles} />
 
-      <HNFeedPanel panelOrientation="right" style={panelContainerStyles} />
-    </PageBackground>
-  </ThemeProvider>
-;
+          <CenterPane>
+            <span onClick={() => this.toggleSettings()}>Settings</span>
+            <ClockPanel />
+          </CenterPane>
 
-export default Page;
+          <HNFeedPanel panelOrientation="right" style={panelContainerStyles} />
+
+          {this.state.showSettings && <SettingsPanel onClose={() => this.toggleSettings()} />}
+        </PageBackground>
+      </ThemeProvider>
+    );
+  }
+
+  private toggleSettings() {
+    this.setState({ showSettings: !this.state.showSettings });
+  }
+}
