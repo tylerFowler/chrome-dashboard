@@ -54,6 +54,12 @@ export async function fetchStory(id: PostId): Promise<Readonly<HNPost>> {
   }
 
   const story = await response.json() as FetchStoryResponse;
+
+  // TODO need to handle this and possibly attempt to load another story
+  if (!story) {
+    return null;
+  }
+
   return {
     id: story.id,
     title: story.title,
