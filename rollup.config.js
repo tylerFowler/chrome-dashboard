@@ -18,6 +18,9 @@ const namedExports = {
   'node_modules/react-is/index.js': [
     'isValidElementType', 'isElement', 'ForwardRef',
   ],
+  'node_modules/react-redux/node_modules/react-is/index.js': [
+    'isValidElementType', 'isContextConsumer',
+  ]
 };
 
 // TODO reintroduce uglify for vendoring, this may warrant having a different
