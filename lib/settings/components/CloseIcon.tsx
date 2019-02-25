@@ -13,14 +13,14 @@ const Icon = styled.div`
     content: '';
     display: inline-block;
     width: 2px;
-    height: 1rem;
+    height: 1.25rem;
 
     position: relative;
-    background-color: ${props => props.theme.backgroundDarker};
+    background-color: ${props => props.theme.backgroundExtraLight};
     transform-origin: center, center;
   }
 
-  &::before { transform: rotate(45deg); left: 1px; }
+  &::before { transform: rotate(45deg); left: 2px; }
   &::after  { transform: rotate(-45deg); }
 `;
 

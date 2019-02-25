@@ -1,9 +1,9 @@
 import styled from 'lib/styled-components';
 import React from 'react';
-import CloseIcon from './CloseIcon';
+import SettingsHeader from './Header';
 
 export interface PanelProps {
-  onClose?(): void;
+  onClose(): void;
 }
 
 const ModalContainer = styled.div`
@@ -16,18 +16,15 @@ const ModalContainer = styled.div`
 
   padding: 1em;
 
-  border: 1px solid black;
+  border: 3px solid ${props => props.theme.backgroundDarker};
+  border-radius: 3px;
   background-color: ${props => props.theme.backgroundLight};
 `;
 
-export default class Panel extends React.Component<PanelProps> {
-  public render() {
-    return (
-      <ModalContainer>
-        Settings
+const Panel: React.FC<PanelProps> = ({ onClose }) =>
+  <ModalContainer>
+    <SettingsHeader onClose={onClose} />
+  </ModalContainer>
+;
 
-        <CloseIcon onClick={() => this.props.onClose()} />
-      </ModalContainer>
-    );
-  }
-}
+export default Panel;

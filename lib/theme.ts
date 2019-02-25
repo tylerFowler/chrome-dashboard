@@ -13,7 +13,7 @@ export interface AppTheme {
 
 export default {
   backgroundDark: '#7a7a7a',
-  backgroundDarker: '#404040',
+  backgroundDarker: '#4a4a4a',
   backgroundLight: '#f0f0f0',
   backgroundExtraLight: '#fafafa',
   backgroundLightDark: '#e7e9e9',
