@@ -19,6 +19,7 @@ const ModalContainer = styled.div`
   border: 3px solid ${props => props.theme.backgroundDarker};
   border-radius: 3px;
   background-color: ${props => props.theme.backgroundLight};
+  box-shadow: ${props => props.theme.darkShadowColor} 0 5px 10px 5px;
 `;
 
 const Panel: React.FC<PanelProps> = ({ onClose }) =>
