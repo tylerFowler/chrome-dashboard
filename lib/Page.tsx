@@ -3,7 +3,7 @@ import React from 'react';
 import ClockPanel from './clock/ClockPanel';
 import DNFeedPanel from './dn/DNFeedPanel';
 import HNFeedPanel from './hn/HNFeedPanel';
-import SettingsPanel from './settings/components/Panel';
+import SettingsModal from './settings/components/Modal';
 import * as Styles from './styles';
 import mainTheme from './theme';
 
@@ -48,7 +48,7 @@ export default class Page extends React.PureComponent<{}, { showSettings: boolea
 
           <HNFeedPanel panelOrientation="right" style={panelContainerStyles} />
 
-          {this.state.showSettings && <SettingsPanel onClose={() => this.toggleSettings()} />}
+          {this.state.showSettings && <SettingsModal onClose={() => this.toggleSettings()} />}
         </PageBackground>
       </ThemeProvider>
     );

@@ -22,10 +22,10 @@ const ModalContainer = styled.div`
   box-shadow: ${props => props.theme.darkShadowColor} 0 5px 10px 5px;
 `;
 
-const Panel: React.FC<PanelProps> = ({ onClose }) =>
+const SettingsModal: React.FC<PanelProps> = ({ onClose }) =>
   <ModalContainer>
     <SettingsHeader onClose={onClose} />
   </ModalContainer>
 ;
 
-export default Panel;
+export default SettingsModal;
