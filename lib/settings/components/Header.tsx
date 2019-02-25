@@ -5,8 +5,6 @@ import CloseIcon from './CloseIcon';
 
 const HeaderContainer = styled.header`
   clear: both;
-  margin: -1em; // opposite of the padding for the settings modal
-
   color: ${props => props.theme.typeLight};
   background-color: ${props => props.theme.backgroundDarker};
 `;
