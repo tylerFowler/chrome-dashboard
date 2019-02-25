@@ -10,6 +10,7 @@ export interface AppTheme {
   borderDark: string;
   borderDarkLight: string;
   darkShadowColor: string;
+  inputShadowDark: string;
 }
 
 export default {
@@ -26,4 +27,5 @@ export default {
   borderDark: '#4f4f4f',
   borderDarkLight: '#767676',
   darkShadowColor: 'rgba(64, 64, 64, .2)',
+  inputShadowDark: 'rgba(74, 74, 74, .5)',
 };
