@@ -4,10 +4,10 @@ import React from 'react';
 const Icon = styled.div`
   cursor: pointer;
   display: inline-block;
-
-  /* compensate for lateral movement */
-  margin-right: calc(1rem / 2);
   float: right;
+
+  width: 1.5rem;
+  height: 1.5rem;
 
   &::before, &::after {
     content: '';
@@ -17,11 +17,13 @@ const Icon = styled.div`
 
     position: relative;
     background-color: ${props => props.theme.backgroundExtraLight};
-    transform-origin: center, center;
+    transform-origin: center;
   }
 
-  &::before { transform: rotate(45deg); left: 2px; }
-  &::after  { transform: rotate(-45deg); }
+  // Compensate both of these for the shapes bleeding over the left edge of
+  // their container
+  &::before { transform: rotate(45deg); left: calc(2px + .5em); }
+  &::after  { transform: rotate(-45deg); left: .5em; }
 `;
 
 const CloseIcon: React.FC<{ onClick(): void }> = ({ onClick }) =>
