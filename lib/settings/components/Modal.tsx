@@ -47,7 +47,6 @@ const SettingsModal: React.FC<PanelProps> = ({ isOpen, onClose }) => {
 
     const listener = (event: MouseEvent) => {
       const target = event.target as HTMLElement;
-      console.log('Clicked', target);
       if (!target.closest(ModalContainer)) {
         onClose();
       }
