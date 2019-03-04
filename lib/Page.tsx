@@ -49,7 +49,7 @@ export default class Page extends React.PureComponent<{}, { showSettings: boolea
 
           <HNFeedPanel panelOrientation="right" style={panelContainerStyles} />
 
-          {this.state.showSettings && <SettingsModal onClose={() => this.toggleSettings()} />}
+          <SettingsModal onClose={() => this.toggleSettings()} key="settings-modal" isOpen={this.state.showSettings} />
         </PageBackground>
       </ThemeProvider>
     );
