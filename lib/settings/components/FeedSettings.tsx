@@ -48,6 +48,20 @@ const PanelSettingsContainer = styled(SettingField)`
   }
 `;
 
+// TODO: add ability to mark select values as disabled
+// TODO: style like other inputs
+// TODO: add ID & hook up w/ htmlFor for the left & right panel h3's (use labels instead, or hidden labels)
+// TODO: for each option create a component like HNFeedSettings, this should display a mini-form configuring that
+//       specific feed
+const FeedPanelSelector: React.FC = () =>
+  <select style={{margin: '1em 0 0'}}>
+    <option value="hn">Hacker News</option>
+    <option value="hn">Designer News</option>
+    <option value="rss">RSS</option>
+    <option value="lobster">Lobst.er</option>
+  </select>
+;
+
 const FeedSettings: React.FC<FeedSettingsProps> = () =>
   <SettingsForm>
     <legend>Feed Panels</legend>
@@ -57,10 +71,13 @@ const FeedSettings: React.FC<FeedSettingsProps> = () =>
     <PanelSettingsContainer>
       <div>
         <h3>Left Panel</h3>
+        <FeedPanelSelector />
       </div>
-      <div>
-        {/* TODO: when a break happens due to viewport width this should left align */}
-        <h3 style={{textAlign: 'right'}}>Right Panel</h3>
+
+      {/* TODO: when a break happens due to viewport width this should left align */}
+      <div style={{textAlign: 'right'}}>
+        <h3>Right Panel</h3>
+        <FeedPanelSelector />
       </div>
     </PanelSettingsContainer>
   </SettingsForm>
