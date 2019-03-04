@@ -13,7 +13,7 @@ const IconContainer = styled.div`
   position: absolute;
   padding: .25em .35em;
 
-  font-size: 18px;
+  font-size: 1.15rem;
   cursor: pointer;
   background: ${props => props.theme.backgroundExtraLight};
   border-radius: 15%;
