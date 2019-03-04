@@ -43,9 +43,7 @@ export default class Page extends React.PureComponent<{}, { showSettings: boolea
           <DNFeedPanel panelOrientation="left" style={panelContainerStyles} />
 
           <CenterPane>
-            <SettingsIcon onClick={() => this.toggleSettings()}
-              style={{margin: '-1rem 1em 0', paddingTop: '1.25rem'}}
-            />
+            <SettingsIcon onClick={() => this.toggleSettings()} style={{marginLeft: '1em', marginRight: '1em'}} />
             <ClockPanel />
           </CenterPane>
 
