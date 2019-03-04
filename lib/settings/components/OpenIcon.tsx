@@ -24,6 +24,7 @@ const IconContainer = styled.div`
   &:hover {
     padding-top: 1.75em;
     transition: padding .175s ease-in-out;
+    transition-delay: .075s;
   }
 
   &:focus { padding-top: 1.25em; }
@@ -31,7 +32,7 @@ const IconContainer = styled.div`
 
 const OpenIcon: React.FC<{ style?: React.CSSProperties; onClick?: () => void }> = props =>
   <IconContainer style={props.style} onClick={props.onClick}>
-    <GearIcon />
+    <GearIcon style={{userSelect: 'none'}} />
   </IconContainer>
 ;
 
