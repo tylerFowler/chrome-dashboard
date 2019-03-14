@@ -48,18 +48,25 @@ const PanelSettingsContainer = styled(SettingField)`
   }
 `;
 
-// TODO: add ability to mark select values as disabled
-// TODO: style like other inputs
-// TODO: add ID & hook up w/ htmlFor for the left & right panel h3's (use labels instead, or hidden labels)
+const FeedPanelSelectorLabel = styled.label`
+  font-size: ${typeScale(4)};
+  display: block;
+`;
+
+const FeedPanelSelect = styled.select`
+  margin: 1em 0 0;
+  &:focus { outline: 0; }
+`;
+
 // TODO: for each option create a component like HNFeedSettings, this should display a mini-form configuring that
-//       specific feed
-const FeedPanelSelector: React.FC = () =>
-  <select style={{margin: '1em 0 0'}}>
+//       specific feed, HN & DN don't need them so wait until Reddit
+const FeedPanelSelector: React.FC<{ readonly id?: string }> = ({ id }) =>
+  <FeedPanelSelect id={id} style={{margin: '1em 0 0'}}>
     <option value="hn">Hacker News</option>
     <option value="hn">Designer News</option>
     <option value="rss">RSS</option>
     <option value="lobster">Lobst.er</option>
-  </select>
+  </FeedPanelSelect>
 ;
 
 const FeedSettings: React.FC<FeedSettingsProps> = () =>
@@ -70,13 +77,17 @@ const FeedSettings: React.FC<FeedSettingsProps> = () =>
 
     <PanelSettingsContainer>
       <div>
-        <h3>Left Panel</h3>
-        <FeedPanelSelector />
+        <FeedPanelSelectorLabel htmlFor="left-feed-panel-settings">
+          Left Panel
+        </FeedPanelSelectorLabel>
+        <FeedPanelSelector id="left-feed-panel-settings" />
       </div>
 
       {/* TODO: when a break happens due to viewport width this should left align */}
       <div style={{textAlign: 'right'}}>
-        <h3>Right Panel</h3>
+        <FeedPanelSelectorLabel htmlFor="right-feed-panel-settings">
+          Right Panel
+        </FeedPanelSelectorLabel>
         <FeedPanelSelector />
       </div>
     </PanelSettingsContainer>
