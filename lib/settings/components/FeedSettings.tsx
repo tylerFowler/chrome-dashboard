@@ -40,12 +40,6 @@ const PanelSettingsContainer = styled(SettingField)`
     flex: 1 50%;
     min-width: 150px;
   }
-
-  & h3 {
-    margin: 0;
-    font-size: ${typeScale(4)};
-    font-weight: normal;
-  }
 `;
 
 const FeedPanelSelectorLabel = styled.label`
