@@ -1,5 +1,5 @@
 import styled, { ThemeProvider } from 'lib/styled-components';
-import React from 'react';
+import React, { useState } from 'react';
 import ClockPanel from './clock/ClockPanel';
 import DNFeedPanel from './dn/DNFeedPanel';
 import HNFeedPanel from './hn/HNFeedPanel';
@@ -33,29 +33,30 @@ const panelContainerStyles: React.CSSProperties = {
   maxWidth: '750px',
 };
 
-export default class Page extends React.PureComponent<{}, { showSettings: boolean }> {
-  public state = { showSettings: false };
+const Page: React.FC = () => {
+  const [ showSettings, setSettingsShowing ] = useState(false);
 
-  public render() {
-    return (
-      <ThemeProvider theme={mainTheme}>
-        <PageBackground>
-          <DNFeedPanel panelOrientation="left" style={panelContainerStyles} />
+  return (
+    <ThemeProvider theme={mainTheme}>
+      <PageBackground>
+        <DNFeedPanel panelOrientation="left" style={panelContainerStyles} />
 
-          <CenterPane>
-            <SettingsIcon onClick={() => this.toggleSettings()} style={{marginLeft: '1em', marginRight: '1em'}} />
-            <ClockPanel />
-          </CenterPane>
+        <CenterPane>
+          <SettingsIcon
+            onClick={() => setSettingsShowing(!showSettings)}
+            style={{marginLeft: '1em', marginRight: '1em'}}
+          />
+          <ClockPanel />
+        </CenterPane>
 
-          <HNFeedPanel panelOrientation="right" style={panelContainerStyles} />
+        <HNFeedPanel panelOrientation="right" style={panelContainerStyles} />
 
-          <SettingsModal onClose={() => this.toggleSettings()} key="settings-modal" isOpen={this.state.showSettings} />
-        </PageBackground>
-      </ThemeProvider>
-    );
-  }
+        <SettingsModal key="settings-modal" isOpen={showSettings}
+          onClose={() => setSettingsShowing(false)}
+        />
+      </PageBackground>
+    </ThemeProvider>
+  );
+};
 
-  private toggleSettings() {
-    this.setState({ showSettings: !this.state.showSettings });
-  }
-}
+export default Page;
