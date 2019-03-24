@@ -73,8 +73,6 @@ const FeedPanelSelector: React.FC<{ readonly id?: string }> = ({ id }) =>
   <FeedPanelSelect id={id} style={{margin: '1em 0 0'}}>
     <option value="hn">Hacker News</option>
     <option value="hn">Designer News</option>
-    <option value="rss">RSS</option>
-    <option value="lobster">Lobst.er</option>
   </FeedPanelSelect>
 ;
 
