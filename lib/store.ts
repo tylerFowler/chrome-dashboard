@@ -9,6 +9,7 @@ import dnFeedReducer, { State as DNFeedState } from './dn/reducer';
 import dnFeedSaga from './dn/sagas';
 import hnFeedReducer, { State as HNFeedState } from './hn/reducer';
 import hnFeedSaga from './hn/sagas';
+import { State as SettingsState } from './settings/reducer';
 
 declare const ENV: string;
 
@@ -16,6 +17,7 @@ export interface GlobalState {
   clock: ClockState;
   hnFeed: HNFeedState;
   dnFeed: DNFeedState;
+  settings: SettingsState;
 }
 
 const saga = createSagaMiddleware();
