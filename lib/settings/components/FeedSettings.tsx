@@ -36,9 +36,24 @@ const RefreshIntervalSetting: React.FC<{ defaultIval?: number, onChange(ivalMinu
 const PanelSettingsContainer = styled(SettingField)`
   display: flex;
 
+  @media (max-width: 800px) {
+    flex-direction: column;
+  }
+
   & > div {
     flex: 1 50%;
     min-width: 150px;
+  }
+`;
+
+const FeedSettingsContainer = styled.div`
+  &:last-of-type {
+    text-align: right;
+
+    @media (max-width: 800px) {
+      margin-top: 1.5em;
+      text-align: left;
+    }
   }
 `;
 
@@ -70,20 +85,20 @@ const FeedSettings: React.FC<FeedSettingsProps> = () =>
     <RefreshIntervalSetting onChange={console.log} />
 
     <PanelSettingsContainer>
-      <div>
+      <FeedSettingsContainer>
         <FeedPanelSelectorLabel htmlFor="left-feed-panel-settings">
           Left Panel
         </FeedPanelSelectorLabel>
         <FeedPanelSelector id="left-feed-panel-settings" />
-      </div>
+      </FeedSettingsContainer>
 
       {/* TODO: when a break happens due to viewport width this should left align */}
-      <div style={{textAlign: 'right'}}>
+      <FeedSettingsContainer>
         <FeedPanelSelectorLabel htmlFor="right-feed-panel-settings">
           Right Panel
         </FeedPanelSelectorLabel>
         <FeedPanelSelector />
-      </div>
+      </FeedSettingsContainer>
     </PanelSettingsContainer>
   </SettingsForm>
 ;
