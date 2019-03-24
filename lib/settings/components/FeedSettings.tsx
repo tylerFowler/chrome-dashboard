@@ -90,7 +90,6 @@ const FeedSettings: React.FC<FeedSettingsProps> = () =>
         <FeedPanelSelector id="left-feed-panel-settings" />
       </FeedSettingsContainer>
 
-      {/* TODO: when a break happens due to viewport width this should left align */}
       <FeedSettingsContainer>
         <FeedPanelSelectorLabel htmlFor="right-feed-panel-settings">
           Right Panel
