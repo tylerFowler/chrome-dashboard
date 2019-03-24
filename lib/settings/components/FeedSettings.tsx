@@ -50,7 +50,7 @@ const FeedSettingsContainer = styled.div`
   &:last-of-type {
     text-align: right;
 
-    @media (max-width: 800px) {
+    @media (max-width: 750px) {
       margin-top: 1.5em;
       text-align: left;
     }

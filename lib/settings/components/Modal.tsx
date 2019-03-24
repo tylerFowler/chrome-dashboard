@@ -12,8 +12,6 @@ export interface PanelProps {
 const ModalContainer = styled.div`
   z-index: 999;
   position: absolute;
-  width: 750px;
-  height: 500px;
   margin: auto;
   left: 0; right: 0; top: 0; bottom: 0;
 
@@ -21,6 +19,16 @@ const ModalContainer = styled.div`
   border-radius: 3px;
   background-color: ${props => props.theme.backgroundLight};
   box-shadow: ${props => props.theme.darkShadowColor} 0 5px 10px 5px;
+
+  width: 750px;
+  height: 500px;
+
+  @media (max-width: 750px) {
+    width: 100%;
+    border-left: 0;
+    border-right: 0;
+    border-radius: 0;
+  }
 
   &.pop-in-enter { transform: scale(0); }
   &.pop-in-enter-active {
