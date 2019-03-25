@@ -86,21 +86,13 @@ export interface FeedPanelSelectorProps {
 // TODO: for each option create a component like HNFeedSettings, this should display a mini-form configuring that
 //       specific feed, HN & DN don't need them so wait until Reddit
 const FeedPanelSelector: React.FC<FeedPanelSelectorProps> = ({ id, value, onChange }) => {
-  const opts = [
-    FeedType.HN,
-    FeedType.DN,
-  ].map(type =>
-    <option key={type} value={type} selected={type === value}>
-      {FeedType.getDisplayString(type)}
-    </option>,
-  );
-
   const changeHandler = (event: React.FormEvent<HTMLSelectElement>) =>
     onChange(event.currentTarget.value as FeedType);
 
   return (
-    <FeedPanelSelect id={id} style={{margin: '1em 0 0'}} onChange={changeHandler}>
-      {opts}
+    <FeedPanelSelect id={id} style={{margin: '1em 0 0'}} onChange={changeHandler} value={value}>
+      <option value={FeedType.HN}>Hacker News</option>
+      <option value={FeedType.DN}>Designer News</option>
     </FeedPanelSelect>
   );
 };
