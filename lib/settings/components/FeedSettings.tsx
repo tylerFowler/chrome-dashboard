@@ -1,7 +1,7 @@
 import styled from 'lib/styled-components';
 import React from 'react';
 import { typeScale } from '../../styles';
-import { FeedType } from '../reducer';
+import { FeedType } from '../interface';
 import SettingsForm, { SettingField, SettingInput, SettingLabel } from './SettingsForm';
 
 export interface FeedSettingsProps {

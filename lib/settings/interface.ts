@@ -13,9 +13,3 @@ export namespace FeedType {
     }
   };
 }
-
-export interface PanelSettings {
-  readonly type: FeedType;
-  readonly feedSettings?: object; // TODO: replace w/ specific feed settings
-}
-

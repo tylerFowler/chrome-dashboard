@@ -9,7 +9,7 @@ import dnFeedReducer, { State as DNFeedState } from './dn/reducer';
 import dnFeedSaga from './dn/sagas';
 import hnFeedReducer, { State as HNFeedState } from './hn/reducer';
 import hnFeedSaga from './hn/sagas';
-import { State as SettingsState } from './settings/reducer';
+import settingsReducer, { State as SettingsState } from './settings/reducer';
 
 declare const ENV: string;
 
@@ -36,6 +36,7 @@ const store = createStore(
     clock: clockReducer,
     hnFeed: hnFeedReducer,
     dnFeed: dnFeedReducer,
+    settings: settingsReducer,
   }),
   middlewareComposer(applyMiddleware(...middleware)),
 );

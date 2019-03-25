@@ -1,4 +1,4 @@
-import { FeedType, PanelSettings } from './interface';
+import { FeedType } from './interface';
 import { Actions, SettingsAction } from './actions';
 
 export interface FeedSettings {
@@ -6,21 +6,24 @@ export interface FeedSettings {
   readonly pullSize: number;
 }
 
-const defaultFeedSettings: FeedSettings = {
-  refreshInterval: 10,
-  pullSize: 10,
-};
+export interface PanelSettings {
+  readonly type: FeedType;
+  readonly feedSettings?: object; // TODO: replace w/ specific feed settings
+}
 
 export interface State {
   readonly feed: FeedSettings;
   readonly panelConfig: {
-    readonly left: PanelSettings
-    readonly right: PanelSettings
-  },
+    readonly left: PanelSettings;
+    readonly right: PanelSettings;
+  };
 }
 
 export const defaultState: State = {
-  feed: defaultFeedSettings,
+  feed: {
+    refreshInterval: 10,
+    pullSize: 10,
+  },
   panelConfig: {
     left: { type: FeedType.DN },
     right: { type: FeedType.HN },
@@ -37,7 +40,7 @@ export default function settingsReducer(state: State = defaultState, action: Set
         ...state.panelConfig[action.meta.panel],
         ...action.payload.update,
       },
-    }}
+    }};
   default:
     return state;
   }

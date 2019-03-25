@@ -1,5 +1,6 @@
 import action, { ActionType } from 'typesafe-actions';
 import { FeedSettings, PanelSettings } from './reducer';
+import { FeedType } from './interface';
 
 export enum Actions {
   Commit = 'SETTINGS_COMMIT',
@@ -14,8 +15,14 @@ export type SettingsAction = ActionType<
 
 export const commit = () => action.action(Actions.Commit);
 
-export const updateFeedConfig = (config: FeedSettings) =>
+export const updateFeedConfig = (config: Partial<FeedSettings>) =>
   action.action(Actions.UpdateFeedConfiguration, { update: config });
 
-export const updatePanelConfig = (panel: 'left'|'right', config: PanelSettings) =>
+export const updatePanelConfig = (panel: 'left'|'right', config: Partial<PanelSettings>) =>
   action.action(Actions.UpdatePanelConfiguration, { update: config }, { panel });
+
+export const updateFeedRefreshInterval = (ivalMinutes: number) =>
+  updateFeedConfig({ refreshInterval: ivalMinutes });
+
+export const setPanelFeedType = (panel: 'left'|'right', type: FeedType) =>
+  updatePanelConfig(panel, { type });

@@ -1,7 +1,7 @@
 import styled from 'lib/styled-components';
 import React, { useEffect } from 'react';
 import ReactTransitionGroup from 'react-addons-css-transition-group';
-import FeedSettings from './FeedSettings';
+import FeedSettings from '../FeedSettings';
 import SettingsHeader from './Header';
 
 export interface PanelProps {
