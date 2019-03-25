@@ -90,7 +90,7 @@ const FeedPanelSelector: React.FC<FeedPanelSelectorProps> = ({ id, value, onChan
     FeedType.HN,
     FeedType.DN,
   ].map(type =>
-    <option value={type} selected={type === value}>
+    <option key={type} value={type} selected={type === value}>
       {FeedType.getDisplayString(type)}
     </option>,
   );
@@ -120,7 +120,7 @@ const FeedSettings: React.FC<FeedSettingsProps> = props =>
         </FeedPanelSelectorLabel>
 
         <FeedPanelSelector id="left-feed-panel-settings" value={props.leftPanelType}
-          onChange={type => props.updateLeftPanel(type, {})}
+          onChange={type => props.updateLeftPanel(type)}
         />
       </FeedSettingsContainer>
 
@@ -130,7 +130,7 @@ const FeedSettings: React.FC<FeedSettingsProps> = props =>
         </FeedPanelSelectorLabel>
 
         <FeedPanelSelector id="right-feed-panel-settings" value={props.rightPanelType}
-          onChange={type => props.updateRightPanel(type, {})}
+          onChange={type => props.updateRightPanel(type)}
         />
       </FeedSettingsContainer>
     </PanelSettingsContainer>
