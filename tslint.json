@@ -16,6 +16,7 @@
       "no-debugger": false,
       "no-empty": false,
       "member-ordering": false,
-      "no-namespace": false
+      "no-namespace": false,
+      "ordered-imports": false
     }
 }
