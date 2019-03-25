@@ -1,48 +1,44 @@
-export enum FeedType {
-  HN = 'hn',
-  DN = 'dn',
-}
+import { FeedType, PanelSettings } from './interface';
+import { Actions, SettingsAction } from './actions';
 
-export namespace FeedType {
-  export const getDisplayString = (type: FeedType) => {
-    switch (type) {
-    case FeedType.HN:
-      return 'Hacker News';
-    case FeedType.DN:
-      return 'Designer News';
-    }
-  };
-}
-
-interface PanelSettings {
-  readonly type: FeedType;
-  readonly feedSettings?: object; // TODO: replace w/ specific feed settings
-}
-
-interface FeedSettings {
+export interface FeedSettings {
   readonly refreshInterval: number; // the refresh interval for all panels in minutes
   readonly pullSize: number;
-  readonly panels: {
-    readonly left: PanelSettings;
-    readonly right: PanelSettings;
-  };
 }
 
 const defaultFeedSettings: FeedSettings = {
   refreshInterval: 10,
   pullSize: 10,
-  panels: {
+};
+
+export interface State {
+  readonly feed: FeedSettings;
+  readonly panelConfig: {
+    readonly left: PanelSettings
+    readonly right: PanelSettings
+  },
+}
+
+export const defaultState: State = {
+  feed: defaultFeedSettings,
+  panelConfig: {
     left: { type: FeedType.DN },
     right: { type: FeedType.HN },
   },
 };
 
-export interface State {
-  readonly feed: FeedSettings;
-}
-
-export const defaultState: State = { feed: defaultFeedSettings };
-
-export default function settingsReducer(state: State = defaultState, action: object): State; {
-  return state;
+export default function settingsReducer(state: State = defaultState, action: SettingsAction): State {
+  switch (action.type) {
+  case Actions.UpdateFeedConfiguration:
+    return { ...state, feed: { ...state.feed, ...action.payload.update } };
+  case Actions.UpdatePanelConfiguration:
+    return { ...state, panelConfig: { ...state.panelConfig,
+      [action.meta.panel]: {
+        ...state.panelConfig[action.meta.panel],
+        ...action.payload.update,
+      },
+    }}
+  default:
+    return state;
+  }
 }
