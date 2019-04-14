@@ -32,6 +32,8 @@ export const defaultState: State = {
 
 export default function settingsReducer(state: State = defaultState, action: SettingsAction): State {
   switch (action.type) {
+  case Actions.ReceiveSettings:
+    return action.payload;
   case Actions.UpdateFeedConfiguration:
     return { ...state, feed: { ...state.feed, ...action.payload.update } };
   case Actions.UpdatePanelConfiguration:

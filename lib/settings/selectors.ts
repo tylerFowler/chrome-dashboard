@@ -2,6 +2,8 @@ import { GlobalState } from '../store';
 
 type State = Pick<GlobalState, 'settings'>;
 
+export const getSettings = ({ settings }: State) => settings;
+
 export const getFeedRefreshInterval = ({ settings }: State) => settings.feed.refreshInterval;
 
 export const getLeftPanelFeedType = ({ settings }: State) => settings.panelConfig.left.type;
