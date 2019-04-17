@@ -1,19 +1,12 @@
-import { select, put } from 'redux-saga/effects';
+import { select, call, put, delay, takeLatest, takeEvery } from 'redux-saga/effects';
 import { getSettings } from './selectors';
-import { committed, commitFailure, receiveSettings } from './actions';
+import { committed, commitFailure, receiveSettings, addToast, Actions, removeToast } from './actions';
+
+// TODO: create some pluggable functions for getting & setting to/from local
+// storage, export saga generator creators that inject this for writing tests
+// - then write tests
 
 const settingsStorageKey = 'settings';
-
-function* commitSettings() {
-  const settings = yield select(getSettings);
-
-  try {
-    localStorage.setItem(settingsStorageKey, JSON.stringify(settings));
-    yield put(committed());
-  } catch (err) {
-    yield put(commitFailure(err));
-  }
-}
 
 function* restoreSettings() {
   try {
@@ -26,11 +19,29 @@ function* restoreSettings() {
   }
 }
 
-// TODO: need to figure out how to notify other things about commits, maybe a
-// hook? Context that this can write to?
-// TODO:
-// - on COMMIT: commit settings
-// - on UPDATE_FEED_SETTING: commit settings
-// - on UPDATE_PANEL_SETTING: commit settings
+function* commitSettings() {
+  const settings = yield select(getSettings);
+
+  try {
+    localStorage.setItem(settingsStorageKey, JSON.stringify(settings));
+    yield put(committed());
+  } catch (err) {
+    yield put(commitFailure(err));
+  }
+}
+
+function* settingsStoredToast() {
+  yield put(addToast('Settings saved'));
+  yield delay(5 * 1000);
+  yield put(removeToast());
+}
+
 export default function* rootSaga() {
+  yield call(restoreSettings);
+  yield [
+    takeLatest(Actions.Commit, commitSettings),
+    takeEvery(Actions.UpdateFeedConfiguration, commitSettings),
+    takeEvery(Actions.UpdatePanelConfiguration, commitSettings),
+    takeEvery(Actions.Committed, settingsStoredToast),
+  ];
 }

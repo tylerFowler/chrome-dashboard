@@ -10,6 +10,7 @@ import dnFeedSaga from './dn/sagas';
 import hnFeedReducer, { State as HNFeedState } from './hn/reducer';
 import hnFeedSaga from './hn/sagas';
 import settingsReducer, { State as SettingsState } from './settings/reducer';
+import settingsSaga from './settings/sagas';
 
 declare const ENV: string;
 
@@ -43,6 +44,7 @@ const store = createStore(
 
 saga.run(function* appSaga() {
   yield all({
+    settings: settingsSaga(),
     clock: clockSaga(),
     hnFeed: hnFeedSaga(),
     dnFeed: dnFeedSaga(),

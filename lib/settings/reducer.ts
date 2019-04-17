@@ -12,6 +12,7 @@ export interface PanelSettings {
 }
 
 export interface State {
+  readonly toast: string;
   readonly feed: FeedSettings;
   readonly panelConfig: {
     readonly left: PanelSettings;
@@ -20,6 +21,7 @@ export interface State {
 }
 
 export const defaultState: State = {
+  toast: null,
   feed: {
     refreshInterval: 10,
     pullSize: 10,
@@ -32,8 +34,12 @@ export const defaultState: State = {
 
 export default function settingsReducer(state: State = defaultState, action: SettingsAction): State {
   switch (action.type) {
+  case Actions.AddToast:
+    return { ...state, toast: action.payload.content };
+  case Actions.RemoveToast:
+    return { ...state, toast: null };
   case Actions.ReceiveSettings:
-    return action.payload;
+    return { ...state, ...action.payload };
   case Actions.UpdateFeedConfiguration:
     return { ...state, feed: { ...state.feed, ...action.payload.update } };
   case Actions.UpdatePanelConfiguration:
