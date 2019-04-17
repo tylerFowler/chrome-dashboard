@@ -4,7 +4,7 @@ import ReactTransitionGroup from 'react-addons-css-transition-group';
 import FeedSettings from '../FeedSettings';
 import SettingsHeader from '../Header';
 
-export interface PanelProps {
+export interface PanelProps { // TODO: rename this
   readonly isOpen: boolean;
   onClose(): void;
 }

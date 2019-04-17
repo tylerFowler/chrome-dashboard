@@ -2,6 +2,12 @@ import styled from 'lib/styled-components';
 import React from 'react';
 import { fontStacks, typeScale } from '../../styles';
 import CloseIcon from './CloseIcon';
+import Toast from './Toast';
+
+export interface HeaderProps {
+  readonly toast?: string;
+  onClose(): void;
+}
 
 const HeaderContainer = styled.header`
   clear: both;
@@ -18,9 +24,11 @@ const Heading = styled.h1`
   font-size: ${typeScale(8)};
 `;
 
-const SettingsHeader: React.FC<{ onClose(): void }> = ({ onClose }) =>
+const SettingsHeader: React.FC<HeaderProps> = ({ onClose }) =>
   <HeaderContainer>
     <Heading>Settings</Heading>
+
+    <Toast message="Settings saved" />
 
     <div style={{margin: '1em', display: 'inline-block', float: 'right'}}>
       <CloseIcon onClick={onClose} />
