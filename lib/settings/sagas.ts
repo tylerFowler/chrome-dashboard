@@ -1,4 +1,4 @@
-import { all, select, call, put, delay, takeLatest, takeEvery } from 'redux-saga/effects';
+import { all, select, call, put, delay, takeLatest, debounce } from 'redux-saga/effects';
 import { getSerializableSettings } from './selectors';
 import { committed, commitFailure, receiveSettings, addToast, Actions, removeToast } from './actions';
 
@@ -32,17 +32,16 @@ function* commitSettings() {
 
 function* settingsStoredToast() {
   yield put(addToast('Settings saved'));
-  yield delay(5 * 1000);
+  yield delay(2 * 1000);
   yield put(removeToast());
 }
 
 export default function* rootSaga() {
   yield call(restoreSettings);
-  // TODO: throttle updates
   yield all([
     takeLatest(Actions.Commit, commitSettings),
-    takeEvery(Actions.UpdateFeedConfiguration, commitSettings),
-    takeEvery(Actions.UpdatePanelConfiguration, commitSettings),
+    debounce(1000, Actions.UpdateFeedConfiguration, commitSettings),
+    debounce(1000, Actions.UpdatePanelConfiguration, commitSettings),
     takeLatest(Actions.Committed, settingsStoredToast),
   ]);
 }
