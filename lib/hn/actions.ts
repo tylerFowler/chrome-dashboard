@@ -1,4 +1,4 @@
-import action, { ActionType } from 'typesafe-actions';
+import { action, ActionType } from 'typesafe-actions';
 import { HNPost } from './reducer';
 
 export enum Actions {
@@ -15,14 +15,14 @@ export type HNAction = ActionType<
   | typeof receivePosts
 >;
 
-export const fetchPosts = () => action.action(Actions.FetchPosts);
+export const fetchPosts = () => action(Actions.FetchPosts);
 export const fetchPostsError = (error: Error) =>
-  action.action(Actions.FetchPostsFailure, { error });
+  action(Actions.FetchPostsFailure, { error });
 
 export const receivePosts = (posts: ReadonlyArray<HNPost>) =>
-  action.action(Actions.ReceivePosts, { posts: posts.filter(p => !!p) });
+  action(Actions.ReceivePosts, { posts: posts.filter(p => !!p) });
 
 export const startAutoRefresh = (intervalMs: number) =>
-  action.action(Actions.StartAutoRefresh, { interval: intervalMs });
+  action(Actions.StartAutoRefresh, { interval: intervalMs });
 
-export const stopAutoRefresh = () => action.action(Actions.StopAutoRefresh);
+export const stopAutoRefresh = () => action(Actions.StopAutoRefresh);

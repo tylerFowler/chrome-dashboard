@@ -40,7 +40,7 @@ export default {
       ]
     }),
     resolve({ // resolve must be placed before typescript to get the correct resolutions
-      browser: true, module: true,
+      mainFields: [ 'module', 'main', 'browser' ],
       customResolveOptions: { moduleDirectory: 'node_modules' }
     }),
     typescript({ typescript: require('typescript') }),
