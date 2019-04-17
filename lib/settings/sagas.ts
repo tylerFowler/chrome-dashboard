@@ -1,5 +1,5 @@
-import { select, call, put, delay, takeLatest, takeEvery } from 'redux-saga/effects';
-import { getSettings } from './selectors';
+import { all, select, call, put, delay, takeLatest, takeEvery } from 'redux-saga/effects';
+import { getSerializableSettings } from './selectors';
 import { committed, commitFailure, receiveSettings, addToast, Actions, removeToast } from './actions';
 
 // TODO: create some pluggable functions for getting & setting to/from local
@@ -20,7 +20,7 @@ function* restoreSettings() {
 }
 
 function* commitSettings() {
-  const settings = yield select(getSettings);
+  const settings = yield select(getSerializableSettings);
 
   try {
     localStorage.setItem(settingsStorageKey, JSON.stringify(settings));
@@ -38,10 +38,11 @@ function* settingsStoredToast() {
 
 export default function* rootSaga() {
   yield call(restoreSettings);
-  yield [
+  // TODO: throttle updates
+  yield all([
     takeLatest(Actions.Commit, commitSettings),
     takeEvery(Actions.UpdateFeedConfiguration, commitSettings),
     takeEvery(Actions.UpdatePanelConfiguration, commitSettings),
-    takeEvery(Actions.Committed, settingsStoredToast),
-  ];
+    takeLatest(Actions.Committed, settingsStoredToast),
+  ]);
 }

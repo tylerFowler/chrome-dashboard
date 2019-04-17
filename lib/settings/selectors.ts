@@ -2,7 +2,12 @@ import { GlobalState } from '../store';
 
 type State = Pick<GlobalState, 'settings'>;
 
-export const getSettings = ({ settings }: State) => settings;
+export const getSerializableSettings = ({ settings }: State) => {
+  const serializableSettings = { ...settings };
+  delete serializableSettings.toast;
+
+  return serializableSettings;
+};
 
 export const getActiveToast = ({ settings }: State) => settings.toast;
 
