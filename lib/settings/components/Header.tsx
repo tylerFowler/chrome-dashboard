@@ -31,7 +31,7 @@ const SettingsHeader: React.FC<HeaderProps> = ({ toast, onClose }) =>
     <Heading>Settings</Heading>
 
     {toast &&
-      <Toast message="Settings saved"
+      <Toast message={toast}
         style={{margin: 'auto', position: 'relative', right: '5%'}}
       />
     }
