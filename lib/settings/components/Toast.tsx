@@ -13,14 +13,15 @@ const ToastContainer = styled.div`
   border-radius: 3px;
 
   display: inline-block;
-  padding: .25em .5em;
+  padding: .5em .75em;
 
   font-family: ${fontStacks.OpenSans};
-  font-size: ${typeScale(3)};
+  font-size: ${typeScale(4)};
   background: ${props => props.theme.backgroundDark};
   color: ${props => props.theme.typeLight};
 `;
 
+// TODO: add transition effect, fade in from bottom, float to top
 const Toast: React.SFC<ToastProps> = ({ message, style }) =>
   <ToastContainer style={{...style}}>
     {message}
