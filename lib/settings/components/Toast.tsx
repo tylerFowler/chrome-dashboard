@@ -9,11 +9,10 @@ export interface ToastProps {
 
 const ToastContainer = styled.div`
   text-transform: lowercase;
+  text-align: center;
   border-radius: 3px;
 
-  vertical-align: super;
   display: inline-block;
-  margin: 0 auto;
   padding: .25em .5em;
 
   font-family: ${fontStacks.OpenSans};
@@ -23,11 +22,9 @@ const ToastContainer = styled.div`
 `;
 
 const Toast: React.SFC<ToastProps> = ({ message, style }) =>
-  <div style={{textAlign: 'center', ...style}}>
-    <ToastContainer>
-      {message}
-    </ToastContainer>
-  </div>
+  <ToastContainer style={{...style}}>
+    {message}
+  </ToastContainer>
 ;
 
 export default Toast;

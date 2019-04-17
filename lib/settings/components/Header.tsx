@@ -13,6 +13,8 @@ const HeaderContainer = styled.header`
   clear: both;
   color: ${props => props.theme.typeLight};
   background-color: ${props => props.theme.backgroundDarker};
+  display: flex;
+  justify-content: space-between;
 `;
 
 const Heading = styled.h1`
@@ -28,7 +30,7 @@ const SettingsHeader: React.FC<HeaderProps> = ({ onClose }) =>
   <HeaderContainer>
     <Heading>Settings</Heading>
 
-    <Toast message="Settings saved" />
+    <Toast message="Settings saved" style={{margin: 'auto', position: 'relative', right: '5%'}} />
 
     <div style={{margin: '1em', display: 'inline-block', float: 'right'}}>
       <CloseIcon onClick={onClose} />
