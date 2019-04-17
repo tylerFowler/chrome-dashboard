@@ -26,11 +26,15 @@ const Heading = styled.h1`
   font-size: ${typeScale(8)};
 `;
 
-const SettingsHeader: React.FC<HeaderProps> = ({ onClose }) =>
+const SettingsHeader: React.FC<HeaderProps> = ({ toast, onClose }) =>
   <HeaderContainer>
     <Heading>Settings</Heading>
 
-    <Toast message="Settings saved" style={{margin: 'auto', position: 'relative', right: '5%'}} />
+    {toast &&
+      <Toast message="Settings saved"
+        style={{margin: 'auto', position: 'relative', right: '5%'}}
+      />
+    }
 
     <div style={{margin: '1em', display: 'inline-block', float: 'right'}}>
       <CloseIcon onClick={onClose} />
