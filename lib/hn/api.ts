@@ -1,16 +1,10 @@
 import { HNPost } from './reducer';
+import { PageType } from './interface';
 
 export const HNApi = 'https://hacker-news.firebaseio.com/v0';
 export const HNSite = 'https://news.ycombinator.com';
 
 export type PostId = number;
-
-export enum PageType {
-  TopStories = 'topstories',
-  NewStories = 'newstories',
-  BestStories = 'beststories',
-  ShowStories = 'showstories',
-}
 
 const getHNLinkForPost = (postId: PostId) => `${HNSite}/item?id=${postId}`;
 
