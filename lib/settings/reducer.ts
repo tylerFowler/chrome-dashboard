@@ -2,6 +2,8 @@ import { FeedType, FeedPanelSettings } from './interface';
 import { Actions, SettingsAction } from './actions';
 import { PageType as HNFeedType } from '../hn/interface';
 
+export type PanelOrientation = 'left' | 'right';
+
 export interface FeedSettings {
   readonly refreshInterval: number; // the refresh interval for all panels in minutes
   readonly pullSize: number;
@@ -51,6 +53,10 @@ export default function settingsReducer(state: State = defaultState, action: Set
       [action.meta.panel]: {
         ...state.panelConfig[action.meta.panel],
         ...action.payload.update,
+        feedSettings: {
+          ...state.panelConfig[action.meta.panel].feedSettings,
+          ...action.payload.update.feedSettings,
+        },
       },
     }};
   default:

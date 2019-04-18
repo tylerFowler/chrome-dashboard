@@ -1,5 +1,5 @@
 import { action, ActionType } from 'typesafe-actions';
-import { FeedSettings, PanelSettings, State as SettingsState } from './reducer';
+import { FeedSettings, PanelSettings, State as SettingsState, PanelOrientation } from './reducer';
 import { FeedType } from './interface';
 
 export enum Actions {
@@ -35,11 +35,11 @@ export const receiveSettings = (settings: SettingsState) =>
 export const updateFeedConfig = (config: Partial<FeedSettings>) =>
   action(Actions.UpdateFeedConfiguration, { update: config });
 
-export const updatePanelConfig = (panel: 'left'|'right', config: Partial<PanelSettings>) =>
+export const updatePanelConfig = (panel: PanelOrientation, config: Partial<PanelSettings>) =>
   action(Actions.UpdatePanelConfiguration, { update: config }, { panel });
 
 export const updateFeedRefreshInterval = (ivalMinutes: number) =>
   updateFeedConfig({ refreshInterval: ivalMinutes });
 
-export const setPanelFeedType = (panel: 'left'|'right', type: FeedType) =>
+export const setPanelFeedType = (panel: PanelOrientation, type: FeedType) =>
   updatePanelConfig(panel, { type });

@@ -3,7 +3,8 @@ import React from 'react';
 import { typeScale } from '../../styles';
 import { FeedType } from '../interface';
 import SettingsForm, { SettingField, SettingInput, SettingLabel } from './SettingsForm';
-import HNSettings from './HNSettings';
+import HNSettings from '../containers/HNFeedPanelSettings';
+import { PanelOrientation } from '../reducer';
 
 export interface FeedSettingsProps {
   readonly feedRefreshIval: number;
@@ -79,6 +80,7 @@ const FeedPanelSelect = styled.select`
 `;
 
 export interface FeedPanelSelectorProps {
+  readonly orientation: PanelOrientation;
   readonly id?: string;
   readonly value?: FeedType;
   onChange?(type: FeedType): void;
@@ -89,14 +91,14 @@ const SettingsMiniform = styled.fieldset`
   padding: 1em 0;
 `;
 
-const FeedPanelSelector: React.FC<FeedPanelSelectorProps> = ({ id, value, onChange }) => {
+const FeedPanelSelector: React.FC<FeedPanelSelectorProps> = ({ orientation, id, value, onChange }) => {
   const changeHandler = (event: React.FormEvent<HTMLSelectElement>) =>
     onChange(event.currentTarget.value as FeedType);
 
   let settingsForm: React.ReactElement;
   switch (value) {
   case FeedType.HN:
-    settingsForm = <HNSettings />;
+    settingsForm = <HNSettings panelOrientation={orientation} />;
   }
 
   return (
@@ -127,7 +129,7 @@ const FeedSettings: React.FC<FeedSettingsProps> = props =>
           Left Panel
         </FeedPanelSelectorLabel>
 
-        <FeedPanelSelector id="left-feed-panel-settings" value={props.leftPanelType}
+        <FeedPanelSelector id="left-feed-panel-settings" value={props.leftPanelType} orientation="left"
           onChange={type => props.updateLeftPanel(type)}
         />
       </FeedSettingsContainer>
@@ -137,7 +139,7 @@ const FeedSettings: React.FC<FeedSettingsProps> = props =>
           Right Panel
         </FeedPanelSelectorLabel>
 
-        <FeedPanelSelector id="right-feed-panel-settings" value={props.rightPanelType}
+        <FeedPanelSelector id="right-feed-panel-settings" value={props.rightPanelType} orientation="right"
           onChange={type => props.updateRightPanel(type)}
         />
       </FeedSettingsContainer>
