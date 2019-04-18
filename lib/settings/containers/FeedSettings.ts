@@ -1,12 +1,12 @@
 import { connect } from 'react-redux';
-import { GlobalState } from '../store';
-import FeedSettings, { FeedSettingsProps } from './components/FeedSettings';
-import { updateFeedRefreshInterval, setPanelFeedType } from './actions';
+import { GlobalState } from '../../store';
+import FeedSettings, { FeedSettingsProps } from '../components/FeedSettings';
+import { updateFeedRefreshInterval, setPanelFeedType } from '../actions';
 import {
   getFeedRefreshInterval,
   getLeftPanelFeedSettings, getLeftPanelFeedType,
   getRightPanelFeedSettings, getRightPanelFeedType,
-} from './selectors';
+} from '../selectors';
 
 const mapStateToProps = (state: GlobalState): Partial<FeedSettingsProps> => ({
   feedRefreshIval: getFeedRefreshInterval(state),
