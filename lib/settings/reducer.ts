@@ -48,14 +48,22 @@ export default function settingsReducer(state: State = defaultState, action: Set
     return { ...state, ...action.payload };
   case Actions.UpdateFeedConfiguration:
     return { ...state, feed: { ...state.feed, ...action.payload.update } };
+  case Actions.UpdatePanelType: {
+    const panelFeedSettings = state.panelConfig[action.meta.panel].type === action.payload
+      ? state.panelConfig[action.meta.panel]
+      : {};
+
+    return { ...state, panelConfig: { ...state.panelConfig,
+      [action.meta.panel]: { type: action.payload, feedSettings: panelFeedSettings },
+    }};
+  }
   case Actions.UpdatePanelConfiguration:
     return { ...state, panelConfig: { ...state.panelConfig,
       [action.meta.panel]: {
         ...state.panelConfig[action.meta.panel],
-        ...action.payload.update,
         feedSettings: {
           ...state.panelConfig[action.meta.panel].feedSettings,
-          ...action.payload.update.feedSettings,
+          ...action.payload.update,
         },
       },
     }};

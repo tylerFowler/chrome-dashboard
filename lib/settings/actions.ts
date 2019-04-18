@@ -1,6 +1,6 @@
 import { action, ActionType } from 'typesafe-actions';
-import { FeedSettings, PanelSettings, State as SettingsState, PanelOrientation } from './reducer';
-import { FeedType } from './interface';
+import { FeedSettings, State as SettingsState, PanelOrientation } from './reducer';
+import { FeedType, FeedPanelSettings } from './interface';
 
 export enum Actions {
   Commit = 'SETTINGS_COMMIT',
@@ -11,6 +11,7 @@ export enum Actions {
   ReceiveSettings = 'SETTINGS_RECV',
   UpdateFeedConfiguration = 'SETTINGS_UPDATE_FEED_CONFIG',
   UpdatePanelConfiguration = 'SETTINGS_UPDATE_PANEL_CONFIG',
+  UpdatePanelType = 'SETTINGS_UPDATE_PANEL_TYPE',
 }
 
 export type SettingsAction = ActionType<
@@ -18,6 +19,7 @@ export type SettingsAction = ActionType<
   | typeof removeToast
   | typeof updateFeedConfig
   | typeof updatePanelConfig
+  | typeof setPanelFeedType
   | typeof receiveSettings
 >;
 
@@ -35,11 +37,11 @@ export const receiveSettings = (settings: SettingsState) =>
 export const updateFeedConfig = (config: Partial<FeedSettings>) =>
   action(Actions.UpdateFeedConfiguration, { update: config });
 
-export const updatePanelConfig = (panel: PanelOrientation, config: Partial<PanelSettings>) =>
+export const updatePanelConfig = (panel: PanelOrientation, config: Partial<FeedPanelSettings>) =>
   action(Actions.UpdatePanelConfiguration, { update: config }, { panel });
 
 export const updateFeedRefreshInterval = (ivalMinutes: number) =>
   updateFeedConfig({ refreshInterval: ivalMinutes });
 
 export const setPanelFeedType = (panel: PanelOrientation, type: FeedType) =>
-  updatePanelConfig(panel, { type });
+  action(Actions.UpdatePanelType, type, { panel });
