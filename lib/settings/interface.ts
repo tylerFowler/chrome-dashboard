@@ -1,3 +1,5 @@
+import { PageType as HNFeedType } from '../hn/interface';
+
 export enum FeedType {
   HN = 'hn',
   DN = 'dn',
@@ -12,4 +14,10 @@ export namespace FeedType {
       return 'Designer News';
     }
   };
+}
+
+export type FeedPanelSettings = HNFeedSettings;
+
+export interface HNFeedSettings {
+  readonly defaultFeedType: HNFeedType;
 }

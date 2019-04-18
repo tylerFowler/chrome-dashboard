@@ -1,5 +1,6 @@
-import { FeedType } from './interface';
+import { FeedType, FeedPanelSettings } from './interface';
 import { Actions, SettingsAction } from './actions';
+import { PageType as HNFeedType } from '../hn/interface';
 
 export interface FeedSettings {
   readonly refreshInterval: number; // the refresh interval for all panels in minutes
@@ -8,7 +9,7 @@ export interface FeedSettings {
 
 export interface PanelSettings {
   readonly type: FeedType;
-  readonly feedSettings?: object; // TODO: replace w/ specific feed settings
+  readonly feedSettings?: FeedPanelSettings;
 }
 
 export interface State {
@@ -28,7 +29,10 @@ export const defaultState: State = {
   },
   panelConfig: {
     left: { type: FeedType.DN },
-    right: { type: FeedType.HN },
+    right: {
+      type: FeedType.HN,
+      feedSettings: { defaultFeedType: HNFeedType.TopStories },
+    },
   },
 };
 
