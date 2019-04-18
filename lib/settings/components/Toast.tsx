@@ -21,7 +21,6 @@ const ToastContainer = styled.div`
   color: ${props => props.theme.typeLight};
 `;
 
-// TODO: add transition effect, fade in from bottom, float to top
 const Toast: React.SFC<ToastProps> = ({ message, style }) =>
   <ToastContainer style={{...style}}>
     {message}
