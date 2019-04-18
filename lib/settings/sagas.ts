@@ -8,7 +8,7 @@ import { committed, commitFailure, receiveSettings, addToast, Actions, removeToa
 
 const settingsStorageKey = 'settings';
 const toastDebounce = 500;
-const toastLifetime = 2 * 1000;
+const toastLifetime = 3 * 1000;
 
 function* restoreSettings() {
   try {

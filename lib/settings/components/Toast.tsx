@@ -16,7 +16,7 @@ const ToastContainer = styled.div`
   padding: .5em .75em;
 
   font-family: ${fontStacks.OpenSans};
-  font-size: ${typeScale(4)};
+  font-size: ${typeScale(3)};
   background: ${props => props.theme.backgroundDark};
   color: ${props => props.theme.typeLight};
 `;
