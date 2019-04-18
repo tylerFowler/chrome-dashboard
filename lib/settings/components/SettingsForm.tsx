@@ -13,6 +13,8 @@ export const SettingLabel = styled.label`
   margin-bottom: .75em;
 `;
 
+export const SettingInlineLabel = styled(SettingLabel)`display: inline-block`;
+
 export const SettingInput = styled.input`
   padding: .25em .5em;
 
@@ -22,6 +24,18 @@ export const SettingInput = styled.input`
   box-shadow: inset 0 0 3px 0 ${props => props.theme.inputShadowDark};
 
   &:focus { outline: 0; }
+
+  ${SettingInlineLabel} + & {
+    margin-left: 1em;
+  }
+`;
+
+export const SettingSelect = styled.select`
+  &:focus { outline: 0; }
+
+  ${SettingInlineLabel} + & {
+    margin-left: 1em;
+  }
 `;
 
 export default styled.form`

@@ -3,6 +3,7 @@ import React from 'react';
 import { typeScale } from '../../styles';
 import { FeedType } from '../interface';
 import SettingsForm, { SettingField, SettingInput, SettingLabel } from './SettingsForm';
+import HNSettings from './HNSettings';
 
 export interface FeedSettingsProps {
   readonly feedRefreshIval: number;
@@ -83,17 +84,32 @@ export interface FeedPanelSelectorProps {
   onChange?(type: FeedType): void;
 }
 
-// TODO: for each option create a component like HNFeedSettings, this should display a mini-form configuring that
-//       specific feed, HN & DN don't need them so wait until Reddit
+const SettingsMiniform = styled.fieldset`
+  border: 0;
+  padding: 1em 0;
+`;
+
 const FeedPanelSelector: React.FC<FeedPanelSelectorProps> = ({ id, value, onChange }) => {
   const changeHandler = (event: React.FormEvent<HTMLSelectElement>) =>
     onChange(event.currentTarget.value as FeedType);
 
+  let settingsForm: React.ReactElement;
+  switch (value) {
+  case FeedType.HN:
+    settingsForm = <HNSettings />;
+  }
+
   return (
-    <FeedPanelSelect id={id} style={{margin: '1em 0 0'}} onChange={changeHandler} value={value}>
-      <option value={FeedType.HN}>Hacker News</option>
-      <option value={FeedType.DN}>Designer News</option>
-    </FeedPanelSelect>
+    <>
+      <FeedPanelSelect id={id} style={{margin: '1em 0 0'}} onChange={changeHandler} value={value}>
+        <option value={FeedType.HN} defaultChecked={true}>Hacker News</option>
+        <option value={FeedType.DN}>Designer News</option>
+      </FeedPanelSelect>
+
+      <SettingsMiniform>
+        {settingsForm}
+      </SettingsMiniform>
+    </>
   );
 };
 
