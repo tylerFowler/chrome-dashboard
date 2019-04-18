@@ -7,6 +7,8 @@ import { committed, commitFailure, receiveSettings, addToast, Actions, removeToa
 // - then write tests
 
 const settingsStorageKey = 'settings';
+const toastDebounce = 500;
+const toastLifetime = 2 * 1000;
 
 function* restoreSettings() {
   try {
@@ -32,7 +34,7 @@ function* commitSettings() {
 
 function* settingsStoredToast() {
   yield put(addToast('Settings saved'));
-  yield delay(2 * 1000);
+  yield delay(toastLifetime);
   yield put(removeToast());
 }
 
@@ -40,8 +42,8 @@ export default function* rootSaga() {
   yield call(restoreSettings);
   yield all([
     takeLatest(Actions.Commit, commitSettings),
-    debounce(1000, Actions.UpdateFeedConfiguration, commitSettings),
-    debounce(1000, Actions.UpdatePanelConfiguration, commitSettings),
+    debounce(toastDebounce, Actions.UpdateFeedConfiguration, commitSettings),
+    debounce(toastDebounce, Actions.UpdatePanelConfiguration, commitSettings),
     takeLatest(Actions.Committed, settingsStoredToast),
   ]);
 }
