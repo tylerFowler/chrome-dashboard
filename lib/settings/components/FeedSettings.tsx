@@ -14,11 +14,11 @@ export interface FeedSettingsProps {
 
   readonly leftPanelType: FeedType;
   readonly leftPanelSettings: object;
-  updateLeftPanel(type: FeedType, settings?: object): void;
+  updateLeftPanel(type: FeedType): void;
 
   readonly rightPanelType: FeedType;
   readonly rightPanelSettings: object;
-  updateRightPanel(type: FeedType, settings?: object): void;
+  updateRightPanel(type: FeedType): void;
 }
 
 const RefreshIntervalInput = styled(SettingInput).attrs({
