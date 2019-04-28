@@ -29,8 +29,8 @@ const DashboardPanel: React.SFC<DashboardPanelProps> = ({ feedType, orientation,
 };
 
 export default connect(
-  (state: GlobalState, ownProps: Partial<DashboardPanelProps>): Partial<DashboardPanelProps> => ({
+  (state: GlobalState, { orientation, ...ownProps }: Partial<DashboardPanelProps>): Partial<DashboardPanelProps> => ({
     ...ownProps,
-    feedType: getPanelFeedType(ownProps.orientation, state),
+    feedType: getPanelFeedType(orientation, state),
   }),
 )(DashboardPanel);
