@@ -13,6 +13,7 @@ export const getSerializableSettings = ({ settings }: State) => {
 export const getActiveToast = ({ settings }: State) => settings.toast;
 
 export const getFeedRefreshInterval = ({ settings }: State) => settings.feed.refreshInterval;
+export const getFeedPullSize = ({ settings }: State) => settings.feed.pullSize;
 
 export const getPanelFeedType = (orientation: PanelOrientation, { settings }: State) =>
   settings.panelConfig[orientation].type;

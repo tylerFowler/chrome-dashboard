@@ -1,20 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { GlobalState } from '../store';
-import { FeedPanelSettings, HNFeedSettings, PanelOrientation } from '../settings/interface';
-import { FeedType } from './interface';
+import { FeedPanelSettings, PanelOrientation } from '../settings/interface';
 import { getPanelFeedSettings } from '../settings/selectors';
+import { HNSettingsContext } from '../settings/context';
 
 interface SettingsProps {
   readonly settings: FeedPanelSettings;
   readonly orientation: PanelOrientation;
 }
-
-const defaultHNSettings: HNFeedSettings = {
-  defaultFeedType: FeedType.NewStories,
-};
-
-export const HNSettingsContext = React.createContext(defaultHNSettings);
 
 const BaseComponent: React.SFC<SettingsProps> = ({ settings, children }) =>
   <HNSettingsContext.Provider value={settings}>

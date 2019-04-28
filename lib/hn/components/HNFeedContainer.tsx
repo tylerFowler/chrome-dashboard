@@ -1,8 +1,8 @@
 import React, { useEffect, useContext, useState } from 'react';
-import { FeedProps } from '../../panel/components/FeedPanel';
 import hnTheme from '../theme';
 import { FeedType } from '../interface';
-import { HNSettingsContext } from '../HNFeedSettingsProvider';
+import { FeedProps } from '../../panel/components/FeedPanel';
+import { HNSettingsContext } from '../../settings/context';
 import HNFeedPanel from '../HNFeedPanel';
 
 export interface HNFeedContainerProps extends FeedProps {

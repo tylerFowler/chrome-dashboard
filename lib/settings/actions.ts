@@ -37,11 +37,12 @@ export const receiveSettings = (settings: SettingsState) =>
 export const updateFeedConfig = (config: Partial<FeedSettings>) =>
   action(Actions.UpdateFeedConfiguration, { update: config });
 
+export const setPanelFeedType = (panel: PanelOrientation, type: FeedType) =>
+  action(Actions.UpdatePanelType, type, { panel });
+
 export const updatePanelConfig = (panel: PanelOrientation, config: Partial<FeedPanelSettings>) =>
   action(Actions.UpdatePanelConfiguration, { update: config }, { panel });
 
+export const updateFeedPullSize = (pullSize: number) => updateFeedConfig({ pullSize });
 export const updateFeedRefreshInterval = (ivalMinutes: number) =>
   updateFeedConfig({ refreshInterval: ivalMinutes });
-
-export const setPanelFeedType = (panel: PanelOrientation, type: FeedType) =>
-  action(Actions.UpdatePanelType, type, { panel });

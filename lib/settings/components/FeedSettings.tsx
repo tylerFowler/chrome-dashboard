@@ -9,6 +9,9 @@ export interface FeedSettingsProps {
   readonly feedRefreshIval: number;
   updateFeedRefreshIval(ivalMinutes: number): void;
 
+  readonly feedPullSize: number;
+  updateFeedPullSize(pullSize: number): void;
+
   readonly leftPanelType: FeedType;
   readonly leftPanelSettings: object;
   updateLeftPanel(type: FeedType, settings?: object): void;
