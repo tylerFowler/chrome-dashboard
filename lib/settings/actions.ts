@@ -1,6 +1,6 @@
 import { action, ActionType } from 'typesafe-actions';
-import { FeedSettings, State as SettingsState, PanelOrientation } from './reducer';
-import { FeedType, FeedPanelSettings } from './interface';
+import { FeedSettings, State as SettingsState } from './reducer';
+import { FeedType, FeedPanelSettings, PanelOrientation } from './interface';
 
 export enum Actions {
   Commit = 'SETTINGS_COMMIT',

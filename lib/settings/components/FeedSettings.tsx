@@ -1,10 +1,9 @@
 import styled from 'lib/styled-components';
 import React from 'react';
 import { typeScale } from '../../styles';
-import { FeedType } from '../interface';
+import { FeedType, PanelOrientation } from '../interface';
 import SettingsForm, { SettingField, SettingInput, SettingLabel } from './SettingsForm';
 import HNSettings from '../containers/HNFeedPanelSettings';
-import { PanelOrientation } from '../reducer';
 
 export interface FeedSettingsProps {
   readonly feedRefreshIval: number;

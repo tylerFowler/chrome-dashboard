@@ -4,7 +4,7 @@ import FeedPanel, { FeedProps } from '../../panel/components/FeedPanel';
 import { HNPost } from '../reducer';
 import hnTheme from '../theme';
 import { PageType } from '../../hn/interface';
-import { HNSettingsContext } from '../HNFeedSettings';
+import { HNSettingsContext } from '../HNFeedSettingsProvider';
 
 export interface HNFeedPanelProps extends FeedProps {
   title: never;

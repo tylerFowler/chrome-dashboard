@@ -1,9 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { GlobalState } from '../store';
-import { FeedPanelSettings, HNFeedSettings } from '../settings/interface';
+import { FeedPanelSettings, HNFeedSettings, PanelOrientation } from '../settings/interface';
 import { PageType } from './interface';
-import { PanelOrientation } from '../settings/reducer';
 import { getPanelFeedSettings } from '../settings/selectors';
 
 interface SettingsProps {

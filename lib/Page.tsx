@@ -1,13 +1,11 @@
 import styled, { ThemeProvider } from 'lib/styled-components';
 import React, { useState } from 'react';
-import ClockPanel from './clock/ClockPanel';
-import DNFeedPanel from './dn/DNFeedPanel';
-import HNFeedPanel from './hn/HNFeedPanel';
-import HNFeedSettings from './hn/HNFeedSettings';
-import SettingsModal from './settings/components/Modal';
-import { default as SettingsIcon } from './settings/components/OpenIcon';
 import * as Styles from './styles';
 import mainTheme from './theme';
+import ClockPanel from './clock/ClockPanel';
+import SettingsModal from './settings/components/Modal';
+import { default as SettingsIcon } from './settings/components/OpenIcon';
+import DashboardPanel from './DashboardPanel';
 
 const PageBackground = styled.div`
   width: 100%;
@@ -42,7 +40,7 @@ const Page: React.FC = () => {
   return (
     <ThemeProvider theme={mainTheme}>
       <PageBackground>
-        <DNFeedPanel panelOrientation="left" style={panelContainerStyles} />
+        <DashboardPanel orientation="left" style={panelContainerStyles} />
 
         <CenterPane>
           <SettingsIcon
@@ -52,9 +50,7 @@ const Page: React.FC = () => {
           <ClockPanel />
         </CenterPane>
 
-        <HNFeedSettings orientation="right">
-          <HNFeedPanel panelOrientation="right" style={panelContainerStyles} />
-        </HNFeedSettings>
+        <DashboardPanel orientation="right" style={panelContainerStyles} />
 
         <SettingsModal key="settings-modal" isOpen={showSettings}
           onClose={() => setSettingsShowing(false)}

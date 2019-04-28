@@ -1,5 +1,5 @@
 import { GlobalState } from '../store';
-import { PanelOrientation } from './reducer';
+import { PanelOrientation } from './interface';
 
 type State = Pick<GlobalState, 'settings'>;
 
