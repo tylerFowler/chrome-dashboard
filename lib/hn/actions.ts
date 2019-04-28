@@ -19,11 +19,11 @@ export type HNAction = ActionType<
 export const fetchPosts = (feed: PageType) =>
   action(Actions.FetchPosts, { feed });
 
-export const fetchPostsError = (error: Error) =>
-  action(Actions.FetchPostsFailure, { error });
+export const fetchPostsError = (feed: PageType, error: Error) =>
+  action(Actions.FetchPostsFailure, { feed, error });
 
-export const receivePosts = (posts: ReadonlyArray<HNPost>) =>
-  action(Actions.ReceivePosts, { posts: posts.filter(p => !!p) });
+export const receivePosts = (feed: PageType, posts: ReadonlyArray<HNPost>) =>
+  action(Actions.ReceivePosts, { feed, posts: posts.filter(p => !!p) });
 
 export const startAutoRefresh = (intervalMs: number, feed: PageType) =>
   action(Actions.StartAutoRefresh, { feed, interval: intervalMs });

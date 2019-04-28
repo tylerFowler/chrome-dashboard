@@ -1,4 +1,7 @@
+import { combineReducers } from 'redux';
 import { Actions, HNAction } from './actions';
+import { PageType } from './interface';
+import { PostId } from './api';
 
 export interface HNPost {
   readonly id: number;
@@ -11,29 +14,56 @@ export interface HNPost {
   readonly commentCount: number;
 }
 
-export interface State {
-  readonly posts: { [id: number]: HNPost };
-  readonly pullError: Error;
+export interface PageEntry {
+  readonly posts: ReadonlySet<PostId>;
   readonly fetching: boolean;
+  readonly pullError: Error;
 }
 
-export const defaultState: State = {
-  posts: {},
-  pullError: null,
-  fetching: false,
-};
+interface Posts { [id: number]: HNPost; }
+type Feeds = { [pageType in PageType]?: PageEntry };
 
-export default function hnFeedReducer(state: State = defaultState, action: HNAction): State {
+export interface State {
+  posts: Posts;
+  feeds: Feeds;
+}
+export const defaultState: State = { posts: {}, feeds: {} };
+
+function hnPostsReducer(state: Posts = {}, action: HNAction): Posts {
   switch (action.type) {
-  case Actions.FetchPosts:
-    return { ...state, fetching: true };
-  case Actions.FetchPostsFailure:
-    return { ...state, pullError: action.payload.error, fetching: false };
   case Actions.ReceivePosts:
-    return { ...state, pullError: null, fetching: false, posts:
-      action.payload.posts.reduce((store, p) => ({ ...store, [p.id]: p }), {}),
+    return { ...state, ...action.payload.posts
+      .reduce((store, p) => ({ ...store, [p.id]: p }), {}),
     };
   default:
     return state;
   }
 }
+
+function hnFeedsReducer(state: Feeds = {}, action: HNAction): Feeds {
+  switch (action.type) {
+  case Actions.FetchPosts:
+    return { ...state, [action.payload.feed]: { ...state[action.payload.feed],
+      fetching: true, pullError: null,
+    }};
+  case Actions.FetchPostsFailure:
+    return { ...state, [action.payload.feed]: { ...state[action.payload.feed],
+      fetching: false, pullError: action.payload.error,
+    }};
+  case Actions.ReceivePosts:
+    return { ...state, [action.payload.feed]: { ...state[action.payload.feed],
+      fetching: false, pullError: null,
+      posts: new Set(action.payload.posts
+        .sort((p1, p2) => p2.time - p1.time)
+        .map(post => post.id),
+      ),
+    }};
+  default:
+    return state;
+  }
+}
+
+export default combineReducers({
+  posts: hnPostsReducer,
+  feeds: hnFeedsReducer,
+});

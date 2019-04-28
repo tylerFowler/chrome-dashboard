@@ -1,22 +1,21 @@
 import { GlobalState } from '../store';
+import { PageType } from './interface';
+import { PostId } from './api';
 
 type State = Pick<GlobalState, 'hnFeed'>;
 
-export const isLoadingStories = ({ hnFeed }: State) => hnFeed.fetching;
-export const getFetchError = ({ hnFeed }: State) => hnFeed.pullError;
+export const hasFeed = (feed: PageType, { hnFeed }: State) => hnFeed.feeds.hasOwnProperty(feed);
+export const getFeed = (feed: PageType, { hnFeed }: State) => hnFeed.feeds[feed];
 
-export const getStoryPage = (limit: number, { hnFeed }: State) =>
-  Object.entries(hnFeed.posts)
+export const getPost = (id: PostId, { hnFeed }: State) => hnFeed.posts[id];
+
+export const isLoadingStories = (feed: PageType, { hnFeed }: State) =>
+  hasFeed(feed, {hnFeed}) && getFeed(feed, {hnFeed}).fetching;
+
+export const getFetchError = (feed: PageType, { hnFeed }: State) =>
+  hasFeed(feed, {hnFeed}) && getFeed(feed, {hnFeed}).pullError;
+
+export const getStoryPage = (feed: PageType, limit: number, { hnFeed }: State) =>
+  Array.from(getFeed(feed, {hnFeed}).posts || [])
     .slice(0, limit)
-    .map(([, post]) => post)
-    .sort((p1, p2) => {
-      if (p1.time < p2.time) {
-        return -1;
-      }
-
-      if (p1.time > p2.time) {
-        return 1;
-      }
-
-      return 0;
-    });
+    .map(id => getPost(id, {hnFeed}));

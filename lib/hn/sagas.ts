@@ -16,12 +16,13 @@ function* fetchPosts(action: ActionType<typeof fetchPostsAction>) {
     // TODO: pull the preferred feed size number here, from settings state
     const postIds = (yield call(API.fetchStoryPage, action.payload.feed) as unknown) as API.PostId[];
 
+    // TODO: only grab ones we don't already have
     const postRequests = postIds.map(postId => call(API.fetchStory, postId));
     const posts: ReadonlyArray<HNPost> = yield all(postRequests);
 
-    yield put(receivePosts(posts));
+    yield put(receivePosts(action.payload.feed, posts));
   } catch (error) {
-    yield put(fetchPostsError(error));
+    yield put(fetchPostsError(action.payload.feed, error));
   }
 }
 
