@@ -21,7 +21,7 @@
     "redux": "^4.0.1",
     "redux-saga": "^1.0.2",
     "styled-components": "^4.2.0",
-    "typesafe-actions": "^4.0.0"
+    "typesafe-actions": "^4.2.0"
   },
   "devDependencies": {
     "@types/node": "^11.13.8",
