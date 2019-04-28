@@ -32,6 +32,10 @@ function refreshChan(intervalMs: number) {
   }, buffers.none());
 }
 
+// TODO: for another day - if we have two HN feed panels on the same page then
+// their stop autorefreshes will interfere with each other, so we'll probably
+// need to pass an ID to startAutoRefresh and use a take pattern that routes
+// the stop command to the saga w/ that ID
 function* feedRefresh({ payload }: ActionType<typeof startAutoRefresh>) {
   const chan: EventChannel<boolean> = yield call(refreshChan, payload.interval);
   while (true) {

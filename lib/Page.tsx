@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import ClockPanel from './clock/ClockPanel';
 import DNFeedPanel from './dn/DNFeedPanel';
 import HNFeedPanel from './hn/HNFeedPanel';
+import HNFeedSettings from './hn/HNFeedSettings';
 import SettingsModal from './settings/components/Modal';
 import { default as SettingsIcon } from './settings/components/OpenIcon';
 import * as Styles from './styles';
@@ -33,6 +34,8 @@ const panelContainerStyles: React.CSSProperties = {
   maxWidth: '750px',
 };
 
+// TODO: use settings to determine which panels to use, probably need to create
+// constructors for each
 const Page: React.FC = () => {
   const [ showSettings, setSettingsShowing ] = useState(false);
 
@@ -49,7 +52,9 @@ const Page: React.FC = () => {
           <ClockPanel />
         </CenterPane>
 
-        <HNFeedPanel panelOrientation="right" style={panelContainerStyles} />
+        <HNFeedSettings orientation="right">
+          <HNFeedPanel panelOrientation="right" style={panelContainerStyles} />
+        </HNFeedSettings>
 
         <SettingsModal key="settings-modal" isOpen={showSettings}
           onClose={() => setSettingsShowing(false)}

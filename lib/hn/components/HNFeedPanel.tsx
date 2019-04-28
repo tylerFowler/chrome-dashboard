@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import FeedItem from '../../panel/components/FeedItem';
 import FeedPanel, { FeedProps } from '../../panel/components/FeedPanel';
 import { HNPost } from '../reducer';
 import hnTheme from '../theme';
 import { PageType } from '../../hn/interface';
+import { HNSettingsContext } from '../HNFeedSettings';
 
 export interface HNFeedPanelProps extends FeedProps {
   title: never;
@@ -14,18 +15,17 @@ export interface HNFeedPanelProps extends FeedProps {
 }
 
 const HNFeedPanel: React.SFC<HNFeedPanelProps> = props => {
+  const hnSettings = useContext(HNSettingsContext);
+
   useEffect(() => {
-    // TODO: get both of these from a context, convert this to an FC and use
-    // useContext w/ a useEffect to do this
-    // NOTE: keep defaults
-    props.fetchPosts(PageType.NewStories);
-
-    // TODO: this may need to take a type, and every time it's changed we'll need
-    // to stop refresh & start it w/ the new type
-    props.startHNFeedRefresh(5 * 60 * 1000, PageType.NewStories);
-
+    props.fetchPosts(hnSettings.defaultFeedType);
     return props.stopHNFeedRefresh();
   }, []);
+
+  useEffect(() => {
+    props.stopHNFeedRefresh();
+    props.startHNFeedRefresh(5 * 60 * 1000, hnSettings.defaultFeedType);
+  }, [ hnSettings.defaultFeedType ]);
 
   return (
     <FeedPanel {...props} title="Hacker News" theme={hnTheme}>
