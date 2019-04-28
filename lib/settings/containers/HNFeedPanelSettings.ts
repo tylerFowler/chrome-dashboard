@@ -6,7 +6,7 @@ import { HNFeedSettings } from '../interface';
 import { updatePanelConfig } from '../actions';
 
 const mapStateToProps = (state: GlobalState, ownProps: Partial<HNSettingsProps>): Partial<HNSettingsProps> => {
-  if (getPanelFeedType(ownProps.panelOrientation, state)) {
+  if (!getPanelFeedType(ownProps.panelOrientation, state)) {
     return {};
   }
 
