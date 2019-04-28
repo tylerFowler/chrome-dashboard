@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import FeedItem from '../../panel/components/FeedItem';
 import FeedPanel, { FeedProps } from '../../panel/components/FeedPanel';
 import { DNPost } from '../reducer';
@@ -12,34 +12,32 @@ export interface DNFeedPanelProps extends FeedProps {
   stopFeedRefresh(): void;
 }
 
-export default class DNFeedPanel extends React.Component<DNFeedPanelProps> {
-  public componentDidMount() {
-    this.props.fetchPosts();
-    this.props.startFeedRefresh();
-  }
+const DNFeedPanel: React.SFC<DNFeedPanelProps> = props => {
+  useEffect(() => {
+    props.fetchPosts();
+    props.startFeedRefresh();
 
-  public componentWillUnmount() {
-    this.props.stopFeedRefresh();
-  }
+    return props.stopFeedRefresh;
+  }, []);
 
-  public render() {
-    return (
-      <FeedPanel {...this.props} title="Designer News" theme={dnTheme}>
-        {this.props.stories.map((post, idx) =>
-            <li key={idx}>
-              <FeedItem
-                id={post.id}
-                index={idx + 1} key={post.id}
-                title={post.title}
-                url={post.url || post.dnLink}
-                upvotes={post.voteCount}
-                author={post.author}
-                commentCount={post.commentCount}
-                commentLink={post.dnLink}
-              />
-            </li>,
-         )}
-      </FeedPanel>
-    );
-  }
+  return (
+    <FeedPanel {...props} title="Designer News" theme={dnTheme}>
+      {props.stories.map((post, idx) =>
+          <li key={idx}>
+            <FeedItem
+              id={post.id}
+              index={idx + 1} key={post.id}
+              title={post.title}
+              url={post.url || post.dnLink}
+              upvotes={post.voteCount}
+              author={post.author}
+              commentCount={post.commentCount}
+              commentLink={post.dnLink}
+            />
+          </li>,
+        )}
+    </FeedPanel>
+  );
 }
+
+export default DNFeedPanel;
