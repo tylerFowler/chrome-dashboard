@@ -5,7 +5,7 @@ import styled from 'lib/styled-components';
 import FeedSettings from '../containers/FeedSettings';
 import SettingsHeader from '../containers/Header';
 
-export interface PanelProps { // TODO: rename this
+export interface ModalProps {
   readonly isOpen: boolean;
   onClose(): void;
 }
@@ -48,7 +48,7 @@ const SettingsContainer = styled.section`
   padding: 1em;
 `;
 
-const SettingsModal: React.FC<PanelProps> = ({ isOpen, onClose }) => {
+const SettingsModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
   const $modal = useRef(null);
   useOutOfBoundsClick($modal, onClose, isOpen);
   useEscapeKeyUp(onClose);
