@@ -56,7 +56,7 @@ export default {
     file: 'public/js/bundle.js',
     name: 'ChromeDashboard',
     format: 'iife',
-    sourcemap: env === 'development',
+    sourcemap: env === 'development' ? 'inline' : false,
     preferConst: true,
   }
 };
