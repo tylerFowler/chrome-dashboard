@@ -1,4 +1,4 @@
-import { PageType as HNFeedType } from '../hn/interface';
+import { FeedType as HNFeedType } from '../hn/interface';
 
 export type PanelOrientation = 'left' | 'right';
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { PanelOrientation } from '../interface';
-import { PageType as HNFeedType } from '../../hn/interface';
+import { FeedType as HNFeedType } from '../../hn/interface';
 import { SettingInlineLabel, SettingField, SettingSelect } from './SettingsForm';
 
 export interface HNSettingsProps {

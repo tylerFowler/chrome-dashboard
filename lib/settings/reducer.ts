@@ -1,6 +1,6 @@
 import { FeedType, FeedPanelSettings } from './interface';
 import { Actions, SettingsAction } from './actions';
-import { PageType as HNFeedType } from '../hn/interface';
+import { FeedType as HNFeedType } from '../hn/interface';
 
 export interface FeedSettings {
   readonly refreshInterval: number; // the refresh interval for all panels in minutes

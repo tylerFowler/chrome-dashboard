@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { GlobalState } from '../store';
 import { FeedPanelSettings, HNFeedSettings, PanelOrientation } from '../settings/interface';
-import { PageType } from './interface';
+import { FeedType } from './interface';
 import { getPanelFeedSettings } from '../settings/selectors';
 
 interface SettingsProps {
@@ -11,7 +11,7 @@ interface SettingsProps {
 }
 
 const defaultHNSettings: HNFeedSettings = {
-  defaultFeedType: PageType.NewStories,
+  defaultFeedType: FeedType.NewStories,
 };
 
 export const HNSettingsContext = React.createContext(defaultHNSettings);

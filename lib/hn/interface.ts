@@ -1,4 +1,4 @@
-export enum PageType {
+export enum FeedType {
   TopStories = 'topstories',
   NewStories = 'newstories',
   BestStories = 'beststories',

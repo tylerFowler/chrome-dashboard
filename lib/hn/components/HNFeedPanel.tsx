@@ -2,11 +2,11 @@ import React from 'react';
 import FeedItem from '../../panel/components/FeedItem';
 import FeedPanel, { FeedProps } from '../../panel/components/FeedPanel';
 import { HNPost } from '../reducer';
-import { PageType } from '../interface';
+import { FeedType } from '../interface';
 
 export interface HNFeedPanelProps extends FeedProps {
   title: never;
-  readonly feed: PageType;
+  readonly feed: FeedType;
   readonly stories: readonly HNPost[];
 }
 

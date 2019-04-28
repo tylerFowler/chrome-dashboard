@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import { Actions, HNAction } from './actions';
-import { PageType } from './interface';
+import { FeedType } from './interface';
 import { PostId } from './api';
 
 export interface HNPost {
@@ -21,7 +21,7 @@ export interface PageEntry {
 }
 
 interface Posts { [id: number]: HNPost; }
-type Feeds = { [pageType in PageType]?: PageEntry };
+type Feeds = { [pageType in FeedType]?: PageEntry };
 
 export interface State {
   posts: Posts;

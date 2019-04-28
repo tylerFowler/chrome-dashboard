@@ -1,14 +1,14 @@
 import React, { useEffect, useContext, useState } from 'react';
 import { FeedProps } from '../../panel/components/FeedPanel';
 import hnTheme from '../theme';
-import { PageType } from '../interface';
+import { FeedType } from '../interface';
 import { HNSettingsContext } from '../HNFeedSettingsProvider';
 import HNFeedPanel from '../HNFeedPanel';
 
 export interface HNFeedContainerProps extends FeedProps {
   title: never;
-  fetchPosts(feed: PageType): void;
-  startHNFeedRefresh(refreshIval: number, feed: PageType): void;
+  fetchPosts(feed: FeedType): void;
+  startHNFeedRefresh(refreshIval: number, feed: FeedType): void;
   stopHNFeedRefresh(): void;
 }
 

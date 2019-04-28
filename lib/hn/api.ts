@@ -1,5 +1,5 @@
 import { HNPost } from './reducer';
-import { PageType } from './interface';
+import { FeedType } from './interface';
 
 export const HNApi = 'https://hacker-news.firebaseio.com/v0';
 export const HNSite = 'https://news.ycombinator.com';
@@ -13,7 +13,7 @@ const getHNLinkForPost = (postId: PostId) => `${HNSite}/item?id=${postId}`;
 export const getUpvoteLinkForPost = (postId: PostId) =>
   `${HNSite}/vote?id=${postId}&how=up&goto=item%3Fid%3D${postId}`;
 
-export async function fetchStoryPage(type: PageType = PageType.NewStories, size: number = 10): Promise<PostId[]> {
+export async function fetchStoryPage(type: FeedType = FeedType.NewStories, size: number = 10): Promise<PostId[]> {
   const response = await fetch(`${HNApi}/${type}.json`, { mode: 'cors' });
   if (!response.ok) {
     throw new Error(await response.text());

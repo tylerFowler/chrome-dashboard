@@ -1,22 +1,22 @@
 import { GlobalState } from '../store';
-import { PageType } from './interface';
+import { FeedType } from './interface';
 import { PostId } from './api';
 
 type State = Pick<GlobalState, 'hnFeed'>;
 
-export const hasFeed = (feed: PageType, { hnFeed }: State) => hnFeed.feeds.hasOwnProperty(feed);
-export const getFeed = (feed: PageType, { hnFeed }: State) => hnFeed.feeds[feed];
+export const hasFeed = (feed: FeedType, { hnFeed }: State) => hnFeed.feeds.hasOwnProperty(feed);
+export const getFeed = (feed: FeedType, { hnFeed }: State) => hnFeed.feeds[feed];
 
 export const getPost = (id: PostId, { hnFeed }: State) => hnFeed.posts[id];
 export const hasPost = (id: PostId, { hnFeed }: State) => hnFeed.posts.hasOwnProperty(id);
 
-export const isLoadingStories = (feed: PageType, { hnFeed }: State) =>
+export const isLoadingStories = (feed: FeedType, { hnFeed }: State) =>
   hasFeed(feed, {hnFeed}) && getFeed(feed, {hnFeed}).fetching;
 
-export const getFetchError = (feed: PageType, { hnFeed }: State) =>
+export const getFetchError = (feed: FeedType, { hnFeed }: State) =>
   hasFeed(feed, {hnFeed}) && getFeed(feed, {hnFeed}).pullError;
 
-export const getStoryPage = (feed: PageType, limit: number, { hnFeed }: State) => {
+export const getStoryPage = (feed: FeedType, limit: number, { hnFeed }: State) => {
   if (!hasFeed(feed, {hnFeed})) {
     return [];
   }
