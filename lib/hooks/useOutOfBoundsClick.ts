@@ -6,11 +6,7 @@ export type UseOutOfBoundsClickHook = (
   isActive?: boolean,
 ) => void;
 
-export default function useOutOfBoundsClick(
-  oobTargetRef: React.RefObject<HTMLElement>,
-  onClick: () => void,
-  isActive?: boolean,
-) {
+export default (function useOutOfBoundsClick(oobTargetRef, onClick, isActive) {
   return useEffect(() => {
     if (isActive === false) {
       return;
@@ -27,4 +23,4 @@ export default function useOutOfBoundsClick(
     document.addEventListener('click', listener);
     return () => document.removeEventListener('click', listener);
   });
-}
+}) as UseOutOfBoundsClickHook;
