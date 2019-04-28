@@ -8,13 +8,13 @@ const mapStateToProps = (state: GlobalState, ownProps: Partial<HNFeedPanelProps>
   ...ownProps,
   loading: isLoadingStories(state),
   fetchError: getFetchError(state),
-  stories: getStoryPage(15, state),
+  stories: getStoryPage(15, state), // TODO: add 'feed item count' setting, populate here
 });
 
+// TODO: try and use the shorthand
 const mapDispatchToProps = (dispatch: Function): Partial<HNFeedPanelProps> => ({
-  fetchPosts() { dispatch(fetchPosts()); },
-  // TODO get interval time from settings (and type)
-  startHNFeedRefresh() { dispatch(startAutoRefresh(5 * 60 * 1000)); },
+  fetchPosts(feed) { dispatch(fetchPosts(feed)); },
+  startHNFeedRefresh(refreshIval, feed) { dispatch(startAutoRefresh(refreshIval, feed)); },
   stopHNFeedRefresh() { dispatch(stopAutoRefresh()); },
 });
 

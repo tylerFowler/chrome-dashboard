@@ -1,14 +1,20 @@
 import { buffers, EventChannel, eventChannel } from 'redux-saga';
 import { all, call, put, race, take, takeEvery, takeLatest } from 'redux-saga/effects';
 import { ActionType } from 'typesafe-actions';
-import { Actions, fetchPostsError, receivePosts, startAutoRefresh } from './actions';
 import * as API from './api';
-import { PostId } from './api';
 import { HNPost } from './reducer';
+import {
+  Actions,
+  fetchPostsError,
+  receivePosts,
+  startAutoRefresh,
+  fetchPosts as fetchPostsAction,
+} from './actions';
 
-function* fetchPosts() {
+function* fetchPosts(action: ActionType<typeof fetchPostsAction>) {
   try {
-    const postIds = (yield call(API.fetchStoryPage) as unknown) as PostId[];
+    // TODO: pull the preferred feed size number here, from settings state
+    const postIds = (yield call(API.fetchStoryPage, action.payload.feed) as unknown) as API.PostId[];
 
     const postRequests = postIds.map(postId => call(API.fetchStory, postId));
     const posts: ReadonlyArray<HNPost> = yield all(postRequests);
@@ -39,7 +45,7 @@ function* feedRefresh({ payload }: ActionType<typeof startAutoRefresh>) {
       break;
     }
 
-    yield call(fetchPosts);
+    yield call(fetchPosts, fetchPostsAction(payload.feed));
   }
 }
 

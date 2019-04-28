@@ -1,5 +1,6 @@
 import { action, ActionType } from 'typesafe-actions';
 import { HNPost } from './reducer';
+import { PageType } from './interface';
 
 export enum Actions {
   FetchPosts = 'HN_FETCH_POSTS',
@@ -15,14 +16,16 @@ export type HNAction = ActionType<
   | typeof receivePosts
 >;
 
-export const fetchPosts = () => action(Actions.FetchPosts);
+export const fetchPosts = (feed: PageType) =>
+  action(Actions.FetchPosts, { feed });
+
 export const fetchPostsError = (error: Error) =>
   action(Actions.FetchPostsFailure, { error });
 
 export const receivePosts = (posts: ReadonlyArray<HNPost>) =>
   action(Actions.ReceivePosts, { posts: posts.filter(p => !!p) });
 
-export const startAutoRefresh = (intervalMs: number) =>
-  action(Actions.StartAutoRefresh, { interval: intervalMs });
+export const startAutoRefresh = (intervalMs: number, feed: PageType) =>
+  action(Actions.StartAutoRefresh, { feed, interval: intervalMs });
 
 export const stopAutoRefresh = () => action(Actions.StopAutoRefresh);
