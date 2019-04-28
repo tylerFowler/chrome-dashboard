@@ -11,7 +11,7 @@ const namedExports = {
   'node_modules/react/index.js': [
     'Children', 'Component', 'PureComponent', 'createElement', 'cloneElement',
     'isValidElement', 'createFactory', 'version', 'createContext',
-    'useState', 'useEffect',
+    'useState', 'useEffect', 'useContext',
   ],
   'node_modules/react-dom/index.js': [
     'findDOMNode', 'render', 'unmountComponentAtNode'
