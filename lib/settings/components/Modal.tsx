@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import ReactTransitionGroup from 'react-addons-css-transition-group';
-import { useOutOfBoundsClick } from '../../hooks';
+import { useOutOfBoundsClick, useEscapeKeyUp } from '../../hooks';
 import styled from 'lib/styled-components';
 import FeedSettings from '../containers/FeedSettings';
 import SettingsHeader from '../containers/Header';
@@ -51,6 +51,7 @@ const SettingsContainer = styled.section`
 const SettingsModal: React.FC<PanelProps> = ({ isOpen, onClose }) => {
   const $modal = useRef(null);
   useOutOfBoundsClick($modal, onClose, isOpen);
+  useEscapeKeyUp(onClose);
 
   return (
     <ReactTransitionGroup
