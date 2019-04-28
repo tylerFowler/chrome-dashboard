@@ -29,7 +29,7 @@ export default class DNFeedPanel extends React.Component<DNFeedPanelProps> {
             <li key={idx}>
               <FeedItem
                 id={post.id}
-                index={idx + 1} key={idx}
+                index={idx + 1} key={post.id}
                 title={post.title}
                 url={post.url || post.dnLink}
                 upvotes={post.voteCount}
