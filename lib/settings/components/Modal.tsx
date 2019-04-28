@@ -1,6 +1,7 @@
-import styled from 'lib/styled-components';
-import React, { useEffect } from 'react';
+import React, { useRef } from 'react';
 import ReactTransitionGroup from 'react-addons-css-transition-group';
+import { useOutOfBoundsClick } from '../../hooks';
+import styled from 'lib/styled-components';
 import FeedSettings from '../containers/FeedSettings';
 import SettingsHeader from '../containers/Header';
 
@@ -48,21 +49,8 @@ const SettingsContainer = styled.section`
 `;
 
 const SettingsModal: React.FC<PanelProps> = ({ isOpen, onClose }) => {
-  useEffect(() => {
-    if (!isOpen) {
-      return;
-    }
-
-    const listener = (event: MouseEvent) => {
-      const target = event.target as HTMLElement;
-      if (!target.closest(ModalContainer)) {
-        onClose();
-      }
-    };
-
-    document.addEventListener('click', listener);
-    return () => document.removeEventListener('click', listener);
-  });
+  const $modal = useRef(null);
+  useOutOfBoundsClick($modal, onClose, isOpen);
 
   return (
     <ReactTransitionGroup
@@ -71,7 +59,7 @@ const SettingsModal: React.FC<PanelProps> = ({ isOpen, onClose }) => {
       transitionLeaveTimeout={300}
     >
       {isOpen &&
-        <ModalContainer key="modal-outer">
+        <ModalContainer key="modal-outer" ref={$modal}>
           <SettingsHeader onClose={onClose} />
 
           <SettingsContainer>
