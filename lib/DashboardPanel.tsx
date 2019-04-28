@@ -26,7 +26,7 @@ const DashboardPanel: React.SFC<DashboardPanelProps> = ({ feedType, orientation,
   case FeedType.DN:
     return (
       <FeedSettingsProvider>
-        <DNFeedPanel panelOrientation={orientation} style={style} />;
+        <DNFeedPanel panelOrientation={orientation} style={style} />
       </FeedSettingsProvider>
     );
   default:
