@@ -19,13 +19,10 @@ const HNFeedPanel: React.SFC<HNFeedPanelProps> = props => {
 
   useEffect(() => {
     props.fetchPosts(hnSettings.defaultFeedType);
+    props.startHNFeedRefresh(5 * 60 * 1000, hnSettings.defaultFeedType);
+
     return props.stopHNFeedRefresh();
   }, []);
-
-  useEffect(() => {
-    props.stopHNFeedRefresh();
-    props.startHNFeedRefresh(5 * 60 * 1000, hnSettings.defaultFeedType);
-  }, [ hnSettings.defaultFeedType ]);
 
   return (
     <FeedPanel {...props} title="Hacker News" theme={hnTheme}>
