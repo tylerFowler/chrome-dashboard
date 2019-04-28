@@ -1,5 +1,5 @@
 import { buffers, EventChannel, eventChannel } from 'redux-saga';
-import { all, call, put, race, take, takeEvery, takeLatest } from 'redux-saga/effects';
+import { all, call, put, select, race, take, takeEvery } from 'redux-saga/effects';
 import { ActionType } from 'typesafe-actions';
 import * as API from './api';
 import { HNPost } from './reducer';
@@ -10,19 +10,24 @@ import {
   startAutoRefresh,
   fetchPosts as fetchPostsAction,
 } from './actions';
+import { hasPost } from './selectors';
 
 function* fetchPosts(action: ActionType<typeof fetchPostsAction>) {
+  const { feed } = action.payload;
+
   try {
     // TODO: pull the preferred feed size number here, from settings state
-    const postIds = (yield call(API.fetchStoryPage, action.payload.feed) as unknown) as API.PostId[];
+    const postIds = (yield call(API.fetchStoryPage, feed) as unknown) as API.PostId[];
 
-    // TODO: only grab ones we don't already have
-    const postRequests = postIds.map(postId => call(API.fetchStory, postId));
+    const postRequests = postIds
+      .filter(postId => select((state, id) => hasPost(id, state), postId))
+      .map(postId => call(API.fetchStory, postId));
+
     const posts: ReadonlyArray<HNPost> = yield all(postRequests);
 
-    yield put(receivePosts(action.payload.feed, posts));
+    yield put(receivePosts(feed, posts));
   } catch (error) {
-    yield put(fetchPostsError(action.payload.feed, error));
+    yield put(fetchPostsError(feed, error));
   }
 }
 
@@ -56,5 +61,5 @@ function* feedRefresh({ payload }: ActionType<typeof startAutoRefresh>) {
 
 export default function* rootSaga() {
   yield takeEvery(Actions.StartAutoRefresh, feedRefresh);
-  yield takeLatest(Actions.FetchPosts, fetchPosts);
+  yield takeEvery(Actions.FetchPosts, fetchPosts);
 }

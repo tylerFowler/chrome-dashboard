@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect, useContext, useState } from 'react';
 import { FeedProps } from '../../panel/components/FeedPanel';
 import hnTheme from '../theme';
 import { PageType } from '../interface';
@@ -24,7 +24,9 @@ const HNFeedContainer: React.SFC<HNFeedContainerProps> = ({
     return stopHNFeedRefresh();
   }, []);
 
-  return <HNFeedPanel {...panelProps} theme={hnTheme} />;
+  const [ currentFeed ] = useState(hnSettings.defaultFeedType);
+
+  return <HNFeedPanel {...panelProps} theme={hnTheme} feed={currentFeed} />;
 };
 
 export default HNFeedContainer;
