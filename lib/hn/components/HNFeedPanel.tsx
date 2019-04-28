@@ -45,6 +45,6 @@ const HNFeedPanel: React.SFC<HNFeedPanelProps> = props => {
       )}
     </FeedPanel>
   );
-}
+};
 
 export default HNFeedPanel;

@@ -38,6 +38,6 @@ const DNFeedPanel: React.SFC<DNFeedPanelProps> = props => {
         )}
     </FeedPanel>
   );
-}
+};
 
 export default DNFeedPanel;
