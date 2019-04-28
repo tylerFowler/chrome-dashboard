@@ -1,9 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { GlobalState } from '../store';
+import { FeedSettings } from './reducer';
+import { getPanelFeedSettings, getFeedSettings } from './selectors';
 import { HNFeedSettings, PanelOrientation } from './interface';
 import { FeedType } from '../hn/interface';
-import { GlobalState } from '../store';
-import { getPanelFeedSettings } from './selectors';
 
 // SettingsProviderProps is the set of properties given to each Settings Provider
 // component, which supplies arbitrary settings over a context provider, optionally,
@@ -38,3 +39,11 @@ export const HNFeedSettingsProvider = createSettingsProvider(
   (state, orientation) => getPanelFeedSettings(orientation, state),
   HNSettingsContext,
 );
+
+export const FeedSettingsContext = React.createContext<FeedSettings>({
+  refreshInterval: 15,
+  pullSize: 15,
+});
+
+export const FeedSettingsProvider =
+  createSettingsProvider(getFeedSettings, FeedSettingsContext);

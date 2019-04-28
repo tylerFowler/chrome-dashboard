@@ -1,21 +1,24 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import FeedItem from '../../panel/components/FeedItem';
 import FeedPanel, { FeedProps } from '../../panel/components/FeedPanel';
 import { DNPost } from '../reducer';
 import dnTheme from '../theme';
+import { FeedSettingsContext } from '../../settings/context';
 
 export interface DNFeedPanelProps extends FeedProps {
   title: never;
   readonly stories: ReadonlyArray<DNPost>;
   fetchPosts(): void;
-  startFeedRefresh(): void;
+  startFeedRefresh(refreshIval: number): void;
   stopFeedRefresh(): void;
 }
 
 const DNFeedPanel: React.SFC<DNFeedPanelProps> = props => {
+  const { refreshInterval } = useContext(FeedSettingsContext);
+
   useEffect(() => {
     props.fetchPosts();
-    props.startFeedRefresh();
+    props.startFeedRefresh(refreshInterval);
 
     return props.stopFeedRefresh;
   }, []);

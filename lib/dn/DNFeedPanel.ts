@@ -4,6 +4,7 @@ import { fetchPosts, startAutoRefresh, stopAutoRefresh } from './actions';
 import DNFeedPanel, { DNFeedPanelProps } from './components/DNFeedPanel';
 import { getFetchError, getStoryPage, isLoadingStories } from './selectors';
 
+// TODO: pull these out into a container component so we can pass settings into the data
 const mapStateToProps = (state: GlobalState, ownProps: Partial<DNFeedPanelProps>): Partial<DNFeedPanelProps> => ({
   ...ownProps,
   loading: isLoadingStories(state),
@@ -13,7 +14,7 @@ const mapStateToProps = (state: GlobalState, ownProps: Partial<DNFeedPanelProps>
 
 const mapDispatchToProps = (dispatch: Function): Partial<DNFeedPanelProps> => ({
   fetchPosts() { dispatch(fetchPosts()); },
-  startFeedRefresh() { dispatch(startAutoRefresh(5 * 60 * 1000)); },
+  startFeedRefresh(refreshIval) { dispatch(startAutoRefresh(refreshIval)); },
   stopFeedRefresh() { dispatch(stopAutoRefresh()); },
 });
 

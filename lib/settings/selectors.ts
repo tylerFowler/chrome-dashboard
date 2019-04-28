@@ -12,6 +12,7 @@ export const getSerializableSettings = ({ settings }: State) => {
 
 export const getActiveToast = ({ settings }: State) => settings.toast;
 
+export const getFeedSettings = ({ settings }: State) => settings.feed;
 export const getFeedRefreshInterval = ({ settings }: State) => settings.feed.refreshInterval;
 export const getFeedPullSize = ({ settings }: State) => settings.feed.pullSize;
 

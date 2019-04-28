@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { GlobalState } from './store';
 import { getPanelFeedType } from './settings/selectors';
 import { FeedType, PanelOrientation } from './settings/interface';
-import { HNFeedSettingsProvider } from './settings/context';
+import { HNFeedSettingsProvider, FeedSettingsProvider } from './settings/context';
 import DNFeedPanel from './dn/DNFeedPanel';
 import HNFeedPanel from './hn/HNFeedContainer';
 
@@ -17,12 +17,18 @@ const DashboardPanel: React.SFC<DashboardPanelProps> = ({ feedType, orientation,
   switch (feedType) {
   case FeedType.HN:
     return (
-      <HNFeedSettingsProvider orientation={orientation}>
-        <HNFeedPanel panelOrientation={orientation} style={style} />
-      </HNFeedSettingsProvider>
+      <FeedSettingsProvider>
+        <HNFeedSettingsProvider orientation={orientation}>
+          <HNFeedPanel panelOrientation={orientation} style={style} />
+        </HNFeedSettingsProvider>
+      </FeedSettingsProvider>
     );
   case FeedType.DN:
-    return <DNFeedPanel panelOrientation={orientation} style={style} />;
+    return (
+      <FeedSettingsProvider>
+        <DNFeedPanel panelOrientation={orientation} style={style} />;
+      </FeedSettingsProvider>
+    );
   default:
     return null; // TODO: create a custom 'error panel' component?
   }

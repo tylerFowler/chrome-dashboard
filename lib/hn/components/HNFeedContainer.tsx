@@ -2,7 +2,7 @@ import React, { useEffect, useContext, useState } from 'react';
 import hnTheme from '../theme';
 import { FeedType } from '../interface';
 import { FeedProps } from '../../panel/components/FeedPanel';
-import { HNSettingsContext } from '../../settings/context';
+import { HNSettingsContext, FeedSettingsContext } from '../../settings/context';
 import HNFeedPanel from '../HNFeedPanel';
 
 export interface HNFeedContainerProps extends FeedProps {
@@ -15,11 +15,12 @@ export interface HNFeedContainerProps extends FeedProps {
 const HNFeedContainer: React.SFC<HNFeedContainerProps> = ({
   fetchPosts, startHNFeedRefresh, stopHNFeedRefresh, ...panelProps
 }) => {
+  const feedSettings = useContext(FeedSettingsContext);
   const hnSettings = useContext(HNSettingsContext);
 
   useEffect(() => {
-    fetchPosts(hnSettings.defaultFeedType);
-    startHNFeedRefresh(5 * 60 * 1000, hnSettings.defaultFeedType);
+    fetchPosts(hnSettings.defaultFeedType); // TODO: add pullSize
+    startHNFeedRefresh(feedSettings.refreshInterval, hnSettings.defaultFeedType);
 
     return stopHNFeedRefresh();
   }, []);
