@@ -1,11 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { FeedType, PanelOrientation } from './settings/interface';
-import DNFeedPanel from './dn/DNFeedPanel';
-import HNFeedPanel from './hn/HNFeedContainer';
-import HNFeedSettingsProvider from './hn/HNFeedSettingsProvider';
 import { GlobalState } from './store';
 import { getPanelFeedType } from './settings/selectors';
+import { FeedType, PanelOrientation } from './settings/interface';
+import { HNFeedSettingsProvider } from './settings/context';
+import DNFeedPanel from './dn/DNFeedPanel';
+import HNFeedPanel from './hn/HNFeedContainer';
 
 interface DashboardPanelProps {
   readonly feedType: FeedType;
