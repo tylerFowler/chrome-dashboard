@@ -43,7 +43,7 @@ export default {
       mainFields: [ 'module', 'main', 'browser' ],
       customResolveOptions: { moduleDirectory: 'node_modules' }
     }),
-    typescript({ typescript: require('typescript') }),
+    typescript({ typescript: require('typescript'), check: !process.env.ROLLUP_WATCH }),
     replace({ ENV: env, 'process.env.NODE_ENV': env }),
     commonjs({ namedExports }),
   ],

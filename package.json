@@ -7,7 +7,7 @@
   "scripts": {
     "build": "npx rollup -c rollup.config.js",
     "lint": "npx tslint ./lib/*** --format stylish",
-    "start-dev": "npx rollup -c rollup-devserver.config.js --watch",
+    "start-dev": "ROLLUP_WATCH=true; npx rollup -c rollup-devserver.config.js --watch",
     "build-assets": "npx imagemin 'assets' --out-dir 'public/assets'",
     "build-dist": "NODE_ENV=production npm run build && npm run build_assets"
   },
