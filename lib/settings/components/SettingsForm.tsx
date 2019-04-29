@@ -8,6 +8,18 @@ export const SettingField = styled.div`
   &:first-of-type { margin-top: 0; }
 `;
 
+export const SettingFieldGroup = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+
+  > ${SettingField} {
+    margin: .5em 1em;
+
+    &:first-of-type { margin-left: 0; }
+  }
+`;
+
 export const SettingLabel = styled.label`
   display: block;
   margin-bottom: .75em;

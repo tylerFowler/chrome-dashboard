@@ -2,8 +2,8 @@ import styled from 'lib/styled-components';
 import React from 'react';
 import { typeScale } from '../../styles';
 import { FeedType, PanelOrientation } from '../interface';
-import SettingsForm, { SettingField, SettingInput, SettingLabel } from './SettingsForm';
 import HNSettings from '../containers/HNFeedPanelSettings';
+import SettingsForm, { SettingField, SettingFieldGroup, SettingInput, SettingLabel } from './SettingsForm';
 
 export interface FeedSettingsProps {
   readonly feedRefreshIval: number;
@@ -45,6 +45,22 @@ const RefreshIntervalSetting: React.FC<{ defaultIval?: number, onChange(ivalMinu
 
       <span>minutes</span>
     </SettingField>
+;
+
+const PullSizeInput = styled(SettingInput).attrs({
+  type: 'number',
+  min: 1,
+})`width: 4em`;
+
+const PullSizeSettings: React.SFC<{ defaultSize?: number, onChange(size: number): void }> =
+({ defaultSize = 10, onChange }) =>
+  <SettingField>
+    <SettingLabel htmlFor="feed-pull-size">Feed Item Size</SettingLabel>
+
+    <PullSizeInput id="feed-pull-size" defaultValue={defaultSize.toString()}
+      onChange={e => onChange(e.target.valueAsNumber)}
+    />
+  </SettingField>
 ;
 
 const PanelSettingsContainer = styled(SettingField)`
@@ -123,7 +139,10 @@ const FeedSettings: React.FC<FeedSettingsProps> = props =>
   <SettingsForm>
     <legend>Feed Panels</legend>
 
-    <RefreshIntervalSetting defaultIval={props.feedRefreshIval} onChange={props.updateFeedRefreshIval} />
+    <SettingFieldGroup>
+      <RefreshIntervalSetting defaultIval={props.feedRefreshIval} onChange={props.updateFeedRefreshIval} />
+      <PullSizeSettings defaultSize={props.feedPullSize} onChange={props.updateFeedPullSize} />
+    </SettingFieldGroup>
 
     <PanelSettingsContainer>
       <FeedSettingsContainer>
