@@ -22,7 +22,7 @@ const HNFeedContainer: React.SFC<HNFeedContainerProps> = ({
     fetchPosts(hnSettings.defaultFeedType, pullSize);
     startHNFeedRefresh(refreshInterval, hnSettings.defaultFeedType, pullSize);
 
-    return stopHNFeedRefresh();
+    return stopHNFeedRefresh;
   }, []);
 
   const [ currentFeed ] = useState(hnSettings.defaultFeedType);
