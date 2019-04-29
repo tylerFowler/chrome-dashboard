@@ -12,8 +12,8 @@ const mapStateToProps = (_: GlobalState, ownProps: Partial<Props>): Partial<Prop
 // to build the ID or a rando number/incrementor from a memoized function, because
 // multiple calls of this needs to produce the same value for the same component.
 const mapDispatchToProps = (dispatch: Function): Partial<Props> => ({
-  fetchPosts(feed) { dispatch(fetchPosts(feed)); },
-  startHNFeedRefresh(refreshIval, feed) { dispatch(startAutoRefresh(refreshIval, feed)); },
+  fetchPosts(feed, pullSize) { dispatch(fetchPosts(feed, pullSize)); },
+  startHNFeedRefresh(refreshIval, feed, pullSize) { dispatch(startAutoRefresh(refreshIval, feed, pullSize)); },
   stopHNFeedRefresh() { dispatch(stopAutoRefresh()); },
 });
 

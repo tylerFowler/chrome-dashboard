@@ -13,8 +13,8 @@ const mapStateToProps = (state: GlobalState, ownProps: Partial<DNFeedPanelProps>
 });
 
 const mapDispatchToProps = (dispatch: Function): Partial<DNFeedPanelProps> => ({
-  fetchPosts() { dispatch(fetchPosts()); },
-  startFeedRefresh(refreshIval) { dispatch(startAutoRefresh(refreshIval)); },
+  fetchPosts(pullSize) { dispatch(fetchPosts(pullSize)); },
+  startFeedRefresh(refreshIval, pullSize) { dispatch(startAutoRefresh(refreshIval, pullSize)); },
   stopFeedRefresh() { dispatch(stopAutoRefresh()); },
 });
 

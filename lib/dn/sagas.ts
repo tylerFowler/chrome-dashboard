@@ -1,13 +1,21 @@
 import { buffers, eventChannel } from '@redux-saga/core';
-import { call, put, race, take, takeEvery, takeLatest } from 'redux-saga/effects';
+import { call, put, race, take, takeEvery } from 'redux-saga/effects';
 import { ActionType } from 'typesafe-actions';
-import { Actions, fetchPostsError, receivePosts, startAutoRefresh } from './actions';
 import * as API from './api';
 import { DNPost } from './reducer';
+import {
+  Actions,
+  fetchPosts as fetchPostsAction,
+  fetchPostsError,
+  receivePosts,
+  startAutoRefresh,
+} from './actions';
 
-function* fetchPosts() {
+function* fetchPosts(action: ActionType<typeof fetchPostsAction>) {
+  const { pullSize } = action.payload;
+
   try {
-    const posts: DNPost[] = yield call(API.fetchStoryPage);
+    const posts: DNPost[] = yield call(API.fetchStoryPage, pullSize);
     yield put(receivePosts(posts));
   } catch (error) {
     yield put(fetchPostsError(error));
@@ -34,11 +42,11 @@ function* feedRefresh({ payload }: ActionType<typeof startAutoRefresh>) {
       break;
     }
 
-    yield call(fetchPosts);
+    yield call(fetchPostsAction, payload.pullSize);
   }
 }
 
 export default function* rootSaga() {
   yield takeEvery(Actions.StartAutoRefresh, feedRefresh);
-  yield takeLatest(Actions.FetchPosts, fetchPosts);
+  yield takeEvery(Actions.FetchPosts, fetchPosts);
 }

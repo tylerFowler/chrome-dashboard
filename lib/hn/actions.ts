@@ -16,8 +16,8 @@ export type HNAction = ActionType<
   | typeof receivePosts
 >;
 
-export const fetchPosts = (feed: FeedType) =>
-  action(Actions.FetchPosts, { feed });
+export const fetchPosts = (feed: FeedType, pullSize: number) =>
+  action(Actions.FetchPosts, { feed, pullSize });
 
 export const fetchPostsError = (feed: FeedType, error: Error) =>
   action(Actions.FetchPostsFailure, { feed, error });
@@ -25,7 +25,10 @@ export const fetchPostsError = (feed: FeedType, error: Error) =>
 export const receivePosts = (feed: FeedType, posts: ReadonlyArray<HNPost>) =>
   action(Actions.ReceivePosts, { feed, posts: posts.filter(p => !!p) });
 
-export const startAutoRefresh = (intervalMinutes: number, feed: FeedType) =>
-  action(Actions.StartAutoRefresh, { feed, interval: intervalMinutes * 60 * 1000 });
+export const startAutoRefresh = (intervalMinutes: number, feed: FeedType, pullSize: number) =>
+  action(Actions.StartAutoRefresh, {
+    feed, pullSize,
+    interval: intervalMinutes * 60 * 1000,
+  });
 
 export const stopAutoRefresh = () => action(Actions.StopAutoRefresh);

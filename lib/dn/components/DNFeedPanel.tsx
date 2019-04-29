@@ -8,17 +8,17 @@ import { FeedSettingsContext } from '../../settings/context';
 export interface DNFeedPanelProps extends FeedProps {
   title: never;
   readonly stories: ReadonlyArray<DNPost>;
-  fetchPosts(): void;
-  startFeedRefresh(refreshIval: number): void;
+  fetchPosts(pullSize: number): void;
+  startFeedRefresh(refreshIval: number, pullSize: number): void;
   stopFeedRefresh(): void;
 }
 
 const DNFeedPanel: React.SFC<DNFeedPanelProps> = props => {
-  const { refreshInterval } = useContext(FeedSettingsContext);
+  const { refreshInterval, pullSize } = useContext(FeedSettingsContext);
 
   useEffect(() => {
-    props.fetchPosts();
-    props.startFeedRefresh(refreshInterval);
+    props.fetchPosts(pullSize);
+    props.startFeedRefresh(refreshInterval, pullSize);
 
     return props.stopFeedRefresh;
   }, []);

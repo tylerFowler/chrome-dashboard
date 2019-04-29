@@ -3,6 +3,7 @@ import { all, call, put, select, race, take, takeEvery } from 'redux-saga/effect
 import { ActionType } from 'typesafe-actions';
 import * as API from './api';
 import { HNPost } from './reducer';
+import { hasPost } from './selectors';
 import {
   Actions,
   fetchPostsError,
@@ -10,14 +11,12 @@ import {
   startAutoRefresh,
   fetchPosts as fetchPostsAction,
 } from './actions';
-import { hasPost } from './selectors';
 
 function* fetchPosts(action: ActionType<typeof fetchPostsAction>) {
-  const { feed } = action.payload;
+  const { feed, pullSize } = action.payload;
 
   try {
-    // TODO: pull the preferred feed size number here, from settings state
-    const postIds = (yield call(API.fetchStoryPage, feed) as unknown) as API.PostId[];
+    const postIds = (yield call(API.fetchStoryPage, feed, pullSize) as unknown) as API.PostId[];
 
     const postRequests = postIds
       .filter(postId => select((state, id) => hasPost(id, state), postId))
@@ -55,7 +54,7 @@ function* feedRefresh({ payload }: ActionType<typeof startAutoRefresh>) {
       break;
     }
 
-    yield call(fetchPosts, fetchPostsAction(payload.feed));
+    yield call(fetchPosts, fetchPostsAction(payload.feed, payload.pullSize));
   }
 }
 

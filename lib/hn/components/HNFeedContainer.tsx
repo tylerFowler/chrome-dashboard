@@ -7,20 +7,20 @@ import HNFeedPanel from '../HNFeedPanel';
 
 export interface HNFeedContainerProps extends FeedProps {
   title: never;
-  fetchPosts(feed: FeedType): void;
-  startHNFeedRefresh(refreshIval: number, feed: FeedType): void;
+  fetchPosts(feed: FeedType, pullSize: number): void;
+  startHNFeedRefresh(refreshIval: number, feed: FeedType, pullSize: number): void;
   stopHNFeedRefresh(): void;
 }
 
 const HNFeedContainer: React.SFC<HNFeedContainerProps> = ({
   fetchPosts, startHNFeedRefresh, stopHNFeedRefresh, ...panelProps
 }) => {
-  const feedSettings = useContext(FeedSettingsContext);
+  const { refreshInterval, pullSize } = useContext(FeedSettingsContext);
   const hnSettings = useContext(HNSettingsContext);
 
   useEffect(() => {
-    fetchPosts(hnSettings.defaultFeedType); // TODO: add pullSize
-    startHNFeedRefresh(feedSettings.refreshInterval, hnSettings.defaultFeedType);
+    fetchPosts(hnSettings.defaultFeedType, pullSize);
+    startHNFeedRefresh(refreshInterval, hnSettings.defaultFeedType, pullSize);
 
     return stopHNFeedRefresh();
   }, []);

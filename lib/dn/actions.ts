@@ -15,14 +15,16 @@ export type DNAction = ActionType<
   | typeof receivePosts
 >;
 
-export const fetchPosts = () => action(Actions.FetchPosts);
+export const fetchPosts = (pullSize: number) =>
+  action(Actions.FetchPosts, { pullSize });
+
 export const fetchPostsError = (error: Error) =>
   action(Actions.FetchPostsFailure, { error });
 
 export const receivePosts = (posts: ReadonlyArray<DNPost>) =>
   action(Actions.ReceivePosts, { posts });
 
-export const startAutoRefresh = (intervalMinutes: number) =>
-  action(Actions.StartAutoRefresh, { interval: intervalMinutes * 60 * 1000 });
+export const startAutoRefresh = (intervalMinutes: number, pullSize: number) =>
+  action(Actions.StartAutoRefresh, { pullSize, interval: intervalMinutes * 60 * 1000 });
 
 export const stopAutoRefresh = () => action(Actions.StopAutoRefresh);
