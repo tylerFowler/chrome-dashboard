@@ -9,7 +9,9 @@ import {
   fetchPostsError,
   receivePosts,
   startAutoRefresh,
+  stopAutoRefresh,
 } from './actions';
+import { AnyAction } from 'redux';
 
 function* fetchPosts(action: ActionType<typeof fetchPostsAction>) {
   const { pullSize } = action.payload;
@@ -30,11 +32,16 @@ function refreshChan(intervalMs: number) {
 }
 
 function* feedRefresh({ payload }: ActionType<typeof startAutoRefresh>) {
+  const { refreshId } = payload;
+
   const chan = yield call(refreshChan, payload.interval);
   while (true) {
     const { cancel } = yield race({
       refreshTick: take(chan),
-      cancel: take(Actions.StopAutoRefresh),
+      cancel: take((action: AnyAction|ActionType<typeof stopAutoRefresh>) =>
+        action.type === Actions.StopAutoRefresh
+        && action.payload.refreshId === refreshId,
+      ),
     });
 
     if (cancel) {

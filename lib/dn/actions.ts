@@ -24,7 +24,8 @@ export const fetchPostsError = (error: Error) =>
 export const receivePosts = (posts: ReadonlyArray<DNPost>) =>
   action(Actions.ReceivePosts, { posts });
 
-export const startAutoRefresh = (intervalMinutes: number, pullSize: number) =>
-  action(Actions.StartAutoRefresh, { pullSize, interval: intervalMinutes * 60 * 1000 });
+export const startAutoRefresh = (refreshId: string, intervalMinutes: number, pullSize: number) =>
+  action(Actions.StartAutoRefresh, { refreshId, pullSize, interval: intervalMinutes * 60 * 1000 });
 
-export const stopAutoRefresh = () => action(Actions.StopAutoRefresh);
+export const stopAutoRefresh = (refreshId: string) =>
+  action(Actions.StopAutoRefresh, { refreshId });
