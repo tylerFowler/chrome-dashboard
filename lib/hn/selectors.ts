@@ -16,6 +16,9 @@ export const isLoadingStories = (feed: FeedType, { hnFeed }: State) =>
 export const getFetchError = (feed: FeedType, { hnFeed }: State) =>
   hasFeed(feed, {hnFeed}) && getFeed(feed, {hnFeed}).pullError;
 
+export const getActiveFeeds = ({ hnFeed }: State) => Object.keys(hnFeed.feeds)
+  .filter((feed: FeedType) => hnFeed.feeds[feed].posts.size > 0);
+
 export const getStoryPage = (feed: FeedType, limit: number, { hnFeed }: State) => {
   if (!hasFeed(feed, {hnFeed})) {
     return [];
