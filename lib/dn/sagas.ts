@@ -1,5 +1,5 @@
 import { buffers, eventChannel } from '@redux-saga/core';
-import { call, put, select, race, take, takeEvery } from 'redux-saga/effects';
+import { call, put, select, race, take, takeEvery, takeLeading } from 'redux-saga/effects';
 import { ActionType } from 'typesafe-actions';
 import * as API from './api';
 import { DNPost } from './reducer';
@@ -50,5 +50,5 @@ function* feedRefresh({ payload }: ActionType<typeof startAutoRefresh>) {
 export default function* rootSaga() {
   yield takeEvery(Actions.StartAutoRefresh, feedRefresh);
   yield takeEvery(Actions.FetchPosts, fetchPosts);
-  yield takeEvery(SettingsActions.RefreshFeeds, fetchPosts);
+  yield takeLeading(SettingsActions.RefreshFeeds, fetchPosts);
 }
