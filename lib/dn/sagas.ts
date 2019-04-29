@@ -1,18 +1,19 @@
 import { buffers, eventChannel } from '@redux-saga/core';
-import { call, put, race, take, takeEvery } from 'redux-saga/effects';
+import { call, put, select, race, take, takeEvery } from 'redux-saga/effects';
 import { ActionType } from 'typesafe-actions';
 import * as API from './api';
 import { DNPost } from './reducer';
+import { getFeedPullSize } from '../settings/selectors';
+import { Actions as SettingsActions } from '../settings/actions';
 import {
   Actions,
-  fetchPosts as fetchPostsAction,
   fetchPostsError,
   receivePosts,
   startAutoRefresh,
 } from './actions';
 
-function* fetchPosts(action: ActionType<typeof fetchPostsAction>) {
-  const { pullSize } = action.payload;
+function* fetchPosts() {
+  const pullSize = yield select(getFeedPullSize);
 
   try {
     const posts: DNPost[] = yield call(API.fetchStoryPage, pullSize);
@@ -42,7 +43,7 @@ function* feedRefresh({ payload }: ActionType<typeof startAutoRefresh>) {
       break;
     }
 
-    yield call(fetchPostsAction, payload.pullSize);
+    yield call(fetchPosts);
   }
 }
 
