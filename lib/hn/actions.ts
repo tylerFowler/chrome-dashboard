@@ -25,10 +25,11 @@ export const fetchPostsError = (feed: FeedType, error: Error) =>
 export const receivePosts = (feed: FeedType, posts: ReadonlyArray<HNPost>) =>
   action(Actions.ReceivePosts, { feed, posts: posts.filter(p => !!p) });
 
-export const startAutoRefresh = (intervalMinutes: number, feed: FeedType, pullSize: number) =>
+export const startAutoRefresh = (refreshId: string, intervalMinutes: number, feed: FeedType, pullSize: number) =>
   action(Actions.StartAutoRefresh, {
-    feed, pullSize,
+    refreshId, feed, pullSize,
     interval: intervalMinutes * 60 * 1000,
   });
 
-export const stopAutoRefresh = () => action(Actions.StopAutoRefresh);
+export const stopAutoRefresh = (refreshId: string) =>
+  action(Actions.StopAutoRefresh, { refreshId });

@@ -10,7 +10,9 @@ import {
   receivePosts,
   startAutoRefresh,
   fetchPosts as fetchPostsAction,
+  stopAutoRefresh,
 } from './actions';
+import { AnyAction } from 'redux';
 
 function* fetchPosts(action: ActionType<typeof fetchPostsAction>) {
   const { feed, pullSize } = action.payload;
@@ -37,16 +39,17 @@ function refreshChan(intervalMs: number) {
   }, buffers.none());
 }
 
-// TODO: for another day - if we have two HN feed panels on the same page then
-// their stop autorefreshes will interfere with each other, so we'll probably
-// need to pass an ID to startAutoRefresh and use a take pattern that routes
-// the stop command to the saga w/ that ID
 function* feedRefresh({ payload }: ActionType<typeof startAutoRefresh>) {
+  const { refreshId } = payload;
+
   const chan: EventChannel<boolean> = yield call(refreshChan, payload.interval);
   while (true) {
     const { cancel } = yield race({
       refreshTick: take(chan),
-      cancel: take(Actions.StopAutoRefresh),
+      cancel: take((action: AnyAction|ActionType<typeof stopAutoRefresh>) =>
+        action.type === Actions.StopAutoRefresh
+        && action.payload.refreshId === refreshId,
+      ),
     });
 
     if (cancel) {

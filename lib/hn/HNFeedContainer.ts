@@ -11,10 +11,18 @@ const mapStateToProps = (_: GlobalState, ownProps: Partial<Props>): Partial<Prop
 // so that the component doesn't have to worry about it. Either using the ownProps
 // to build the ID or a rando number/incrementor from a memoized function, because
 // multiple calls of this needs to produce the same value for the same component.
-const mapDispatchToProps = (dispatch: Function): Partial<Props> => ({
+const mapDispatchToProps = (dispatch: Function, ownProps: Pick<Props, 'panelOrientation'>): Partial<Props> => ({
   fetchPosts(feed, pullSize) { dispatch(fetchPosts(feed, pullSize)); },
-  startHNFeedRefresh(refreshIval, feed, pullSize) { dispatch(startAutoRefresh(refreshIval, feed, pullSize)); },
-  stopHNFeedRefresh() { dispatch(stopAutoRefresh()); },
+  startHNFeedRefresh(refreshIval, feed, pullSize) {
+    const refreshId = `hn_${ownProps.panelOrientation}`;
+
+    dispatch(startAutoRefresh(refreshId, refreshIval, feed, pullSize));
+  },
+  stopHNFeedRefresh() {
+    const refreshId = `hn_${ownProps.panelOrientation}`;
+
+    dispatch(stopAutoRefresh(refreshId));
+  },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(HNFeedContainer);
