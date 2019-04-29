@@ -45,8 +45,4 @@ export default styled.form`
     font-size: ${typeScale(5)};
     margin-bottom: 1rem;
   }
-
-  & > ${SettingField} {
-    padding-left: 1em;
-  }
 `;
