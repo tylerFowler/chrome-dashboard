@@ -12,8 +12,6 @@ export enum Actions {
   UpdateFeedConfiguration = 'SETTINGS_UPDATE_FEED_CONFIG',
   UpdatePanelConfiguration = 'SETTINGS_UPDATE_PANEL_CONFIG',
   UpdatePanelType = 'SETTINGS_UPDATE_PANEL_TYPE',
-
-  RefreshFeeds = 'FEEDS_REFRESH',
 }
 
 export type SettingsAction = ActionType<
@@ -32,10 +30,6 @@ export const commitFailure = (error: Error) =>
 
 export const addToast = (content: string) => action(Actions.AddToast, { content });
 export const removeToast = () => action(Actions.RemoveToast);
-
-// refreshFeeds should be used when a setting is updated that should cause the
-// refreshing of all feeds
-export const refreshFeeds = () => action(Actions.RefreshFeeds);
 
 export const receiveSettings = (settings: SettingsState) =>
   action(Actions.ReceiveSettings, settings);

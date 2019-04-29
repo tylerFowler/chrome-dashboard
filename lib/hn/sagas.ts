@@ -1,11 +1,9 @@
 import { buffers, EventChannel, eventChannel } from 'redux-saga';
-import { all, call, put, select, race, take, takeEvery, takeLeading } from 'redux-saga/effects';
+import { all, call, put, select, race, take, takeEvery } from 'redux-saga/effects';
 import { ActionType } from 'typesafe-actions';
 import * as API from './api';
 import { HNPost } from './reducer';
-import { Actions as SettingActions } from '../settings/actions';
-import { hasPost, getActiveFeeds } from './selectors';
-import { getFeedPullSize } from '../settings/selectors';
+import { hasPost } from './selectors';
 import {
   Actions,
   fetchPostsError,
@@ -13,7 +11,6 @@ import {
   startAutoRefresh,
   fetchPosts as fetchPostsAction,
 } from './actions';
-import { FeedType } from './interface';
 
 function* fetchPosts(action: ActionType<typeof fetchPostsAction>) {
   const { feed, pullSize } = action.payload;
@@ -61,17 +58,7 @@ function* feedRefresh({ payload }: ActionType<typeof startAutoRefresh>) {
   }
 }
 
-function* refreshAllFeeds() {
-  const pullSize = yield select(getFeedPullSize);
-  const activeFeeds: readonly FeedType[] = yield select(getActiveFeeds);
-
-  yield all(
-    activeFeeds.map(feed => put(fetchPostsAction(feed, pullSize))),
-  );
-}
-
 export default function* rootSaga() {
   yield takeEvery(Actions.StartAutoRefresh, feedRefresh);
   yield takeEvery(Actions.FetchPosts, fetchPosts);
-  yield takeLeading(SettingActions.RefreshFeeds, refreshAllFeeds);
 }
