@@ -44,6 +44,7 @@ export default function* rootSaga() {
     takeLatest(Actions.Commit, commitSettings),
     debounce(toastDebounce, Actions.UpdateFeedConfiguration, commitSettings),
     debounce(toastDebounce, Actions.UpdatePanelConfiguration, commitSettings),
+    debounce(toastDebounce, Actions.UpdatePanelType, commitSettings),
     takeLatest(Actions.Committed, settingsStoredToast),
   ]);
 }
