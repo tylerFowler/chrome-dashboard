@@ -42,7 +42,7 @@ function* feedRefresh({ payload }: ActionType<typeof startAutoRefresh>) {
       break;
     }
 
-    yield call(fetchPostsAction, payload.pullSize);
+    yield put(fetchPostsAction(payload.pullSize));
   }
 }
 

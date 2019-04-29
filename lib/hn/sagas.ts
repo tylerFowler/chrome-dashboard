@@ -54,7 +54,7 @@ function* feedRefresh({ payload }: ActionType<typeof startAutoRefresh>) {
       break;
     }
 
-    yield call(fetchPosts, fetchPostsAction(payload.feed, payload.pullSize));
+    yield put(fetchPostsAction(payload.feed, payload.pullSize));
   }
 }
 
