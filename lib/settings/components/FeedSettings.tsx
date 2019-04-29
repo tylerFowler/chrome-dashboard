@@ -1,5 +1,5 @@
 import styled from 'lib/styled-components';
-import React from 'react';
+import React, { useState } from 'react';
 import { typeScale } from '../../styles';
 import { FeedType, PanelOrientation } from '../interface';
 import HNSettings from '../containers/HNFeedPanelSettings';
@@ -35,17 +35,24 @@ const RefreshIntervalInput = styled(SettingInput).attrs({
 `;
 
 const RefreshIntervalSetting: React.FC<{ defaultIval?: number, onChange(ivalMinutes: number): void }> =
-({ defaultIval = 10, onChange }) =>
+({ defaultIval = 10, onChange }) => {
+  const [ ival, setIval ] = useState(defaultIval);
+
+  return (
     <SettingField>
       <SettingLabel htmlFor="feed-refresh-ival">Feed Autorefresh</SettingLabel>
 
-      <RefreshIntervalInput id="feed-refresh-ival" defaultValue={defaultIval.toString()}
-        onChange={e => onChange(e.target.valueAsNumber)}
+      <RefreshIntervalInput id="feed-refresh-ival" value={ival.toString()}
+        onChange={e => {
+          onChange(e.target.valueAsNumber);
+          setIval(e.target.valueAsNumber);
+        }}
       />
 
-      <span>minutes</span>
+      <span>{ival === 1 ? 'minute' : 'minutes'}</span>
     </SettingField>
-;
+  );
+};
 
 const PullSizeInput = styled(SettingInput).attrs({
   type: 'number',
