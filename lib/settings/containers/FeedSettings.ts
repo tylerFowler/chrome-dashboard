@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { GlobalState } from '../../store';
 import FeedSettings, { FeedSettingsProps } from '../components/FeedSettings';
-import { updateFeedRefreshInterval, updateFeedPullSize, setPanelFeedType } from '../actions';
+import { updateFeedRefreshInterval, updateFeedPullSize, setPanelFeedType, refreshFeeds } from '../actions';
 import {
   getFeedRefreshInterval,
   getFeedPullSize,
@@ -20,7 +20,10 @@ const mapStateToProps = (state: GlobalState): Partial<FeedSettingsProps> => ({
 
 const mapDispatchToProps = (dispatch: Function): Partial<FeedSettingsProps> => ({
   updateFeedRefreshIval(ivalMinutes) { dispatch(updateFeedRefreshInterval(ivalMinutes)); },
-  updateFeedPullSize(pullSize) { dispatch(updateFeedPullSize(pullSize)); },
+  updateFeedPullSize(pullSize) {
+    dispatch(updateFeedPullSize(pullSize));
+    dispatch(refreshFeeds());
+  },
   updateLeftPanel(type) { dispatch(setPanelFeedType('left', type)); },
   updateRightPanel(type) { dispatch(setPanelFeedType('right', type)); },
 });
