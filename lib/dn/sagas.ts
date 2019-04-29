@@ -50,4 +50,5 @@ function* feedRefresh({ payload }: ActionType<typeof startAutoRefresh>) {
 export default function* rootSaga() {
   yield takeEvery(Actions.StartAutoRefresh, feedRefresh);
   yield takeEvery(Actions.FetchPosts, fetchPosts);
+  yield takeEvery(SettingsActions.RefreshFeeds, fetchPosts);
 }
