@@ -50,7 +50,7 @@ const RefreshIntervalSetting: React.FC<{ defaultIval?: number, onChange(ivalMinu
 const PanelSettingsContainer = styled(SettingField)`
   display: flex;
 
-  @media (max-width: 800px) {
+  @media (max-width: 750px) {
     flex-direction: column;
   }
 
