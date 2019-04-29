@@ -32,8 +32,6 @@ const panelContainerStyles: React.CSSProperties = {
   maxWidth: '750px',
 };
 
-// TODO: use settings to determine which panels to use, probably need to create
-// constructors for each
 const Page: React.FC = () => {
   const [ showSettings, setSettingsShowing ] = useState(false);
 
