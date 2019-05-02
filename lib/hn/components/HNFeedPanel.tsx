@@ -13,9 +13,9 @@ export interface HNFeedPanelProps extends FeedProps {
 }
 
 const HNFeedPanel: React.SFC<HNFeedPanelProps> = ({ stories, feed, setFeed, ...panelProps }) =>
-  <FeedPanel {...panelProps} title="Hacker News">
-    <FeedSelector feed={feed} onChange={setFeed} />
-
+  <FeedPanel {...panelProps} title="Hacker News"
+    renderFeedControls={() => <FeedSelector feed={feed} onChange={setFeed} />}
+  >
     {stories.map((post, idx) =>
       <li key={idx}>
         <FeedItem

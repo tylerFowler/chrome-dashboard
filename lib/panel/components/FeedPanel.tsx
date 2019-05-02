@@ -8,7 +8,13 @@ export interface FeedProps extends PanelProps {
   placeholder?: never;
   loading?: boolean;
   fetchError: Error;
+
+  // space for a single line is allocated for arbitrary feed controls, which
+  // can be rendered using this prop
+  renderFeedControls?(): React.ReactElement;
 }
+
+const feedHorizPadding = '.75em' as const;
 
 const feedListScrollIn = keyframes`
   from { transform: translateY(100vh); }
@@ -18,7 +24,7 @@ const feedListScrollIn = keyframes`
 const FeedList = styled.ul`
   list-style-type: none;
   margin: 0;
-  padding: 2em .75em 1em;
+  padding: .5em ${feedHorizPadding} 1em;
   overflow: scroll;
 
   > li {
@@ -28,9 +34,18 @@ const FeedList = styled.ul`
   }
 `;
 
+const FeedControlsContainer = styled.aside`
+  height: 1em;
+  padding: .5em ${feedHorizPadding};
+`;
+
 export default class FeedPanel extends React.Component<FeedProps> {
   public render() {
-    const { loading, fetchError, children, ...panelProps } = this.props;
+    const {
+      loading, fetchError, children,
+      renderFeedControls = () => <></>,
+      ...panelProps
+    } = this.props;
 
     return (
       <Panel {...panelProps}>
@@ -43,11 +58,15 @@ export default class FeedPanel extends React.Component<FeedProps> {
           </ErrorDisplay>
         }
 
-        {!loading &&
+        {!loading && <>
+          <FeedControlsContainer>
+            {renderFeedControls()}
+          </FeedControlsContainer>
+
           <FeedList>
             {children}
           </FeedList>
-        }
+        </>}
       </Panel>
     );
   }
