@@ -7,7 +7,7 @@
   "scripts": {
     "build": "npx rollup -c rollup.config.js",
     "lint": "npx tslint ./lib/*** --format stylish",
-    "start-dev": "ROLLUP_WATCH=true; npx rollup -c rollup-devserver.config.js --watch",
+    "start": "ROLLUP_WATCH=true; npx rollup -c rollup-devserver.config.js --watch",
     "build-assets": "npx imagemin 'assets' --out-dir 'public/assets'",
     "build-dist": "NODE_ENV=production npm run build && npm run build_assets"
   },
@@ -25,7 +25,7 @@
   },
   "devDependencies": {
     "@types/node": "^11.13.8",
-    "@types/react": "^16.8.14",
+    "@types/react": "^16.8.15",
     "@types/react-addons-css-transition-group": "^15.0.5",
     "@types/react-dom": "^16.8.4",
     "@types/react-redux": "^7.0.8",
