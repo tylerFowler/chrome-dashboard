@@ -4,7 +4,7 @@ import { GlobalState } from './store';
 import { getPanelFeedType } from './settings/selectors';
 import { FeedType, PanelOrientation } from './settings/interface';
 import { HNFeedSettingsProvider, FeedSettingsProvider } from './settings/context';
-import DNFeedPanel from './dn/DNFeedPanel';
+import DNFeedPanel from './dn/DNFeedContainer';
 import HNFeedPanel from './hn/HNFeedContainer';
 
 interface DashboardPanelProps {
