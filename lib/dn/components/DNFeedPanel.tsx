@@ -1,6 +1,6 @@
 import React, { useEffect, useContext } from 'react';
 import FeedItem from '../../panel/components/FeedItem';
-import FeedPanel, { FeedProps } from '../../panel/components/FeedPanel';
+import FeedPanel, { FeedProps, FeedList } from '../../panel/components/FeedPanel';
 import { DNPost } from '../reducer';
 import dnTheme from '../theme';
 import { FeedSettingsContext } from '../../settings/context';
@@ -25,7 +25,8 @@ const DNFeedPanel: React.SFC<DNFeedPanelProps> = props => {
 
   return (
     <FeedPanel {...props} title="Designer News" theme={dnTheme}>
-      {props.stories.map((post, idx) =>
+      <FeedList>
+        {props.stories.map((post, idx) =>
           <li key={idx}>
             <FeedItem
               id={post.id}
@@ -39,6 +40,7 @@ const DNFeedPanel: React.SFC<DNFeedPanelProps> = props => {
             />
           </li>,
         )}
+      </FeedList>
     </FeedPanel>
   );
 };
