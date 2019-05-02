@@ -15,7 +15,7 @@ const feedListScrollIn = keyframes`
   to { transform: translateY(0); }
 `;
 
-export const FeedList = styled.ul`
+const FeedList = styled.ul`
   list-style-type: none;
   margin: 0;
   padding: 2em .75em 1em;
@@ -43,7 +43,11 @@ export default class FeedPanel extends React.Component<FeedProps> {
           </ErrorDisplay>
         }
 
-        {!loading && children}
+        {!loading &&
+          <FeedList>
+            {children}
+          </FeedList>
+        }
       </Panel>
     );
   }
