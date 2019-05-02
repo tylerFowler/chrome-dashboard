@@ -9,7 +9,7 @@
     "lint": "npx tslint ./lib/*** --format stylish",
     "start": "ROLLUP_WATCH=true; npx rollup -c rollup-devserver.config.js --watch",
     "build-assets": "npx imagemin 'assets' --out-dir 'public/assets'",
-    "build-dist": "NODE_ENV=production npm run build && npm run build_assets"
+    "build-dist": "NODE_ENV=production npm run build && npm run build-assets"
   },
   "dependencies": {
     "natural-scale": "^2.0.0",
