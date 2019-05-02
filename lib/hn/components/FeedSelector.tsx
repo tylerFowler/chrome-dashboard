@@ -10,7 +10,6 @@ export interface FeedSelectorProps {
 
 const FeedSelectContainer = styled.div`
   padding: 0 .5em;
-  margin-bottom: 1em;
   text-align: right;
 
   :after {
@@ -18,12 +17,9 @@ const FeedSelectContainer = styled.div`
     display: inline-block;
     pointer-events: none;
 
+    vertical-align: middle;
     width: .35em;
     height: .35em;
-
-    position: relative;
-    bottom: .175em;
-    vertical-align: middle;
 
     border-bottom: 2px solid ${props => props.theme.backgroundDarker};
     border-right: 2px solid ${props => props.theme.backgroundDarker};
@@ -38,6 +34,7 @@ const FeedSelect = styled.select`
   border: 0;
   outline: 0;
 
+  vertical-align: middle;
   padding-right: 1.68em;
   margin-right: -1.25em;
 `;
