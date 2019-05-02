@@ -7,7 +7,7 @@ const mapStateToProps = (state: GlobalState, ownProps: Partial<HNFeedPanelProps>
   ...ownProps,
   loading: isLoadingStories(ownProps.feed, state),
   fetchError: getFetchError(ownProps.feed, state),
-  stories: getStoryPage(ownProps.feed, 15, state), // TODO: add 'feed item count' setting, populate here
+  stories: getStoryPage(ownProps.feed, ownProps.maxStoryCount, state),
 });
 
 export default connect(mapStateToProps)(HNFeedPanel);

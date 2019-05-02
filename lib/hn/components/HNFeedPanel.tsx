@@ -9,6 +9,7 @@ export interface HNFeedPanelProps extends FeedProps {
   title: never;
   readonly feed: FeedType;
   readonly stories: readonly HNPost[];
+  readonly maxStoryCount: number;
   setFeed(feed: FeedType): void;
 }
 

@@ -21,14 +21,15 @@ const HNFeedContainer: React.SFC<HNFeedContainerProps> = ({
   const [ currentFeed, setFeed ] = useState(defaultFeedType);
 
   useEffect(() => {
-    console.log('Fetching posts');
     fetchPosts(currentFeed, pullSize);
     startHNFeedRefresh(refreshInterval, currentFeed, pullSize);
 
     return stopHNFeedRefresh;
   }, [ currentFeed ]);
 
-  return <HNFeedPanel {...panelProps} theme={hnTheme} feed={currentFeed} setFeed={setFeed} />;
+  return <HNFeedPanel {...panelProps} theme={hnTheme} maxStoryCount={pullSize}
+    feed={currentFeed} setFeed={setFeed}
+  />;
 };
 
 export default HNFeedContainer;
