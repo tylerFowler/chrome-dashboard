@@ -34,6 +34,7 @@ const Article = styled.article`
   background-color: ${props => props.theme.backgroundExtraLight};
   height: ${feedItemSize}px;
   max-height: ${feedItemSize}px;
+  min-width: 18em;
 `;
 
 const FeedNumber = styled.span`
