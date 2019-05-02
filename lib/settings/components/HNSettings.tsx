@@ -2,6 +2,7 @@ import React from 'react';
 import { PanelOrientation } from '../interface';
 import { FeedType as HNFeedType } from '../../hn/interface';
 import { SettingInlineLabel, SettingField, SettingSelect } from './SettingsForm';
+import FeedSelectOptions from '../../hn/components/FeedOptionGroup';
 
 export interface HNSettingsProps {
   readonly panelOrientation: PanelOrientation;
@@ -22,10 +23,7 @@ const HNSettings: React.SFC<HNSettingsProps> = props => {
       <SettingField>
         <SettingInlineLabel htmlFor={makeId('hn-default-feed-type')}>Default Feed Type:</SettingInlineLabel>
         <SettingSelect id={makeId('hn-default-feed-type')} value={defaultFeedType} onChange={defaultFeedChange}>
-          <option value={HNFeedType.TopStories} defaultChecked={true}>top</option>
-          <option value={HNFeedType.NewStories}>new</option>
-          <option value={HNFeedType.BestStories}>best</option>
-          <option value={HNFeedType.ShowStories}>show</option>
+          <FeedSelectOptions />
         </SettingSelect>
       </SettingField>
     </>
