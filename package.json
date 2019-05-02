@@ -2,7 +2,7 @@
   "name": "chrome-dashboard",
   "description": "A Chrome new tab page featuring HN/DN news feeds and other customizations",
   "author": "Tyler Fowler <tylerfowler.1337@gmail.com>",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "main": "lib/main.tsx",
   "scripts": {
     "build": "npx rollup -c rollup.config.js",
