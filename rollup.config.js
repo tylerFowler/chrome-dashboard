@@ -11,10 +11,11 @@ const namedExports = {
   'node_modules/react/index.js': [
     'Children', 'Component', 'PureComponent', 'createElement', 'cloneElement',
     'isValidElement', 'createFactory', 'version', 'createContext',
-    'useState', 'useEffect', 'useContext', 'useRef',
+    'useState', 'useEffect', 'useContext', 'useRef', 'useLayoutEffect',
+    'useMemo', 'useReducer',
   ],
   'node_modules/react-dom/index.js': [
-    'findDOMNode', 'render', 'unmountComponentAtNode'
+    'findDOMNode', 'render', 'unmountComponentAtNode', 'unstable_batchedUpdates',
   ],
   'node_modules/react-is/index.js': [
     'isValidElementType', 'isElement', 'ForwardRef',
