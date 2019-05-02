@@ -1,7 +1,7 @@
 import React from 'react';
 import { FeedType } from '../interface';
 
-const FeedSelectOptions: React.SFC = () => {
+const FeedOptionGroup: React.SFC = () => {
   return (
     <>
       <option value={FeedType.TopStories} defaultChecked={true}>top</option>
@@ -12,4 +12,4 @@ const FeedSelectOptions: React.SFC = () => {
   );
 };
 
-export default FeedSelectOptions;
+export default FeedOptionGroup;
