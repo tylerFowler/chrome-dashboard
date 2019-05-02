@@ -16,18 +16,19 @@ const HNFeedContainer: React.SFC<HNFeedContainerProps> = ({
   fetchPosts, startHNFeedRefresh, stopHNFeedRefresh, ...panelProps
 }) => {
   const { refreshInterval, pullSize } = useContext(FeedSettingsContext);
-  const hnSettings = useContext(HNSettingsContext);
+  const { defaultFeedType } = useContext(HNSettingsContext);
+
+  const [ currentFeed, setFeed ] = useState(defaultFeedType);
 
   useEffect(() => {
-    fetchPosts(hnSettings.defaultFeedType, pullSize);
-    startHNFeedRefresh(refreshInterval, hnSettings.defaultFeedType, pullSize);
+    console.log('Fetching posts');
+    fetchPosts(currentFeed, pullSize);
+    startHNFeedRefresh(refreshInterval, currentFeed, pullSize);
 
     return stopHNFeedRefresh;
-  }, []);
+  }, [ currentFeed ]);
 
-  const [ currentFeed ] = useState(hnSettings.defaultFeedType);
-
-  return <HNFeedPanel {...panelProps} theme={hnTheme} feed={currentFeed} />;
+  return <HNFeedPanel {...panelProps} theme={hnTheme} feed={currentFeed} setFeed={setFeed} />;
 };
 
 export default HNFeedContainer;
