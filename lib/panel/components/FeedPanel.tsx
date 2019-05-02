@@ -7,7 +7,7 @@ import Spinner from './Spinner';
 export interface FeedProps extends PanelProps {
   placeholder?: never;
   loading?: boolean;
-  fetchError: Error;
+  fetchError?: Error;
 
   // space for a single line is allocated for arbitrary feed controls, which
   // can be rendered using this prop
@@ -39,35 +39,41 @@ const FeedControlsContainer = styled.aside`
   padding: .5em ${feedHorizPadding};
 `;
 
-export default class FeedPanel extends React.Component<FeedProps> {
-  public render() {
-    const {
-      loading, fetchError, children,
-      renderFeedControls = () => <></>,
-      ...panelProps
-    } = this.props;
+const FeedPanel: React.SFC<FeedProps> = props => {
+  const {
+    loading, fetchError, children,
+    renderFeedControls,
+    ...panelProps
+  } = props;
 
-    return (
-      <Panel {...panelProps}>
-        {loading && <Spinner topMargin="30%" />}
+  return (
+    <Panel {...panelProps}>
+      {loading && <Spinner topMargin="30%" />}
 
-        {fetchError &&
-          <ErrorDisplay>
-            Error loading feed<br />
-            <em>{fetchError.toString()}</em>
-          </ErrorDisplay>
-        }
+      {fetchError &&
+        <ErrorDisplay>
+          Error loading feed<br />
+          <em>{fetchError.toString()}</em>
+        </ErrorDisplay>
+      }
 
-        {!loading && <>
-          <FeedControlsContainer>
-            {renderFeedControls()}
-          </FeedControlsContainer>
+      {!loading && <>
+        <FeedControlsContainer>
+          {renderFeedControls()}
+        </FeedControlsContainer>
 
-          <FeedList>
-            {children}
-          </FeedList>
-        </>}
-      </Panel>
-    );
-  }
-}
+        <FeedList>
+          {children}
+        </FeedList>
+      </>}
+    </Panel>
+  );
+};
+
+FeedPanel.defaultProps = {
+  loading: false,
+  fetchError: null,
+  renderFeedControls: () => <></>,
+};
+
+export default FeedPanel;
