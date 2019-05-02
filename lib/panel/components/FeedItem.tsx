@@ -8,7 +8,6 @@ export interface FeedItemProps {
   readonly index: number;
   readonly title: string;
   readonly url: string;
-  readonly maxTitleLength?: number;
   readonly upvotes?: number;
   readonly author?: string;
   readonly maxAuthorLength?: number;
@@ -87,8 +86,13 @@ const Link = styled.a.attrs({
 `;
 
 const PostLink = styled(Link)`
+  max-height: 3em;
+  display: inline-block;
+  overflow: hidden;
+  white-space: pre-line;
+
   &:visited {
-    color: ${props => props.theme.typeDarkLight}
+    color: ${props => props.theme.typeDarkLight};
   }
 `;
 
@@ -96,7 +100,7 @@ const CommentLink = styled(Link)``;
 
 const FeedItem: React.FC<FeedItemProps> = props => {
   const {
-    id, index, title, url, maxTitleLength, upvotes, author, maxAuthorLength,
+    id, index, title, url, upvotes, author, maxAuthorLength,
     commentCount, commentLink, upvote,
   } = props;
 
@@ -117,7 +121,7 @@ const FeedItem: React.FC<FeedItemProps> = props => {
     <Article>
       <FeedNumber>{index}</FeedNumber>
       <ContentContainer>
-        <PostLink href={url} title={title}>{abbreviateText(title, maxTitleLength)}</PostLink>
+        <PostLink href={url} title={title}>{title}</PostLink>
 
         <ItemDetail>
           {upvotes && <Upvotes count={upvotes} upvote={upvoteHandler} />}
@@ -131,7 +135,6 @@ const FeedItem: React.FC<FeedItemProps> = props => {
 };
 
 FeedItem.defaultProps = {
-  maxTitleLength: 55,
   maxAuthorLength: 20,
 };
 
