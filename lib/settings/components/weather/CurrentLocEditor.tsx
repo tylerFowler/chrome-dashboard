@@ -1,5 +1,14 @@
 import React, { useEffect, useState } from 'react';
+import { Error as ErrorAlert } from 'lib/styled/Alert';
+import styled from 'lib/styled-components';
 import CoordsEditor from './CoordsEditor';
+
+const ErrorContainer = styled.div`
+  flex-basis: 100%;
+  flex-shrink: 0;
+
+  margin: .25em auto 1em;
+`;
 
 const CurrentLocEditor: React.SFC = () => {
   const [ lat, setLat ] = useState('');
@@ -22,7 +31,12 @@ const CurrentLocEditor: React.SFC = () => {
   });
 
   return (<>
-      {error && <aside>{error.toString()}</aside>}
+      {error &&
+        <ErrorContainer>
+          <ErrorAlert>{error.toString()}</ErrorAlert>
+        </ErrorContainer>
+      }
+
       <CoordsEditor lat={lat} lon={lon} editable={false} />
   </>);
 };
