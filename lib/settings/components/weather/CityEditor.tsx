@@ -1,12 +1,16 @@
 import React from 'react';
 import { SettingField, SettingLabel, SettingInput } from '../SettingsForm';
 
+// TODO: have the editor just share the dispatcher via context vs doing this
 export interface CityLocationEditorProps {
   readonly cityName: string;
   onCityNameChange(city: string): void;
 
   readonly displayName?: string;
   onDisplayNameChange(displayName: string): void;
+
+  readonly countryCode: string;
+  onCountryCodeChange(code: string): void;
 }
 
 const CityLocationEditor: React.FC<CityLocationEditorProps> = props => <>
@@ -21,6 +25,13 @@ const CityLocationEditor: React.FC<CityLocationEditorProps> = props => <>
     <SettingLabel htmlFor="weather-loc-display-name">Display Name</SettingLabel>
     <SettingInput id="weather-loc-city-name" value={props.displayName || ''}
       onChange={e => props.onDisplayNameChange(e.target.value)}
+    />
+  </SettingField>
+
+  <SettingField>
+    <SettingLabel htmlFor="weather-loc-country-code">Country Code</SettingLabel>
+    <SettingInput id="weather-loc-country-code" value={props.countryCode || 'US'}
+      onChange={e => props.onCountryCodeChange(e.target.value)}
     />
   </SettingField>
 </>;

@@ -41,6 +41,8 @@ const LocationEditor: React.FC<Partial<LocationEditorProps>> = ({
       onCityNameChange={city => dispatch({ type: 'updateCity', payload: city })}
       displayName={configState.displayName}
       onDisplayNameChange={displayName => dispatch({ type: 'updateDisplayName', payload: displayName })}
+      countryCode={configState.countryCode}
+      onCountryCodeChange={countryCode => dispatch({ type: 'updateCountryCode', payload: countryCode })}
     />;
     break;
   default:
