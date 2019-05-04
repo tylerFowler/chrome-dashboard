@@ -6,6 +6,7 @@ import { SettingFieldGroup, SettingSelect, SettingsSubmitButton } from '../Setti
 import CityEditor from './CityEditor';
 import ZIPCodeEditor from './ZIPCodeEditor';
 import CoordsEditor from './CoordsEditor';
+import CurrentLocEditor from './CurrentLocEditor';
 
 function locationEditorReducer(config: WeatherLocation, action: any): WeatherLocation {
   switch (action.type) {
@@ -35,10 +36,7 @@ const LocationEditorFieldGroup = styled(SettingFieldGroup)`
   margin: 1em .5em 1em 0;
 `;
 
-const LocationEditor: React.FC<Partial<LocationEditorProps>> = ({
-  config = { type: WeatherLocationType.CityName },
-  updateConfig = () => {},
-}) => {
+const LocationEditor: React.FC<Partial<LocationEditorProps>> = ({ config, updateConfig = () => {} }) => {
   const [ configState, dispatch ] = useReducer(locationEditorReducer, config);
 
   let locationConfigControl: React.ReactElement;
@@ -64,9 +62,17 @@ const LocationEditor: React.FC<Partial<LocationEditorProps>> = ({
       displayName={configState.displayName}
     />;
     break;
+  case WeatherLocationType.Current:
+    locationConfigControl = <CurrentLocEditor />;
+    break;
   default:
     break;
   }
+
+  const resetEditorToStored = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    event.preventDefault();
+    dispatch({ type: 'reset', payload: config });
+  };
 
   const locationUpdateSubmit = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     event.preventDefault();
@@ -92,7 +98,7 @@ const LocationEditor: React.FC<Partial<LocationEditorProps>> = ({
         {locationConfigControl}
       </LocationEditorFieldGroup>
 
-      <button type="reset" onClick={() => dispatch({ type: 'reset', payload: config })}>Reset</button>
+      <button type="reset" onClick={resetEditorToStored}>Reset</button>
       <SettingsSubmitButton onClick={locationUpdateSubmit}>Save</SettingsSubmitButton>
     </LocationEditorDispatch.Provider>
   );
