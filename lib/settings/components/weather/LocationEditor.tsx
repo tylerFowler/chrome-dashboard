@@ -1,36 +1,9 @@
 import React, { useState } from 'react';
 import styled from 'lib/styled-components';
 import { WeatherLocation, WeatherLocationType } from '../../interface';
-import {
-  SettingField, SettingFieldGroup, SettingLabel, SettingInput, SettingSelect,
-  SettingsSubmitButton,
-} from '../SettingsForm';
+import CityEditor from './CityEditor';
+import { SettingFieldGroup, SettingSelect, SettingsSubmitButton } from '../SettingsForm';
 
-interface CityLocationEditorProps {
-  readonly cityName: string;
-  onCityNameChange(city: string): void;
-
-  readonly displayName?: string;
-  onDisplayNameChange(displayName: string): void;
-}
-
-const CityLocationEditor: React.FC<CityLocationEditorProps> = props => <>
-  <SettingField>
-    <SettingLabel htmlFor="weather-loc-city-name">City</SettingLabel>
-    <SettingInput id="weather-loc-city-name" value={props.cityName}
-      onChange={e => props.onCityNameChange(e.target.value)}
-    />
-  </SettingField>
-
-  <SettingField>
-    <SettingLabel htmlFor="weather-loc-display-name">Display Name</SettingLabel>
-    <SettingInput id="weather-loc-city-name" value={props.displayName || ''}
-      onChange={e => props.onDisplayNameChange(e.target.value)}
-    />
-  </SettingField>
-</>;
-
-// TODO: move this & it's parts to own file - or maybe move it's parts to own dir
 export interface LocationEditorProps {
   readonly config: WeatherLocation;
   updateConfig(update: WeatherLocation): void;
@@ -52,7 +25,7 @@ const LocationEditor: React.FC<Partial<LocationEditorProps>> = ({
   let locationConfigControl: React.ReactElement;
   switch (locType) {
   case WeatherLocationType.CityName:
-    locationConfigControl = <CityLocationEditor
+    locationConfigControl = <CityEditor
       cityName={locationSettings.value || ''}
       onCityNameChange={city => setLocationSettings(prev => ({ ...prev, value: city }))}
       displayName={locationSettings.displayName}
