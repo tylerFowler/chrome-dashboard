@@ -1,39 +1,40 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { SettingField, SettingLabel, SettingInput } from '../SettingsForm';
+import LocationEditorDispatch from './locationEditorDispatch';
 
-// TODO: have the editor just share the dispatcher via context vs doing this
 export interface CityLocationEditorProps {
   readonly cityName: string;
-  onCityNameChange(city: string): void;
-
   readonly displayName?: string;
-  onDisplayNameChange(displayName: string): void;
-
   readonly countryCode: string;
-  onCountryCodeChange(code: string): void;
 }
 
-const CityLocationEditor: React.FC<CityLocationEditorProps> = props => <>
-  <SettingField>
-    <SettingLabel htmlFor="weather-loc-city-name">City</SettingLabel>
-    <SettingInput id="weather-loc-city-name" value={props.cityName}
-      onChange={e => props.onCityNameChange(e.target.value)}
-    />
-  </SettingField>
+const CityLocationEditor: React.FC<CityLocationEditorProps> = props => {
+  const dispatch = useContext(LocationEditorDispatch);
 
-  <SettingField>
-    <SettingLabel htmlFor="weather-loc-display-name">Display Name</SettingLabel>
-    <SettingInput id="weather-loc-city-name" value={props.displayName || ''}
-      onChange={e => props.onDisplayNameChange(e.target.value)}
-    />
-  </SettingField>
+  return (
+    <>
+      <SettingField>
+        <SettingLabel htmlFor="weather-loc-city-name">City</SettingLabel>
+        <SettingInput id="weather-loc-city-name" value={props.cityName}
+          onChange={e => dispatch({ type: 'updateCity', payload: e.target.value })}
+        />
+      </SettingField>
 
-  <SettingField>
-    <SettingLabel htmlFor="weather-loc-country-code">Country Code</SettingLabel>
-    <SettingInput id="weather-loc-country-code" value={props.countryCode || 'US'}
-      onChange={e => props.onCountryCodeChange(e.target.value)}
-    />
-  </SettingField>
-</>;
+      <SettingField>
+        <SettingLabel htmlFor="weather-loc-display-name">Display Name</SettingLabel>
+        <SettingInput id="weather-loc-display-name" value={props.displayName || ''}
+          onChange={e => dispatch({ type: 'updateDisplayName', payload: e.target.value })}
+        />
+      </SettingField>
+
+      <SettingField>
+        <SettingLabel htmlFor="weather-loc-country-code">Country Code</SettingLabel>
+        <SettingInput id="weather-loc-country-code" value={props.countryCode || 'US'}
+          onChange={e => dispatch({ type: 'updateCountryCode', payload: e.target.value })}
+        />
+      </SettingField>
+    </>
+  );
+};
 
 export default CityLocationEditor;

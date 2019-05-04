@@ -1,8 +1,9 @@
 import React, { useState, useReducer } from 'react';
 import styled from 'lib/styled-components';
 import { WeatherLocation, WeatherLocationType } from '../../interface';
-import CityEditor from './CityEditor';
+import LocationEditorDispatch from './locationEditorDispatch';
 import { SettingFieldGroup, SettingSelect, SettingsSubmitButton } from '../SettingsForm';
+import CityEditor from './CityEditor';
 
 function locationEditorReducer(config: WeatherLocation, action: any): WeatherLocation {
   switch (action.type) {
@@ -38,11 +39,8 @@ const LocationEditor: React.FC<Partial<LocationEditorProps>> = ({
   case WeatherLocationType.CityName:
     locationConfigControl = <CityEditor
       cityName={configState.value || ''}
-      onCityNameChange={city => dispatch({ type: 'updateCity', payload: city })}
       displayName={configState.displayName}
-      onDisplayNameChange={displayName => dispatch({ type: 'updateDisplayName', payload: displayName })}
-      countryCode={configState.countryCode}
-      onCountryCodeChange={countryCode => dispatch({ type: 'updateCountryCode', payload: countryCode })}
+      countryCode={configState.countryCode || 'US'}
     />;
     break;
   default:
@@ -58,7 +56,8 @@ const LocationEditor: React.FC<Partial<LocationEditorProps>> = ({
   // us pass specific things to it without committing them.
   // - Should be able to reuse the main weather card for this, though may need
   //   a more compact version of this
-  return (<>
+  return (
+    <LocationEditorDispatch.Provider value={dispatch}>
       <SettingSelect value={locType} onChange={e => setLocType(e.target.value as WeatherLocationType)}>
         <option value={WeatherLocationType.CityName} defaultChecked={true}>City Name</option>
         <option value={WeatherLocationType.ZIPCode}>ZIP Code</option>
@@ -72,7 +71,8 @@ const LocationEditor: React.FC<Partial<LocationEditorProps>> = ({
 
       <button type="reset" onClick={() => dispatch({ type: 'reset', config })}>Reset</button>
       <SettingsSubmitButton onClick={locationUpdateSubmit}>Save</SettingsSubmitButton>
-  </>);
+    </LocationEditorDispatch.Provider>
+  );
 };
 
 export default LocationEditor;
