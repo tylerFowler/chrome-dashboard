@@ -49,6 +49,8 @@ export const SettingSelect = styled.select`
   }
 `;
 
+export const SettingsSubmitButton = styled.button.attrs({ type: 'submit' })``;
+
 export default styled.form`
   font-size: ${typeScale(3)};
   font-family: ${fontStacks.Monospace};
