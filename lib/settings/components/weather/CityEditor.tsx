@@ -8,7 +8,7 @@ export interface CityLocationEditorProps {
   readonly countryCode: string;
 }
 
-const CityLocationEditor: React.FC<CityLocationEditorProps> = props => {
+const CityLocationEditor: React.SFC<CityLocationEditorProps> = props => {
   const dispatch = useContext(LocationEditorDispatch);
 
   return (
