@@ -13,7 +13,7 @@ function locationEditorReducer(config: WeatherLocation, action: any): WeatherLoc
   case 'reset':
     return action.config;
   default:
-    return config;
+    throw new Error(`Unknown action type ${action.type}`);
   }
 }
 
