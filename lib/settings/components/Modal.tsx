@@ -22,6 +22,9 @@ const ModalContainer = styled.div`
   background-color: ${props => props.theme.backgroundLight};
   box-shadow: ${props => props.theme.darkShadowColor} 0 5px 10px 5px;
 
+  overflow-y: scroll;
+  overflow-x: hidden;
+
   width: 750px;
   height: 500px;
 
