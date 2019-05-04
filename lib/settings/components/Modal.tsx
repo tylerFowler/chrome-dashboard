@@ -48,6 +48,10 @@ const SettingsContainer = styled.section`
   padding: 1em;
 `;
 
+const Settings: React.SFC = () => <SettingsContainer>
+  <FeedSettings />
+</SettingsContainer>;
+
 const SettingsModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
   const $modal = useRef(null);
   useOutOfBoundsClick($modal, onClose, isOpen);
@@ -62,10 +66,7 @@ const SettingsModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
       {isOpen &&
         <ModalContainer key="modal-outer" ref={$modal}>
           <SettingsHeader onClose={onClose} />
-
-          <SettingsContainer>
-            <FeedSettings />
-          </SettingsContainer>
+          <Settings />
         </ModalContainer>
       }
     </ReactTransitionGroup>
