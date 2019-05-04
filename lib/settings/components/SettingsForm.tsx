@@ -2,7 +2,6 @@ import styled from 'lib/styled-components';
 import { fontStacks, typeScale } from '../../styles';
 
 export const SettingField = styled.div`
-  font-size: ${typeScale(3)};
   margin: 1.5em auto;
 
   &:first-of-type { margin-top: 0; }
@@ -51,6 +50,7 @@ export const SettingSelect = styled.select`
 `;
 
 export default styled.form`
+  font-size: ${typeScale(3)};
   font-family: ${fontStacks.Monospace};
 
   legend {
