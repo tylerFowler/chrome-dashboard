@@ -13,7 +13,7 @@ export const SettingFieldGroup = styled.div`
   justify-content: flex-start;
 
   > ${SettingField} {
-    margin: .5em 1em;
+    margin: .5em 1.5em .5em 0;
 
     &:first-of-type { margin-left: 0; }
   }
