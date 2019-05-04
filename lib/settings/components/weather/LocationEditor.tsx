@@ -5,11 +5,13 @@ import LocationEditorDispatch from './locationEditorDispatch';
 import { SettingFieldGroup, SettingSelect, SettingsSubmitButton } from '../SettingsForm';
 import CityEditor from './CityEditor';
 import ZIPCodeEditor from './ZIPCodeEditor';
+import CoordsEditor from './CoordsEditor';
 
 function locationEditorReducer(config: WeatherLocation, action: any): WeatherLocation {
   switch (action.type) {
   case 'updateCity':
   case 'updateZipCode':
+  case 'updateCoords':
     return { ...config, value: action.payload };
   case 'updateDisplayName':
     return { ...config, displayName: action.payload };
@@ -53,6 +55,13 @@ const LocationEditor: React.FC<Partial<LocationEditorProps>> = ({
       zip={configState.value}
       displayName={configState.displayName}
       countryCode={configState.countryCode}
+    />;
+    break;
+  case WeatherLocationType.Coords:
+    locationConfigControl = <CoordsEditor
+      lat={configState.value.split(',')[0] || ''}
+      lon={configState.value.split(',')[1] || ''}
+      displayName={configState.displayName}
     />;
     break;
   default:
