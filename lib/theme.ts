@@ -1,12 +1,14 @@
 export interface AppTheme {
+  backgroundDark: string;
+  backgroundDarker: string;
   backgroundLight: string;
   backgroundExtraLight: string;
   backgroundLightDark: string;
-  backgroundDark: string;
-  backgroundDarker: string;
+
+  typeLight: string;
   typeDark: string;
   typeDarkLight: string;
-  typeLight: string;
+
   borderDark: string;
   borderDarkLight: string;
   darkShadowColor: string;
