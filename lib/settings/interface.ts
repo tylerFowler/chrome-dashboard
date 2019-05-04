@@ -23,3 +23,17 @@ export type FeedPanelSettings = HNFeedSettings;
 export interface HNFeedSettings {
   readonly defaultFeedType: HNFeedType;
 }
+
+export enum WeatherLocationType {
+  CityName = 'city_name',
+  ZIPCode = 'zip',
+  Coords = 'coords',
+  Current = 'current',
+}
+
+export interface WeatherLocation {
+  type: WeatherLocationType;
+  value?: string;
+  countryCode?: string;
+  displayName?: string;
+}

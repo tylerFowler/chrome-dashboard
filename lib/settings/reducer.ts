@@ -1,4 +1,4 @@
-import { FeedType, FeedPanelSettings } from './interface';
+import { FeedType, FeedPanelSettings, WeatherLocation, WeatherLocationType } from './interface';
 import { Actions, SettingsAction } from './actions';
 import { FeedType as HNFeedType } from '../hn/interface';
 
@@ -12,6 +12,11 @@ export interface PanelSettings {
   readonly feedSettings?: FeedPanelSettings;
 }
 
+export interface WeatherSettings {
+  readonly openWeatherAPIKey: string;
+  readonly location: Readonly<WeatherLocation>;
+}
+
 export interface State {
   readonly toast: string;
   readonly feed: FeedSettings;
@@ -19,6 +24,7 @@ export interface State {
     readonly left: PanelSettings;
     readonly right: PanelSettings;
   };
+  readonly weather: WeatherSettings;
 }
 
 export const defaultState: State = {
@@ -32,6 +38,15 @@ export const defaultState: State = {
     right: {
       type: FeedType.HN,
       feedSettings: { defaultFeedType: HNFeedType.TopStories },
+    },
+  },
+  weather: {
+    openWeatherAPIKey: '',
+    location: {
+      type: WeatherLocationType.CityName,
+      value: 'Kansas City',
+      countryCode: 'US',
+      displayName: 'KC',
     },
   },
 };
