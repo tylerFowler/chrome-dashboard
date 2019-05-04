@@ -1,18 +1,24 @@
-import React, { useState, useReducer } from 'react';
+import React, { useReducer } from 'react';
 import styled from 'lib/styled-components';
 import { WeatherLocation, WeatherLocationType } from '../../interface';
 import LocationEditorDispatch from './locationEditorDispatch';
 import { SettingFieldGroup, SettingSelect, SettingsSubmitButton } from '../SettingsForm';
 import CityEditor from './CityEditor';
+import ZIPCodeEditor from './ZIPCodeEditor';
 
 function locationEditorReducer(config: WeatherLocation, action: any): WeatherLocation {
   switch (action.type) {
   case 'updateCity':
+  case 'updateZipCode':
     return { ...config, value: action.payload };
   case 'updateDisplayName':
     return { ...config, displayName: action.payload };
+  case 'updateCountryCode':
+    return { ...config, countryCode: action.payload };
+  case 'setType':
+    return { type: action.payload, value: '', displayName: '', countryCode: '' };
   case 'reset':
-    return action.config;
+    return action.payload;
   default:
     throw new Error(`Unknown action type ${action.type}`);
   }
@@ -31,16 +37,22 @@ const LocationEditor: React.FC<Partial<LocationEditorProps>> = ({
   config = { type: WeatherLocationType.CityName },
   updateConfig = () => {},
 }) => {
-  const [ locType, setLocType ] = useState<WeatherLocationType>(config.type);
   const [ configState, dispatch ] = useReducer(locationEditorReducer, config);
 
   let locationConfigControl: React.ReactElement;
-  switch (locType) {
+  switch (configState.type) {
   case WeatherLocationType.CityName:
     locationConfigControl = <CityEditor
-      cityName={configState.value || ''}
+      cityName={configState.value}
       displayName={configState.displayName}
-      countryCode={configState.countryCode || 'US'}
+      countryCode={configState.countryCode}
+    />;
+    break;
+  case WeatherLocationType.ZIPCode:
+    locationConfigControl = <ZIPCodeEditor
+      zip={configState.value}
+      displayName={configState.displayName}
+      countryCode={configState.countryCode}
     />;
     break;
   default:
@@ -49,7 +61,7 @@ const LocationEditor: React.FC<Partial<LocationEditorProps>> = ({
 
   const locationUpdateSubmit = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     event.preventDefault();
-    updateConfig({ ...configState, type: locType });
+    updateConfig(configState);
   };
 
   // TODO: display a "current weather with current settings viewer" that lets
@@ -58,7 +70,9 @@ const LocationEditor: React.FC<Partial<LocationEditorProps>> = ({
   //   a more compact version of this
   return (
     <LocationEditorDispatch.Provider value={dispatch}>
-      <SettingSelect value={locType} onChange={e => setLocType(e.target.value as WeatherLocationType)}>
+      <SettingSelect value={configState.type}
+        onChange={e => dispatch({ type: 'setType', payload: e.target.value as WeatherLocationType })}
+      >
         <option value={WeatherLocationType.CityName} defaultChecked={true}>City Name</option>
         <option value={WeatherLocationType.ZIPCode}>ZIP Code</option>
         <option value={WeatherLocationType.Coords}>Lat/Long Coordinates</option>
@@ -69,7 +83,7 @@ const LocationEditor: React.FC<Partial<LocationEditorProps>> = ({
         {locationConfigControl}
       </LocationEditorFieldGroup>
 
-      <button type="reset" onClick={() => dispatch({ type: 'reset', config })}>Reset</button>
+      <button type="reset" onClick={() => dispatch({ type: 'reset', payload: config })}>Reset</button>
       <SettingsSubmitButton onClick={locationUpdateSubmit}>Save</SettingsSubmitButton>
     </LocationEditorDispatch.Provider>
   );
