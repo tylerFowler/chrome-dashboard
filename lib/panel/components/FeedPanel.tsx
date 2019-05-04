@@ -25,7 +25,6 @@ const FeedList = styled.ul`
   list-style-type: none;
   margin: 0;
   padding: .5em ${feedHorizPadding} 1em;
-  overflow: scroll;
 
   > li {
     margin-bottom: 1em;
