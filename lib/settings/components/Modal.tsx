@@ -4,7 +4,7 @@ import { useOutOfBoundsClick, useEscapeKeyUp } from '../../hooks';
 import styled from 'lib/styled-components';
 import SettingsHeader from '../containers/Header';
 import FeedSettings from '../containers/FeedSettings';
-import WeatherSettings from './weather/Settings';
+import WeatherSettings from '../containers/WeatherSettings';
 
 export interface ModalProps {
   readonly isOpen: boolean;

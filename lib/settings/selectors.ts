@@ -26,3 +26,6 @@ export const getLeftPanelFeedType = ({ settings }: State) => settings.panelConfi
 export const getLeftPanelFeedSettings = ({ settings }: State) => settings.panelConfig.left.feedSettings;
 export const getRightPanelFeedType = ({ settings }: State) => settings.panelConfig.right.type;
 export const getRightPanelFeedSettings = ({ settings }: State) => settings.panelConfig.right.feedSettings;
+
+export const getWeatherAPIKey = ({ settings }: State) => settings.weather.openWeatherAPIKey;
+export const getWeatherLocationConfig = ({ settings }: State) => settings.weather.location;

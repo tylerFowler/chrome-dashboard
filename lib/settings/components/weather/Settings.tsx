@@ -3,7 +3,7 @@ import { WeatherLocation } from '../../interface';
 import LocationEditor from './LocationEditor';
 import SettingsForm, { SettingField, SettingLabel, SettingInput } from '../SettingsForm';
 
-export interface WeatherSettings {
+export interface WeatherSettingsProps {
   readonly openWeatherAPIKey: string;
   setOpenWeatherAPIKey(key: string): void;
 
@@ -21,17 +21,20 @@ const APIKeySetting: React.SFC<{ readonly apiKey: string; onChange(key: string):
   </SettingField>
 ;
 
-const WeatherSettings: React.FC<Partial<WeatherSettings>> = () =>
+const WeatherSettings: React.FC<WeatherSettingsProps> = ({
+  openWeatherAPIKey, setOpenWeatherAPIKey,
+  location, setLocationConfig,
+}) =>
   <SettingsForm>
     <legend>Weather</legend>
 
-    <APIKeySetting apiKey="" onChange={console.log} />
+    <APIKeySetting apiKey={openWeatherAPIKey} onChange={setOpenWeatherAPIKey} />
 
     {/* TODO: style this */}
     <fieldset>
       <SettingField>
         <SettingLabel>Location</SettingLabel>
-        <LocationEditor updateConfig={console.log} />
+        <LocationEditor config={location} updateConfig={setLocationConfig} />
       </SettingField>
     </fieldset>
   </SettingsForm>
