@@ -13,6 +13,9 @@ const appTheme = {
   borderDarkLight: '#767676',
   darkShadowColor: 'rgba(64, 64, 64, .2)',
   inputShadowDark: 'rgba(74, 74, 74, .5)',
+
+  negativeBackground: '#ffcab3',
+  negativeAccent: '#ff7537',
 };
 
 export type AppTheme = typeof appTheme;
