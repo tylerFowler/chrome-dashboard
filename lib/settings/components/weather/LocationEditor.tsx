@@ -7,7 +7,11 @@ import { SettingFieldGroup, SettingSelect, SettingsSubmitButton } from '../Setti
 function locationEditorReducer(config: WeatherLocation, action: any): WeatherLocation {
   switch (action.type) {
   case 'updateCity':
-    return { ...config, value: action.city };
+    return { ...config, value: action.payload };
+  case 'updateDisplayName':
+    return { ...config, displayName: action.payload };
+  case 'reset':
+    return action.config;
   default:
     return config;
   }
@@ -34,26 +38,24 @@ const LocationEditor: React.FC<Partial<LocationEditorProps>> = ({
   case WeatherLocationType.CityName:
     locationConfigControl = <CityEditor
       cityName={configState.value || ''}
-      onCityNameChange={city => dispatch({ type: 'updateCity', city })}
+      onCityNameChange={city => dispatch({ type: 'updateCity', payload: city })}
       displayName={configState.displayName}
-      onDisplayNameChange={displayName => dispatch({ type: 'updateDisplayName', displayName })}
+      onDisplayNameChange={displayName => dispatch({ type: 'updateDisplayName', payload: displayName })}
     />;
     break;
   default:
     break;
   }
 
-  // TODO: this should collect updates from it's sub components
   const locationUpdateSubmit = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     event.preventDefault();
-    updateConfig(null);
+    updateConfig({ ...configState, type: locType });
   };
 
   // TODO: display a "current weather with current settings viewer" that lets
   // us pass specific things to it without committing them.
   // - Should be able to reuse the main weather card for this, though may need
   //   a more compact version of this
-  // TODO: display a reset to use the currently committed/saved/active config
   return (<>
       <SettingSelect value={locType} onChange={e => setLocType(e.target.value as WeatherLocationType)}>
         <option value={WeatherLocationType.CityName} defaultChecked={true}>City Name</option>
@@ -66,6 +68,7 @@ const LocationEditor: React.FC<Partial<LocationEditorProps>> = ({
         {locationConfigControl}
       </LocationEditorFieldGroup>
 
+      <button type="reset" onClick={() => dispatch({ type: 'reset', config })}>Reset</button>
       <SettingsSubmitButton onClick={locationUpdateSubmit}>Save</SettingsSubmitButton>
   </>);
 };
