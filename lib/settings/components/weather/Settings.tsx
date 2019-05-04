@@ -27,10 +27,13 @@ const WeatherSettings: React.FC<Partial<WeatherSettings>> = () =>
 
     <APIKeySetting apiKey="" onChange={console.log} />
 
-    <SettingField>
-      <SettingLabel>Location</SettingLabel>
-      <LocationEditor />
-    </SettingField>
+    {/* TODO: style this */}
+    <fieldset>
+      <SettingField>
+        <SettingLabel>Location</SettingLabel>
+        <LocationEditor updateConfig={console.log} />
+      </SettingField>
+    </fieldset>
   </SettingsForm>
 ;
 
