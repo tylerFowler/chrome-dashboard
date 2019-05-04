@@ -1,21 +1,4 @@
-export interface AppTheme {
-  backgroundDark: string;
-  backgroundDarker: string;
-  backgroundLight: string;
-  backgroundExtraLight: string;
-  backgroundLightDark: string;
-
-  typeLight: string;
-  typeDark: string;
-  typeDarkLight: string;
-
-  borderDark: string;
-  borderDarkLight: string;
-  darkShadowColor: string;
-  inputShadowDark: string;
-}
-
-export default {
+const appTheme = {
   backgroundDark: '#7a7a7a',
   backgroundDarker: '#4a4a4a',
   backgroundLight: '#f0f0f0',
@@ -31,3 +14,7 @@ export default {
   darkShadowColor: 'rgba(64, 64, 64, .2)',
   inputShadowDark: 'rgba(74, 74, 74, .5)',
 };
+
+export type AppTheme = typeof appTheme;
+
+export default appTheme;
