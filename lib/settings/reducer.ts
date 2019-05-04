@@ -80,6 +80,8 @@ export default function settingsReducer(state: State = defaultState, action: Set
         },
       },
     }};
+  case Actions.UpdateWeatherConfiguration:
+    return { ...state, weather: { ...state.weather, ...action.payload.update }};
   default:
     return state;
   }

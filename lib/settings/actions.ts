@@ -1,17 +1,20 @@
 import { action, ActionType } from 'typesafe-actions';
-import { FeedSettings, State as SettingsState } from './reducer';
+import { FeedSettings, State as SettingsState, WeatherSettings } from './reducer';
 import { FeedType, FeedPanelSettings, PanelOrientation } from './interface';
 
 export enum Actions {
   Commit = 'SETTINGS_COMMIT',
   Committed = 'SETTINGS_COMITTED',
   CommitFailure = 'SETTINGS_COMMIT_FAILURE',
+  ReceiveSettings = 'SETTINGS_RECV',
   AddToast = 'SETTINGS_ADD_TOAST',
   RemoveToast = 'SETTINGS_REMOVE_TOAST',
-  ReceiveSettings = 'SETTINGS_RECV',
+
   UpdateFeedConfiguration = 'SETTINGS_UPDATE_FEED_CONFIG',
   UpdatePanelConfiguration = 'SETTINGS_UPDATE_PANEL_CONFIG',
   UpdatePanelType = 'SETTINGS_UPDATE_PANEL_TYPE',
+
+  UpdateWeatherConfiguration = 'SETTINGS_UPDATE_WEATHER',
 }
 
 export type SettingsAction = ActionType<
@@ -21,6 +24,7 @@ export type SettingsAction = ActionType<
   | typeof updatePanelConfig
   | typeof setPanelFeedType
   | typeof receiveSettings
+  | typeof updateWeatherConfig
 >;
 
 export const commit = () => action(Actions.Commit);
@@ -46,3 +50,6 @@ export const updatePanelConfig = (panel: PanelOrientation, config: Partial<FeedP
 export const updateFeedPullSize = (pullSize: number) => updateFeedConfig({ pullSize });
 export const updateFeedRefreshInterval = (ivalMinutes: number) =>
   updateFeedConfig({ refreshInterval: ivalMinutes });
+
+export const updateWeatherConfig = (config: Partial<WeatherSettings>) =>
+  action(Actions.UpdateWeatherConfiguration, { update: config });
