@@ -1,8 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useReducer } from 'react';
 import styled from 'lib/styled-components';
 import { WeatherLocation, WeatherLocationType } from '../../interface';
 import CityEditor from './CityEditor';
 import { SettingFieldGroup, SettingSelect, SettingsSubmitButton } from '../SettingsForm';
+
+function locationEditorReducer(config: WeatherLocation, action: any): WeatherLocation {
+  switch (action.type) {
+  case 'updateCity':
+    return { ...config, value: action.city };
+  default:
+    return config;
+  }
+}
 
 export interface LocationEditorProps {
   readonly config: WeatherLocation;
@@ -18,18 +27,16 @@ const LocationEditor: React.FC<Partial<LocationEditorProps>> = ({
   updateConfig = () => {},
 }) => {
   const [ locType, setLocType ] = useState<WeatherLocationType>(config.type);
-  const [ locationSettings, setLocationSettings ] = useState<WeatherLocation>(config);
+  const [ configState, dispatch ] = useReducer(locationEditorReducer, config);
 
-  // TODO: I think we could probably use useReducer to be able to more easily be
-  // able to compute the local location settings before committing
   let locationConfigControl: React.ReactElement;
   switch (locType) {
   case WeatherLocationType.CityName:
     locationConfigControl = <CityEditor
-      cityName={locationSettings.value || ''}
-      onCityNameChange={city => setLocationSettings(prev => ({ ...prev, value: city }))}
-      displayName={locationSettings.displayName}
-      onDisplayNameChange={displayName => setLocationSettings(prev => ({ ...prev, displayName }))}
+      cityName={configState.value || ''}
+      onCityNameChange={city => dispatch({ type: 'updateCity', city })}
+      displayName={configState.displayName}
+      onDisplayNameChange={displayName => dispatch({ type: 'updateDisplayName', displayName })}
     />;
     break;
   default:
