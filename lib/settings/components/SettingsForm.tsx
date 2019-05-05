@@ -27,6 +27,7 @@ export const SettingLabel = styled.label`
 export const SettingInlineLabel = styled(SettingLabel)`display: inline-block`;
 
 export const SettingInput = styled.input`
+  height: 1.25em;
   padding: .25em .5em;
 
   border: 1px solid ${props => props.theme.backgroundDarker};
