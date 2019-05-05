@@ -60,9 +60,10 @@ export const SettingButton = styled.button`
 
   padding: .5em 1em;
   background-color: ${props => props.theme.backgroundExtraLight};
-  box-shadow: inset 0 -.25em ${props => props.theme.borderDarkLight};
   border-radius: 2px;
   border: 1px solid ${props => props.theme.typeDark};
+  box-shadow: inset 0 -.25em ${props => props.theme.borderDarkLight};
+  padding-bottom: .65em; // compensate for box shadow
 
   // covers both the disabled -> enabled and hovered -> not hovered transitions
   transition:
