@@ -1,4 +1,6 @@
 import React from 'react';
+import styled from 'lib/styled-components';
+import { typeScale } from 'lib/styles';
 import { WeatherLocation } from '../../interface';
 import LocationEditor from './LocationEditor';
 import SettingsForm, { SettingField, SettingLabel, SettingInput } from '../SettingsForm';
@@ -21,6 +23,14 @@ const APIKeySetting: React.SFC<{ readonly apiKey: string; onChange(key: string):
   </SettingField>
 ;
 
+const LocationTypeFieldset = styled.fieldset`
+  > legend {
+    font-size: ${typeScale(4)};
+    font-weight: bold;
+    padding: 0 2em 0 1em;
+  }
+`;
+
 const WeatherSettings: React.FC<WeatherSettingsProps> = ({
   openWeatherAPIKey, setOpenWeatherAPIKey,
   location, setLocationConfig,
@@ -31,12 +41,13 @@ const WeatherSettings: React.FC<WeatherSettingsProps> = ({
     <APIKeySetting apiKey={openWeatherAPIKey} onChange={setOpenWeatherAPIKey} />
 
     {/* TODO: style this */}
-    <fieldset>
+    <LocationTypeFieldset>
       <legend>Location Type</legend>
+
       <SettingField>
         <LocationEditor config={location} updateConfig={setLocationConfig} />
       </SettingField>
-    </fieldset>
+    </LocationTypeFieldset>
   </SettingsForm>
 ;
 
