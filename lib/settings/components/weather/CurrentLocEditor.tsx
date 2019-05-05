@@ -4,6 +4,11 @@ import styled from 'lib/styled-components';
 import CoordsEditor from './CoordsEditor';
 import LocationEditorDispatch from './locationEditorDispatch';
 
+export interface CurrentLocEditorProps {
+  readonly lat: string;
+  readonly lon: string;
+}
+
 const ErrorContainer = styled.div`
   flex-basis: 100%;
   flex-shrink: 0;
@@ -11,14 +16,10 @@ const ErrorContainer = styled.div`
   margin: .25em auto 1em;
 `;
 
-const CurrentLocEditor: React.SFC = () => {
+const CurrentLocEditor: React.SFC<CurrentLocEditorProps> = ({ lat, lon }) => {
   const dispatch = useContext(LocationEditorDispatch);
 
-  // TODO: get lat/lon from props, use state
-  const [ lat, setLat ] = useState('');
-  const [ lon, setLon ] = useState('');
   const [ error, setError ] = useState(null);
-
   useEffect(() => {
     if (!navigator.geolocation) {
       setError(new Error('Your browser does not support detecting your current location'));
@@ -27,11 +28,14 @@ const CurrentLocEditor: React.SFC = () => {
 
     navigator.geolocation.getCurrentPosition(
       ({ coords }) => {
-        setLat(coords.latitude.toPrecision(7));
-        setLon(coords.longitude.toPrecision(7));
+        const fmtCoord = (c: number) => c.toPrecision(7);
+        dispatch({
+          type: 'updateCoords',
+          payload: `${fmtCoord(coords.latitude)},${fmtCoord(coords.longitude)}`,
+        });
+
         dispatch({ type: 'waiting', payload: false });
-      },
-      () => {
+      }, () => {
         setError(new Error('Unable to detect your current location'));
         dispatch({ type: 'waiting', payload: false });
       },
