@@ -69,7 +69,7 @@ const LocationEditorFieldGroup = styled(SettingFieldGroup)`
 `;
 
 const LocationEditor: React.FC<Partial<LocationEditorProps>> = ({ config, updateConfig = () => {} }) => {
-  const initialState: State = { ...config, isWaiting: false, isValid: false };
+  const initialState: State = { ...config, isWaiting: false, isValid: true };
   const [ state, dispatch ] = useReducer(locationEditorReducer, initialState);
 
   let locationConfigControl: React.ReactElement;
@@ -105,11 +105,13 @@ const LocationEditor: React.FC<Partial<LocationEditorProps>> = ({ config, update
 
   const resetEditorToStored = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     event.preventDefault();
+    event.currentTarget.blur();
     dispatch({ type: 'reset', payload: initialState });
   };
 
   const locationUpdateSubmit = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     event.preventDefault();
+    event.currentTarget.blur();
     updateConfig(state);
   };
 
