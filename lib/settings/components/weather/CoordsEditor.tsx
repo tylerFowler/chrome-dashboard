@@ -18,7 +18,7 @@ const CoordsEditor: React.SFC<CoordsEditorProps> = ({ lat, lon, displayName, edi
   const dispatch = useContext(LocationEditorDispatch);
 
   const updateCoords = ({ newLat = lat, newLon = lon }) =>
-    dispatch({ type: 'updateCoords', payload: `${newLat},${newLon}` });
+    dispatch({ type: 'updateCoords', payload: { lat: newLat, lon: newLon } });
 
   return (<>
     <SettingField>

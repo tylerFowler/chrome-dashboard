@@ -12,11 +12,6 @@ import CurrentLocEditor from './CurrentLocEditor';
 // TODO: add action types
 type State = WeatherLocation & { isWaiting: boolean, isValid: boolean };
 
-const getCoordsFromState = (state: State) => ({
-  lat: state.value.split(',')[0],
-  lon: state.value.split(',')[1],
-});
-
 function locationEditorReducer(state: State, action: { type: string, payload: any }): State {
   let newState: State = state;
   switch (action.type) {
@@ -95,13 +90,13 @@ const LocationEditor: React.FC<Partial<LocationEditorProps>> = ({ config, update
     break;
   case WeatherLocationType.Coords:
     locationConfigControl = <CoordsEditor
-      {...getCoordsFromState(state)}
+      {...state.value}
       displayName={state.displayName}
     />;
     break;
   case WeatherLocationType.Current:
     locationConfigControl = <CurrentLocEditor
-      {...getCoordsFromState(state)}
+      {...state.value}
     />;
     break;
   default:

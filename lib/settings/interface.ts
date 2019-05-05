@@ -59,7 +59,7 @@ export namespace WeatherLocation {
 
   export interface Coords {
     type: WeatherLocationType.Coords|WeatherLocationType.Current;
-    value: string;
+    value: { lat: string, lon: string };
     displayName?: string;
     countryCode?: string; // must keep this to maintain prop parity with other types
   }
