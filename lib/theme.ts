@@ -6,6 +6,7 @@ const appTheme = {
   backgroundLightDark: '#e7e9e9',
 
   typeLight: '#fff',
+  typeLightDark: '#fefefe',
   typeDark: '#404040',
   typeDarkLight: '#a0a0a0',
 
