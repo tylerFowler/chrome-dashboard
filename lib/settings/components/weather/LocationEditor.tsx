@@ -10,7 +10,7 @@ import CoordsEditor from './CoordsEditor';
 import CurrentLocEditor from './CurrentLocEditor';
 
 // TODO: add action types
-type State = WeatherLocation & { isWaiting: boolean };
+type State = WeatherLocation & { isWaiting: boolean, isValid: boolean };
 
 const getCoordsFromState = (state: State) => ({
   lat: state.value.split(',')[0],
@@ -18,27 +18,50 @@ const getCoordsFromState = (state: State) => ({
 });
 
 function locationEditorReducer(state: State, action: { type: string, payload: any }): State {
+  let newState: State = state;
   switch (action.type) {
   case 'updateCity':
   case 'updateZipCode':
   case 'updateCoords':
-    return { ...state, value: action.payload };
+    newState = { ...state, value: action.payload };
+    break;
   case 'updateDisplayName':
-    return { ...state, displayName: action.payload };
+    newState = { ...state, displayName: action.payload };
+    break;
   case 'updateCountryCode':
-    return { ...state, countryCode: action.payload };
+    newState = { ...state, countryCode: action.payload };
+    break;
   case 'waiting':
-    return { ...state, isWaiting: action.payload };
+    newState = { ...state, isWaiting: action.payload };
+    break;
   case 'setType':
-    return {
+    newState = {
       type: action.payload, value: '', displayName: '', countryCode: '',
-      isWaiting: false,
+      isWaiting: false, isValid: false,
     };
+    break;
   case 'reset':
-    return action.payload;
+    newState = action.payload;
+    break;
   default:
     throw new Error(`Unknown action type ${action.type}`);
   }
+
+  let isValid = false;
+  switch (newState.type) {
+  case WeatherLocationType.CityName:
+    isValid = WeatherLocation.isCity(newState);
+    break;
+  case WeatherLocationType.ZIPCode:
+    isValid = WeatherLocation.isZIPCode(newState);
+    break;
+  case WeatherLocationType.Coords:
+  case WeatherLocationType.Current:
+    isValid = WeatherLocation.isCoords(newState);
+    break;
+  }
+
+  return { ...newState, isValid };
 }
 
 export interface LocationEditorProps {
@@ -51,7 +74,7 @@ const LocationEditorFieldGroup = styled(SettingFieldGroup)`
 `;
 
 const LocationEditor: React.FC<Partial<LocationEditorProps>> = ({ config, updateConfig = () => {} }) => {
-  const initialState: State = { ...config, isWaiting: false };
+  const initialState: State = { ...config, isWaiting: false, isValid: false };
   const [ state, dispatch ] = useReducer(locationEditorReducer, initialState);
 
   let locationConfigControl: React.ReactElement;
@@ -121,7 +144,7 @@ const LocationEditor: React.FC<Partial<LocationEditorProps>> = ({ config, update
       </LocationEditorFieldGroup>
 
       <button type="reset" onClick={resetEditorToStored}>Reset</button>
-      <SettingsSubmitButton onClick={locationUpdateSubmit}>Save</SettingsSubmitButton>
+      <SettingsSubmitButton onClick={locationUpdateSubmit} disabled={!state.isValid}>Save</SettingsSubmitButton>
     </LocationEditorDispatch.Provider>
   );
 };
