@@ -58,15 +58,24 @@ export const SettingButton = styled.button`
   color: ${props => props.theme.typeDark};
 
   padding: .5em 1em;
-  background: ${props => props.theme.backgroundExtraLight};
+  background-color: ${props => props.theme.backgroundExtraLight};
   box-shadow: inset 0 -.25em ${props => props.theme.borderDarkLight};
   border-radius: 2px;
   border: 1px solid ${props => props.theme.typeDark};
 
+  // covers both the disabled -> enabled and hovered -> not hovered transitions
+  transition:
+    color 350ms ease-out,
+    background-color 350ms ease-out,
+    border-color 350ms ease-out,
+    box-shadow 350ms ease-out;
+
   &:hover:not(:disabled) {
     color: ${props => props.theme.typeLightDark};
-    background: ${props => props.theme.borderDarkLight};
-    box-shadow: inset 0 -.25em ${props => props.theme.typeLightDark};
+    box-shadow: inset 0 -20rem ${props => props.theme.borderDarkLight};
+    transition:
+      color 150ms ease-in 150ms,
+      box-shadow 750ms ease-in 75ms;
   }
 
   &:disabled {
@@ -74,6 +83,11 @@ export const SettingButton = styled.button`
     color: ${props => props.theme.typeDarkLight};
     border-color: ${props => props.theme.typeDarkLight};
     box-shadow: inset 0 -.25em ${props => props.theme.typeDarkLight};
+
+    transition:
+      color .35s ease-in,
+      border-color .35s ease-in,
+      box-shadow .35s ease-in;
   }
 `;
 
