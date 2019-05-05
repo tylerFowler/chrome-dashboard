@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Spinner from 'lib/styled/Spinner';
 import { Error as ErrorAlert } from 'lib/styled/Alert';
 import styled from 'lib/styled-components';
 import CoordsEditor from './CoordsEditor';
@@ -14,6 +15,7 @@ const CurrentLocEditor: React.SFC = () => {
   const [ lat, setLat ] = useState('');
   const [ lon, setLon ] = useState('');
   const [ error, setError ] = useState(null);
+  const [ waiting, setWaiting ] = useState(false);
 
   useEffect(() => {
     if (!navigator.geolocation) {
@@ -25,12 +27,20 @@ const CurrentLocEditor: React.SFC = () => {
       ({ coords }) => {
         setLat(coords.latitude.toPrecision(7));
         setLon(coords.longitude.toPrecision(7));
+        setWaiting(false);
       },
-      () => setError(new Error('Unable to detect your current location')),
+      () => {
+        setError(new Error('Unable to detect your current location'));
+        setWaiting(false);
+      },
     );
-  });
+
+    setWaiting(true);
+  }, []);
 
   return (<>
+      {waiting && <Spinner />}
+
       {error &&
         <ErrorContainer>
           <ErrorAlert>{error.toString()}</ErrorAlert>
