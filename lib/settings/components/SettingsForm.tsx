@@ -96,6 +96,11 @@ export default styled.form`
   font-size: ${typeScale(3)};
   font-family: ${fontStacks.Monospace};
 
+  > fieldset {
+    border: 2px solid ${props => props.theme.backgroundDark};
+    border-radius: 3px;
+  }
+
   legend {
     font-size: ${typeScale(5)};
     margin-bottom: 1rem;
