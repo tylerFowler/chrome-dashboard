@@ -14,8 +14,16 @@ const CityLocationEditor: React.SFC<CityLocationEditorProps> = props => {
   return (<>
     <SettingField>
       <SettingLabel htmlFor="weather-loc-city-name">City</SettingLabel>
-      <SettingInput id="weather-loc-city-name" value={props.cityName}
+      <SettingInput id="weather-loc-city-name" type="address-level2" value={props.cityName}
         onChange={e => dispatch({ type: 'updateCity', payload: e.target.value })}
+      />
+    </SettingField>
+
+    <SettingField>
+      <SettingLabel htmlFor="weather-loc-country-code">Country Code</SettingLabel>
+      <SettingInput id="weather-loc-country-code" type="country" value={props.countryCode}
+        placeholder="ex: US, UK"
+        onChange={e => dispatch({ type: 'updateCountryCode', payload: e.target.value })}
       />
     </SettingField>
 
@@ -23,14 +31,6 @@ const CityLocationEditor: React.SFC<CityLocationEditorProps> = props => {
       <SettingLabel htmlFor="weather-loc-display-name">Display Name</SettingLabel>
       <SettingInput id="weather-loc-display-name" value={props.displayName || ''}
         onChange={e => dispatch({ type: 'updateDisplayName', payload: e.target.value })}
-      />
-    </SettingField>
-
-    <SettingField>
-      <SettingLabel htmlFor="weather-loc-country-code">Country Code</SettingLabel>
-      <SettingInput id="weather-loc-country-code" value={props.countryCode}
-        placeholder="ex: US, UK"
-        onChange={e => dispatch({ type: 'updateCountryCode', payload: e.target.value })}
       />
     </SettingField>
   </>);

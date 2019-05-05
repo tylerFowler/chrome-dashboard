@@ -14,8 +14,16 @@ const ZIPCodeEditor: React.SFC<ZIPCodeEditorProps> = ({ zip, countryCode, displa
   return (<>
     <SettingField>
       <SettingLabel htmlFor="weather-loc-zipcode">ZIP Code</SettingLabel>
-      <SettingInput id="weather-loc-zipcode" value={zip}
+      <SettingInput id="weather-loc-zipcode" type="postal-code" value={zip}
         onChange={e => dispatch({ type: 'updateZipCode', payload: e.target.value })}
+      />
+    </SettingField>
+
+    <SettingField>
+      <SettingLabel htmlFor="weather-loc-country-code">Country Code</SettingLabel>
+      <SettingInput id="weather-loc-country-code" type="country" value={countryCode}
+        placeholder="ex: US, UK"
+        onChange={e => dispatch({ type: 'updateCountryCode', payload: e.target.value })}
       />
     </SettingField>
 
@@ -24,14 +32,6 @@ const ZIPCodeEditor: React.SFC<ZIPCodeEditorProps> = ({ zip, countryCode, displa
         <SettingInput id="weather-loc-display-name" value={displayName}
           onChange={e => dispatch({ type: 'updateDisplayName', payload: e.target.value })}
         />
-    </SettingField>
-
-    <SettingField>
-      <SettingLabel htmlFor="weather-loc-country-code">Country Code</SettingLabel>
-      <SettingInput id="weather-loc-country-code" value={countryCode}
-        placeholder="ex: US, UK"
-        onChange={e => dispatch({ type: 'updateCountryCode', payload: e.target.value })}
-      />
     </SettingField>
   </>);
 };
