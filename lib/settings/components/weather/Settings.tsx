@@ -32,8 +32,8 @@ const WeatherSettings: React.FC<WeatherSettingsProps> = ({
 
     {/* TODO: style this */}
     <fieldset>
+      <legend>Location Type</legend>
       <SettingField>
-        <SettingLabel>Location Type</SettingLabel>
         <LocationEditor config={location} updateConfig={setLocationConfig} />
       </SettingField>
     </fieldset>
