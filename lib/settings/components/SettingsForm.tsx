@@ -49,7 +49,33 @@ export const SettingSelect = styled.select`
   }
 `;
 
-export const SettingsSubmitButton = styled.button.attrs({ type: 'submit' })``;
+export const SettingButton = styled.button`
+  cursor: pointer;
+  user-select: none;
+  &:focus { outline: 0; }
+
+  font-weight: bold;
+  color: ${props => props.theme.typeDark};
+
+  padding: .5em 1em;
+  background: ${props => props.theme.backgroundExtraLight};
+  box-shadow: inset 0 -.25em ${props => props.theme.borderDarkLight};
+  border-radius: 2px;
+  border: 1px solid ${props => props.theme.typeDark};
+
+  &:hover:not(:disabled) {
+    color: ${props => props.theme.typeLightDark};
+    background: ${props => props.theme.borderDarkLight};
+    box-shadow: inset 0 -.25em ${props => props.theme.typeLightDark};
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    color: ${props => props.theme.typeDarkLight};
+    border-color: ${props => props.theme.typeDarkLight};
+    box-shadow: inset 0 -.25em ${props => props.theme.typeDarkLight};
+  }
+`;
 
 export default styled.form`
   font-size: ${typeScale(3)};
@@ -58,5 +84,9 @@ export default styled.form`
   legend {
     font-size: ${typeScale(5)};
     margin-bottom: 1rem;
+  }
+
+  button:not(last-of-type) {
+    margin-right: 1em;
   }
 `;

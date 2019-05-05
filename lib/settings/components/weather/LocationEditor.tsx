@@ -2,7 +2,7 @@ import React, { useReducer } from 'react';
 import styled from 'lib/styled-components';
 import { WeatherLocation, WeatherLocationType } from '../../interface';
 import Spinner from 'lib/styled/Spinner';
-import { SettingFieldGroup, SettingSelect, SettingsSubmitButton } from '../SettingsForm';
+import { SettingFieldGroup, SettingSelect, SettingButton } from '../SettingsForm';
 import LocationEditorDispatch from './locationEditorDispatch';
 import CityEditor from './CityEditor';
 import ZIPCodeEditor from './ZIPCodeEditor';
@@ -138,8 +138,8 @@ const LocationEditor: React.FC<Partial<LocationEditorProps>> = ({ config, update
         {locationConfigControl}
       </LocationEditorFieldGroup>
 
-      <button type="reset" onClick={resetEditorToStored}>Reset</button>
-      <SettingsSubmitButton onClick={locationUpdateSubmit} disabled={!state.isValid}>Save</SettingsSubmitButton>
+      <SettingButton type="reset" onClick={resetEditorToStored}>Reset</SettingButton>
+      <SettingButton onClick={locationUpdateSubmit} disabled={!state.isValid}>Save</SettingButton>
     </LocationEditorDispatch.Provider>
   );
 };
