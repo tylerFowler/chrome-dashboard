@@ -75,8 +75,8 @@ export const SettingButton = styled.button`
     color: ${props => props.theme.typeLightDark};
     box-shadow: inset 0 -20rem ${props => props.theme.borderDarkLight};
     transition:
-      color 150ms ease-in 150ms,
-      box-shadow 750ms ease-in 75ms;
+      color 150ms ease-in 200ms,
+      box-shadow 750ms ease-in 125ms;
   }
 
   &:disabled {
