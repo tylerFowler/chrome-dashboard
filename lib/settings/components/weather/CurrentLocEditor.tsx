@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import Spinner from 'lib/styled/Spinner';
+import React, { useEffect, useState, useContext } from 'react';
 import { Error as ErrorAlert } from 'lib/styled/Alert';
 import styled from 'lib/styled-components';
 import CoordsEditor from './CoordsEditor';
+import LocationEditorDispatch from './locationEditorDispatch';
 
 const ErrorContainer = styled.div`
   flex-basis: 100%;
@@ -12,10 +12,12 @@ const ErrorContainer = styled.div`
 `;
 
 const CurrentLocEditor: React.SFC = () => {
+  const dispatch = useContext(LocationEditorDispatch);
+
+  // TODO: get lat/lon from props, use state
   const [ lat, setLat ] = useState('');
   const [ lon, setLon ] = useState('');
   const [ error, setError ] = useState(null);
-  const [ waiting, setWaiting ] = useState(false);
 
   useEffect(() => {
     if (!navigator.geolocation) {
@@ -27,20 +29,18 @@ const CurrentLocEditor: React.SFC = () => {
       ({ coords }) => {
         setLat(coords.latitude.toPrecision(7));
         setLon(coords.longitude.toPrecision(7));
-        setWaiting(false);
+        dispatch({ type: 'waiting', payload: false });
       },
       () => {
         setError(new Error('Unable to detect your current location'));
-        setWaiting(false);
+        dispatch({ type: 'waiting', payload: false });
       },
     );
 
-    setWaiting(true);
+    dispatch({ type: 'waiting', payload: true });
   }, []);
 
   return (<>
-      {waiting && <Spinner />}
-
       {error &&
         <ErrorContainer>
           <ErrorAlert>{error.toString()}</ErrorAlert>
