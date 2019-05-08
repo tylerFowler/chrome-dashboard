@@ -56,7 +56,7 @@ const FeedPanel: React.SFC<FeedProps> = props => {
         </ErrorDisplay>
       }
 
-      {!loading && <>
+      {!loading && !fetchError && <>
         <FeedControlsContainer>
           {renderFeedControls()}
         </FeedControlsContainer>
