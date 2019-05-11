@@ -21,11 +21,11 @@
     "redux": "^4.0.1",
     "redux-saga": "^1.0.2",
     "styled-components": "^4.2.0",
-    "typesafe-actions": "^4.2.0"
+    "typesafe-actions": "^4.2.1"
   },
   "devDependencies": {
     "@types/node": "^11.13.10",
-    "@types/react": "^16.8.16",
+    "@types/react": "^16.8.17",
     "@types/react-addons-css-transition-group": "^15.0.5",
     "@types/react-dom": "^16.8.4",
     "@types/react-redux": "^7.0.8",
