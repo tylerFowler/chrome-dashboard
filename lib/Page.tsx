@@ -4,8 +4,9 @@ import * as Styles from './styles';
 import mainTheme from './theme';
 import ClockPanel from './clock/ClockPanel';
 import SettingsModal from './settings/components/Modal';
-import { default as SettingsIcon } from './settings/components/OpenIcon';
+import SettingsIcon from './settings/components/OpenIcon';
 import DashboardPanel from './DashboardPanel';
+import WeatherCard from './weather/components/WeatherCard';
 
 const PageBackground = styled.div`
   width: 100%;
@@ -27,6 +28,10 @@ const CenterPane = styled.section`
   overflow: hidden;
 `;
 
+const CenterControls = styled.section`
+  padding: 1em;
+`;
+
 const panelContainerStyles: React.CSSProperties = {
   flex: '4 200px',
   maxWidth: '750px',
@@ -46,6 +51,10 @@ const Page: React.FC = () => {
             style={{marginLeft: '1em', marginRight: '1em'}}
           />
           <ClockPanel />
+
+          <CenterControls>
+            <WeatherCard />
+          </CenterControls>
         </CenterPane>
 
         <DashboardPanel orientation="right" style={panelContainerStyles} />

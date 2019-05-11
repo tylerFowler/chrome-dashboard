@@ -8,6 +8,7 @@ const appTheme = {
   typeLight: '#fff',
   typeLightDark: '#fefefe',
   typeDark: '#404040',
+  typeDarkSemiLight: '#666666',
   typeDarkLight: '#a0a0a0',
 
   borderDark: '#4f4f4f',
