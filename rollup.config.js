@@ -25,9 +25,19 @@ const namedExports = {
   ]
 };
 
+const commonPlugins = [
+  resolve({ // resolve must be placed before typescript to get the correct resolutions
+    mainFields: [ 'module', 'main', 'browser' ],
+    customResolveOptions: { moduleDirectory: 'node_modules' }
+  }),
+  typescript({ typescript: require('typescript'), check: !process.env.ROLLUP_WATCH }),
+  replace({ ENV: env, 'process.env.NODE_ENV': env }),
+  commonjs({ namedExports }),
+]
+
 // TODO reintroduce uglify for vendoring, this may warrant having a different
 // file for vendor code since TypeScript can minify for us
-export default {
+const appBundle = {
   plugins: [
     copy([
       { files: 'node_modules/normalize.css/normalize.css', dest: 'public/' }
@@ -40,17 +50,12 @@ export default {
         'lib/**/*.ts', 'lib/**/*.tsx',
       ]
     }),
-    resolve({ // resolve must be placed before typescript to get the correct resolutions
-      mainFields: [ 'module', 'main', 'browser' ],
-      customResolveOptions: { moduleDirectory: 'node_modules' }
-    }),
-    typescript({ typescript: require('typescript'), check: !process.env.ROLLUP_WATCH }),
-    replace({ ENV: env, 'process.env.NODE_ENV': env }),
-    commonjs({ namedExports }),
+    ...commonPlugins,
   ],
   input: 'lib/main.tsx',
   watch: {
     include: 'lib/**',
+    exclude: 'lib/apiCacheWorker.ts',
     clearScreen: true,
   },
   output: {
@@ -61,3 +66,31 @@ export default {
     preferConst: true,
   }
 };
+
+const apiCacheWorkerBundle = {
+  plugins: [
+    tslint({
+      throwOnError: true,
+      configuration: './tslint.json',
+      include: [ 'lib/apiCacheworker.ts' ],
+    }),
+    ...commonPlugins,
+  ],
+  input: 'lib/apiCacheWorker.ts',
+  watch: {
+    input: 'lib/apiCacheWorker.ts',
+    clearScreen: false,
+  },
+  output: {
+    file: 'public/apiCacheWorker.js',
+    name: 'APICacheWorker',
+    format: 'iife',
+    sourcemap: env === 'development' ? 'inline' : false,
+    preferConst: true,
+  }
+};
+
+export default [
+  appBundle,
+  apiCacheWorkerBundle
+];
