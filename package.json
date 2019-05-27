@@ -32,7 +32,7 @@
     "@types/styled-components": "^4.1.15",
     "imagemin-cli": "^4.0.1",
     "redux-devtools-extension": "^2.13.8",
-    "rollup": "^1.12.3",
+    "rollup": "^1.12.4",
     "rollup-plugin-commonjs": "^10.0.0",
     "rollup-plugin-copy-glob": "^0.3.0",
     "rollup-plugin-livereload": "^1.0.0",
