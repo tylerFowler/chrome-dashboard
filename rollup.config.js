@@ -79,7 +79,7 @@ export const apiCacheWorkerBundle = {
   input: 'lib/apiCacheWorker.ts',
   watch: {
     input: 'lib/apiCacheWorker.ts',
-    clearScreen: false,
+    clearScreen: true,
   },
   output: {
     file: 'public/apiCacheWorker.js',
