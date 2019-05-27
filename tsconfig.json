@@ -12,7 +12,8 @@
       "es6",
       "dom",
       "es2017.string",
-      "es2017.object"
+      "es2017.object",
+      "webworker",
     ],
     "types": [
       "node",
