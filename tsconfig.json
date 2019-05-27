@@ -1,12 +1,14 @@
 {
   "files": [
-    "lib/main.tsx"
+    "lib/main.tsx",
+    "lib/apiCacheWorker.ts"
   ],
   "exclude": [
     "public",
     "**/*.spec.ts"
   ],
   "compilerOptions": {
+    "baseUrl": "./",
     "target": "ES6",
     "lib": [
       "es6",
@@ -26,7 +28,7 @@
       "panel/styled-components": [ "lib/panel/styled-components.ts" ]
     },
     "typeRoots": [ "node_modules/@types", "node_modules" ],
-    "outDir": "build/bundle.js",
+    "outDir": "build/",
     "sourceMap": true,
     "module": "ES6",
     "moduleResolution": "node",
@@ -37,7 +39,6 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "strictFunctionTypes": false,
-    "baseUrl": "./",
     "noEmit": true,
     "forceConsistentCasingInFileNames": true,
     "jsx": "react"

@@ -14,6 +14,12 @@ import settingsSaga from './settings/sagas';
 
 declare const ENV: string;
 
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/apiCacheWorker.js', { scope: './' })
+    .then(reg => console.log('Registration succeeded', reg))
+    .catch(err => console.error('Registration failed', err));
+}
+
 export interface GlobalState {
   clock: ClockState;
   hnFeed: HNFeedState;
