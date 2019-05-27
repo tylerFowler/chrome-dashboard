@@ -37,7 +37,7 @@ const commonPlugins = [
 
 // TODO reintroduce uglify for vendoring, this may warrant having a different
 // file for vendor code since TypeScript can minify for us
-const appBundle = {
+export const appBundle = {
   plugins: [
     copy([
       { files: 'node_modules/normalize.css/normalize.css', dest: 'public/' }
@@ -67,7 +67,7 @@ const appBundle = {
   }
 };
 
-const apiCacheWorkerBundle = {
+export const apiCacheWorkerBundle = {
   plugins: [
     tslint({
       throwOnError: true,
