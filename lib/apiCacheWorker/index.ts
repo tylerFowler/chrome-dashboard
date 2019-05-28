@@ -1,4 +1,25 @@
 /*
+ * The API Cache Worker is a Service Worker that intercepts all requests to outside
+ * APIs (such as feed data sources), caching their responses for a short amount
+ * of time (5 minutes). This should drastically decrease the number of requests
+ * made to these services as users may frequently open new tabs in very short
+ * spans of time. Additionally this allows us to serve old stories when the user
+ * is offline for a short period of time. This Service Worker also takes care to
+ * remove caches that are expired to avoid taking up disk space.
+ *
+ * This TTL behavior is implemented by using dynamic cache names that encode their
+ * creation time and max age, and are dynamically discovered via the CacheStorage
+ * API.
+ *
+ * TODO: add a special 'offline' cache that gets updated with all incoming responses
+ * and is used to serve to the user when no newer cache exists and new connections
+ * are refused. The contents of this cache should have no time limit but should
+ * be cleared after the user comes online, when this happens ideally the new results
+ * are then pushed to the main app.
+ *  Use case: user closes their laptop, two days later they open it and while the
+ *  network driver is initializing their new tabs are populated with the last known
+ *  responses when they shut their laptop.
+ *
  * Note that, as of June 2019, there are no official typings for the Service Worker
  * events, so for now 'any' is used, along with ad hoc types where necessary.
  */
