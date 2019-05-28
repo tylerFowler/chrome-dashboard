@@ -46,7 +46,6 @@ async function selectOrCreateActiveCache(): Promise<string> {
     return activeCache;
   }
 
-  // TODO: look into overriding .valueOf to avoid haivng to do the .toString conv everywhere
   const newActiveCache = (new ExpirableCacheBucket(cacheExpirationThreshold).toString());
   await caches.open(newActiveCache);
 
