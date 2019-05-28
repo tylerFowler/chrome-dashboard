@@ -8,6 +8,26 @@ export type UserId = string;
 
 const getDNLinkForPost = (postId: PostId) => `${DNSite}/stories/${postId}`;
 
+// isCachableRequest is a function that can be used to determine if a request
+// is for a DN API endpoint that is safe to be cached.
+export const isCachableRequest = (request: Request): boolean => {
+  if (!request.url.startsWith(DNApi)) {
+    return false;
+  }
+
+  const path = request.url.substring(DNApi.length);
+
+  if (/^\/stories\?.*$/.test(path)) {
+    return true;
+  }
+
+  if (/^\/users\/[^\/]+$/.test(path)) {
+    return true;
+  }
+
+  return false;
+};
+
 interface StoryResponse {
   readonly id: string;
   readonly title: string;

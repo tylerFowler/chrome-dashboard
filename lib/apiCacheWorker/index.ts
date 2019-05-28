@@ -26,6 +26,8 @@
 
 import ExpirableCacheBucket from './expirableCacheBucket';
 import { cacheExpirationThreshold } from './constants';
+import { isCachableRequest as isHNRequest } from 'lib/hn/api';
+import { isCachableRequest as isDNRequest } from 'lib/dn/api';
 
 // selectActiveCache iterates through all active caches, selecting the one that
 // is not yet expired, if one exists. If multiple active caches exist, the first
@@ -65,14 +67,8 @@ self.addEventListener('activate', (event: any) => event.waitUntil(
     ))),
 ));
 
-// TODO: these individual checks should be delegated to the appropriate modules,
-// especially since only certain types of requests will be cacheable, as opposed
-// to the entire thing, wholesale
 function isFeedRequest(req: Request): boolean {
-  return (
-    req.url.startsWith('https://hacker-news.firebaseio.com/v0')
-    || req.url.startsWith('https://api.designernews.co/api/v2')
-  );
+  return isHNRequest(req) || isDNRequest(req);
 }
 
 self.addEventListener('fetch', (event: any) => {
