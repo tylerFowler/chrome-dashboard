@@ -8,6 +8,26 @@ export type PostId = number;
 
 const getHNLinkForPost = (postId: PostId) => `${HNSite}/item?id=${postId}`;
 
+// isCachableRequest is a function that can be used to determine if a request
+// is for an HN API endpoint that is safe to be cached.
+export const isCachableRequest = (request: Request): boolean => {
+  if (!request.url.startsWith(HNApi)) {
+    return false;
+  }
+
+  const path = request.url.substring(HNApi.length);
+
+  if (/^\/[^\/]+\.json$/g.test(path)) {
+    return true;
+  }
+
+  if (/^\/item\/[0-9]+\.json$/.test(path)) {
+    return true;
+  }
+
+  return false;
+};
+
 // TODO this doesn't work as it seems to break auth redirection, may not be able
 // to do this until the API officially supports it
 export const getUpvoteLinkForPost = (postId: PostId) =>
