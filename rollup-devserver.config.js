@@ -1,8 +1,8 @@
 import livereload from 'rollup-plugin-livereload';
 import serve from 'rollup-plugin-serve';
-import rollupConfig from './rollup.config.js';
+import { appBundle, apiCacheWorkerBundle } from './rollup.config.js';
 
-rollupConfig.plugins.concat([
+appBundle.plugins.concat([
   serve({
     open: true,
     contentBase: 'public/',
@@ -13,4 +13,4 @@ rollupConfig.plugins.concat([
   livereload(),
 ]);
 
-export default rollupConfig;
+export default [ appBundle, apiCacheWorkerBundle ];
