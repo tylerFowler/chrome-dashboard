@@ -107,6 +107,8 @@ self.addEventListener('fetch', (event: any) => {
   // TODO: right now each request that happens in parallel is going to create its
   // own cache, need to inline cacheFeedResponse here and ensure that the cache
   // populated is the one matched against, so it can be created right away.
+  // TODO: active runs so sparsely that it might be worth it to delete old caches
+  // every time we create a new one (i.e. selection returns undefined).
   if (isFeedRequest(event.request)) {
     event.respondWith(caches.match(event.request).then(resp =>
       resp || fetch(event.request)
