@@ -65,9 +65,6 @@ self.addEventListener('activate', (event: any) => event.waitUntil(
     ))),
 ));
 
-// TODO: I don't think we need this if we're not going to pre-populate the cache
-self.addEventListener('install', () => {});
-
 // TODO: these individual checks should be delegated to the appropriate modules,
 // especially since only certain types of requests will be cacheable, as opposed
 // to the entire thing, wholesale
