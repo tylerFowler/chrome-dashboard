@@ -1,7 +1,7 @@
 {
   "files": [
     "lib/main.tsx",
-    "lib/apiCacheWorker.ts"
+    "lib/apiCacheWorker/index.ts"
   ],
   "exclude": [
     "public",

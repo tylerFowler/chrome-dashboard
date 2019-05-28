@@ -72,11 +72,11 @@ export const apiCacheWorkerBundle = {
     tslint({
       throwOnError: true,
       configuration: './tslint.json',
-      include: [ 'lib/apiCacheworker.ts' ],
+      include: [ 'lib/apiCacheWorker/*.ts' ],
     }),
     ...commonPlugins,
   ],
-  input: 'lib/apiCacheWorker.ts',
+  input: 'lib/apiCacheWorker/index.ts',
   watch: {
     input: 'lib/apiCacheWorker.ts',
     clearScreen: true,
