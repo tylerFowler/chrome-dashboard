@@ -11,8 +11,7 @@ export default class ExpirableCacheBucket {
   }
 
   public expired(checkTime: Date) {
-    const s = Math.abs(checkTime.getTime() - this.baseTime.getTime()) > this.maxAgeMs;
-    return s;
+    return Math.abs(checkTime.getTime() - this.baseTime.getTime()) > this.maxAgeMs;
   }
 
   public toString(): string {
