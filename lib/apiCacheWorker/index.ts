@@ -70,7 +70,7 @@ function isFeedRequest(req: Request): boolean {
   return isHNRequest(req) || isDNRequest(req);
 }
 
-self.addEventListener('fetch', (event: any) => {
+function feedFetchHandler(event: any) {
   // TODO: active runs so sparsely that it might be worth it to delete old caches
   // every time we create a new one (i.e. selection returns undefined).
   if (isFeedRequest(event.request)) {
@@ -83,4 +83,6 @@ self.addEventListener('fetch', (event: any) => {
       return response;
     }));
   }
-});
+}
+
+self.addEventListener('fetch', feedFetchHandler);
