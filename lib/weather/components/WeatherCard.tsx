@@ -23,15 +23,21 @@ const Location = styled.h1`
   margin: 0 auto 1rem;
 `;
 
+const CurrentTempSection = styled.section`
+  display: flex;
+  align-items: center;
+  font-size: ${typeScale(10)};
+`;
+
 const CurrentTemperature = styled.span`
   color: ${props => props.theme.typeDarkSemiLight};
   text-align: right;
+  font-size: 1em;
   font-family: ${fontStacks.Montserrat};
   font-weight: normal;
-  font-size: ${typeScale(10)};
 
-  display: inline-block;
-  width: 100%; // TODO: in the future we'll use flexbox
+  flex: 3;
+  flex-grow: 3;
 
   &:after {
     content: '˚';
@@ -41,13 +47,27 @@ const CurrentTemperature = styled.span`
   }
 `;
 
+const PlaceholderIcon = styled('div')<{ size?: string }>`
+  border: 3px solid #646464;
+  display: inline-block;
+  flex: 1;
+
+  width: ${props => props.size};
+  max-width: ${props => props.size};
+  height: ${props => props.size};
+  max-height: ${props => props.size};
+`;
+
+PlaceholderIcon.defaultProps = { size: '1em' };
+
 const WeatherCard: React.SFC = () =>
   <WeatherCardContainer>
     <Location>KC</Location>
 
-    <section>
+    <CurrentTempSection>
+      <PlaceholderIcon />
       <CurrentTemperature>72</CurrentTemperature>
-    </section>
+    </CurrentTempSection>
   </WeatherCardContainer>
 ;
 
