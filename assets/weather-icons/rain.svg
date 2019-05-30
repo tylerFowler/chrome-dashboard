@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="500px" height="500px" viewBox="0 0 500 500" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>rain</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="rain" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Cloud-+-Handle-+-Umbrella-+-Drops" transform="translate(67.000000, 0.000000)">
+            <path d="M66.0115311,190.172799 L66.5167044,190.145011 L67.0172044,190.218984 C67.2596888,190.254823 67.5067635,190.273016 67.7577329,190.273016 L299.750379,190.273016 C300.064315,190.273016 300.372031,190.244748 300.672099,190.189279 L301.182011,190.095017 L301.700415,190.107403 C302.168796,190.118594 302.637947,190.124198 303.107806,190.124198 C335.020953,190.124198 360.89393,164.222376 360.89393,132.268077 C360.89393,100.313777 335.020953,74.4119557 303.107806,74.4119557 C298.228247,74.4119557 293.432496,75.0163946 288.795643,76.1989853 L285.237881,77.1063627 L283.307122,73.9833565 C273.453252,58.0447094 253.850348,47.7421623 231.990275,47.7421623 C224.929031,47.7421623 218.049555,48.807896 211.590102,50.8608737 L207.093726,52.2899355 L205.406343,47.8839914 C195.676703,22.4788339 169.09921,5 138.753326,5 C99.7116918,5 68.2425478,33.6402067 68.2425478,68.7226923 C68.2425478,68.9772637 68.2441978,69.2316462 68.2474953,69.4858323 L68.3136751,74.5873505 L63.2118602,74.5505597 C63.0700134,74.5495368 62.9281007,74.5490251 62.7861239,74.5490251 C30.8729768,74.5490251 5,100.450846 5,132.405146 C5,164.359446 30.8729768,190.261267 62.7861239,190.261267 C63.8652994,190.261267 64.9406831,190.231704 66.0115311,190.172799 Z" id="Cloud" stroke="#FFFFFF" stroke-width="10" fill="#CCCCCC"></path>
+            <g id="Handle-+-Umbrella" transform="translate(54.000000, 305.000000)">
+                <path d="M140.271971,63.5005794 C140.271971,63.5005794 143.197015,151.482205 140.271969,173.608459 C137.346923,195.734713 107.594562,195.347316 107.594562,173.608465 L107.594562,154.459268" id="Handle" stroke="#404040" stroke-width="8.63636364"></path>
+                <path d="M258.496396,59.5779234 C252.247016,51.8505698 242.869841,47.2744233 232.736842,47.2744233 C216.34237,47.2744233 202.483763,59.2631023 200.018805,75.2908467 L199.000933,81.9092935 L195.961019,75.9428185 C190.350262,64.9305184 179.028842,57.8483294 166.442105,57.8483294 C153.059957,57.8483294 141.153309,65.8575758 135.985312,77.9474493 L134,82.5918357 L132.014688,77.9474493 C126.846691,65.8575758 114.940043,57.8483294 101.557895,57.8483294 C88.971158,57.8483294 77.6497382,64.9305184 72.0389807,75.9428185 L68.9990668,81.9092935 L67.9811948,75.2908467 C65.516237,59.2631023 51.6576297,47.2744233 35.2631579,47.2744233 C24.7170291,47.2744233 14.9997247,52.2343543 8.78204675,60.5030449 L-2.68342865,75.750613 L5.0843879,58.3263057 C12.5729487,41.5284084 22.7299791,28.6187029 39.3320477,18.277851 C60.7817828,4.91755595 91.1322898,-2.3427311 132.58947,-2.3427311 C173.714304,-2.3427311 204.820567,4.71842079 227.024883,17.6054672 C244.993241,28.0340283 256.372961,41.8138786 262.19868,57.4671377 L266.8102,69.857936 L258.496396,59.5779234 Z" id="Umbrella" stroke="#FFFFFF" stroke-width="4.31818182" fill="#FDEA09"></path>
+            </g>
+            <g id="Drops" transform="translate(61.000000, 194.000000)" fill="#4580CB">
+                <g id="Drop-Row">
+                    <g id="Rain-Drop-">
+                        <rect id="Rain-Drop--Copy" x="0" y="3" width="15" height="35" rx="7.5"></rect>
+                    </g>
+                    <g id="Rain-Drop-" transform="translate(0.000000, 101.000000)">
+                        <rect id="Rain-Drop--Copy" x="0" y="3" width="15" height="35" rx="7.5"></rect>
+                    </g>
+                    <g id="Rain-Drop-" transform="translate(0.000000, 51.000000)">
+                        <rect id="Rain-Drop--Copy" x="0" y="3" width="15" height="35" rx="7.5"></rect>
+                    </g>
+                </g>
+                <g id="Drop-Row-2" transform="translate(40.000000, 0.000000)">
+                    <g id="Rain-Drop-">
+                        <rect id="Rain-Drop--Copy" x="0" y="3" width="15" height="35" rx="7.5"></rect>
+                    </g>
+                    <g id="Rain-Drop-" transform="translate(0.000000, 55.000000)">
+                        <rect id="Rain-Drop--Copy" x="0" y="3" width="15" height="35" rx="7.5"></rect>
+                    </g>
+                </g>
+                <g id="Drop-Row-3" transform="translate(79.000000, 0.000000)">
+                    <g id="Rain-Drop-">
+                        <rect id="Rain-Drop--Copy" x="0" y="3" width="15" height="35" rx="7.5"></rect>
+                    </g>
+                    <g id="Rain-Drop-" transform="translate(0.000000, 55.000000)">
+                        <rect id="Rain-Drop--Copy" x="0" y="3" width="15" height="35" rx="7.5"></rect>
+                    </g>
+                </g>
+                <g id="Drop-Row-4" transform="translate(118.000000, 0.000000)">
+                    <g id="Rain-Drop-">
+                        <rect id="Rain-Drop--Copy" x="0" y="3" width="15" height="35" rx="7.5"></rect>
+                    </g>
+                    <g id="Rain-Drop-" transform="translate(0.000000, 55.000000)">
+                        <rect id="Rain-Drop--Copy" x="0" y="3" width="15" height="35" rx="7.5"></rect>
+                    </g>
+                </g>
+                <g id="Drop-Row-5" transform="translate(237.000000, 0.000000)">
+                    <g id="Rain-Drop-">
+                        <rect id="Rain-Drop--Copy" x="0" y="3" width="15" height="35" rx="7.5"></rect>
+                    </g>
+                    <g id="Rain-Drop-" transform="translate(0.000000, 101.000000)">
+                        <rect id="Rain-Drop--Copy" x="0" y="3" width="15" height="35" rx="7.5"></rect>
+                    </g>
+                    <g id="Rain-Drop-" transform="translate(0.000000, 51.000000)">
+                        <rect id="Rain-Drop--Copy" x="0" y="3" width="15" height="35" rx="7.5"></rect>
+                    </g>
+                </g>
+                <g id="Drop-Row-6" transform="translate(158.000000, 0.000000)">
+                    <g id="Rain-Drop-">
+                        <rect id="Rain-Drop--Copy" x="0" y="3" width="15" height="35" rx="7.5"></rect>
+                    </g>
+                    <g id="Rain-Drop-" transform="translate(0.000000, 55.000000)">
+                        <rect id="Rain-Drop--Copy" x="0" y="3" width="15" height="35" rx="7.5"></rect>
+                    </g>
+                </g>
+                <g id="Drop-Row-7" transform="translate(197.000000, 0.000000)">
+                    <g id="Rain-Drop-">
+                        <rect id="Rain-Drop--Copy" x="0" y="3" width="15" height="35" rx="7.5"></rect>
+                    </g>
+                    <g id="Rain-Drop-" transform="translate(0.000000, 55.000000)">
+                        <rect id="Rain-Drop--Copy" x="0" y="3" width="15" height="35" rx="7.5"></rect>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
