@@ -22,13 +22,16 @@ type SettingsSelector<T> = (state: GlobalState, orientation: PanelOrientation) =
 // particular settings to the React tree, using a settingsSelector and optionally
 // an orientation. Note that the second value of the generic is only present to satisfy
 // the TSX parser, if given only one generic it will think that it's a ReactElement.
+//
+// Note: the final props object needs to be cast to 'any' otherwise TypeScript
+// will attempt to type both 'settings' and 'children' keys as 'never'.
 const createSettingsProvider = <T, _ = any>(settingsSelector: SettingsSelector<T>, context: React.Context<T>) =>
   connect(
     (state: GlobalState, ownProps: Partial<Pick<SettingsProviderProps<T>, 'orientation'>>): SettingsProviderProps<T> =>
       ({ ...ownProps,
         settings: settingsSelector(state, ownProps.orientation),
       }),
-  )(({ settings, children }) => <context.Provider value={settings}>{children}</context.Provider>)
+  )(({ settings, children }: any) => <context.Provider value={settings}>{children}</context.Provider>)
 ;
 
 export const HNSettingsContext = React.createContext<HNFeedSettings>({
