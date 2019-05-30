@@ -5,7 +5,7 @@ import { fontStacks, typeScale } from 'lib/styles';
 const WeatherCardContainer = styled.section`
   background: ${props => props.theme.backgroundExtraLight};
 
-  padding: 1.5em 1em;
+  padding: .75em 5% 1em;
   margin: 1em auto;
   overflow: hidden;
 
@@ -17,34 +17,40 @@ const WeatherCardContainer = styled.section`
 const Location = styled.h1`
   text-align: center;
   font-family: ${fontStacks.OpenSans};
-  font-weight: normal;
-  font-size: ${typeScale(11)};
+  font-weight: 200;
 
   margin: 0 auto 1rem;
 `;
 
-const CurrentTempSection = styled.section`
-  display: flex;
-  align-items: center;
-  font-size: ${typeScale(10)};
-`;
-
-const CurrentTemperature = styled.span`
-  color: ${props => props.theme.typeDarkSemiLight};
-  text-align: right;
-  font-size: 1em;
+const Temperature = styled.span`
   font-family: ${fontStacks.Montserrat};
   font-weight: normal;
 
-  flex: 3;
-  flex-grow: 3;
-
+  // this font tends to sit the degree symbol a bit high
   &:after {
     content: '˚';
     position: relative;
     top: .05em;
     right: .075em;
   }
+`;
+
+const TempSection = styled.section`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: .35em auto;
+
+  &:last-of-type { margin-bottom: 0; }
+`;
+
+const CurrentTemperature = styled(Temperature)`
+  color: ${props => props.theme.typeDarkSemiLight};
+  text-align: right;
+  font-size: 1em;
+
+  flex: 3;
+  flex-grow: 3;
 `;
 
 const PlaceholderIcon = styled('div')<{ size?: string }>`
@@ -60,14 +66,28 @@ const PlaceholderIcon = styled('div')<{ size?: string }>`
 
 PlaceholderIcon.defaultProps = { size: '1em' };
 
+const FutureWeatherTemp = styled(Temperature)`
+  font-family: ${fontStacks.Montserrat};
+  color: ${props => props.theme.typeDarkLight};
+`;
+
 const WeatherCard: React.SFC = () =>
   <WeatherCardContainer>
-    <Location>KC</Location>
+    <Location style={{fontSize: typeScale(10)}}>KC</Location>
 
-    <CurrentTempSection>
+    <TempSection style={{fontSize: typeScale(10), padding: '0 13%'}}>
       <PlaceholderIcon />
       <CurrentTemperature>72</CurrentTemperature>
-    </CurrentTempSection>
+    </TempSection>
+
+    <TempSection style={{fontSize: typeScale(7)}}>
+      <span style={{fontFamily: fontStacks.OpenSans, fontWeight: 'bold'}}>Tonight:</span>
+
+      <span>
+        <PlaceholderIcon style={{verticalAlign: 'text-bottom', marginRight: '.5em'}} />
+        <FutureWeatherTemp>64</FutureWeatherTemp>
+      </span>
+    </TempSection>
   </WeatherCardContainer>
 ;
 
