@@ -78,7 +78,7 @@ const WeatherCard: React.SFC = () =>
     <Location style={{fontSize: typeScale(10)}}>KC</Location>
 
     <TempSection style={{fontSize: typeScale(10), padding: '0 13%'}}>
-      <WeatherConditionIcon type="clearDay" style={{flex: 1}} />
+      <WeatherConditionIcon type="unknown" style={{flex: 1}} />
       <CurrentTemperature>72</CurrentTemperature>
     </TempSection>
 
@@ -86,8 +86,11 @@ const WeatherCard: React.SFC = () =>
       <span style={{fontFamily: fontStacks.OpenSans, fontWeight: 'bold'}}>Tonight:</span>
 
       <span>
-        <WeatherConditionIcon type="heavyRain" size="1.5em"
-          style={{flex: 1, verticalAlign: 'text-top', marginRight: '.25em'}}
+        <WeatherConditionIcon type="rain" size="1.25em"
+          style={{
+            flex: 1, verticalAlign: 'middle', marginRight: '.25em',
+            position: 'relative', bottom: 'calc(.25em / 2)',
+          }}
         />
 
         <FutureWeatherTemp>64</FutureWeatherTemp>
