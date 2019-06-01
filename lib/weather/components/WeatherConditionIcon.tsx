@@ -37,7 +37,7 @@ const WeatherIconImg = styled('img')<{ readonly size?: string }>`
 WeatherIconImg.defaultProps = { size: '1em' };
 
 const WeatherConditionIcon: React.SFC<WeatherConditionIconProps> = ({ type, size, style }) =>
-  <WeatherIconImg size={size} src={assetIconMap[type]} style={style} />
+  <WeatherIconImg size={size} src={assetIconMap[type] || assetIconMap.unknown} style={style} />
 ;
 
 export default WeatherConditionIcon;
