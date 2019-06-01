@@ -29,6 +29,7 @@ const Location = styled.h1`
   text-align: center;
   font-family: ${fontStacks.OpenSans};
   font-weight: 200;
+  overflow-wrap: break-word;
 
   margin: 0 auto 1rem;
 `;
@@ -73,37 +74,47 @@ const WeatherCard: React.SFC<WeatherCardProps> = ({
   location,
   currentWeatherType, currentTemperature,
   futurePeriod, futureWeatherType, futureTemperature,
-}) =>
-  <WeatherCardContainer>
-    <Location style={{fontSize: typeScale(10)}}>{location}</Location>
+}) => {
+  // use larger location font sizes for smaller display names
+  let locationFontSize = typeScale(8);
+  if (location.length < 6) {
+    locationFontSize = typeScale(11);
+  } else if (location.length < 12) {
+    locationFontSize = typeScale(10);
+  }
 
-    <TempSection style={{fontSize: typeScale(10), padding: '0 13%'}}>
-      <WeatherConditionIcon type={currentWeatherType} style={{flex: 1}} />
-      <CurrentTemperature>{currentTemperature}</CurrentTemperature>
-    </TempSection>
+  return (
+    <WeatherCardContainer>
+      <Location style={{fontSize: locationFontSize}}>{location}</Location>
 
-    <TempSection style={{fontSize: typeScale(7)}}>
-      <span style={{fontFamily: fontStacks.OpenSans, fontWeight: 'bold'}}>
-        {futurePeriod}:
-      </span>
+      <TempSection style={{fontSize: typeScale(10), padding: '0 13%'}}>
+        <WeatherConditionIcon type={currentWeatherType} style={{flex: 1}} />
+        <CurrentTemperature>{currentTemperature}</CurrentTemperature>
+      </TempSection>
 
-      <span>
-        <WeatherConditionIcon type={futureWeatherType} size="1.25em"
-          style={{
-            flex: 1, verticalAlign: 'middle', marginRight: '.25em',
-            position: 'relative', bottom: 'calc(.25em / 2)',
-          }}
-        />
+      <TempSection style={{fontSize: typeScale(7)}}>
+        <span style={{fontFamily: fontStacks.OpenSans, fontWeight: 'bold'}}>
+          {futurePeriod}:
+        </span>
 
-        <FutureTemperature>{futureTemperature}</FutureTemperature>
-      </span>
-    </TempSection>
-  </WeatherCardContainer>
-;
+        <span>
+          <WeatherConditionIcon type={futureWeatherType} size="1.25em"
+            style={{
+              flex: 1, verticalAlign: 'middle', marginRight: '.25em',
+              position: 'relative', bottom: 'calc(.25em / 2)',
+            }}
+          />
+
+          <FutureTemperature>{futureTemperature}</FutureTemperature>
+        </span>
+      </TempSection>
+    </WeatherCardContainer>
+  );
+};
 
 // test data
 WeatherCard.defaultProps = {
-  location: 'Kansas City',
+  location: 'KC',
   currentWeatherType: 'clearDay',
   currentTemperature: 76,
   futurePeriod: 'Tonight',
