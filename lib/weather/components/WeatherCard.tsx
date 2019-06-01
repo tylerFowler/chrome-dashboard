@@ -4,6 +4,15 @@ import { fontStacks, typeScale } from 'lib/styles';
 import WeatherConditionIcon from './WeatherConditionIcon';
 import { WeatherConditionType } from '../interface';
 
+export interface WeatherCardProps {
+  readonly location?: string;
+  readonly currentWeatherType?: WeatherConditionType;
+  readonly currentTemperature?: number|string;
+  readonly futurePeriod?: 'Tonight'|'Tomorrow';
+  readonly futureWeatherType?: WeatherConditionType;
+  readonly futureTemperature?: number|string;
+}
+
 const WeatherCardContainer = styled.section`
   background: ${props => props.theme.backgroundExtraLight};
 
@@ -60,30 +69,54 @@ const FutureWeatherTemp = styled(Temperature)`
   color: ${props => props.theme.typeDarkLight};
 `;
 
-const WeatherCard: React.SFC = () =>
+const WeatherCard: React.SFC<WeatherCardProps> = ({
+  location,
+  currentWeatherType, currentTemperature,
+  futurePeriod, futureWeatherType, futureTemperature,
+}) =>
   <WeatherCardContainer>
-    <Location style={{fontSize: typeScale(10)}}>KC</Location>
+    <Location style={{fontSize: typeScale(10)}}>{location}</Location>
 
     <TempSection style={{fontSize: typeScale(10), padding: '0 13%'}}>
-      <WeatherConditionIcon type="unknown" style={{flex: 1}} />
-      <CurrentTemperature>72</CurrentTemperature>
+      <WeatherConditionIcon type={currentWeatherType} style={{flex: 1}} />
+      <CurrentTemperature>{currentTemperature}</CurrentTemperature>
     </TempSection>
 
     <TempSection style={{fontSize: typeScale(7)}}>
-      <span style={{fontFamily: fontStacks.OpenSans, fontWeight: 'bold'}}>Tonight:</span>
+      <span style={{fontFamily: fontStacks.OpenSans, fontWeight: 'bold'}}>
+        {futurePeriod}:
+      </span>
 
       <span>
-        <WeatherConditionIcon type="rain" size="1.25em"
+        <WeatherConditionIcon type={futureWeatherType} size="1.25em"
           style={{
             flex: 1, verticalAlign: 'middle', marginRight: '.25em',
             position: 'relative', bottom: 'calc(.25em / 2)',
           }}
         />
 
-        <FutureWeatherTemp>64</FutureWeatherTemp>
+        <FutureWeatherTemp>{futureTemperature}</FutureWeatherTemp>
       </span>
     </TempSection>
   </WeatherCardContainer>
 ;
+
+// test data
+WeatherCard.defaultProps = {
+  location: 'Kansas City',
+  currentWeatherType: 'clearDay',
+  currentTemperature: 76,
+  futurePeriod: 'Tonight',
+  futureWeatherType: 'heavyRain',
+  futureTemperature: 68,
+};
+
+// actual defaults
+// WeatherCard.defaultProps = {
+//   location: '…',
+//   currentTemperature: '∞',
+//   futurePeriod: 'Tonight',
+//   futureTemperature: '∞',
+// };
 
 export default WeatherCard;
