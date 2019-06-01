@@ -55,19 +55,6 @@ const CurrentTemperature = styled(Temperature)`
   flex-grow: 3;
 `;
 
-const PlaceholderIcon = styled('div')<{ size?: string }>`
-  border: 3px solid #646464;
-  display: inline-block;
-  flex: 1;
-
-  width: ${props => props.size};
-  max-width: ${props => props.size};
-  height: ${props => props.size};
-  max-height: ${props => props.size};
-`;
-
-PlaceholderIcon.defaultProps = { size: '1em' };
-
 const FutureWeatherTemp = styled(Temperature)`
   font-family: ${fontStacks.Montserrat};
   color: ${props => props.theme.typeDarkLight};
