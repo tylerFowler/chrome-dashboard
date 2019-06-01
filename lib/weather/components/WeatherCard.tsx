@@ -64,7 +64,7 @@ const CurrentTemperature = styled(Temperature)`
   flex-grow: 3;
 `;
 
-const FutureWeatherTemp = styled(Temperature)`
+const FutureTemperature = styled(Temperature)`
   font-family: ${fontStacks.Montserrat};
   color: ${props => props.theme.typeDarkLight};
 `;
@@ -95,7 +95,7 @@ const WeatherCard: React.SFC<WeatherCardProps> = ({
           }}
         />
 
-        <FutureWeatherTemp>{futureTemperature}</FutureWeatherTemp>
+        <FutureTemperature>{futureTemperature}</FutureTemperature>
       </span>
     </TempSection>
   </WeatherCardContainer>
