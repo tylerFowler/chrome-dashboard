@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'lib/styled-components';
 import { fontStacks, typeScale } from 'lib/styles';
+import WeatherConditionIcon from './WeatherConditionIcon';
+import { WeatherConditionType } from '../interface';
 
 const WeatherCardContainer = styled.section`
   background: ${props => props.theme.backgroundExtraLight};
@@ -76,7 +78,7 @@ const WeatherCard: React.SFC = () =>
     <Location style={{fontSize: typeScale(10)}}>KC</Location>
 
     <TempSection style={{fontSize: typeScale(10), padding: '0 13%'}}>
-      <PlaceholderIcon />
+      <WeatherConditionIcon type="clearDay" style={{flex: 1}} />
       <CurrentTemperature>72</CurrentTemperature>
     </TempSection>
 
@@ -84,7 +86,10 @@ const WeatherCard: React.SFC = () =>
       <span style={{fontFamily: fontStacks.OpenSans, fontWeight: 'bold'}}>Tonight:</span>
 
       <span>
-        <PlaceholderIcon style={{verticalAlign: 'text-bottom', marginRight: '.5em'}} />
+        <WeatherConditionIcon type="heavyRain" size="1.5em"
+          style={{flex: 1, verticalAlign: 'text-top', marginRight: '.25em'}}
+        />
+
         <FutureWeatherTemp>64</FutureWeatherTemp>
       </span>
     </TempSection>

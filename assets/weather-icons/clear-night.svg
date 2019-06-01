@@ -10,6 +10,6 @@
         </radialGradient>
     </defs>
     <g id="clear-night" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <circle id="Moon" fill="url(#radialGradient-1)" cx="250" cy="250" r="225"></circle>
+        <circle id="Moon" fill="url(#radialGradient-1)" cx="250" cy="250" r="250"></circle>
     </g>
 </svg>

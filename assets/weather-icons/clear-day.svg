@@ -10,6 +10,6 @@
         </radialGradient>
     </defs>
     <g id="clear-day" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <circle id="Sun" fill="url(#radialGradient-1)" cx="250" cy="250" r="225"></circle>
+        <circle id="Sun" fill="url(#radialGradient-1)" cx="250" cy="250" r="250"></circle>
     </g>
 </svg>
