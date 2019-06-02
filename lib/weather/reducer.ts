@@ -7,8 +7,8 @@ export interface State {
   readonly forecastFetchError: Error;
 
   readonly unit: 'F'|'C';
-  readonly currentForecast: Forecast;
-  readonly futureForecast: Forecast;
+  readonly currentForecast: Partial<Forecast>;
+  readonly futureForecast: Partial<Forecast>;
 }
 
 export const defaultState: State = {
@@ -21,8 +21,8 @@ export const defaultState: State = {
   fetchingForecast: false,
   forecastFetchError: null,
   unit: 'F', // TODO: move this to settings state
-  currentForecast: null,
-  futureForecast: null,
+  currentForecast: {},
+  futureForecast: {},
 };
 
 export default function weatherReducer(state: State = defaultState, action: WeatherAction): State {

@@ -6,7 +6,7 @@ import ClockPanel from './clock/ClockPanel';
 import SettingsModal from './settings/components/Modal';
 import SettingsIcon from './settings/components/OpenIcon';
 import DashboardPanel from './DashboardPanel';
-import WeatherCard from './weather/components/WeatherCard';
+import WeatherCard from './weather/containers/WeatherCard';
 
 const PageBackground = styled.div`
   width: 100%;

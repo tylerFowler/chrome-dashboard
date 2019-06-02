@@ -85,7 +85,7 @@ const WeatherCard: React.SFC<WeatherCardProps> = ({
     locationFontSize = typeScale(10);
   }
 
-  useEffect(() => fetchForecast());
+  useEffect(() => fetchForecast(), [ location ]);
 
   return (
     <WeatherCardContainer>
