@@ -12,6 +12,7 @@ import hnFeedSaga from './hn/sagas';
 import settingsReducer, { State as SettingsState } from './settings/reducer';
 import settingsSaga from './settings/sagas';
 import weatherReducer, { State as WeatherState } from './weather/reducer';
+import weatherSaga from './weather/sagas';
 
 declare const ENV: string;
 
@@ -57,6 +58,7 @@ saga.run(function* appSaga() {
     clock: clockSaga(),
     hnFeed: hnFeedSaga(),
     dnFeed: dnFeedSaga(),
+    weather: weatherSaga(),
   });
 });
 
