@@ -13,7 +13,7 @@ export interface WeatherCardProps {
   readonly futureTemperature?: number|string;
 }
 
-const WeatherCardContainer = styled.section`
+export const WeatherCardContainer = styled.section`
   background: ${props => props.theme.backgroundExtraLight};
 
   padding: .75em 5% 1em;
@@ -113,21 +113,21 @@ const WeatherCard: React.SFC<WeatherCardProps> = ({
 };
 
 // test data
-WeatherCard.defaultProps = {
-  location: 'KC',
-  currentWeatherType: 'clearDay',
-  currentTemperature: 76,
-  futurePeriod: 'Tonight',
-  futureWeatherType: 'heavyRain',
-  futureTemperature: 68,
-};
+// WeatherCard.defaultProps = {
+//   location: 'KC',
+//   currentWeatherType: 'clearDay',
+//   currentTemperature: 76,
+//   futurePeriod: 'Tonight',
+//   futureWeatherType: 'heavyRain',
+//   futureTemperature: 68,
+// };
 
 // actual defaults
-// WeatherCard.defaultProps = {
-//   location: '…',
-//   currentTemperature: '∞',
-//   futurePeriod: 'Tonight',
-//   futureTemperature: '∞',
-// };
+WeatherCard.defaultProps = {
+  location: '…',
+  currentTemperature: '∞',
+  futurePeriod: 'Tonight',
+  futureTemperature: '∞',
+};
 
 export default WeatherCard;
