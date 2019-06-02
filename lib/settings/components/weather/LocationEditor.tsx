@@ -2,13 +2,14 @@ import React, { useReducer } from 'react';
 import styled from 'lib/styled-components';
 import { WeatherLocation, WeatherLocationType } from '../../interface';
 import Spinner from 'lib/styled/Spinner';
+import WeatherCardPreview from '../../containers/WeatherCardPreview';
+import { WeatherCardContainer } from '../../../weather/components/WeatherCard';
 import { SettingFieldGroup, SettingSelect, SettingButton } from '../SettingsForm';
 import LocationEditorDispatch from './locationEditorDispatch';
 import CityEditor from './CityEditor';
 import ZIPCodeEditor from './ZIPCodeEditor';
 import CoordsEditor from './CoordsEditor';
 import CurrentLocEditor from './CurrentLocEditor';
-import WeatherCard, { WeatherCardContainer } from '../../../weather/components/WeatherCard';
 
 // TODO: add action types
 type State = WeatherLocation & { isWaiting: boolean, isValid: boolean };
@@ -75,7 +76,7 @@ const PreviewContainer = styled.aside`
   margin-top: 1em;
 
   & > ${WeatherCardContainer} {
-    border: 2px solid ${props => props.theme.borderDarkLight};
+    border: 2px solid ${props => props.theme.borderDark};
     border-radius: 3px;
   }
 `;
@@ -156,7 +157,7 @@ const LocationEditor: React.FC<Partial<LocationEditorProps>> = ({ config, update
       <SettingButton onClick={locationUpdateSubmit} disabled={!state.isValid}>Save</SettingButton>
 
       <PreviewContainer>
-        <WeatherCard location={state.displayName || undefined} futurePeriod="Tonight" />
+        <WeatherCardPreview location={state.displayName || undefined} />
       </PreviewContainer>
     </LocationEditorDispatch.Provider>
   );
