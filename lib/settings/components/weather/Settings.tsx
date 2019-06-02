@@ -40,7 +40,6 @@ const WeatherSettings: React.FC<WeatherSettingsProps> = ({
 
     <APIKeySetting apiKey={openWeatherAPIKey} onChange={setOpenWeatherAPIKey} />
 
-    {/* TODO: style this */}
     <LocationTypeFieldset>
       <legend>Location Type</legend>
 
