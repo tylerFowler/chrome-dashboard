@@ -17,6 +17,11 @@ export type WeatherConditionType =
   | 'unknown'
 ;
 
+export interface Forecast {
+  readonly temperature: number;
+  readonly condition: WeatherConditionType;
+}
+
 export enum WeatherLocationType {
   CityName = 'city_name',
   ZIPCode = 'zip',

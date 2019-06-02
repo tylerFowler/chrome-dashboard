@@ -11,6 +11,7 @@ import hnFeedReducer, { State as HNFeedState } from './hn/reducer';
 import hnFeedSaga from './hn/sagas';
 import settingsReducer, { State as SettingsState } from './settings/reducer';
 import settingsSaga from './settings/sagas';
+import weatherReducer, { State as WeatherState } from './weather/reducer';
 
 declare const ENV: string;
 
@@ -24,6 +25,7 @@ export interface GlobalState {
   clock: ClockState;
   hnFeed: HNFeedState;
   dnFeed: DNFeedState;
+  weather: WeatherState;
   settings: SettingsState;
 }
 
@@ -43,6 +45,7 @@ const store = createStore(
     clock: clockReducer,
     hnFeed: hnFeedReducer,
     dnFeed: dnFeedReducer,
+    weather: weatherReducer,
     settings: settingsReducer,
   }),
   middlewareComposer(applyMiddleware(...middleware)),
