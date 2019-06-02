@@ -20,7 +20,7 @@ export const defaultState: State = {
   },
   fetchingForecast: false,
   forecastFetchError: null,
-  unit: 'F',
+  unit: 'F', // TODO: move this to settings state
   currentForecast: null,
   futureForecast: null,
 };
