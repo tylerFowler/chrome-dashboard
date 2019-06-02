@@ -8,6 +8,7 @@ import CityEditor from './CityEditor';
 import ZIPCodeEditor from './ZIPCodeEditor';
 import CoordsEditor from './CoordsEditor';
 import CurrentLocEditor from './CurrentLocEditor';
+import WeatherCard, { WeatherCardContainer } from '../../../weather/components/WeatherCard';
 
 // TODO: add action types
 type State = WeatherLocation & { isWaiting: boolean, isValid: boolean };
@@ -66,6 +67,17 @@ export interface LocationEditorProps {
 
 const LocationEditorFieldGroup = styled(SettingFieldGroup)`
   margin: 1em .5em 1em 0;
+`;
+
+const PreviewContainer = styled.aside`
+  zoom: .75;
+  overflow: hidden;
+  margin-top: 1em;
+
+  & > ${WeatherCardContainer} {
+    border: 2px solid ${props => props.theme.borderDarkLight};
+    border-radius: 3px;
+  }
 `;
 
 const LocationEditor: React.FC<Partial<LocationEditorProps>> = ({ config, updateConfig = () => {} }) => {
@@ -142,6 +154,10 @@ const LocationEditor: React.FC<Partial<LocationEditorProps>> = ({ config, update
 
       <SettingButton type="reset" onClick={resetEditorToStored}>Reset</SettingButton>
       <SettingButton onClick={locationUpdateSubmit} disabled={!state.isValid}>Save</SettingButton>
+
+      <PreviewContainer>
+        <WeatherCard location={state.displayName || undefined} futurePeriod="Tonight" />
+      </PreviewContainer>
     </LocationEditorDispatch.Provider>
   );
 };

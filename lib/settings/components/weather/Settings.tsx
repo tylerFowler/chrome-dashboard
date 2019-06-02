@@ -24,6 +24,8 @@ const APIKeySetting: React.SFC<{ readonly apiKey: string; onChange(key: string):
 ;
 
 const LocationTypeFieldset = styled.fieldset`
+  overflow: hidden;
+
   > legend {
     font-size: ${typeScale(4)};
     font-weight: bold;
