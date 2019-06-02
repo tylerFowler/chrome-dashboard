@@ -1,4 +1,5 @@
-import { FeedType, FeedPanelSettings, WeatherLocation, WeatherLocationType } from './interface';
+import { FeedType, FeedPanelSettings } from './interface';
+import { WeatherLocation, WeatherLocationType } from '../weather/interface';
 import { Actions, SettingsAction } from './actions';
 import { FeedType as HNFeedType } from '../hn/interface';
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'lib/styled-components';
 import { typeScale } from 'lib/styles';
-import { WeatherLocation } from '../../interface';
+import { WeatherLocation } from '../../../weather/interface';
 import LocationEditor from './LocationEditor';
 import SettingsForm, { SettingField, SettingLabel, SettingInput } from '../SettingsForm';
 

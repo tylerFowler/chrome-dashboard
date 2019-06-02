@@ -1,6 +1,6 @@
 import React, { useReducer } from 'react';
 import styled from 'lib/styled-components';
-import { WeatherLocation, WeatherLocationType } from '../../interface';
+import { WeatherLocation, WeatherLocationType } from '../../../weather/interface';
 import Spinner from 'lib/styled/Spinner';
 import WeatherCardPreview from '../../containers/WeatherCardPreview';
 import { WeatherCardContainer } from '../../../weather/components/WeatherCard';

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'lib/styled-components';
 import { fontStacks, typeScale } from 'lib/styles';
 import WeatherConditionIcon from './WeatherConditionIcon';
@@ -11,6 +11,8 @@ export interface WeatherCardProps {
   readonly futurePeriod?: 'Tonight'|'Tomorrow';
   readonly futureWeatherType?: WeatherConditionType;
   readonly futureTemperature?: number|string;
+
+  fetchForecast?(): void;
 }
 
 export const WeatherCardContainer = styled.section`
@@ -71,7 +73,7 @@ const FutureTemperature = styled(Temperature)`
 `;
 
 const WeatherCard: React.SFC<WeatherCardProps> = ({
-  location,
+  location, fetchForecast,
   currentWeatherType, currentTemperature,
   futurePeriod, futureWeatherType, futureTemperature,
 }) => {
@@ -82,6 +84,8 @@ const WeatherCard: React.SFC<WeatherCardProps> = ({
   } else if (location.length < 12) {
     locationFontSize = typeScale(10);
   }
+
+  useEffect(() => fetchForecast());
 
   return (
     <WeatherCardContainer>
@@ -112,22 +116,12 @@ const WeatherCard: React.SFC<WeatherCardProps> = ({
   );
 };
 
-// test data
-// WeatherCard.defaultProps = {
-//   location: 'KC',
-//   currentWeatherType: 'clearDay',
-//   currentTemperature: 76,
-//   futurePeriod: 'Tonight',
-//   futureWeatherType: 'heavyRain',
-//   futureTemperature: 68,
-// };
-
-// actual defaults
 WeatherCard.defaultProps = {
   location: '…',
   currentTemperature: '∞',
   futurePeriod: 'Tonight',
   futureTemperature: '∞',
+  fetchForecast() {},
 };
 
 export default WeatherCard;
