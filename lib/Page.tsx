@@ -7,6 +7,7 @@ import SettingsModal from './settings/components/Modal';
 import SettingsIcon from './settings/components/OpenIcon';
 import DashboardPanel from './DashboardPanel';
 import WeatherCard from './weather/containers/WeatherCard';
+import { WeatherSettingsProvider } from './settings/context';
 
 const PageBackground = styled.div`
   width: 100%;
@@ -53,7 +54,9 @@ const Page: React.FC = () => {
           <ClockPanel />
 
           <CenterControls>
-            <WeatherCard />
+            <WeatherSettingsProvider>
+              <WeatherCard />
+            </WeatherSettingsProvider>
           </CenterControls>
         </CenterPane>
 

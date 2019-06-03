@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { GlobalState } from '../store';
-import { FeedSettings } from './reducer';
-import { getPanelFeedSettings, getFeedSettings } from './selectors';
+import { FeedSettings, WeatherSettings } from './reducer';
+import { getPanelFeedSettings, getFeedSettings, getWeatherAPIKey, getWeatherLocationConfig } from './selectors';
 import { HNFeedSettings, PanelOrientation } from './interface';
 import { FeedType } from '../hn/interface';
 
@@ -50,3 +50,13 @@ export const FeedSettingsContext = React.createContext<FeedSettings>({
 
 export const FeedSettingsProvider =
   createSettingsProvider(getFeedSettings, FeedSettingsContext);
+
+export const WeatherSettingsContext = React.createContext<WeatherSettings>({
+  openWeatherAPIKey: '',
+  location: null,
+});
+
+export const WeatherSettingsProvider = createSettingsProvider(state => ({
+  openWeatherAPIKey: getWeatherAPIKey(state),
+  location: getWeatherLocationConfig(state),
+}), WeatherSettingsContext);
