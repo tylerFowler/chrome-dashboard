@@ -157,7 +157,7 @@ const LocationEditor: React.FC<Partial<LocationEditorProps>> = ({ config, update
       <SettingButton onClick={locationUpdateSubmit} disabled={!state.isValid}>Save</SettingButton>
 
       <PreviewContainer>
-        <WeatherCardPreview location={state.displayName || undefined} />
+        <WeatherCardPreview location={state} />
       </PreviewContainer>
     </LocationEditorDispatch.Provider>
   );
