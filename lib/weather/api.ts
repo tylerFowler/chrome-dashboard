@@ -1,7 +1,14 @@
 import { WeatherLocation, Forecast, WeatherLocationType, WeatherConditionType } from './interface';
-import { string } from 'prop-types';
 
 export const OpenWeatherApi = 'https://api.openweathermap.org/data/2.5';
+
+// isCacheableRequest determines whether an OpenWeather API request is cacheable,
+// and applies to all OpenWeather API calls as they are all cacheable.
+export function isCacheableRequest(request: Request): boolean {
+  if (!request.url.startsWith(OpenWeatherApi)) {
+    return false;
+  }
+}
 
 const usingApiKey = (query: URLSearchParams, apiKey: string): URLSearchParams => {
   query.set('appid', apiKey);
