@@ -13,7 +13,7 @@ export interface WeatherCardPreviewProps {
 }
 
 // TODO: need a way to pass the city name back up to parent so it can use it for
-// a display name if none is specified
+// a display name if none is specified - use dispatch
 const WeatherCardPreview: React.FC<WeatherCardPreviewProps> = ({ location, apiKey, futurePeriod }) => {
   const locationDisplay = location.displayName || location.value;
 
@@ -21,7 +21,6 @@ const WeatherCardPreview: React.FC<WeatherCardPreviewProps> = ({ location, apiKe
   const [ futureForecast, setFutureForecast ] = useState<Forecast>({} as any);
   const [ forecastFetchErr, setForecastFetchErr ] = useState<Error>(null);
 
-  // TODO: catch errors, add loading state, and add to WeatherCard
   useEffect(() => {
     setForecastFetchErr(null);
 
