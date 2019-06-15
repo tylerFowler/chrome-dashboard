@@ -164,7 +164,7 @@ export async function fetchCurrentWeather(
   return {
     cityDetails: { name: data.name, country: data.sys.country },
     condition: getConditionFromCode(parseInt(weather.id, 10), weather.icon),
-    temperature: data.main.temp,
+    temperature: parseInt(data.main.temp.toFixed(), 10),
   };
 }
 
@@ -200,7 +200,7 @@ export async function fetchFutureWeather(
   return {
     cityDetails: { name: data.city.name, country: data.city.country },
     condition: getConditionFromCode(parseInt(weather.id, 10), weather.icon),
-    temperature: forecast.main.temp,
+    temperature: parseInt(forecast.main.temp.toFixed(), 10),
   };
 }
 
@@ -209,7 +209,7 @@ export async function fetchForecasts(location: WeatherLocation, apiKey: string, 
   future: ForecastInfo,
 }> {
   const [ current, future ] = await Promise.all([
-    fetchCurrentWeather(location, apiKey, unit), fetchFutureWeather(location, apiKey, unit)
+    fetchCurrentWeather(location, apiKey, unit), fetchFutureWeather(location, apiKey, unit),
   ]);
 
   return { current, future };
