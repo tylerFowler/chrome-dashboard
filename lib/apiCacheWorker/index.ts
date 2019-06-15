@@ -25,14 +25,14 @@
  */
 
 import ExpirableCacheBucket from './expirableCacheBucket';
-import { cacheExpirationThreshold, feedBucketKey } from './constants';
+import { defaultCacheExpirationThreshold, feedBucketKey } from './constants';
 import { isCachableRequest as isHNRequest } from 'lib/hn/api';
 import { isCachableRequest as isDNRequest } from 'lib/dn/api';
 
 // selectActiveCache iterates through all active caches, selecting the one that
 // is not yet expired, if one exists. If multiple active caches exist, the first
 // seen will be selected. If none exist, one will be created.
-async function selectOrCreateActiveCache(key: string, expiry = cacheExpirationThreshold): Promise<string> {
+async function selectOrCreateActiveCache(key: string, expiry = defaultCacheExpirationThreshold): Promise<string> {
   const curTime = new Date();
   const cacheList = await caches.keys();
 
