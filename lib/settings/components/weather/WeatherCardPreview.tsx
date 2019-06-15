@@ -4,6 +4,7 @@ import { Forecast } from '../../../weather/interface';
 import WeatherCard from '../../../weather/components/WeatherCard';
 import { WeatherLocation } from '../../../weather/interface';
 import { useDebouncedProps } from '../../../hooks';
+import { Error as ErrorAlert } from '../../../styled/Alert';
 
 export interface WeatherCardPreviewProps {
   readonly futurePeriod: 'Tonight'|'Tomorrow';
@@ -18,22 +19,33 @@ const WeatherCardPreview: React.FC<WeatherCardPreviewProps> = ({ location, apiKe
 
   const [ currentForecast, setCurrentForecast ] = useState<Forecast>({} as any);
   const [ futureForecast, setFutureForecast ] = useState<Forecast>({} as any);
+  const [ forecastFetchErr, setForecastFetchErr ] = useState<Error>(null);
 
   // TODO: catch errors, add loading state, and add to WeatherCard
   useEffect(() => {
+    setForecastFetchErr(null);
+
     Client.fetchForecasts(location, apiKey, 'F')
       .then(({ future, current }) => {
         setCurrentForecast(current);
         setFutureForecast(future);
       })
-      .catch(error => console.error('Weather fetch error', error));
+      .catch(setForecastFetchErr);
   }, [ apiKey, ...useDebouncedProps(750, location) ]);
 
-  return <WeatherCard
-    futurePeriod={futurePeriod} location={locationDisplay.toString()}
-    currentWeatherType={currentForecast.condition} currentTemperature={currentForecast.temperature}
-    futureWeatherType={futureForecast.condition} futureTemperature={futureForecast.temperature}
-  />;
+  return (<>
+    {forecastFetchErr &&
+      <ErrorAlert style={{fontSize: '1rem', margin: '1rem auto'}}>
+        Failed to load weather forecast: {forecastFetchErr.message}
+      </ErrorAlert>
+    }
+
+    <WeatherCard
+      futurePeriod={futurePeriod} location={locationDisplay.toString()}
+      currentWeatherType={currentForecast.condition} currentTemperature={currentForecast.temperature}
+      futureWeatherType={futureForecast.condition} futureTemperature={futureForecast.temperature}
+    />
+  </>);
 };
 
 export default WeatherCardPreview;
