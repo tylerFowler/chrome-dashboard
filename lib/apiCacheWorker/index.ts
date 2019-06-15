@@ -39,7 +39,7 @@ async function selectOrCreateActiveCache(key: string, expiry = defaultCacheExpir
 
   const activeCache = cacheList
     .map(ExpirableCacheBucket.fromString)
-    .filter(bucket => bucket.key)
+    .filter(bucket => bucket.key === key)
     .filter(bucket => bucket && !bucket.expired(curTime))
     .map(bucket => bucket.toString())
     .find(() => true); // select the first remaining element
