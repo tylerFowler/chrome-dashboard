@@ -42,8 +42,8 @@
     "rollup-plugin-tslint": "^0.2.2",
     "rollup-plugin-typescript2": "^0.21.1",
     "rollup-watch": "^4.3.1",
-    "tslib": "^1.9.3",
+    "tslib": "^1.10.0",
     "tslint": "^5.17.0",
-    "typescript": "^3.5.1"
+    "typescript": "^3.5.2"
   }
 }
