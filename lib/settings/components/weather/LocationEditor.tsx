@@ -23,7 +23,7 @@ function locationEditorReducer(state: State, action: { type: string, payload: an
     newState = { ...state, value: action.payload };
     break;
   case 'updateDisplayName':
-    newState = { ...state, displayName: action.payload.trim() };
+    newState = { ...state, displayName: action.payload };
     break;
   case 'updateCountryCode':
     newState = { ...state, countryCode: action.payload.trim() };
