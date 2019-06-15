@@ -54,14 +54,18 @@ async function selectOrCreateActiveCache(key: string, expiry = defaultCacheExpir
 }
 
 // the activation handler removes any expired cache buckets
-self.addEventListener('activate', async (event: any) => {
-  const cacheList = await caches.keys();
-  const cacheDeletions = cacheList
-    .map(ExpirableCacheBucket.fromString)
-    .filter(bucket => bucket && bucket.expired())
-    .map(expiredBucket => caches.delete(expiredBucket.toString()));
+self.addEventListener('activate', (event: any) => {
+  const deleteExpiredCaches = async () => {
+    const cacheList = await caches.keys();
+    const cacheDeletions = cacheList
+      .map(ExpirableCacheBucket.fromString)
+      .filter(bucket => bucket && bucket.expired())
+      .map(expiredBucket => caches.delete(expiredBucket.toString()));
 
-  return event.waitUntil(Promise.all(cacheDeletions));
+    return Promise.all(cacheDeletions);
+  };
+
+  return event.waitUntil(deleteExpiredCaches());
 });
 
 function isFeedRequest(req: Request): boolean {
