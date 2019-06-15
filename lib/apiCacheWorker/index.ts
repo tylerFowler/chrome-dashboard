@@ -25,9 +25,10 @@
  */
 
 import ExpirableCacheBucket from './expirableCacheBucket';
-import { defaultCacheExpirationThreshold, feedBucketKey } from './constants';
+import { defaultCacheExpirationThreshold, feedBucketKey, weatherBucketKey } from './constants';
 import { isCachableRequest as isHNRequest } from 'lib/hn/api';
 import { isCachableRequest as isDNRequest } from 'lib/dn/api';
+import { isCacheableRequest as isWeatherRequest } from 'lib/weather/api';
 
 // selectActiveCache iterates through all active caches, selecting the one that
 // is not yet expired, if one exists. If multiple active caches exist, the first
@@ -89,3 +90,19 @@ function feedFetchHandler(event: any) {
 }
 
 self.addEventListener('fetch', feedFetchHandler);
+
+const weatherCacheExpiry = 30 * 60 * 1000; // 30 minutes
+function weatherFetchHandler(event: any) {
+  if (isWeatherRequest(event.request)) {
+    event.respondWith(Promise.resolve().then(async () => {
+      const cache = await caches.open(await selectOrCreateActiveCache(weatherBucketKey, weatherCacheExpiry));
+
+      const response = await cache.match(event.request).then(resp => resp || fetch(event.request));
+      cache.put(event.request, response.clone());
+
+      return response;
+    }));
+  }
+}
+
+self.addEventListener('fetch', weatherFetchHandler);
