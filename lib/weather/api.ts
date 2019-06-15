@@ -192,7 +192,7 @@ export async function fetchFutureWeather(
     .find(fc => (fc.dt * 1000) >= targetedForecastTime.valueOf());
 
   if (!forecast.weather || forecast.weather.length === 0) {
-    throw new Error('Received no weather data');
+    throw new Error('Found no forecast information for input');
   }
 
   const [ weather ] = forecast.weather;
