@@ -14,7 +14,6 @@ export interface WeatherCardPreviewProps {
 
 const WeatherCardPreview: React.FC<WeatherCardPreviewProps> = ({ location, apiKey, futurePeriod }) => {
   const dispatch = useContext(LocationEditorDispatch);
-  const locationDisplay = location.displayName || location.value;
 
   const [ currentForecast, setCurrentForecast ] = useState<Forecast>({} as any);
   const [ futureForecast, setFutureForecast ] = useState<Forecast>({} as any);
@@ -52,7 +51,7 @@ const WeatherCardPreview: React.FC<WeatherCardPreviewProps> = ({ location, apiKe
   }, [ apiKey, ...useDebouncedProps(750, location.type, location.countryCode, location.value, location.displayName) ]);
 
   return <WeatherCard
-    futurePeriod={futurePeriod} location={locationDisplay.toString()}
+    futurePeriod={futurePeriod} location={location.displayName.toString() || undefined}
     currentWeatherType={currentForecast.condition} currentTemperature={currentForecast.temperature}
     futureWeatherType={futureForecast.condition} futureTemperature={futureForecast.temperature}
   />;
