@@ -141,11 +141,12 @@ interface GetForecastResponse {
   }>;
 }
 
-interface ForecastInfo extends Forecast {
-  cityDetails: { name: string, country: string };
+export interface CityDetails {
+  name: string;
+  country?: string;
 }
 
-// TODO: add units to API calls, make a usingUnit helper
+interface ForecastInfo extends Forecast { city?: CityDetails; }
 
 export async function fetchCurrentWeather(
   location: WeatherLocation, apiKey: string, unit: 'F'|'C',
@@ -162,7 +163,7 @@ export async function fetchCurrentWeather(
   const [ weather ] = data.weather;
 
   return {
-    cityDetails: { name: data.name, country: data.sys.country },
+    city: { name: data.name, country: data.sys.country },
     condition: getConditionFromCode(parseInt(weather.id, 10), weather.icon),
     temperature: parseInt(data.main.temp.toFixed(), 10),
   };
@@ -198,19 +199,20 @@ export async function fetchFutureWeather(
   const [ weather ] = forecast.weather;
 
   return {
-    cityDetails: { name: data.city.name, country: data.city.country },
+    city: { name: data.city.name, country: data.city.country },
     condition: getConditionFromCode(parseInt(weather.id, 10), weather.icon),
     temperature: parseInt(forecast.main.temp.toFixed(), 10),
   };
 }
 
 export async function fetchForecasts(location: WeatherLocation, apiKey: string, unit: 'F'|'C'): Promise<{
-  current: ForecastInfo,
-  future: ForecastInfo,
+  current: Forecast,
+  future: Forecast,
+  city?: CityDetails,
 }> {
   const [ current, future ] = await Promise.all([
     fetchCurrentWeather(location, apiKey, unit), fetchFutureWeather(location, apiKey, unit),
   ]);
 
-  return { current, future };
+  return { current, future, city: current.city || future.city };
 }

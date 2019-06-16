@@ -25,6 +25,9 @@ function locationEditorReducer(state: State, action: { type: string, payload: an
   case 'updateDisplayName':
     newState = { ...state, displayName: action.payload };
     break;
+  case 'updateDefaultDisplayName':
+    newState = { ...state, displayName: state.displayName || action.payload };
+    break;
   case 'updateCountryCode':
     newState = { ...state, countryCode: action.payload.trim() };
     break;
