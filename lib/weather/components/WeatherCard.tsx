@@ -1,6 +1,7 @@
 import React, { useEffect, useContext } from 'react';
 import styled from 'lib/styled-components';
 import { fontStacks, typeScale } from 'lib/styles';
+import { Error as ErrorAlert } from 'lib/styled/Alert';
 import WeatherConditionIcon from './WeatherConditionIcon';
 import { WeatherConditionType, WeatherLocation } from '../interface';
 import { WeatherSettingsContext } from '../../settings/context';
@@ -12,6 +13,7 @@ export interface WeatherCardProps {
   readonly futurePeriod?: 'Tonight'|'Tomorrow';
   readonly futureWeatherType?: WeatherConditionType;
   readonly futureTemperature?: number|string;
+  readonly forecastFetchError?: Error;
 
   fetchForecast?(location: WeatherLocation, unit: 'F'|'C'): void;
 }
@@ -77,6 +79,7 @@ const WeatherCard: React.SFC<WeatherCardProps> = ({
   location, fetchForecast,
   currentWeatherType, currentTemperature,
   futurePeriod, futureWeatherType, futureTemperature,
+  forecastFetchError,
 }) => {
   const weatherSettings = useContext(WeatherSettingsContext);
 
@@ -88,12 +91,21 @@ const WeatherCard: React.SFC<WeatherCardProps> = ({
     locationFontSize = typeScale(10);
   }
 
+  // since we're not going to display a (likely) technical error it should at least be logged
+  if (forecastFetchError) {
+    console.error('An error occurred while fetching the weather forecast', forecastFetchError);
+  }
+
   useEffect(() =>
     fetchForecast(weatherSettings.location, weatherSettings.unit)
   , [ weatherSettings.location, weatherSettings.unit ]);
 
   return (
     <WeatherCardContainer>
+      {forecastFetchError &&
+        <ErrorAlert style={{textAlign: 'center'}}>There was a problem fetching the forecast</ErrorAlert>
+      }
+
       <Location style={{fontSize: locationFontSize}}>{location}</Location>
 
       <TempSection style={{fontSize: typeScale(10), padding: '0 13%'}}>
