@@ -24,7 +24,10 @@ const CurrentLocEditor: React.SFC<CurrentLocEditorProps> = ({ lat, lon }) => {
       ({ coords }) => {
         dispatch({
           type: 'updateCoords',
-          payload: { lat: coords.latitude, lon: coords.longitude },
+          payload: {
+            lat: coords.latitude.toPrecision(9),
+            lon: coords.longitude.toPrecision(9),
+          },
         });
 
         dispatch({ type: 'waiting', payload: false });

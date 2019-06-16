@@ -11,7 +11,7 @@ export interface CoordsEditorProps {
 }
 
 const CoordInput = styled(SettingInput)`
-  width: 11.5em;
+  width: 7em;
 `;
 
 const CoordsEditor: React.SFC<CoordsEditorProps> = ({ lat = '', lon = '', displayName, editable = true }) => {
