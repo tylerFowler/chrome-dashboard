@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useContext } from 'react';
 import LocationEditorDispatch from './locationEditorDispatch';
-import * as Client from '../../../weather/api';
-import { Forecast } from '../../../weather/interface';
-import WeatherCard from '../../../weather/components/WeatherCard';
-import { WeatherLocation } from '../../../weather/interface';
-import { useDebouncedProps } from '../../../hooks';
+import { useDebouncedProps } from 'lib/hooks';
+import * as Client from 'lib/weather/api';
+import { Forecast } from 'lib/weather/interface';
+import WeatherCard from 'lib/weather/components/WeatherCard';
+import { WeatherLocation } from 'lib/weather/interface';
 
 export interface WeatherCardPreviewProps {
   readonly futurePeriod: 'Tonight'|'Tomorrow';
