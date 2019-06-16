@@ -28,10 +28,9 @@ const CurrentLocEditor: React.SFC<CurrentLocEditorProps> = ({ lat, lon }) => {
 
     navigator.geolocation.getCurrentPosition(
       ({ coords }) => {
-        const fmtCoord = (c: number) => c.toPrecision(7);
         dispatch({
           type: 'updateCoords',
-          payload: `${fmtCoord(coords.latitude)},${fmtCoord(coords.longitude)}`,
+          payload: { lat: coords.latitude, lon: coords.longitude },
         });
 
         dispatch({ type: 'waiting', payload: false });
@@ -44,6 +43,7 @@ const CurrentLocEditor: React.SFC<CurrentLocEditorProps> = ({ lat, lon }) => {
     dispatch({ type: 'waiting', payload: true });
   }, []);
 
+  // TODO: dispatch the error instead of displaying it
   return (<>
       {error &&
         <ErrorContainer>
