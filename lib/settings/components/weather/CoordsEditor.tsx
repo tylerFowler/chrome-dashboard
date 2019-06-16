@@ -10,7 +10,7 @@ export interface CoordsEditorProps {
   readonly editable?: boolean;
 }
 
-const CoordInput = styled(SettingInput)`
+const CoordInput = styled(SettingInput).attrs({ type: 'number' })`
   width: 7em;
 `;
 
