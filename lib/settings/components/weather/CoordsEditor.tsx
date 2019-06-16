@@ -14,7 +14,7 @@ const CoordInput = styled(SettingInput)`
   width: 11.5em;
 `;
 
-const CoordsEditor: React.SFC<CoordsEditorProps> = ({ lat, lon, displayName, editable = true }) => {
+const CoordsEditor: React.SFC<CoordsEditorProps> = ({ lat = '', lon = '', displayName, editable = true }) => {
   const dispatch = useContext(LocationEditorDispatch);
 
   const updateCoords = ({ newLat = lat, newLon = lon }) =>
@@ -24,14 +24,14 @@ const CoordsEditor: React.SFC<CoordsEditorProps> = ({ lat, lon, displayName, edi
     <SettingField>
       <SettingLabel htmlFor="weather-loc-lat">Latitude</SettingLabel>
       <CoordInput id="weather-loc-lat" value={lat} disabled={!editable}
-        onChange={e => updateCoords({newLat: e.target.value})}
+        onChange={editable ? e => updateCoords({newLat: e.target.value}) : undefined}
       />
     </SettingField>
 
     <SettingField>
       <SettingLabel htmlFor="weather-loc-lon">Longitude</SettingLabel>
       <CoordInput id="weather-loc-lon" value={lon} disabled={!editable}
-        onChange={e => updateCoords({newLon: e.target.value})}
+        onChange={editable ? e => updateCoords({newLon: e.target.value}) : undefined}
       />
     </SettingField>
 
