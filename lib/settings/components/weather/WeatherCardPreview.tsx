@@ -22,7 +22,9 @@ const WeatherCardPreview: React.FC<WeatherCardPreviewProps> = ({ location, apiKe
   const [ forecastFetchErr, setForecastFetchErr ] = useState<Error>(null);
 
   useEffect(() => {
+    console.log('Requesting');
     setForecastFetchErr(null);
+    dispatch({ type: 'unsetWarning' });
 
     Client.fetchForecasts(location, apiKey, 'F')
       .then(({ future, current, city }) => {
@@ -32,14 +34,17 @@ const WeatherCardPreview: React.FC<WeatherCardPreviewProps> = ({ location, apiKe
         if (city) {
           dispatch({ type: 'updateDefaultDisplayName', payload: city.name });
 
-          // move this to a warning error otherwise it'll be really confusing
           if (city.country) {
-            dispatch({ type: 'updateCountryCode', payload: city.country });
+            if (location.countryCode && location.countryCode !== city.country) {
+              dispatch({ type: 'setWarning', payload: `This forecast is for a country code of "${city.country}"` });
+            } else {
+              dispatch({ type: 'updateCountryCode', payload: city.country });
+            }
           }
         }
       })
       .catch(setForecastFetchErr);
-  }, [ apiKey, ...useDebouncedProps(750, location) ]);
+  }, [ apiKey, ...useDebouncedProps(750, location.type, location.countryCode, location.value, location.displayName) ]);
 
   return (<>
     {/* TODO: move this error to the location editor, via dispatch */}

@@ -2,6 +2,7 @@ import React, { useReducer } from 'react';
 import styled from 'lib/styled-components';
 import { WeatherLocation, WeatherLocationType } from '../../../weather/interface';
 import Spinner from 'lib/styled/Spinner';
+import { Warning } from 'lib/styled/Alert';
 import WeatherCardPreview from '../../containers/WeatherCardPreview';
 import { WeatherCardContainer } from '../../../weather/components/WeatherCard';
 import { SettingFieldGroup, SettingSelect, SettingButton } from '../SettingsForm';
@@ -12,7 +13,12 @@ import CoordsEditor from './CoordsEditor';
 import CurrentLocEditor from './CurrentLocEditor';
 
 // TODO: add action types
-type State = WeatherLocation & { isWaiting: boolean, isValid: boolean };
+type State = WeatherLocation & {
+  isWaiting: boolean,
+  isValid: boolean,
+  warning?: string,
+  error?: Error,
+};
 
 function locationEditorReducer(state: State, action: { type: string, payload: any }): State {
   let newState: State = state;
@@ -39,6 +45,12 @@ function locationEditorReducer(state: State, action: { type: string, payload: an
       type: action.payload, value: '', displayName: '', countryCode: '',
       isWaiting: false, isValid: false,
     };
+    break;
+  case 'setWarning':
+    newState = { ...state, warning: action.payload };
+    break;
+  case 'unsetWarning':
+    delete newState.warning;
     break;
   case 'reset':
     newState = action.payload;
@@ -137,6 +149,8 @@ const LocationEditor: React.FC<Partial<LocationEditorProps>> = ({ config, update
   //   a more compact version of this
   return (
     <LocationEditorDispatch.Provider value={dispatch}>
+      {state.warning && <Warning style={{margin: '0 auto 1.5em'}}>{state.warning}</Warning>}
+
       <SettingSelect value={state.type}
         onChange={e => dispatch({ type: 'setType', payload: e.target.value as WeatherLocationType })}
       >
