@@ -14,7 +14,6 @@ export const getRelativeFuturePeriod = (curDate: Date = new Date()): 'Tonight'|'
   return 'Tomorrow';
 };
 
-export const getLocation = ({ weather }: State) => weather.location;
 export const isFetchingForecast = ({ weather }: State) => weather.fetchingForecast;
 export const getForecastFetchError = ({ weather }: State) => weather.forecastFetchError;
 export const getCurrentForecast = ({ weather }: State) => weather.currentForecast;
