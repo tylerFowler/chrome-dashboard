@@ -1,4 +1,5 @@
 import { WeatherLocation, Forecast, WeatherLocationType, WeatherConditionType } from './interface';
+import { getRelativeFuturePeriod } from './selectors';
 
 export const OpenWeatherApi = 'https://api.openweathermap.org/data/2.5';
 
@@ -181,16 +182,26 @@ export async function fetchFutureWeather(
     throw new Error('No forecast data received');
   }
 
-  // the forecast time period wanted for the forecast, currently 6 hours from now
-  // TODO: this is too primitive, we'll want the 7pm temp for "tonight" and the 12pm temp for "tomorrow" - or averages?
+  // the forecast time period wanted for the forecast
   const targetedForecastTime = new Date();
-  targetedForecastTime.setUTCHours(targetedForecastTime.getUTCHours() + 6);
+  const futurePeriod = getRelativeFuturePeriod();
+  if (futurePeriod === 'Tomorrow') { // for "tomorrow" get closest time to noon
+    targetedForecastTime.setHours(12);
+  } else if (futurePeriod === 'Tonight') { // for "tonight" get closest time to 8pm
+    targetedForecastTime.setHours(12 + 8);
+  }
 
-  // sort the forecast list by the time (ascending) and select the first time
-  // that is after or equal to our target time
-  const forecast = data.list
-    .sort((a, b) => a.dt - b.dt)
-    .find(fc => (fc.dt * 1000) >= targetedForecastTime.valueOf());
+  // get the datapoint closest to the target time by hour, if that leaves
+  // nothing use the first datapoint (this shouldn't happen)
+  // TODO: add tests
+  const forecastsByProximity = data.list
+    .map(p => ({ ...p, dt: new Date(p.dt * 1000) }))
+    .filter(({ dt }) => dt.getDay() === targetedForecastTime.getDay())
+    .map(p => [ p, Math.abs(targetedForecastTime.getHours() - p.dt.getHours()) ] as [ typeof p, number ])
+    .sort(([, hourDistA ], [, hourDistB ]) => hourDistA - hourDistB)
+    .map(([ p ]) => p);
+
+  const forecast = forecastsByProximity[0] || data.list[0];
 
   if (!forecast.weather || forecast.weather.length === 0) {
     throw new Error('Found no forecast information for input');
