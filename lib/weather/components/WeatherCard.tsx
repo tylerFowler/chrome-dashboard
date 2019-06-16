@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import styled from 'lib/styled-components';
 import { fontStacks, typeScale } from 'lib/styles';
 import WeatherConditionIcon from './WeatherConditionIcon';
-import { WeatherConditionType } from '../interface';
+import { WeatherConditionType, WeatherLocation } from '../interface';
+import { WeatherSettingsContext } from '../../settings/context';
 
 export interface WeatherCardProps {
   readonly location?: string;
@@ -12,7 +13,7 @@ export interface WeatherCardProps {
   readonly futureWeatherType?: WeatherConditionType;
   readonly futureTemperature?: number|string;
 
-  fetchForecast?(): void;
+  fetchForecast?(location: WeatherLocation, unit: 'F'|'C'): void;
 }
 
 export const WeatherCardContainer = styled.section`
@@ -77,6 +78,8 @@ const WeatherCard: React.SFC<WeatherCardProps> = ({
   currentWeatherType, currentTemperature,
   futurePeriod, futureWeatherType, futureTemperature,
 }) => {
+  const weatherSettings = useContext(WeatherSettingsContext);
+
   // use larger location font sizes for smaller display names
   let locationFontSize = typeScale(8);
   if (location.length < 6) {
@@ -85,7 +88,9 @@ const WeatherCard: React.SFC<WeatherCardProps> = ({
     locationFontSize = typeScale(10);
   }
 
-  useEffect(() => fetchForecast(), [ location ]);
+  useEffect(() =>
+    fetchForecast(weatherSettings.location, weatherSettings.unit)
+  , [ weatherSettings.location, weatherSettings.unit ]);
 
   return (
     <WeatherCardContainer>
