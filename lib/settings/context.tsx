@@ -2,9 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { GlobalState } from '../store';
 import { FeedSettings, WeatherSettings } from './reducer';
-import { getPanelFeedSettings, getFeedSettings, getWeatherAPIKey, getWeatherLocationConfig } from './selectors';
 import { HNFeedSettings, PanelOrientation } from './interface';
 import { FeedType } from '../hn/interface';
+import {
+  getPanelFeedSettings, getFeedSettings, getWeatherAPIKey,
+  getWeatherLocationConfig, getWeatherUnits,
+} from './selectors';
 
 // SettingsProviderProps is the set of properties given to each Settings Provider
 // component, which supplies arbitrary settings over a context provider, optionally,
@@ -53,10 +56,12 @@ export const FeedSettingsProvider =
 
 export const WeatherSettingsContext = React.createContext<WeatherSettings>({
   openWeatherAPIKey: '',
+  unit: 'F',
   location: null,
 });
 
 export const WeatherSettingsProvider = createSettingsProvider(state => ({
   openWeatherAPIKey: getWeatherAPIKey(state),
+  unit: getWeatherUnits(state),
   location: getWeatherLocationConfig(state),
 }), WeatherSettingsContext);

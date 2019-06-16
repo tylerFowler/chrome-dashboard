@@ -13,6 +13,9 @@ export interface WeatherSettingsProps {
 
   readonly location: Readonly<WeatherLocation>;
   setLocationConfig(loc: Readonly<WeatherLocation>): void;
+
+  readonly weatherUnit: 'F'|'C';
+  setWeatherUnit(unit: 'F'|'C'): void;
 }
 
 // TODO: Add a reusable way to do an "about" hover field
@@ -55,13 +58,14 @@ const LocationTypeFieldset = styled.fieldset`
 
 const WeatherSettings: React.FC<WeatherSettingsProps> = ({
   openWeatherAPIKey, setOpenWeatherAPIKey,
+  weatherUnit, setWeatherUnit,
   location, setLocationConfig,
 }) =>
   <SettingsForm>
     <legend>Weather</legend>
 
     <APIKeySetting apiKey={openWeatherAPIKey} onChange={setOpenWeatherAPIKey} />
-    <WeatherUnitSetting unit="F" onChange={() => {}} />
+    <WeatherUnitSetting unit={weatherUnit} onChange={u => setWeatherUnit(u)} />
 
     <LocationTypeFieldset>
       <legend>Location Type</legend>
