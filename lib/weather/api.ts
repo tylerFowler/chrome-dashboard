@@ -182,7 +182,7 @@ export async function fetchFutureWeather(
   }
 
   // the forecast time period wanted for the forecast, currently 6 hours from now
-  // TODO: this is too primitive, we'll want the 7pm temp for "tonight" and the 12pm temp for "tomorrow"
+  // TODO: this is too primitive, we'll want the 7pm temp for "tonight" and the 12pm temp for "tomorrow" - or averages?
   const targetedForecastTime = new Date();
   targetedForecastTime.setUTCHours(targetedForecastTime.getUTCHours() + 6);
 
