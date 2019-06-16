@@ -5,7 +5,6 @@ import { Forecast } from '../../../weather/interface';
 import WeatherCard from '../../../weather/components/WeatherCard';
 import { WeatherLocation } from '../../../weather/interface';
 import { useDebouncedProps } from '../../../hooks';
-import { Error as ErrorAlert } from '../../../styled/Alert';
 
 export interface WeatherCardPreviewProps {
   readonly futurePeriod: 'Tonight'|'Tomorrow';
@@ -19,15 +18,14 @@ const WeatherCardPreview: React.FC<WeatherCardPreviewProps> = ({ location, apiKe
 
   const [ currentForecast, setCurrentForecast ] = useState<Forecast>({} as any);
   const [ futureForecast, setFutureForecast ] = useState<Forecast>({} as any);
-  const [ forecastFetchErr, setForecastFetchErr ] = useState<Error>(null);
 
   useEffect(() => {
-    console.log('Requesting');
-    setForecastFetchErr(null);
-    dispatch({ type: 'unsetWarning' });
+    dispatch({ type: 'forecastFetched' });
 
     Client.fetchForecasts(location, apiKey, 'F')
       .then(({ future, current, city }) => {
+        dispatch({ type: 'forecastFetchSuccess' });
+
         setCurrentForecast(current);
         setFutureForecast(future);
 
@@ -43,23 +41,17 @@ const WeatherCardPreview: React.FC<WeatherCardPreviewProps> = ({ location, apiKe
           }
         }
       })
-      .catch(setForecastFetchErr);
+      .catch(error => dispatch({
+        type: 'forecastFetchFailure',
+        payload: `Failed to load weather forecast: ${error.message}`,
+      }));
   }, [ apiKey, ...useDebouncedProps(750, location.type, location.countryCode, location.value, location.displayName) ]);
 
-  return (<>
-    {/* TODO: move this error to the location editor, via dispatch */}
-    {forecastFetchErr &&
-      <ErrorAlert style={{fontSize: '1rem', margin: '1rem auto'}}>
-        Failed to load weather forecast: {forecastFetchErr.message}
-      </ErrorAlert>
-    }
-
-    <WeatherCard
-      futurePeriod={futurePeriod} location={locationDisplay.toString()}
-      currentWeatherType={currentForecast.condition} currentTemperature={currentForecast.temperature}
-      futureWeatherType={futureForecast.condition} futureTemperature={futureForecast.temperature}
-    />
-  </>);
+  return <WeatherCard
+    futurePeriod={futurePeriod} location={locationDisplay.toString()}
+    currentWeatherType={currentForecast.condition} currentTemperature={currentForecast.temperature}
+    futureWeatherType={futureForecast.condition} futureTemperature={futureForecast.temperature}
+  />;
 };
 
 export default WeatherCardPreview;

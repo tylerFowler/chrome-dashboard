@@ -2,7 +2,7 @@ import React, { useReducer } from 'react';
 import styled from 'lib/styled-components';
 import { WeatherLocation, WeatherLocationType } from '../../../weather/interface';
 import Spinner from 'lib/styled/Spinner';
-import { Warning } from 'lib/styled/Alert';
+import * as Alert from 'lib/styled/Alert';
 import WeatherCardPreview from '../../containers/WeatherCardPreview';
 import { WeatherCardContainer } from '../../../weather/components/WeatherCard';
 import { SettingFieldGroup, SettingSelect, SettingButton } from '../SettingsForm';
@@ -17,7 +17,7 @@ type State = WeatherLocation & {
   isWaiting: boolean,
   isValid: boolean,
   warning?: string,
-  error?: Error,
+  error?: string,
 };
 
 function locationEditorReducer(state: State, action: { type: string, payload: any }): State {
@@ -51,6 +51,13 @@ function locationEditorReducer(state: State, action: { type: string, payload: an
     break;
   case 'unsetWarning':
     delete newState.warning;
+    break;
+  case 'forecastFetched':
+  case 'forecastFetchSuccess':
+    newState = { ...state, error: null, warning: null };
+    break;
+  case 'forecastFetchFailure':
+    newState = { ...state, error: action.payload };
     break;
   case 'reset':
     newState = action.payload;
@@ -149,7 +156,8 @@ const LocationEditor: React.FC<Partial<LocationEditorProps>> = ({ config, update
   //   a more compact version of this
   return (
     <LocationEditorDispatch.Provider value={dispatch}>
-      {state.warning && <Warning style={{margin: '0 auto 1.5em'}}>{state.warning}</Warning>}
+      {state.warning && <Alert.Warning style={{margin: '0 auto 1.5em'}}>{state.warning}</Alert.Warning>}
+      {state.error && <Alert.Error style={{margin: '0 auto 1.5em'}}>{state.error}</Alert.Error>}
 
       <SettingSelect value={state.type}
         onChange={e => dispatch({ type: 'setType', payload: e.target.value as WeatherLocationType })}
