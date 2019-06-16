@@ -75,13 +75,6 @@ const WeatherCard: React.SFC<WeatherCardProps> = ({
 }) => {
   const weatherSettings = useContext(WeatherSettingsContext);
 
-  // since we're not going to display a (likely) technical error it should at least be logged
-  useEffect(() => {
-    if (forecastFetchError) {
-      console.error('An error occurred while fetching the weather forecast', forecastFetchError);
-    }
-  }, [ forecastFetchError ]);
-
   useEffect(() =>
     fetchForecast(weatherSettings.location, weatherSettings.unit)
   , [ weatherSettings.location, weatherSettings.unit ]);
@@ -89,7 +82,7 @@ const WeatherCard: React.SFC<WeatherCardProps> = ({
   return (
     <WeatherCardContainer>
       {forecastFetchError &&
-        <ErrorAlert style={{textAlign: 'center'}}>There was a problem fetching the forecast</ErrorAlert>
+        <ErrorAlert style={{textAlign: 'center'}}>{forecastFetchError.message}</ErrorAlert>
       }
 
       <SizeAdjustedLocation>{location}</SizeAdjustedLocation>

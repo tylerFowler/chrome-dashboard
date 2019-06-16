@@ -12,7 +12,8 @@ function* fetchForecast(action: ActionType<typeof fetchForecastAction>) {
     const { current, future } = yield call(API.fetchForecasts, location, apiKey, unit);
     yield put(recvForecast(current, future));
   } catch (error) {
-    yield put(fetchForecastError(error));
+    console.error('An error occurred while fetching the weather forecast', error);
+    yield put(fetchForecastError(new Error('There was a problem fetching your forecast')));
   }
 }
 
