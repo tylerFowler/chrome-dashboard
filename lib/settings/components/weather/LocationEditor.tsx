@@ -20,6 +20,7 @@ type State = WeatherLocation & {
   error?: string,
 };
 
+// TODO: move this & its data structures to own file, add tests, maybe split up & combine
 function locationEditorReducer(state: State, action: { type: string, payload: any }): State {
   let newState: State = state;
   switch (action.type) {

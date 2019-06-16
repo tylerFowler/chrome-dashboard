@@ -63,9 +63,8 @@ export namespace WeatherLocation {
   }
 
   export const isCoords = (loc: WeatherLocation): loc is Coords =>
-    loc.type === WeatherLocationType.Coords
-    && !!loc.value
-    && !loc.countryCode
+    (loc.type === WeatherLocationType.Coords || loc.type === WeatherLocationType.Current)
+    && (!!loc.value && !!loc.value.lat && !!loc.value.lon)
   ;
 }
 
