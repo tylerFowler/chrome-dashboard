@@ -150,10 +150,6 @@ const LocationEditor: React.FC<Partial<LocationEditorProps>> = ({ config, update
     updateConfig(state);
   };
 
-  // TODO: display a "current weather with current settings viewer" that lets
-  // us pass specific things to it without committing them.
-  // - Should be able to reuse the main weather card for this, though may need
-  //   a more compact version of this
   return (
     <LocationEditorDispatch.Provider value={dispatch}>
       {state.warning && <Alert.Warning style={{margin: '0 auto 1.5em'}}>{state.warning}</Alert.Warning>}
