@@ -16,11 +16,11 @@ const StyledLocation = styled.h1`
 // which must be a string.
 const SizeAdjustedLocation: React.SFC<{ readonly children: string }> = ({ children }) => {
   // use larger location font sizes for smaller display names
-  let locationFontSize = typeScale(8);
+  let locationFontSize = typeScale(7);
   if (children.length < 6) {
-    locationFontSize = typeScale(11);
-  } else if (children.length < 12) {
     locationFontSize = typeScale(10);
+  } else if (children.length < 12) {
+    locationFontSize = typeScale(9);
   }
 
   return <StyledLocation style={{fontSize: locationFontSize}}>{children}</StyledLocation>;

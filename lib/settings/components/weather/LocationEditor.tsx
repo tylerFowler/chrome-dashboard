@@ -23,7 +23,7 @@ const LocationEditorFieldGroup = styled(SettingFieldGroup)`
 `;
 
 const PreviewContainer = styled.aside`
-  zoom: .75;
+  zoom: .925;
   overflow: hidden;
   margin-top: 1em;
 

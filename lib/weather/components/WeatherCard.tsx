@@ -27,7 +27,7 @@ export const WeatherCardContainer = styled.section`
   overflow: hidden;
 
   width: 40%;
-  min-width: 350px;
+  min-width: 300px;
   min-height: 10rem;
 `;
 
@@ -94,12 +94,12 @@ const WeatherCard: React.SFC<WeatherCardProps> = ({
 
       <SizeAdjustedLocation>{location}</SizeAdjustedLocation>
 
-      <TempSection style={{fontSize: typeScale(10), padding: '0 13%'}}>
+      <TempSection style={{fontSize: typeScale(9), padding: '0 13%'}}>
         <WeatherConditionIcon type={currentWeatherType} style={{flex: 1}} />
         <CurrentTemperature>{currentTemperature}</CurrentTemperature>
       </TempSection>
 
-      <TempSection style={{fontSize: typeScale(7)}}>
+      <TempSection style={{fontSize: typeScale(6)}}>
         <span style={{fontFamily: fontStacks.OpenSans, fontWeight: 'bold'}}>
           {futurePeriod}:
         </span>
