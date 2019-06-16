@@ -50,6 +50,13 @@ export const SettingSelect = styled.select`
   }
 `;
 
+export const SettingRadio = styled.input.attrs({ type: 'radio' })`
+  & + ${SettingInlineLabel} {
+    margin-right: 1em;
+    margin-left: .5em;
+  }
+`;
+
 export const SettingButton = styled.button`
   cursor: pointer;
   user-select: none;

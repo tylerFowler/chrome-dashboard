@@ -3,7 +3,9 @@ import styled from 'lib/styled-components';
 import { typeScale } from 'lib/styles';
 import { WeatherLocation } from '../../../weather/interface';
 import LocationEditor from './LocationEditor';
-import SettingsForm, { SettingField, SettingLabel, SettingInput } from '../SettingsForm';
+import SettingsForm, {
+  SettingField, SettingLabel, SettingInlineLabel, SettingInput, SettingRadio,
+} from '../SettingsForm';
 
 export interface WeatherSettingsProps {
   readonly openWeatherAPIKey: string;
@@ -20,6 +22,24 @@ const APIKeySetting: React.SFC<{ readonly apiKey: string; onChange(key: string):
     <SettingInput id="weather-api-key" spellCheck={false} style={{width: '250px'}}
       value={apiKey} onChange={e => onChange(e.target.value)}
     />
+  </SettingField>
+;
+
+const WeatherUnitSetting: React.SFC<{ readonly unit: 'F'|'C'; onChange(unit: 'F'|'C'): void }> = ({ unit, onChange }) =>
+  <SettingField>
+    <SettingLabel>Unit</SettingLabel>
+
+    <SettingRadio id="weather-unit-fahrenheit" name="fahrenheit"
+      checked={unit === 'F'}
+      value="F" onChange={e => onChange(e.target.checked ? 'F' : unit)}
+    />
+    <SettingInlineLabel htmlFor="weather-unit-fahreinheit">F˚</SettingInlineLabel>
+
+    <SettingRadio id="weather-unit-celsius" name="celsius"
+      checked={unit === 'C'}
+      value="C" onChange={e => onChange(e.target.checked ? 'C' : unit)}
+    />
+    <SettingInlineLabel htmlFor="weather-unit-celsius">C˚</SettingInlineLabel>
   </SettingField>
 ;
 
@@ -41,6 +61,7 @@ const WeatherSettings: React.FC<WeatherSettingsProps> = ({
     <legend>Weather</legend>
 
     <APIKeySetting apiKey={openWeatherAPIKey} onChange={setOpenWeatherAPIKey} />
+    <WeatherUnitSetting unit="F" onChange={() => {}} />
 
     <LocationTypeFieldset>
       <legend>Location Type</legend>
