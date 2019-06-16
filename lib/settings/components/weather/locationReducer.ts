@@ -8,72 +8,60 @@ export type State = WeatherLocation & {
   error?: string,
 };
 
-// TODO: move this & its data structures to own file, add tests, maybe split up & combine
 export default function locationEditorReducer(state: State, action: { type: string, payload: any }): State {
-  let newState: State = state;
+  const newState = reducer(state, action);
+  return { ...newState, isValid: validityReducer(newState) };
+}
+
+function reducer(state: State, action: { type: string, payload: any }): State {
   switch (action.type) {
   case 'updateCity':
   case 'updateZipCode':
   case 'updateCoords':
-    newState = { ...state, value: action.payload };
-    break;
+    return { ...state, value: action.payload };
   case 'updateDisplayName':
-    newState = { ...state, displayName: action.payload };
-    break;
+    return { ...state, displayName: action.payload };
   case 'updateDefaultDisplayName':
-    newState = { ...state, displayName: state.displayName || action.payload };
-    break;
+    return { ...state, displayName: state.displayName || action.payload };
   case 'updateCountryCode':
-    newState = { ...state, countryCode: action.payload.trim() };
-    break;
+    return { ...state, countryCode: action.payload.trim() };
   case 'waiting':
-    newState = { ...state, isWaiting: action.payload };
-    break;
+    return { ...state, isWaiting: action.payload };
   case 'setType':
-    newState = {
-      type: action.payload, value: '', displayName: '', countryCode: '',
-      isWaiting: false, isValid: false,
+    return {
+      type: action.payload, isWaiting: false, isValid: false,
+      value: '', displayName: '', countryCode: '',
     };
-    break;
   case 'setWarning':
-    newState = { ...state, warning: action.payload };
-    break;
+    return { ...state, warning: action.payload };
   case 'unsetWarning':
-    delete newState.warning;
-    break;
+    return { ...state, warning: null };
   case 'setError':
-    newState = { ...state, error: action.payload.message };
-    break;
+    return { ...state, error: action.payload.message };
   case 'unsetError':
-    newState = { ...state, error: null };
-    break;
+    return { ...state, error: null };
   case 'forecastFetched':
   case 'forecastFetchSuccess':
-    newState = { ...state, error: null, warning: null };
-    break;
+    return { ...state, error: null, warning: null };
   case 'forecastFetchFailure':
-    newState = { ...state, error: action.payload };
-    break;
+    return { ...state, error: action.payload };
   case 'reset':
-    newState = action.payload;
-    break;
+    return action.payload;
   default:
     throw new Error(`Unknown action type ${action.type}`);
   }
+}
 
-  let isValid = false;
-  switch (newState.type) {
+function validityReducer(state: State): boolean {
+  switch (state.type) {
   case WeatherLocationType.CityName:
-    isValid = WeatherLocation.isCity(newState);
-    break;
+    return WeatherLocation.isCity(state);
   case WeatherLocationType.ZIPCode:
-    isValid = WeatherLocation.isZIPCode(newState);
-    break;
+    return WeatherLocation.isZIPCode(state);
   case WeatherLocationType.Coords:
   case WeatherLocationType.Current:
-    isValid = WeatherLocation.isCoords(newState);
-    break;
+    return WeatherLocation.isCoords(state);
+  default:
+    return (state as State).isValid;
   }
-
-  return { ...newState, isValid };
 }
