@@ -20,6 +20,10 @@ const WeatherCardPreview: React.FC<WeatherCardPreviewProps> = ({ location, apiKe
   const [ futureForecast, setFutureForecast ] = useState<Forecast>({} as any);
 
   useEffect(() => {
+    if (!location.value) {
+      return;
+    }
+
     dispatch({ type: 'forecastFetched' });
 
     Client.fetchForecasts(location, apiKey, 'F')
