@@ -52,6 +52,12 @@ function locationEditorReducer(state: State, action: { type: string, payload: an
   case 'unsetWarning':
     delete newState.warning;
     break;
+  case 'setError':
+    newState = { ...state, error: action.payload.message };
+    break;
+  case 'unsetError':
+    newState = { ...state, error: null };
+    break;
   case 'forecastFetched':
   case 'forecastFetchSuccess':
     newState = { ...state, error: null, warning: null };
