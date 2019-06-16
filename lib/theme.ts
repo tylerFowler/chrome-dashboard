@@ -18,6 +18,9 @@ const appTheme = {
 
   negativeBackground: '#ffcab3',
   negativeAccent: '#ff7537',
+
+  warningBackground: '#ffe8b3',
+  warningAccent: '#e6a100',
 };
 
 export type AppTheme = typeof appTheme;
