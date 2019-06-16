@@ -1,9 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { useSelector } from 'react-redux';
 import { useDebouncedProps } from 'lib/hooks';
 import * as Client from 'lib/weather/api';
 import LocationEditorDispatch from './locationEditorDispatch';
-import { getWeatherUnits } from '../../selectors';
 import { Forecast } from 'lib/weather/interface';
 import WeatherCard from 'lib/weather/components/WeatherCard';
 import { WeatherLocation } from 'lib/weather/interface';
@@ -11,13 +9,13 @@ import { WeatherLocation } from 'lib/weather/interface';
 export interface WeatherCardPreviewProps {
   readonly futurePeriod: 'Tonight'|'Tomorrow';
   readonly apiKey: string;
+  readonly unit: 'F'|'C';
   readonly location: WeatherLocation;
 }
 
-const WeatherCardPreview: React.FC<WeatherCardPreviewProps> = ({ location, apiKey, futurePeriod }) => {
+const WeatherCardPreview: React.FC<WeatherCardPreviewProps> = ({ location, apiKey, unit, futurePeriod }) => {
   const dispatch = useContext(LocationEditorDispatch);
 
-  const weatherUnit = useSelector(getWeatherUnits);
   const [ currentForecast, setCurrentForecast ] = useState<Forecast>({} as any);
   const [ futureForecast, setFutureForecast ] = useState<Forecast>({} as any);
 
@@ -27,7 +25,7 @@ const WeatherCardPreview: React.FC<WeatherCardPreviewProps> = ({ location, apiKe
     }
 
     dispatch({ type: 'forecastFetched' });
-    Client.fetchForecasts(location, apiKey, weatherUnit)
+    Client.fetchForecasts(location, apiKey, unit)
       .then(({ future, current, city }) => {
         dispatch({ type: 'forecastFetchSuccess' });
 
@@ -51,7 +49,7 @@ const WeatherCardPreview: React.FC<WeatherCardPreviewProps> = ({ location, apiKe
         payload: `Failed to load weather forecast: ${error.message}`,
       }));
   }, [
-    apiKey, weatherUnit,
+    apiKey, unit,
     ...useDebouncedProps(750, location.type, location.countryCode, location.value, location.displayName),
   ]);
 

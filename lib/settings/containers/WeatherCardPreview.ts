@@ -2,13 +2,14 @@ import { connect } from 'react-redux';
 import { GlobalState } from '../../store';
 import { getRelativeFuturePeriod } from '../../weather/selectors';
 import WeatherCardPreview, { WeatherCardPreviewProps } from '../components/weather/WeatherCardPreview';
-import { getWeatherAPIKey } from '../selectors';
+import { getWeatherAPIKey, getWeatherUnits } from '../selectors';
 
 type RequiredProps = Pick<WeatherCardPreviewProps, 'location'>;
 
 const mapStateToProps = (state: GlobalState, ownProps: RequiredProps): Partial<WeatherCardPreviewProps> => ({
   location: ownProps.location,
   apiKey: getWeatherAPIKey(state),
+  unit: getWeatherUnits(state),
   futurePeriod: getRelativeFuturePeriod(),
 });
 
