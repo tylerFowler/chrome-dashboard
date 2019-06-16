@@ -5,6 +5,7 @@ import { Error as ErrorAlert } from 'lib/styled/Alert';
 import WeatherConditionIcon from './WeatherConditionIcon';
 import { WeatherConditionType, WeatherLocation } from '../interface';
 import { WeatherSettingsContext } from '../../settings/context';
+import SizeAdjustedLocation from './SizeAdjustedLocation';
 
 export interface WeatherCardProps {
   readonly location?: string;
@@ -28,15 +29,6 @@ export const WeatherCardContainer = styled.section`
   width: 40%;
   min-width: 350px;
   min-height: 10rem;
-`;
-
-const Location = styled.h1`
-  text-align: center;
-  font-family: ${fontStacks.OpenSans};
-  font-weight: 200;
-  overflow-wrap: break-word;
-
-  margin: 0 auto 1rem;
 `;
 
 const Temperature = styled.span`
@@ -83,14 +75,6 @@ const WeatherCard: React.SFC<WeatherCardProps> = ({
 }) => {
   const weatherSettings = useContext(WeatherSettingsContext);
 
-  // use larger location font sizes for smaller display names
-  let locationFontSize = typeScale(8);
-  if (location.length < 6) {
-    locationFontSize = typeScale(11);
-  } else if (location.length < 12) {
-    locationFontSize = typeScale(10);
-  }
-
   // since we're not going to display a (likely) technical error it should at least be logged
   useEffect(() => {
     if (forecastFetchError) {
@@ -108,7 +92,7 @@ const WeatherCard: React.SFC<WeatherCardProps> = ({
         <ErrorAlert style={{textAlign: 'center'}}>There was a problem fetching the forecast</ErrorAlert>
       }
 
-      <Location style={{fontSize: locationFontSize}}>{location}</Location>
+      <SizeAdjustedLocation>{location}</SizeAdjustedLocation>
 
       <TempSection style={{fontSize: typeScale(10), padding: '0 13%'}}>
         <WeatherConditionIcon type={currentWeatherType} style={{flex: 1}} />
