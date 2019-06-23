@@ -170,6 +170,24 @@ export async function fetchCurrentWeather(
   };
 }
 
+// getTargetForecastTime calculates the the next ideal datetime for a given period,
+// if the future period is "tomorrow" it will give noon the next day and if
+// "tonight" it will give 8pm the same day. All times are in the local timezone.
+const getTargetForecastTime = (futurePeriod: 'Tomorrow'|'Tonight') => {
+  const targetedForecastTime = new Date();
+  targetedForecastTime.setMinutes(0);
+  targetedForecastTime.setSeconds(0);
+
+  if (futurePeriod === 'Tomorrow') { // for "tomorrow" get closest time to noon
+    targetedForecastTime.setDate(targetedForecastTime.getDate() + 1);
+    targetedForecastTime.setHours(12);
+  } else if (futurePeriod === 'Tonight') { // for "tonight" get closest time to 8pm
+    targetedForecastTime.setHours(12 + 8);
+  }
+
+  return targetedForecastTime;
+};
+
 export async function fetchFutureWeather(
   location: WeatherLocation, apiKey: string, unit: 'F'|'C',
 ): Promise<ForecastInfo> {
@@ -183,21 +201,10 @@ export async function fetchFutureWeather(
   }
 
   // the forecast time period wanted for the forecast
-  // TODO: move this to own func
   // TODO: also, figure out why this is requested twice, probably due to settings loading
   //       – it might be a good idea to defer all other sagas until the settings
   //         are loaded from storage
-  const targetedForecastTime = new Date();
-  targetedForecastTime.setMinutes(0);
-  targetedForecastTime.setSeconds(0);
-
-  const futurePeriod = getRelativeFuturePeriod();
-  if (futurePeriod === 'Tomorrow') { // for "tomorrow" get closest time to noon
-    targetedForecastTime.setDate(targetedForecastTime.getDate() + 1);
-    targetedForecastTime.setHours(12);
-  } else if (futurePeriod === 'Tonight') { // for "tonight" get closest time to 8pm
-    targetedForecastTime.setHours(12 + 8);
-  }
+  const targetedForecastTime = getTargetForecastTime(getRelativeFuturePeriod());
 
   // get the datapoint closest to the target time by hour, if that leaves
   // nothing use the first datapoint (this shouldn't happen)
