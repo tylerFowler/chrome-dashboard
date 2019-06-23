@@ -68,7 +68,7 @@ const WeatherSettings: React.FC<WeatherSettingsProps> = ({
     <WeatherUnitSetting unit={weatherUnit} onChange={u => setWeatherUnit(u)} />
 
     <LocationTypeFieldset>
-      <legend>Location Type</legend>
+      <legend>Location Setup</legend>
 
       <SettingField>
         <LocationEditor config={location} updateConfig={setLocationConfig} />
