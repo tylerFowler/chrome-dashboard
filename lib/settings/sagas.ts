@@ -1,6 +1,6 @@
 import { all, select, call, put, delay, takeLatest, debounce } from 'redux-saga/effects';
 import { getSerializableSettings, getWeatherLocationConfig } from './selectors';
-import { WeatherLocation } from '../weather/interface';
+import { WeatherLocation, WeatherLocationType } from '../weather/interface';
 import { fetchForecastError } from '../weather/actions';
 import {
   committed, commitFailure, receiveSettings, addToast, Actions, removeToast,
@@ -44,7 +44,12 @@ function* settingsStoredToast() {
   yield put(removeToast());
 }
 
-function* refreshCurrentLocation() {
+function* refreshCurrentLocationIfEnabled() {
+  const weatherLocType: WeatherLocation = yield select(getWeatherLocationConfig);
+  if (weatherLocType.type !== WeatherLocationType.Current) {
+    return;
+  }
+
   const getCurrentPosition = () => new Promise((resolve, reject) => navigator.geolocation.getCurrentPosition(
     ({ coords }) => {
       resolve(coords);
@@ -70,7 +75,7 @@ function* refreshCurrentLocation() {
 
 export default function* rootSaga() {
   yield call(restoreSettings);
-  yield call(refreshCurrentLocation);
+  yield call(refreshCurrentLocationIfEnabled);
   yield all([
     takeLatest(Actions.Commit, commitSettings),
     debounce(toastDebounce, Actions.UpdateFeedConfiguration, commitSettings),
