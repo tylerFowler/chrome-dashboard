@@ -183,9 +183,17 @@ export async function fetchFutureWeather(
   }
 
   // the forecast time period wanted for the forecast
+  // TODO: move this to own func
+  // TODO: also, figure out why this is requested twice, probably due to settings loading
+  //       – it might be a good idea to defer all other sagas until the settings
+  //         are loaded from storage
   const targetedForecastTime = new Date();
+  targetedForecastTime.setMinutes(0);
+  targetedForecastTime.setSeconds(0);
+
   const futurePeriod = getRelativeFuturePeriod();
   if (futurePeriod === 'Tomorrow') { // for "tomorrow" get closest time to noon
+    targetedForecastTime.setDate(targetedForecastTime.getDate() + 1);
     targetedForecastTime.setHours(12);
   } else if (futurePeriod === 'Tonight') { // for "tonight" get closest time to 8pm
     targetedForecastTime.setHours(12 + 8);
