@@ -87,7 +87,7 @@ const WeatherCard: React.SFC<WeatherCardProps> = ({
 
   useEffect(() =>
     fetchForecast(weatherSettings.location, weatherSettings.unit)
-  , [ weatherSettings.location.value, weatherSettings.unit ]);
+  , [ weatherSettings.location && weatherSettings.location.value, weatherSettings.unit ]);
 
   return (
     <WeatherCardContainer>
