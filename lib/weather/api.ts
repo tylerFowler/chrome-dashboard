@@ -240,5 +240,11 @@ export async function fetchForecasts(location: WeatherLocation, apiKey: string, 
     fetchCurrentWeather(location, apiKey, unit), fetchFutureWeather(location, apiKey, unit),
   ]);
 
-  return { current, future, city: current.city || future.city };
+  const cityData = current.city || future.city;
+
+  // don't leak embedded city data
+  delete current.city;
+  delete future.city;
+
+  return { current, future, city: cityData };
 }
