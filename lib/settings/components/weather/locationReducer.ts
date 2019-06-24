@@ -17,8 +17,9 @@ function reducer(state: State, action: { type: string, payload: any }): State {
   switch (action.type) {
   case 'updateCity':
   case 'updateZipCode':
-  case 'updateCoords':
     return { ...state, value: action.payload };
+  case 'updateCoords':
+    return { ...state, value: action.payload, countryCode: null };
   case 'updateDisplayName':
     return { ...state, displayName: action.payload };
   case 'updateDefaultDisplayName':
