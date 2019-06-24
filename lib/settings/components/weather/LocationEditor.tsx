@@ -78,11 +78,10 @@ const LocationEditor: React.FC<Partial<LocationEditorProps>> = ({ config, update
     event.preventDefault();
     event.currentTarget.blur();
 
-    const updatedConfig = state;
-    delete updatedConfig.isWaiting;
-    delete updatedConfig.isValid;
-
-    updateConfig(updatedConfig);
+    updateConfig({
+      type: state.type, value: state.value,
+      displayName: state.displayName, countryCode: state.countryCode,
+    } as WeatherLocation);
   };
 
   return (
