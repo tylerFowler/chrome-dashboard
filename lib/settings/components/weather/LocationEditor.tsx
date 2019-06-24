@@ -77,7 +77,12 @@ const LocationEditor: React.FC<Partial<LocationEditorProps>> = ({ config, update
   const locationUpdateSubmit = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     event.preventDefault();
     event.currentTarget.blur();
-    updateConfig(state);
+
+    const updatedConfig = state;
+    delete updatedConfig.isWaiting;
+    delete updatedConfig.isValid;
+
+    updateConfig(updatedConfig);
   };
 
   return (
