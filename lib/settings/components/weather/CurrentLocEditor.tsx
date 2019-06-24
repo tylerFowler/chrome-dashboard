@@ -22,6 +22,7 @@ const CurrentLocEditor: React.SFC<CurrentLocEditorProps> = ({ lat, lon }) => {
 
     navigator.geolocation.getCurrentPosition(
       ({ coords }) => {
+        dispatch({ type: 'updateDisplayName', payload: '' });
         dispatch({
           type: 'updateCoords',
           payload: {
