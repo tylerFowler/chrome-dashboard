@@ -4,6 +4,7 @@ import { getWeatherLocationConfig } from 'lib/settings/selectors';
 import { getCurrentForecast, getRelativeFuturePeriod, getFutureForecast, getForecastFetchError } from '../selectors';
 import WeatherCard, { WeatherCardProps } from '../components/WeatherCard';
 import { fetchForecast as fetchForecastAction } from '../actions';
+import { refreshWeatherCoords } from '../../settings/actions';
 
 const mapStateToProps = (state: GlobalState): Partial<WeatherCardProps> => ({
   location: getWeatherLocationConfig(state).displayName || undefined,
@@ -15,8 +16,9 @@ const mapStateToProps = (state: GlobalState): Partial<WeatherCardProps> => ({
   forecastFetchError: getForecastFetchError(state),
 });
 
-const mapDispatchToProps = (dispatch: Function): Pick<WeatherCardProps, 'fetchForecast'> => ({
+const mapDispatchToProps = (dispatch: Function): Pick<WeatherCardProps, 'fetchForecast'|'refineLocation'> => ({
   fetchForecast(location, unit) { dispatch(fetchForecastAction(location, unit)); },
+  refineLocation() { dispatch(refreshWeatherCoords()); },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(WeatherCard);

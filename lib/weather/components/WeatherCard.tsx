@@ -17,6 +17,7 @@ export interface WeatherCardProps {
   readonly forecastFetchError?: Error;
 
   fetchForecast?(location: WeatherLocation, unit: 'F'|'C'): void;
+  refineLocation?(): void;
 }
 
 export const WeatherCardContainer = styled.section`
@@ -29,6 +30,15 @@ export const WeatherCardContainer = styled.section`
   width: 40%;
   min-width: 300px;
   min-height: 10rem;
+`;
+
+const NavigatorIcon = styled.div`
+  cursor: pointer;
+  background: grey;
+  width: 1.5em;
+  height: 1.5em;
+
+  float: right;
 `;
 
 const Temperature = styled.span`
@@ -68,7 +78,7 @@ const FutureTemperature = styled(Temperature)`
 `;
 
 const WeatherCard: React.SFC<WeatherCardProps> = ({
-  location, fetchForecast,
+  location, fetchForecast, refineLocation,
   currentWeatherType, currentTemperature,
   futurePeriod, futureWeatherType, futureTemperature,
   forecastFetchError,
@@ -81,6 +91,8 @@ const WeatherCard: React.SFC<WeatherCardProps> = ({
 
   return (
     <WeatherCardContainer>
+      {refineLocation && <NavigatorIcon title="Update your location" onClick={refineLocation} />}
+
       {forecastFetchError &&
         <ErrorAlert style={{textAlign: 'center'}}>{forecastFetchError.message}</ErrorAlert>
       }
