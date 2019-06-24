@@ -15,6 +15,7 @@ export enum Actions {
   UpdatePanelType = 'SETTINGS_UPDATE_PANEL_TYPE',
 
   UpdateWeatherConfiguration = 'SETTINGS_UPDATE_WEATHER',
+  RefreshWeatherCoordinates = 'SETTINGS_REFRESH_WEATHER_COORDS',
 }
 
 export type SettingsAction = ActionType<
@@ -53,3 +54,5 @@ export const updateFeedRefreshInterval = (ivalMinutes: number) =>
 
 export const updateWeatherConfig = (config: Partial<WeatherSettings>) =>
   action(Actions.UpdateWeatherConfiguration, { update: config });
+
+export const refreshWeatherCoords = () => action(Actions.RefreshWeatherCoordinates);

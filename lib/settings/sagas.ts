@@ -75,13 +75,13 @@ function* refreshCurrentLocationIfEnabled() {
 
 export default function* rootSaga() {
   yield call(restoreSettings);
-  yield call(refreshCurrentLocationIfEnabled);
   yield all([
     takeLatest(Actions.Commit, commitSettings),
     debounce(toastDebounce, Actions.UpdateFeedConfiguration, commitSettings),
     debounce(toastDebounce, Actions.UpdatePanelConfiguration, commitSettings),
     debounce(toastDebounce, Actions.UpdatePanelType, commitSettings),
     debounce(toastDebounce, Actions.UpdateWeatherConfiguration, commitSettings),
+    takeLatest(Actions.RefreshWeatherCoordinates, refreshCurrentLocationIfEnabled),
     takeLatest(Actions.Committed, settingsStoredToast),
   ]);
 }
