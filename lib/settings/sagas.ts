@@ -61,7 +61,8 @@ function* refreshCurrentLocationIfEnabled() {
   try {
     const { latitude, longitude } = yield call(getCurrentPosition);
     yield put(updateWeatherConfig({ location: {
-      ...locationConfig, value: { lat: latitude, lon: longitude },
+      ...locationConfig, displayName: '', // reset display name as the location has changed
+      value: { lat: latitude, lon: longitude },
     }}));
 
     yield put(commit());
