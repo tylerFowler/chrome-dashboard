@@ -1,16 +1,22 @@
 import React from 'react';
 import styled from 'lib/styled-components';
+import { PanelOrientation } from 'lib/settings/interface';
 import { FeedType } from '../interface';
 import FeedOptionGroup from './FeedOptionGroup';
 
 export interface FeedSelectorProps {
+  readonly orientation: PanelOrientation;
   readonly feed?: FeedType;
   onChange?(feed: FeedType): void;
 }
 
-const FeedSelectContainer = styled.div`
+const FeedSelectContainer = styled.div<{ readonly orientation: string }>`
   padding: 0 .5em;
-  text-align: right;
+
+  text-align: ${props => props.orientation === 'left'
+    ? 'left'
+    : 'right'
+  }
 
   :after {
     content: '';
@@ -40,10 +46,10 @@ const FeedSelect = styled.select`
 `;
 
 const FeedSelector: React.SFC<FeedSelectorProps> = ({
-  feed = FeedType.NewStories,
+  orientation, feed = FeedType.NewStories,
   onChange = () => {},
 }) =>
-  <FeedSelectContainer>
+  <FeedSelectContainer orientation={orientation}>
     <FeedSelect value={feed} onChange={e => onChange(e.target.value as FeedType)}>
       <FeedOptionGroup />
     </FeedSelect>
