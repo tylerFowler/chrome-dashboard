@@ -39,6 +39,7 @@ const NavigatorIcon = styled.img.attrs({
   height: 1.5em;
 
   float: right;
+  padding: .25em;
 `;
 
 const Temperature = styled.span`
