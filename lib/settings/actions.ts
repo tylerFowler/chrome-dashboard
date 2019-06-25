@@ -15,7 +15,6 @@ export enum Actions {
   UpdatePanelType = 'SETTINGS_UPDATE_PANEL_TYPE',
 
   UpdateWeatherConfiguration = 'SETTINGS_UPDATE_WEATHER',
-  UpdateWeatherLocationName = 'SETTINGS_UPDATE_WEATHER_LOCATION_NAME',
   RefreshWeatherCoordinates = 'SETTINGS_REFRESH_WEATHER_COORDS',
 }
 
@@ -27,7 +26,6 @@ export type SettingsAction = ActionType<
   | typeof setPanelFeedType
   | typeof receiveSettings
   | typeof updateWeatherConfig
-  | typeof updateWeatherLocationName
 >;
 
 export const commit = () => action(Actions.Commit);
@@ -58,6 +56,3 @@ export const updateWeatherConfig = (config: Partial<WeatherSettings>) =>
   action(Actions.UpdateWeatherConfiguration, { update: config });
 
 export const refreshWeatherCoords = () => action(Actions.RefreshWeatherCoordinates);
-
-export const updateWeatherLocationName = (name: string) =>
-  action(Actions.UpdateWeatherLocationName, { name });

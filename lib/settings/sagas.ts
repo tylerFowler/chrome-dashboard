@@ -1,6 +1,7 @@
 import { all, select, call, put, delay, takeLatest, debounce } from 'redux-saga/effects';
-import { getSerializableSettings, getWeatherLocationConfig } from './selectors';
-import { WeatherLocation, WeatherLocationType } from '../weather/interface';
+import { getSerializableSettings, getWeatherLocationConfig, getWeatherAPIKey } from './selectors';
+import { WeatherLocation, WeatherLocationType } from 'lib/weather/interface';
+import * as WeatherAPI from 'lib/weather/api';
 import { fetchForecastError } from '../weather/actions';
 import {
   committed, commitFailure, receiveSettings, addToast, Actions, removeToast,
@@ -60,9 +61,24 @@ function* refreshCurrentLocationIfEnabled() {
 
   try {
     const { latitude, longitude } = yield call(getCurrentPosition);
-    yield put(updateWeatherConfig({ location: {
-      ...locationConfig, displayName: '', // reset display name as the location has changed
+    const positionUpdatedLoc: WeatherLocation = { ...locationConfig,
       value: { lat: latitude, lon: longitude },
+    };
+
+    let coordsName = '';
+    try {
+      const apiKey = yield select(getWeatherAPIKey);
+      const { city } = yield call(WeatherAPI.fetchCurrentWeather, positionUpdatedLoc, apiKey, 'F');
+
+      if (city && city.name) {
+        coordsName = city.name;
+      }
+    } catch (error) {
+      console.warn('Unable to determine location name from coordinates', error);
+    }
+
+    yield put(updateWeatherConfig({ location: { ...positionUpdatedLoc,
+      displayName: coordsName, // reset display name as the location has changed
     }}));
 
     yield put(commit());
