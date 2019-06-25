@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { WeatherSettingsContext } from '../../settings/context';
 import { getWeatherLocationConfig } from '../../settings/selectors';
+import { WeatherLocationType } from '../interface';
 import { fetchForecast } from '../actions';
 import WeatherCard from './WeatherCard';
 import { getCurrentForecast, getRelativeFuturePeriod, getFutureForecast, getForecastFetchError } from '../selectors';
@@ -30,7 +31,7 @@ const WeatherPanel: React.FC = () => {
     futureWeatherType={useSelector(getFutureForecast).condition}
     futureTemperature={useSelector(getFutureForecast).temperature}
     forecastFetchError={useSelector(getForecastFetchError)}
-    refineLocation={refineLocation}
+    refineLocation={weatherSettings.location.type === WeatherLocationType.Current && refineLocation}
   />;
 };
 
