@@ -1,8 +1,8 @@
 import React from 'react';
-import { PanelOrientation } from '../interface';
-import { FeedType as HNFeedType } from '../../hn/interface';
-import { SettingInlineLabel, SettingField, SettingSelect } from './SettingsForm';
-import FeedSelectOptions from '../../hn/components/FeedOptionGroup';
+import { PanelOrientation } from '../../interface';
+import { FeedType as HNFeedType } from '../../../hn/interface';
+import { SettingInlineLabel, SettingField, SettingSelect } from '../SettingsForm';
+import FeedSelectOptions from '../../../hn/components/FeedOptionGroup';
 
 export interface HNSettingsProps {
   readonly panelOrientation: PanelOrientation;

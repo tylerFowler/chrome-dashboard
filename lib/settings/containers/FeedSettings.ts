@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { GlobalState } from '../../store';
-import FeedSettings, { FeedSettingsProps } from '../components/FeedSettings';
+import FeedSettings, { FeedSettingsProps } from '../components/feeds/FeedSettings';
 import { updateFeedRefreshInterval, updateFeedPullSize, setPanelFeedType } from '../actions';
 import {
   getFeedRefreshInterval,

@@ -1,9 +1,9 @@
 import styled from 'lib/styled-components';
 import React, { useState } from 'react';
-import { typeScale } from '../../styles';
-import { FeedType, PanelOrientation } from '../interface';
-import HNSettings from '../containers/HNFeedPanelSettings';
-import SettingsForm, { SettingField, SettingFieldGroup, SettingInput, SettingLabel } from './SettingsForm';
+import { typeScale } from '../../../styles';
+import { FeedType, PanelOrientation } from '../../interface';
+import HNSettings from '../../containers/HNFeedPanelSettings';
+import SettingsForm, { SettingField, SettingFieldGroup, SettingInput, SettingLabel } from '../SettingsForm';
 
 export interface FeedSettingsProps {
   readonly feedRefreshIval: number;
