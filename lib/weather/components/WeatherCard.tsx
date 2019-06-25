@@ -1,10 +1,9 @@
-import React, { useEffect, useContext } from 'react';
+import React from 'react';
 import styled from 'lib/styled-components';
 import { fontStacks, typeScale } from 'lib/styles';
 import { Error as ErrorAlert } from 'lib/styled/Alert';
 import WeatherConditionIcon from './WeatherConditionIcon';
-import { WeatherConditionType, WeatherLocation } from '../interface';
-import { WeatherSettingsContext } from '../../settings/context';
+import { WeatherConditionType } from '../interface';
 import SizeAdjustedLocation from './SizeAdjustedLocation';
 
 export interface WeatherCardProps {
@@ -16,7 +15,6 @@ export interface WeatherCardProps {
   readonly futureTemperature?: number|string;
   readonly forecastFetchError?: Error;
 
-  fetchForecast?(location: WeatherLocation, unit: 'F'|'C'): void;
   refineLocation?(): void;
 }
 
@@ -80,18 +78,11 @@ const FutureTemperature = styled(Temperature)`
 `;
 
 const WeatherCard: React.SFC<WeatherCardProps> = ({
-  location, fetchForecast, refineLocation,
+  location, refineLocation,
   currentWeatherType, currentTemperature,
   futurePeriod, futureWeatherType, futureTemperature,
   forecastFetchError,
-}) => {
-  const weatherSettings = useContext(WeatherSettingsContext);
-
-  useEffect(() =>
-    fetchForecast(weatherSettings.location, weatherSettings.unit)
-  , [ weatherSettings.location && weatherSettings.location.value, weatherSettings.unit ]);
-
-  return (
+}) =>
     <WeatherCardContainer>
       {refineLocation && <NavigatorIcon title="Update your location" alt="Update your location"
           onClick={refineLocation}
@@ -126,15 +117,13 @@ const WeatherCard: React.SFC<WeatherCardProps> = ({
         </span>
       </TempSection>
     </WeatherCardContainer>
-  );
-};
+;
 
 WeatherCard.defaultProps = {
   location: '…',
   currentTemperature: '∞',
   futurePeriod: 'Tonight',
   futureTemperature: '∞',
-  fetchForecast() {},
 };
 
 export default WeatherCard;
