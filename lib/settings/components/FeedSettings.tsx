@@ -23,7 +23,7 @@ export interface FeedSettingsProps {
 
 const RefreshIntervalInput = styled(SettingInput).attrs({
   type: 'number',
-  min: 1,
+  min: 5,
 })`
   width: 4em;
   display: inline-block;
