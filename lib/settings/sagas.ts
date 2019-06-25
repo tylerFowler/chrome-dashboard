@@ -79,7 +79,7 @@ function* refreshCurrentLocationIfEnabled() {
 
     yield put(updateWeatherConfig({ location: { ...positionUpdatedLoc,
       displayName: coordsName, // reset display name as the location has changed
-      countryCode: '', // coordinates should not populate country code
+      countryCode: null, // coordinates should not populate country code
     }}));
 
     yield put(commit());
