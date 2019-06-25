@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="500px" height="500px" viewBox="0 0 500 500" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>clear-night</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <radialGradient cx="51.7490208%" cy="50%" fx="51.7490208%" fy="50%" r="98.9676339%" id="radialGradient-1">
+            <stop stop-color="#BFBFBF" offset="0%"></stop>
+            <stop stop-color="#B4B4B4" offset="100%"></stop>
+        </radialGradient>
+    </defs>
+    <g id="clear-night" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <circle id="Moon" fill="url(#radialGradient-1)" cx="250" cy="250" r="250"></circle>
+    </g>
+</svg>

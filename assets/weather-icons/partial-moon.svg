@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="500px" height="500px" viewBox="0 0 500 500" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>partial-moon</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <radialGradient cx="51.7490208%" cy="50%" fx="51.7490208%" fy="50%" r="117.429955%" gradientTransform="translate(0.517490,0.500000),scale(1.000000,0.842780),rotate(90.000000),translate(-0.517490,-0.500000)" id="radialGradient-1">
+            <stop stop-color="#BFBFBF" offset="0%"></stop>
+            <stop stop-color="#B4B4B4" offset="100%"></stop>
+        </radialGradient>
+    </defs>
+    <g id="partial-moon" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M385.469564,17.0971297 C272.341677,20.5548578 181.666667,115.894378 181.666667,233 C181.666667,352.293506 275.761488,449 391.833333,449 C418.683176,449 444.357042,443.825298 467.96227,434.393332 C424.187536,471.533496 367.122022,494 304.708333,494 C166.798229,494 55,384.309764 55,249 C55,113.690236 166.798229,4 304.708333,4 C332.971265,4 360.137516,8.60691518 385.469564,17.0971297 Z" id="Moon" fill="url(#radialGradient-1)"></path>
+    </g>
+</svg>

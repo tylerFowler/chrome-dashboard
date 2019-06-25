@@ -25,19 +25,21 @@
  */
 
 import ExpirableCacheBucket from './expirableCacheBucket';
-import { cacheExpirationThreshold } from './constants';
+import { defaultCacheExpirationThreshold, feedBucketKey, weatherBucketKey } from './constants';
 import { isCachableRequest as isHNRequest } from 'lib/hn/api';
 import { isCachableRequest as isDNRequest } from 'lib/dn/api';
+import { isCacheableRequest as isWeatherRequest } from 'lib/weather/api';
 
 // selectActiveCache iterates through all active caches, selecting the one that
 // is not yet expired, if one exists. If multiple active caches exist, the first
 // seen will be selected. If none exist, one will be created.
-async function selectOrCreateActiveCache(): Promise<string> {
+async function selectOrCreateActiveCache(key: string, expiry = defaultCacheExpirationThreshold): Promise<string> {
   const curTime = new Date();
   const cacheList = await caches.keys();
 
   const activeCache = cacheList
     .map(ExpirableCacheBucket.fromString)
+    .filter(bucket => bucket.key === key)
     .filter(bucket => bucket && !bucket.expired(curTime))
     .map(bucket => bucket.toString())
     .find(() => true); // select the first remaining element
@@ -46,25 +48,26 @@ async function selectOrCreateActiveCache(): Promise<string> {
     return activeCache;
   }
 
-  const newActiveCache = (new ExpirableCacheBucket(cacheExpirationThreshold).toString());
+  const newActiveCache = (new ExpirableCacheBucket(key, expiry).toString());
   await caches.open(newActiveCache);
 
   return newActiveCache;
 }
 
-// the activation handler removes any caches that are not selected as the 'active'
-// cache, leaving only one active cache behind even if multiple caches are technically
-// active. If no cache is selected as being active then all will be removed. Finally
-// the cache that will be used for the session is created, if it doesn't exist.
-self.addEventListener('activate', (event: any) => event.waitUntil(
-  selectOrCreateActiveCache()
-    .then((activeCache => caches.keys().then(openCaches =>
-      Promise.all(openCaches
-        .filter(c => activeCache && c !== activeCache)
-        .map(c => caches.delete(c)),
-      ),
-    ))),
-));
+// the activation handler removes any expired cache buckets
+self.addEventListener('activate', (event: any) => {
+  const deleteExpiredCaches = async () => {
+    const cacheList = await caches.keys();
+    const cacheDeletions = cacheList
+      .map(ExpirableCacheBucket.fromString)
+      .filter(bucket => bucket && bucket.expired())
+      .map(expiredBucket => caches.delete(expiredBucket.toString()));
+
+    return Promise.all(cacheDeletions);
+  };
+
+  return event.waitUntil(deleteExpiredCaches());
+});
 
 function isFeedRequest(req: Request): boolean {
   return isHNRequest(req) || isDNRequest(req);
@@ -75,7 +78,8 @@ function feedFetchHandler(event: any) {
   // every time we create a new one (i.e. selection returns undefined).
   if (isFeedRequest(event.request)) {
     event.respondWith(Promise.resolve().then(async () => {
-      const cache = await caches.open(await selectOrCreateActiveCache()); // IDEA: can we cache this choice in a HOF?
+      // IDEA: can we cache this choice in a HOF?
+      const cache = await caches.open(await selectOrCreateActiveCache(feedBucketKey));
 
       const response = await cache.match(event.request).then(resp => resp || fetch(event.request));
       cache.put(event.request, response.clone());
@@ -86,3 +90,19 @@ function feedFetchHandler(event: any) {
 }
 
 self.addEventListener('fetch', feedFetchHandler);
+
+const weatherCacheExpiry = 30 * 60 * 1000; // 30 minutes
+function weatherFetchHandler(event: any) {
+  if (isWeatherRequest(event.request)) {
+    event.respondWith(Promise.resolve().then(async () => {
+      const cache = await caches.open(await selectOrCreateActiveCache(weatherBucketKey, weatherCacheExpiry));
+
+      const response = await cache.match(event.request).then(resp => resp || fetch(event.request));
+      cache.put(event.request, response.clone());
+
+      return response;
+    }));
+  }
+}
+
+self.addEventListener('fetch', weatherFetchHandler);

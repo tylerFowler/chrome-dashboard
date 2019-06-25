@@ -2,8 +2,9 @@ import React, { useRef } from 'react';
 import ReactTransitionGroup from 'react-addons-css-transition-group';
 import { useOutOfBoundsClick, useEscapeKeyUp } from '../../hooks';
 import styled from 'lib/styled-components';
-import FeedSettings from '../containers/FeedSettings';
 import SettingsHeader from '../containers/Header';
+import FeedSettings from '../containers/FeedSettings';
+import WeatherSettings from '../containers/WeatherSettings';
 
 export interface ModalProps {
   readonly isOpen: boolean;
@@ -21,8 +22,13 @@ const ModalContainer = styled.div`
   background-color: ${props => props.theme.backgroundLight};
   box-shadow: ${props => props.theme.darkShadowColor} 0 5px 10px 5px;
 
+  overflow-y: scroll;
+  overflow-x: hidden;
+
   width: 750px;
-  height: 500px;
+  min-height: 500px;
+  height: 85vh;
+  max-height: 1000px;
 
   @media (max-width: 750px) {
     width: 100%;
@@ -48,6 +54,11 @@ const SettingsContainer = styled.section`
   padding: 1em;
 `;
 
+const Settings: React.SFC = () => <SettingsContainer>
+  <FeedSettings />
+  <WeatherSettings />
+</SettingsContainer>;
+
 const SettingsModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
   const $modal = useRef(null);
   useOutOfBoundsClick($modal, onClose, isOpen);
@@ -62,10 +73,7 @@ const SettingsModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
       {isOpen &&
         <ModalContainer key="modal-outer" ref={$modal}>
           <SettingsHeader onClose={onClose} />
-
-          <SettingsContainer>
-            <FeedSettings />
-          </SettingsContainer>
+          <Settings />
         </ModalContainer>
       }
     </ReactTransitionGroup>

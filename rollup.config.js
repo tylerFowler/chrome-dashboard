@@ -12,7 +12,7 @@ const namedExports = {
     'Children', 'Component', 'PureComponent', 'createElement', 'cloneElement',
     'isValidElement', 'createFactory', 'version', 'createContext',
     'useState', 'useEffect', 'useContext', 'useRef', 'useLayoutEffect',
-    'useMemo', 'useReducer',
+    'useMemo', 'useReducer', 'useCallback',
   ],
   'node_modules/react-dom/index.js': [
     'findDOMNode', 'render', 'unmountComponentAtNode', 'unstable_batchedUpdates',

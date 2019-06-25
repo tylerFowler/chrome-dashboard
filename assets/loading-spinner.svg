@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="500px" height="500px" viewBox="0 0 500 500" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>loading-spinner</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M250,490 C382.54834,490 490,382.54834 490,250 C490,117.45166 382.54834,10 250,10 C117.45166,10 10,117.45166 10,250 C10,382.54834 117.45166,490 250,490 Z" id="path-1"></path>
+        <mask id="mask-2" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="480" height="480" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+    </defs>
+    <g id="loading-spinner" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-dasharray="500,250,500,250" stroke-linejoin="round">
+        <use id="spinner" stroke="#4A4A4A" mask="url(#mask-2)" stroke-width="140" xlink:href="#path-1"></use>
+    </g>
+</svg>

@@ -1,10 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { GlobalState } from '../store';
-import { FeedSettings } from './reducer';
-import { getPanelFeedSettings, getFeedSettings } from './selectors';
+import { FeedSettings, WeatherSettings } from './reducer';
 import { HNFeedSettings, PanelOrientation } from './interface';
 import { FeedType } from '../hn/interface';
+import {
+  getPanelFeedSettings, getFeedSettings, getWeatherAPIKey,
+  getWeatherLocationConfig, getWeatherUnits,
+} from './selectors';
 
 // SettingsProviderProps is the set of properties given to each Settings Provider
 // component, which supplies arbitrary settings over a context provider, optionally,
@@ -22,13 +25,16 @@ type SettingsSelector<T> = (state: GlobalState, orientation: PanelOrientation) =
 // particular settings to the React tree, using a settingsSelector and optionally
 // an orientation. Note that the second value of the generic is only present to satisfy
 // the TSX parser, if given only one generic it will think that it's a ReactElement.
+//
+// Note: the final props object needs to be cast to 'any' otherwise TypeScript
+// will attempt to type both 'settings' and 'children' keys as 'never'.
 const createSettingsProvider = <T, _ = any>(settingsSelector: SettingsSelector<T>, context: React.Context<T>) =>
   connect(
     (state: GlobalState, ownProps: Partial<Pick<SettingsProviderProps<T>, 'orientation'>>): SettingsProviderProps<T> =>
       ({ ...ownProps,
         settings: settingsSelector(state, ownProps.orientation),
       }),
-  )(({ settings, children }) => <context.Provider value={settings}>{children}</context.Provider>)
+  )(({ settings, children }: any) => <context.Provider value={settings}>{children}</context.Provider>)
 ;
 
 export const HNSettingsContext = React.createContext<HNFeedSettings>({
@@ -47,3 +53,15 @@ export const FeedSettingsContext = React.createContext<FeedSettings>({
 
 export const FeedSettingsProvider =
   createSettingsProvider(getFeedSettings, FeedSettingsContext);
+
+export const WeatherSettingsContext = React.createContext<WeatherSettings>({
+  openWeatherAPIKey: '',
+  unit: 'F',
+  location: null,
+});
+
+export const WeatherSettingsProvider = createSettingsProvider(state => ({
+  openWeatherAPIKey: getWeatherAPIKey(state),
+  unit: getWeatherUnits(state),
+  location: getWeatherLocationConfig(state),
+}), WeatherSettingsContext);

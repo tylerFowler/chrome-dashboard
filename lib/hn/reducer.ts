@@ -27,6 +27,7 @@ export interface State {
   posts: Posts;
   feeds: Feeds;
 }
+
 export const defaultState: State = { posts: {}, feeds: {} };
 
 function hnPostsReducer(state: Posts = {}, action: HNAction): Posts {
