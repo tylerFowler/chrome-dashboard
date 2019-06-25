@@ -3,6 +3,7 @@ import React from 'react';
 import ErrorDisplay from './ErrorDisplay';
 import Panel, { PanelProps } from './Panel';
 import Spinner from './Spinner';
+import { PanelOrientation } from '../../settings/interface';
 
 export interface FeedProps extends PanelProps {
   placeholder?: never;
@@ -11,7 +12,7 @@ export interface FeedProps extends PanelProps {
 
   // space for a single line is allocated for arbitrary feed controls, which
   // can be rendered using this prop
-  renderFeedControls?(): React.ReactElement;
+  renderFeedControls?(orientation: PanelOrientation): React.ReactElement;
 }
 
 const feedHorizPadding = '.75em' as const;
@@ -58,7 +59,7 @@ const FeedPanel: React.SFC<FeedProps> = props => {
 
       {!loading && !fetchError && <>
         <FeedControlsContainer>
-          {renderFeedControls()}
+          {renderFeedControls(props.panelOrientation)}
         </FeedControlsContainer>
 
         <FeedList>
