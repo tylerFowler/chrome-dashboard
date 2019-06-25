@@ -32,9 +32,11 @@ export const WeatherCardContainer = styled.section`
   min-height: 10rem;
 `;
 
-const NavigatorIcon = styled.div`
+const NavigatorIcon = styled.img.attrs({
+  src: '/assets/geolocation.svg',
+})`
   cursor: pointer;
-  background: grey;
+  opacity: .75;
   width: 1.5em;
   height: 1.5em;
 
@@ -91,7 +93,10 @@ const WeatherCard: React.SFC<WeatherCardProps> = ({
 
   return (
     <WeatherCardContainer>
-      {refineLocation && <NavigatorIcon title="Update your location" onClick={refineLocation} />}
+      {refineLocation && <NavigatorIcon title="Update your location" alt="Update your location"
+          onClick={refineLocation}
+        />
+      }
 
       {forecastFetchError &&
         <ErrorAlert style={{textAlign: 'center'}}>{forecastFetchError.message}</ErrorAlert>
