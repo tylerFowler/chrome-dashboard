@@ -3,7 +3,7 @@
   "name": "chrome-dashboard",
   "description": "",
   "author": "Tyler Fowler <tylerfowler.1337@gmail.com>",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "default_locale": "en",
   "optional_permissions": [
     "geolocation"
