@@ -8,12 +8,11 @@ import { WeatherLocation } from 'lib/weather/interface';
 
 export interface WeatherCardPreviewProps {
   readonly futurePeriod: 'Tonight'|'Tomorrow';
-  readonly apiKey: string;
   readonly unit: 'F'|'C';
   readonly location: WeatherLocation;
 }
 
-const WeatherCardPreview: React.FC<WeatherCardPreviewProps> = ({ location, apiKey, unit, futurePeriod }) => {
+const WeatherCardPreview: React.FC<WeatherCardPreviewProps> = ({ location, unit, futurePeriod }) => {
   const dispatch = useContext(LocationEditorDispatch);
 
   const [ currentForecast, setCurrentForecast ] = useState<Forecast>({} as any);
@@ -25,7 +24,7 @@ const WeatherCardPreview: React.FC<WeatherCardPreviewProps> = ({ location, apiKe
     }
 
     dispatch({ type: 'forecastFetched' });
-    Client.fetchForecasts(location, apiKey, unit)
+    Client.fetchForecasts(location, unit)
       .then(({ future, current, city }) => {
         dispatch({ type: 'forecastFetchSuccess' });
 
@@ -48,10 +47,7 @@ const WeatherCardPreview: React.FC<WeatherCardPreviewProps> = ({ location, apiKe
         type: 'forecastFetchFailure',
         payload: `Failed to load weather forecast: ${error.message}`,
       }));
-  }, [
-    apiKey, unit,
-    ...useDebouncedProps(750, location.type, location.countryCode, location.value, location.displayName),
-  ]);
+  }, [ unit, ...useDebouncedProps(750, location.type, location.countryCode, location.value, location.displayName) ]);
 
   return <WeatherCard
     futurePeriod={futurePeriod} location={location.displayName.toString() || undefined}
