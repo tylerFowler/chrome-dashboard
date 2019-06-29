@@ -5,7 +5,7 @@ import { FeedSettings, WeatherSettings } from './reducer';
 import { HNFeedSettings, PanelOrientation } from './interface';
 import { FeedType } from '../hn/interface';
 import {
-  getPanelFeedSettings, getFeedSettings,
+  getPanelFeedSettings, getFeedSettings, getWeatherAPIKey,
   getWeatherLocationConfig, getWeatherUnits,
 } from './selectors';
 
@@ -55,11 +55,13 @@ export const FeedSettingsProvider =
   createSettingsProvider(getFeedSettings, FeedSettingsContext);
 
 export const WeatherSettingsContext = React.createContext<WeatherSettings>({
+  openWeatherAPIKey: '',
   unit: 'F',
   location: null,
 });
 
 export const WeatherSettingsProvider = createSettingsProvider(state => ({
+  openWeatherAPIKey: getWeatherAPIKey(state),
   unit: getWeatherUnits(state),
   location: getWeatherLocationConfig(state),
 }), WeatherSettingsContext);

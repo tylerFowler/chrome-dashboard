@@ -3,15 +3,30 @@ import styled from 'lib/styled-components';
 import { typeScale } from 'lib/styles';
 import { WeatherLocation } from '../../../weather/interface';
 import LocationEditor from './LocationEditor';
-import SettingsForm, { SettingField, SettingLabel, SettingInlineLabel, SettingRadio } from '../SettingsForm';
+import SettingsForm, {
+  SettingField, SettingLabel, SettingInlineLabel, SettingInput, SettingRadio,
+} from '../SettingsForm';
 
 export interface WeatherSettingsProps {
+  readonly openWeatherAPIKey: string;
+  setOpenWeatherAPIKey(key: string): void;
+
   readonly location: Readonly<WeatherLocation>;
   setLocationConfig(loc: Readonly<WeatherLocation>): void;
 
   readonly weatherUnit: 'F'|'C';
   setWeatherUnit(unit: 'F'|'C'): void;
 }
+
+// TODO: Add a reusable way to do an "about" hover field
+const APIKeySetting: React.SFC<{ readonly apiKey: string; onChange(key: string): void}> = ({ apiKey, onChange }) =>
+  <SettingField>
+    <SettingLabel htmlFor="weather-api-key">OpenWeather API Key</SettingLabel>
+    <SettingInput id="weather-api-key" spellCheck={false} style={{width: '250px'}}
+      value={apiKey} onChange={e => onChange(e.target.value)}
+    />
+  </SettingField>
+;
 
 const WeatherUnitSetting: React.SFC<{ readonly unit: 'F'|'C'; onChange(unit: 'F'|'C'): void }> = ({ unit, onChange }) =>
   <SettingField>
@@ -42,12 +57,14 @@ const LocationTypeFieldset = styled.fieldset`
 `;
 
 const WeatherSettings: React.FC<WeatherSettingsProps> = ({
+  openWeatherAPIKey, setOpenWeatherAPIKey,
   weatherUnit, setWeatherUnit,
   location, setLocationConfig,
 }) =>
   <SettingsForm>
     <legend>Weather</legend>
 
+    <APIKeySetting apiKey={openWeatherAPIKey} onChange={setOpenWeatherAPIKey} />
     <WeatherUnitSetting unit={weatherUnit} onChange={u => setWeatherUnit(u)} />
 
     <LocationTypeFieldset>

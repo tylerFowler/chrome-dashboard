@@ -14,6 +14,7 @@ export interface PanelSettings {
 }
 
 export interface WeatherSettings {
+  readonly openWeatherAPIKey: string;
   readonly unit: 'F'|'C';
   readonly location: Readonly<WeatherLocation>;
 }
@@ -42,6 +43,7 @@ export const defaultState: State = {
     },
   },
   weather: {
+    openWeatherAPIKey: '',
     unit: 'F',
     location: {
       type: WeatherLocationType.CityName,
