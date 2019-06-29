@@ -1,7 +1,8 @@
 public/js/*
 public/apiCacheWorker.js
 public/normalize.css
-public/assets/
+public/assets/*
+!public/assets/.gitkeep
 dist/
 build/
 .rpt2_cache/
