@@ -8,7 +8,14 @@ import { readFileSync as readFile } from 'fs';
 
 const env = JSON.stringify(process.env.NODE_ENV || 'development');
 
-const buildConfig = JSON.parse(readFile('./build-config.json'));
+let buildConfig = {};
+try {
+  buildConfig = JSON.parse(readFile('./build-config.json'));
+} catch (error) {
+  console.error('Unable to load build configuration file, ensure that the template file is copied and filled out');
+  console.error(error.toString());
+  process.exit(1);
+}
 
 const namedExports = {
   'node_modules/react/index.js': [
