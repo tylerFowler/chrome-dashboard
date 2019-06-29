@@ -4,18 +4,9 @@ import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
 import copy from 'rollup-plugin-copy-glob';
 import replace from 'rollup-plugin-replace';
-import { readFileSync as readFile } from 'fs';
+import buildConfig from './buildConfig';
 
 const env = JSON.stringify(process.env.NODE_ENV || 'development');
-
-let buildConfig = {};
-try {
-  buildConfig = JSON.parse(readFile('./build-config.json'));
-} catch (error) {
-  console.error('Unable to load build configuration file, ensure that the template file is copied and filled out');
-  console.error(error.toString());
-  process.exit(1);
-}
 
 const namedExports = {
   'node_modules/react/index.js': [
