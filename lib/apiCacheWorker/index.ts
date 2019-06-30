@@ -54,8 +54,7 @@ async function selectOrCreateActiveCache(key: string, expiry = defaultCacheExpir
   return newActiveCache;
 }
 
-// the activation handler removes any expired cache buckets
-self.addEventListener('activate', (event: any) => {
+function cacheCleanupHandler(event: any) {
   const deleteExpiredCaches = async () => {
     const cacheList = await caches.keys();
     const cacheDeletions = cacheList
@@ -67,7 +66,10 @@ self.addEventListener('activate', (event: any) => {
   };
 
   return event.waitUntil(deleteExpiredCaches());
-});
+}
+
+// cleanup any expired caches on each fetch as each one may be large
+self.addEventListener('fetch', cacheCleanupHandler);
 
 function isFeedRequest(req: Request): boolean {
   return isHNRequest(req) || isDNRequest(req);
