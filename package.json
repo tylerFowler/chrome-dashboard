@@ -4,7 +4,9 @@
   "description": "A Chrome new tab page featuring HN/DN news feeds and other customizations",
   "author": "Tyler Fowler <tylerfowler.1337@gmail.com>",
   "homepage": "https://github.com/tylerFowler/chrome-dashboard",
-  "bugs": { "url": "https://github.com/tylerFowler/chrome-dashboard/issues" },
+  "bugs": {
+    "url": "https://github.com/tylerFowler/chrome-dashboard/issues"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/tylerFowler/chrome-dashboard"
@@ -36,7 +38,7 @@
     "@types/react-dom": "^16.8.4",
     "@types/react-redux": "^7.1.1",
     "@types/styled-components": "^4.1.16",
-    "imagemin-cli": "^4.0.1",
+    "imagemin-cli": "^5.0.0",
     "redux-devtools-extension": "^2.13.8",
     "rollup": "^1.16.3",
     "rollup-plugin-commonjs": "^10.0.1",
