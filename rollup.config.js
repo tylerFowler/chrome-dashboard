@@ -4,6 +4,7 @@ import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
 import copy from 'rollup-plugin-copy-glob';
 import replace from 'rollup-plugin-replace';
+import buildConfig from './buildConfig';
 
 const env = JSON.stringify(process.env.NODE_ENV || 'development');
 
@@ -31,7 +32,11 @@ const commonPlugins = [
     customResolveOptions: { moduleDirectory: 'node_modules' }
   }),
   typescript({ typescript: require('typescript'), check: !process.env.ROLLUP_WATCH }),
-  replace({ ENV: env, 'process.env.NODE_ENV': env }),
+  replace({
+    ENV: env,
+    'process.env.NODE_ENV': env,
+    'process.env.OPENWEATHER_API_KEY': JSON.stringify(buildConfig.openweatherAPIKey),
+  }),
   commonjs({ namedExports }),
 ]
 

@@ -13,8 +13,8 @@ export function isCacheableRequest(request: Request): boolean {
   return false;
 }
 
-const usingApiKey = (query: URLSearchParams, apiKey: string): URLSearchParams => {
-  query.set('appid', apiKey);
+const usingApiKey = (query: URLSearchParams): URLSearchParams => {
+  query.set('appid', process.env.OPENWEATHER_API_KEY);
   return query;
 };
 
@@ -149,10 +149,8 @@ export interface CityDetails {
 
 interface ForecastInfo extends Forecast { city?: CityDetails; }
 
-export async function fetchCurrentWeather(
-  location: WeatherLocation, apiKey: string, unit: 'F'|'C',
-): Promise<ForecastInfo> {
-  const query = usingUnits(usingJSON(usingApiKey(getApiQueryForLocation(location), apiKey)), unit);
+export async function fetchCurrentWeather(location: WeatherLocation, unit: 'F'|'C'): Promise<ForecastInfo> {
+  const query = usingUnits(usingJSON(usingApiKey(getApiQueryForLocation(location))), unit);
   const response = await fetch(`${OpenWeatherApi}/weather?${query.toString()}`);
 
   const data: GetWeatherResponse = await response.json();
@@ -188,10 +186,8 @@ const getTargetForecastTime = (futurePeriod: 'Tomorrow'|'Tonight') => {
   return targetedForecastTime;
 };
 
-export async function fetchFutureWeather(
-  location: WeatherLocation, apiKey: string, unit: 'F'|'C',
-): Promise<ForecastInfo> {
-  const query = usingUnits(usingJSON(usingApiKey(getApiQueryForLocation(location), apiKey)), unit);
+export async function fetchFutureWeather(location: WeatherLocation, unit: 'F'|'C'): Promise<ForecastInfo> {
+  const query = usingUnits(usingJSON(usingApiKey(getApiQueryForLocation(location))), unit);
   const response = await fetch(`${OpenWeatherApi}/forecast?${query.toString()}`);
 
   const data: GetForecastResponse = await response.json();
@@ -231,13 +227,13 @@ export async function fetchFutureWeather(
   };
 }
 
-export async function fetchForecasts(location: WeatherLocation, apiKey: string, unit: 'F'|'C'): Promise<{
+export async function fetchForecasts(location: WeatherLocation, unit: 'F'|'C'): Promise<{
   current: Forecast,
   future: Forecast,
   city?: CityDetails,
 }> {
   const [ current, future ] = await Promise.all([
-    fetchCurrentWeather(location, apiKey, unit), fetchFutureWeather(location, apiKey, unit),
+    fetchCurrentWeather(location, unit), fetchFutureWeather(location, unit),
   ]);
 
   const cityData = current.city || future.city;
