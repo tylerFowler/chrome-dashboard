@@ -5,6 +5,7 @@
   "author": "Tyler Fowler <tylerfowler.1337@gmail.com>",
   "version": "0.1.0",
   "default_locale": "en",
+  "chrome_url_overrides": { "newtab": "index.html" },
   "optional_permissions": [
     "geolocation"
   ],
@@ -14,6 +15,6 @@
     "https://hacker-news.firebaseio.com/*",
     "https://api-news.layervault.com/*",
     "https://api.openweathermap.org/data/2.5/weather*"
-    ],
-  "chrome_url_overrides": { "newtab": "index.html" }
+  ],
+  "content_security_policy": "default-src 'none'; font-src 'https://fonts.googleapis.com'; img-src 'self'; script-src 'self'; style-src 'unsafe-inline'; worker-src 'self'"
 }
