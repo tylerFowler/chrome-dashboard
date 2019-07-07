@@ -3,7 +3,8 @@ import { GlobalState } from '../store';
 import Clock, { ClockProps } from './components/Clock';
 import { getClockDate } from './selectors';
 
-const mapStateToProps = (state: GlobalState): Partial<ClockProps> => ({
+const mapStateToProps = (state: GlobalState, ownProps: Partial<ClockProps>): Partial<ClockProps> => ({
+  ...ownProps,
   date: getClockDate(state),
 });
 

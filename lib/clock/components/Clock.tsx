@@ -4,7 +4,9 @@ import DateDisplay from './Date';
 import Time from './Time';
 
 export interface ClockProps {
-  date: Date;
+  readonly date: Date;
+  readonly style?: React.CSSProperties;
+  readonly className?: string;
 }
 
 const Panel = styled.div`
@@ -31,7 +33,7 @@ const Divider = styled.hr`
 export default class Clock extends React.Component<ClockProps> {
   public render() {
     return (
-      <Panel>
+      <Panel style={this.props.style} className={this.props.className}>
         <Time date={this.props.date} />
         <Divider />
         <DateDisplay date={this.props.date} />
