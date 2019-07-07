@@ -19,7 +19,7 @@ const TimeText = styled.span`
 `;
 
 const Period = styled.span`
-  font-size: ${typeScale(6, 'px')};
+  font-size: ${typeScale(6)};
 
   position: absolute; /* take out of flow to center the time */
   display: inline-block;
