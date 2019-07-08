@@ -171,7 +171,7 @@ const Page: React.FC = () => {
 
         <AtSizes breakpoints={[ 'L' ]}>
           <CenterPane>
-            <SettingsIcon onClick={onSettingsClick} style={{marginLeft: '1%', marginRight: '1em'}} />
+            <SettingsIcon onClick={onSettingsClick} style={{marginLeft: '.5%'}} />
             <ClockPanel />
 
             <CenterControls>
