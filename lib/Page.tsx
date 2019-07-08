@@ -5,7 +5,7 @@ import mainTheme from './theme';
 import BaseClockPanel from './clock/ClockPanel';
 import SettingsModal from './settings/components/Modal';
 import SettingsIcon, { FloatingOpenIcon as FloatingSettingsIcon } from './settings/components/OpenIcon';
-import DashboardPanel from './DashboardPanel';
+import BaseDashboardPanel from './DashboardPanel';
 import WeatherPanel from './weather/components/WeatherPanel';
 import { WeatherSettingsProvider } from './settings/context';
 
@@ -44,6 +44,10 @@ const TopPane = styled.section`
   }
 `;
 
+const CenterControls = styled.section`
+  padding: 1em;
+`;
+
 const ClockPanel = styled(BaseClockPanel)`
   @media (max-width: ${LayoutBreakpoint.S}px) {
     min-width: unset;
@@ -59,14 +63,10 @@ const ClockPanel = styled(BaseClockPanel)`
   @media (max-width: 325px) { zoom: .75; }
 `;
 
-const CenterControls = styled.section`
-  padding: 1em;
+const DashboardPanel = styled(BaseDashboardPanel)`
+  flex: 4 200px;
+  max-width: 750px;
 `;
-
-const panelContainerStyles: React.CSSProperties = {
-  flex: '4 200px',
-  maxWidth: '750px',
-};
 
 interface BreakpointConfig {
   XL: number;
@@ -153,7 +153,7 @@ const Page: React.FC = () => {
         </AtSizes>
 
         <AtSizes breakpoint={breakpoint} breakpoints={[ 'XL', 'M' ]}>
-          <DashboardPanel orientation="left" style={panelContainerStyles} />
+          <DashboardPanel orientation="left" />
         </AtSizes>
 
         <AtSizes breakpoint={breakpoint} breakpoints={[ 'XL' ]}>
@@ -169,7 +169,7 @@ const Page: React.FC = () => {
           </CenterPane>
         </AtSizes>
 
-        <DashboardPanel orientation="right" style={panelContainerStyles} />
+        <DashboardPanel orientation="right" />
 
         <SettingsModal key="settings-modal" isOpen={showSettings}
           onClose={() => setSettingsShowing(false)}
