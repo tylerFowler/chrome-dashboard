@@ -6,10 +6,11 @@ import PanelHeader from './Header';
 export type Alignment = 'left'|'right';
 
 export interface PanelProps {
-  readonly style?: React.CSSProperties;
   readonly theme?: PanelTheme;
   readonly title: string;
   readonly panelOrientation: Alignment;
+  readonly style?: React.CSSProperties;
+  readonly className?: string;
 }
 
 export interface PanelState {
@@ -23,6 +24,7 @@ const PanelContainer = styled('section')<{isCollapsed: boolean}>`
   display: flex;
   flex-flow: column;
   height: 100%;
+  min-height: 400px;
 
   ${props => props.isCollapsed && 'width: 0; flex: 0 !important;'}
 `;
@@ -46,11 +48,11 @@ export default class Panel extends React.Component<PanelProps, PanelState> {
   }
 
   public render() {
-    const { style, title, panelOrientation, children } = this.props;
+    const { style, title, panelOrientation, children, className } = this.props;
 
     return (
       <ThemeProvider theme={this.props.theme}>
-        <PanelContainer style={style} isCollapsed={this.state.isCollapsed}>
+        <PanelContainer style={style} isCollapsed={this.state.isCollapsed} className={className}>
           <PanelHeader alignment={panelOrientation}>
             {title}
           </PanelHeader>

@@ -10,23 +10,24 @@ import HNFeedPanel from './hn/HNFeedContainer';
 interface DashboardPanelProps {
   readonly feedType: FeedType;
   readonly orientation: PanelOrientation;
-  readonly style: React.CSSProperties;
+  readonly style?: React.CSSProperties;
+  readonly className?: string;
 }
 
-const DashboardPanel: React.SFC<DashboardPanelProps> = ({ feedType, orientation, style }) => {
+const DashboardPanel: React.SFC<DashboardPanelProps> = ({ feedType, orientation, style, className }) => {
   switch (feedType) {
   case FeedType.HN:
     return (
       <FeedSettingsProvider>
         <HNFeedSettingsProvider orientation={orientation}>
-          <HNFeedPanel panelOrientation={orientation} style={style} />
+          <HNFeedPanel panelOrientation={orientation} style={style} className={className} />
         </HNFeedSettingsProvider>
       </FeedSettingsProvider>
     );
   case FeedType.DN:
     return (
       <FeedSettingsProvider>
-        <DNFeedPanel panelOrientation={orientation} style={style} />
+        <DNFeedPanel panelOrientation={orientation} style={style} className={className} />
       </FeedSettingsProvider>
     );
   default:

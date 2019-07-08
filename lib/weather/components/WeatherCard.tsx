@@ -21,12 +21,13 @@ export interface WeatherCardProps {
 export const WeatherCardContainer = styled.section`
   background: ${props => props.theme.backgroundExtraLight};
 
-  padding: .75em 5% 1em;
+  padding: .75em 2em 1em;
   margin: 1em auto;
   overflow: hidden;
 
   width: 40%;
   min-width: 300px;
+  max-width: 400px;
   min-height: 10rem;
 `;
 

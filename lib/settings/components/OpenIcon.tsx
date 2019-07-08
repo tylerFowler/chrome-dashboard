@@ -6,16 +6,23 @@ const gearIconPath = 'assets/settings-gear.svg';
 const GearIcon = styled.img.attrs({ src: gearIconPath })`
   width: 1.5em;
   height: 1.5em;
+  user-select: none;
 `;
 
-const IconContainer = styled.div`
+const innerIconStyles = `
   display: inline;
   position: absolute;
-  padding: 1.25em .35em .25em;
-  margin-top: -1rem; // pull "up" off the page
 
   font-size: 1.15rem;
   cursor: pointer;
+`;
+
+const IconContainer = styled.div`
+  ${innerIconStyles}
+
+  margin-top: -1rem; // pull "up" off the page
+  padding: 1.25em .35em .25em;
+
   background: ${props => props.theme.backgroundExtraLight};
   border-radius: 15%;
   border: 2px solid ${props => props.theme.borderDark};
@@ -32,8 +39,20 @@ const IconContainer = styled.div`
 
 const OpenIcon: React.FC<{ style?: React.CSSProperties; onClick?: () => void }> = props =>
   <IconContainer style={props.style} onClick={props.onClick}>
-    <GearIcon style={{userSelect: 'none'}} />
+    <GearIcon />
   </IconContainer>
 ;
 
 export default OpenIcon;
+
+const FloatingIconContainer = styled.div`
+  ${innerIconStyles}
+
+  padding: .5em;
+`;
+
+export const FloatingOpenIcon: React.FC<{ style?: React.CSSProperties; onClick?: () => void }> = props =>
+  <FloatingIconContainer style={props.style} onClick={props.onClick}>
+    <GearIcon />
+  </FloatingIconContainer>
+;
