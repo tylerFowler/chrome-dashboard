@@ -11,8 +11,8 @@ export interface ClockProps {
 
 const Panel = styled.div`
   user-select: none;
-  background-color: #fff;
-  border: 3px solid #4f4f4f;
+  background-color: ${props => props.theme.backgroundExtraLight};
+  border: 3px solid ${props => props.theme.borderDark};
   text-align: center;
 
   padding: 0 .5em;
