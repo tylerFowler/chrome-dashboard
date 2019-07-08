@@ -39,6 +39,10 @@ const TopPane = styled.section`
   width: 100%;
   flex-basis: 100%;
   padding-bottom: 5vh;
+
+  @media (max-width: ${LayoutBreakpoint.S}px) {
+    padding-bottom: 0;
+  }
 `;
 
 const ClockPanel = styled(BaseClockPanel)`
@@ -65,8 +69,11 @@ const panelContainerStyles: React.CSSProperties = {
   maxWidth: '750px',
 };
 
-const LeftDashPanel = () => <DashboardPanel orientation="left" style={panelContainerStyles} />;
-const RightDashPanel = () => <DashboardPanel orientation="right" style={panelContainerStyles} />;
+const LeftDashPanel: React.FC<{ style?: React.CSSProperties }> = ({ style }) =>
+  <DashboardPanel orientation="left" style={{...panelContainerStyles, ...style}} />;
+
+const RightDashPanel: React.FC<{ style?: React.CSSProperties }> = ({ style }) =>
+  <DashboardPanel orientation="right" style={{...panelContainerStyles, ...style}} />;
 
 interface LayoutProps {
   onSettingsClick(): void;
@@ -118,27 +125,7 @@ interface BreakpointConfig {
   S: number;
 }
 
-// function useBreakpoint(breakpoints: BreakpointConfig, debounceThreshold = 250): keyof BreakpointConfig {
-//   const [ width, setWidth ] = useState(window.innerWidth);
-//   const [ debouncedWidthSubscriber ] = useDebouncedCallback(() => setWidth(window.innerWidth), debounceThreshold);
-
-//   useEffect(() => {
-//     window.addEventListener('resize', debouncedWidthSubscriber);
-//     return () => window.removeEventListener('resize', debouncedWidthSubscriber);
-//   }, [ debouncedWidthSubscriber ]);
-
-//   if (width >= breakpoints.XL) {
-//     return 'XL';
-//   }
-
-//   if (width < breakpoints.XL && width >= breakpoints.M) {
-//     return 'M';
-//   }
-
-//   return 'S';
-// }
-
-function useBreakpoint2(breakpoints: BreakpointConfig): keyof BreakpointConfig {
+function useBreakpoint(breakpoints: BreakpointConfig): keyof BreakpointConfig {
   const [ breakpoint, setBreakpoint ] = useState<keyof BreakpointConfig>('XL');
 
   const lgMql = window.matchMedia(`(min-width: ${breakpoints.XL}px)`);
@@ -172,27 +159,36 @@ function useBreakpoint2(breakpoints: BreakpointConfig): keyof BreakpointConfig {
   return breakpoint;
 }
 
-// TODO: consider increasing panel size to lower the threshold for going to med layout
+// TODO: increase panel size to lower the threshold for going to med layout
+// TODO: wrap the display rules in custom container components that hide or show things
 const Page: React.FC = () => {
   const [ showSettings, setSettingsShowing ] = useState(false);
   const onSettingsClick = () => setSettingsShowing(isShowing => !isShowing);
 
-  const breakpoint = useBreakpoint2({ XL: LayoutBreakpoint.XL, M: LayoutBreakpoint.S, S: LayoutBreakpoint.S });
-  const LayoutElement = useMemo(() => {
-    switch (breakpoint) {
-    case 'XL':
-      return () => <LargeLayout onSettingsClick={onSettingsClick} />;
-    case 'M':
-      return () => <MedLayout onSettingsClick={onSettingsClick} />;
-    default:
-      return () => <SmallLayout onSettingsClick={onSettingsClick} />;
-    }
-  }, [ breakpoint ]);
+  const breakpoint = useBreakpoint({ XL: LayoutBreakpoint.XL, M: LayoutBreakpoint.S, S: LayoutBreakpoint.S });
 
   return (
     <ThemeProvider theme={mainTheme}>
       <PageBackground>
-        <LayoutElement />
+        <TopPane style={{display: (breakpoint === 'S' || breakpoint === 'M') ? 'unset' : 'none'}}>
+          <FloatingSettingsIcon onClick={onSettingsClick} />
+          <ClockPanel />
+        </TopPane>
+
+        <LeftDashPanel style={{display: breakpoint === 'S' ? 'none' : 'unset'}} />
+
+        <CenterPane style={{display: breakpoint !== 'XL' ? 'none' : 'unset'}}>
+          <SettingsIcon onClick={onSettingsClick} style={{marginLeft: '1em', marginRight: '1em'}} />
+          <ClockPanel />
+
+          <CenterControls>
+            <WeatherSettingsProvider>
+              <WeatherPanel />
+            </WeatherSettingsProvider>
+          </CenterControls>
+        </CenterPane>
+
+        <RightDashPanel />
 
         <SettingsModal key="settings-modal" isOpen={showSettings}
           onClose={() => setSettingsShowing(false)}
