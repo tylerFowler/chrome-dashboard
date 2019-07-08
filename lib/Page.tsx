@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState } from 'react';
 import styled, { ThemeProvider } from 'lib/styled-components';
 import * as Styles from './styles';
 import mainTheme from './theme';
@@ -9,7 +9,9 @@ import WeatherPanel from './weather/components/WeatherPanel';
 import { WeatherSettingsProvider } from './settings/context';
 import BaseDashboardPanel from './DashboardPanel';
 import PrimaryPanelPicker from './PrimaryPanelPicker';
+import { useBreakpoint, BreakpointContext, AtSizes } from './Breakpoint';
 
+// layout breakpoint thresholds in pixels
 enum LayoutBreakpoint {
   XL = 1440,
   L = 1225,
@@ -82,60 +84,6 @@ const DashboardPanel = styled(BaseDashboardPanel)`
     height: auto;
   }
 `;
-
-interface BreakpointConfig {
-  L: number;
-  M: number;
-  S: number;
-}
-
-function useBreakpoint(breakpoints: BreakpointConfig): keyof BreakpointConfig {
-  const breakpointMatches: { [key in keyof BreakpointConfig]: MediaQueryList } = {
-    L: window.matchMedia(`(min-width: ${breakpoints.L}px)`),
-    M: window.matchMedia(`(max-width: ${breakpoints.L}px) and (min-width: ${breakpoints.M}px)`),
-    S: window.matchMedia(`(max-width: ${breakpoints.S}px)`),
-  };
-
-  const defaultValue = Object.entries(breakpointMatches)
-    .reduce((match, [ bp, mql ]) => mql.matches ? bp : match, 'L') as keyof BreakpointConfig;
-
-  const [ breakpoint, setBreakpoint ] = useState<keyof BreakpointConfig>(defaultValue);
-
-  useEffect(() => {
-    const makeHandler = (size: keyof BreakpointConfig) => (event: MediaQueryListEvent) => {
-      if (event.matches) {
-        setBreakpoint(size);
-      }
-    };
-
-    const subscriptions = Object.entries(breakpointMatches)
-      .map(([ bp, mql ]: [ keyof BreakpointConfig, MediaQueryList ]) => {
-        const handlerFunc = makeHandler(bp);
-
-        mql.addListener(handlerFunc);
-        return [ bp, handlerFunc ] as [ keyof BreakpointConfig, (e: MediaQueryListEvent) => void ];
-      });
-
-    return () => {
-      subscriptions.forEach(([ bp, handlerFunc ]) => breakpointMatches[bp].removeListener(handlerFunc));
-    };
-  });
-
-  return breakpoint;
-}
-
-const BreakpointContext = React.createContext<keyof BreakpointConfig>('L');
-
-// TODO: move this to its own file along with the breakpoint hook
-const AtSizes: React.FC<{ readonly breakpoints: Array<keyof BreakpointConfig> }> = ({ breakpoints = [], children }) => {
-  const breakpoint = useContext(BreakpointContext);
-
-  const display = breakpoints.find(bp => bp === breakpoint)
-    ? 'contents' // don't affect the layout at all, making this a visual no-op
-    : 'none';    // don't show the element at all but allow React to keep it rendered
-
-  return <span style={{display}}>{children}</span>;
-};
 
 const Page: React.FC = () => {
   const [ showSettings, setSettingsShowing ] = useState(false);
