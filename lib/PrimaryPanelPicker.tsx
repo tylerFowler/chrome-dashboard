@@ -11,9 +11,9 @@ const PanelPicker = styled.span`
   margin: .5em auto;
 `;
 
-const PrimaryPanelPicker: React.FC = () => {
-  const [ panel, choosePanel ] = useState<'left'|'right'>('right');
-
+const PrimaryPanelPicker: React.FC<{ panel: 'left'|'right', onChange(p: 'left'|'right'): void }> = ({
+  panel, onChange,
+}) => {
   let leftPanelName = FeedType.getDisplayString(useSelector(getLeftPanelFeedType));
   const rightPanelName = FeedType.getDisplayString(useSelector(getRightPanelFeedType));
 
@@ -24,7 +24,7 @@ const PrimaryPanelPicker: React.FC = () => {
   return (
     <PanelPicker>
       <Select name="primary-panel-select" value={panel}
-        onChange={e => choosePanel(e.currentTarget.value as 'left'|'right')}
+        onChange={e => onChange(e.currentTarget.value as 'left'|'right')}
         style={{display: 'inline-block'}}
       >
         <option value="left">{leftPanelName}</option>

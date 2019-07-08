@@ -152,8 +152,9 @@ const AtSizes: React.FC<{ readonly breakpoints: Array<keyof BreakpointConfig> }>
 
 const Page: React.FC = () => {
   const [ showSettings, setSettingsShowing ] = useState(false);
-  const onSettingsClick = () => setSettingsShowing(isShowing => !isShowing);
+  const [ singleColPanel, setSingleColPanel ] = useState<'left'|'right'>('right');
 
+  const onSettingsClick = () => setSettingsShowing(isShowing => !isShowing);
   const breakpoint = useBreakpoint({ L: LayoutBreakpoint.L, M: LayoutBreakpoint.S, S: LayoutBreakpoint.S });
 
   return (
@@ -166,7 +167,7 @@ const Page: React.FC = () => {
             <ClockPanel />
 
             <AtSizes breakpoints={[ 'S' ]}>
-              <PrimaryPanelPicker />
+              <PrimaryPanelPicker panel={singleColPanel} onChange={setSingleColPanel} />
             </AtSizes>
           </TopPane>
         </AtSizes>
@@ -188,7 +189,7 @@ const Page: React.FC = () => {
           </CenterPane>
         </AtSizes>
 
-        <DashboardPanel orientation="right" />
+        <DashboardPanel orientation={breakpoint === 'S' ? singleColPanel : 'right'} />
 
         <SettingsModal key="settings-modal" isOpen={showSettings}
           onClose={() => setSettingsShowing(false)}
