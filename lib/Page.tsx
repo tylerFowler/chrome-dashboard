@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import styled, { ThemeProvider } from 'lib/styled-components';
 import * as Styles from './styles';
 import mainTheme from './theme';
@@ -136,10 +136,11 @@ function useBreakpoint(breakpoints: BreakpointConfig): keyof BreakpointConfig {
   return breakpoint;
 }
 
-const AtSizes: React.FC<{
-  readonly breakpoints: Array<keyof BreakpointConfig>;
-  readonly breakpoint: keyof BreakpointConfig;
-}> = ({ breakpoints = [], breakpoint, children }) => {
+const BreakpointContext = React.createContext<keyof BreakpointConfig>('L');
+
+const AtSizes: React.FC<{ readonly breakpoints: Array<keyof BreakpointConfig> }> = ({ breakpoints = [], children }) => {
+  const breakpoint = useContext(BreakpointContext);
+
   const display = breakpoints.find(bp => bp === breakpoint)
     ? 'contents' // don't affect the layout at all, making this a visual no-op
     : 'none';    // don't show the element at all but allow React to keep it rendered
@@ -155,19 +156,20 @@ const Page: React.FC = () => {
 
   return (
     <ThemeProvider theme={mainTheme}>
+    <BreakpointContext.Provider value={breakpoint}>
       <PageBackground>
-        <AtSizes breakpoint={breakpoint} breakpoints={[ 'S', 'M' ]}>
+        <AtSizes breakpoints={[ 'S', 'M' ]}>
           <TopPane>
             <FloatingSettingsIcon onClick={onSettingsClick} style={{marginLeft: '5%'}} />
             <ClockPanel />
           </TopPane>
         </AtSizes>
 
-        <AtSizes breakpoint={breakpoint} breakpoints={[ 'L', 'M' ]}>
+        <AtSizes breakpoints={[ 'L', 'M' ]}>
           <DashboardPanel orientation="left" />
         </AtSizes>
 
-        <AtSizes breakpoint={breakpoint} breakpoints={[ 'L' ]}>
+        <AtSizes breakpoints={[ 'L' ]}>
           <CenterPane>
             <SettingsIcon onClick={onSettingsClick} style={{marginLeft: '1%', marginRight: '1em'}} />
             <ClockPanel />
@@ -186,6 +188,7 @@ const Page: React.FC = () => {
           onClose={() => setSettingsShowing(false)}
         />
       </PageBackground>
+    </BreakpointContext.Provider>
     </ThemeProvider>
   );
 };
