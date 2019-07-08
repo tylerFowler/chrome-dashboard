@@ -90,7 +90,6 @@ function useBreakpoint(breakpoints: BreakpointConfig): keyof BreakpointConfig {
 
   useEffect(() => {
     const handler = (size: keyof BreakpointConfig) => (event: MediaQueryListEvent) => {
-      // console.log(`[${size}] changed:`, event.matches);
       if (event.matches) {
         setBreakpoint(size);
       }
