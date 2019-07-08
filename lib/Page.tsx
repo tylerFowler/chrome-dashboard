@@ -11,7 +11,7 @@ import { WeatherSettingsProvider } from './settings/context';
 
 enum LayoutBreakpoint {
   XL = 1440,
-  L = 1200,
+  L = 1225,
   S = 750,
 }
 
