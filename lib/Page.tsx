@@ -96,22 +96,22 @@ const Page: React.FC = () => {
     <ThemeProvider theme={mainTheme}>
     <BreakpointContext.Provider value={breakpoint}>
       <PageBackground>
-        <AtSizes breakpoints={[ 'S', 'M' ]}>
+        <AtSizes breakpoints={['S', 'M']}>
           <TopPane>
             <FloatingSettingsIcon onClick={onSettingsClick} style={{marginLeft: '5%'}} />
             <ClockPanel />
 
-            <AtSizes breakpoints={[ 'S' ]}>
+            <AtSizes breakpoints={['S']}>
               <PrimaryPanelPicker panel={singleColPanel} onChange={setSingleColPanel} />
             </AtSizes>
           </TopPane>
         </AtSizes>
 
-        <AtSizes breakpoints={[ 'L', 'M' ]}>
+        <AtSizes breakpoints={['L', 'M']}>
           <DashboardPanel orientation="left" />
         </AtSizes>
 
-        <AtSizes breakpoints={[ 'L' ]}>
+        <AtSizes breakpoints={['L']}>
           <CenterPane>
             <SettingsIcon onClick={onSettingsClick} style={{marginLeft: '.5%'}} />
             <ClockPanel />
