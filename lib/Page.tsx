@@ -1,5 +1,4 @@
-import React, { useState, useMemo, useEffect, useRef } from 'react';
-import { useDebouncedCallback } from 'use-debounce';
+import React, { useState, useEffect } from 'react';
 import styled, { ThemeProvider } from 'lib/styled-components';
 import * as Styles from './styles';
 import mainTheme from './theme';

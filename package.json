@@ -30,8 +30,7 @@
     "redux": "^4.0.1",
     "redux-saga": "^1.0.5",
     "styled-components": "^4.3.2",
-    "typesafe-actions": "^4.4.2",
-    "use-debounce": "^2.1.0"
+    "typesafe-actions": "^4.4.2"
   },
   "devDependencies": {
     "@types/node": "^11.13.17",
