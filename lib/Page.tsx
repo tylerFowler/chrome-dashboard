@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo, useEffect, useRef } from 'react';
 import { useDebouncedCallback } from 'use-debounce';
 import styled, { ThemeProvider } from 'lib/styled-components';
 import * as Styles from './styles';
@@ -12,7 +12,7 @@ import { WeatherSettingsProvider } from './settings/context';
 
 enum LayoutBreakpoint {
   XL = 1350,
-  M = 750,
+  S = 750,
 }
 
 const PageBackground = styled.div`
@@ -42,7 +42,7 @@ const TopPane = styled.section`
 `;
 
 const ClockPanel = styled(BaseClockPanel)`
-  @media (max-width: ${LayoutBreakpoint.M}px) {
+  @media (max-width: ${LayoutBreakpoint.S}px) {
     min-width: unset;
     width: auto;
     padding: 1em .5em;
@@ -101,6 +101,8 @@ const MedLayout: React.FC<LayoutProps> = ({ onSettingsClick }) => <>
 
 // TODO: replace right panel usage with a "primary" feed, add a selector to the
 // top pane
+// TODO: only use the styled clock panel here so that the media query doesn't hit
+// before ours does
 const SmallLayout: React.FC<LayoutProps> = ({ onSettingsClick }) => <>
   <TopPane style={{paddingBottom: 0}}>
     <FloatingSettingsIcon onClick={onSettingsClick} />
@@ -110,16 +112,64 @@ const SmallLayout: React.FC<LayoutProps> = ({ onSettingsClick }) => <>
   <RightDashPanel />
 </>;
 
-function useViewportWidth(debounceThreshold = 250) {
-  const [ width, setWidth ] = useState(window.innerWidth);
-  const [ debouncedWidthSubscriber ] = useDebouncedCallback(() => setWidth(window.innerWidth), debounceThreshold);
+interface BreakpointConfig {
+  XL: number;
+  M: number;
+  S: number;
+}
+
+// function useBreakpoint(breakpoints: BreakpointConfig, debounceThreshold = 250): keyof BreakpointConfig {
+//   const [ width, setWidth ] = useState(window.innerWidth);
+//   const [ debouncedWidthSubscriber ] = useDebouncedCallback(() => setWidth(window.innerWidth), debounceThreshold);
+
+//   useEffect(() => {
+//     window.addEventListener('resize', debouncedWidthSubscriber);
+//     return () => window.removeEventListener('resize', debouncedWidthSubscriber);
+//   }, [ debouncedWidthSubscriber ]);
+
+//   if (width >= breakpoints.XL) {
+//     return 'XL';
+//   }
+
+//   if (width < breakpoints.XL && width >= breakpoints.M) {
+//     return 'M';
+//   }
+
+//   return 'S';
+// }
+
+function useBreakpoint2(breakpoints: BreakpointConfig): keyof BreakpointConfig {
+  const [ breakpoint, setBreakpoint ] = useState<keyof BreakpointConfig>('XL');
+
+  const lgMql = window.matchMedia(`(min-width: ${breakpoints.XL}px)`);
+  const medMql = window.matchMedia(`(max-width: ${breakpoints.XL}px) and (min-width: ${breakpoints.M}px)`);
+  const smMql = window.matchMedia(`(max-width: ${breakpoints.S}px)`);
 
   useEffect(() => {
-    window.addEventListener('resize', debouncedWidthSubscriber);
-    return () => window.removeEventListener('resize', debouncedWidthSubscriber);
-  }, [ debouncedWidthSubscriber ]);
+    const handler = (size: keyof BreakpointConfig) => (event: MediaQueryListEvent) => {
+      // console.log(`[${size}] changed:`, event.matches);
+      if (event.matches) {
+        setBreakpoint(size);
+      }
+    };
 
-  return width;
+    const xlHandler = handler('XL');
+    lgMql.addListener(xlHandler);
+
+    const medHandler = handler('M');
+    medMql.addListener(medHandler);
+
+    const smHandler = handler('S');
+    smMql.addListener(smHandler);
+
+    return () => {
+      lgMql.removeListener(xlHandler);
+      medMql.removeListener(medHandler);
+      smMql.removeListener(smHandler);
+    };
+  });
+
+  return breakpoint;
 }
 
 // TODO: consider increasing panel size to lower the threshold for going to med layout
@@ -127,18 +177,17 @@ const Page: React.FC = () => {
   const [ showSettings, setSettingsShowing ] = useState(false);
   const onSettingsClick = () => setSettingsShowing(isShowing => !isShowing);
 
-  const viewportWidth = useViewportWidth();
+  const breakpoint = useBreakpoint2({ XL: LayoutBreakpoint.XL, M: LayoutBreakpoint.S, S: LayoutBreakpoint.S });
   const LayoutElement = useMemo(() => {
-    if (viewportWidth >= LayoutBreakpoint.XL) {
+    switch (breakpoint) {
+    case 'XL':
       return () => <LargeLayout onSettingsClick={onSettingsClick} />;
-    }
-
-    if (viewportWidth < LayoutBreakpoint.XL && viewportWidth >= LayoutBreakpoint.M) {
+    case 'M':
       return () => <MedLayout onSettingsClick={onSettingsClick} />;
+    default:
+      return () => <SmallLayout onSettingsClick={onSettingsClick} />;
     }
-
-    return () => <SmallLayout onSettingsClick={onSettingsClick} />;
-  }, [ viewportWidth ]); // FIXME: may need to memoize onSettingsClick
+  }, [ breakpoint ]);
 
   return (
     <ThemeProvider theme={mainTheme}>
