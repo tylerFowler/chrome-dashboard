@@ -5,9 +5,10 @@ import mainTheme from './theme';
 import BaseClockPanel from './clock/ClockPanel';
 import SettingsModal from './settings/components/Modal';
 import SettingsIcon, { FloatingOpenIcon as FloatingSettingsIcon } from './settings/components/OpenIcon';
-import BaseDashboardPanel from './DashboardPanel';
 import WeatherPanel from './weather/components/WeatherPanel';
 import { WeatherSettingsProvider } from './settings/context';
+import BaseDashboardPanel from './DashboardPanel';
+import PrimaryPanelPicker from './PrimaryPanelPicker';
 
 enum LayoutBreakpoint {
   XL = 1440,
@@ -40,6 +41,8 @@ const TopPane = styled.section`
   width: 100%;
   flex-basis: 100%;
   padding-bottom: 5vh;
+  background-color: ${props => props.theme.backgroundExtraLight};
+  border-bottom: 2px solid ${props => props.theme.borderDark};
 
   @media (max-width: ${LayoutBreakpoint.S}px) {
     padding-bottom: 0;
@@ -60,8 +63,7 @@ const ClockPanel = styled(BaseClockPanel)`
     padding: 1em .5em;
     zoom: .9;
 
-    border-left: none;
-    border-right: none;
+    border: none;
   }
 
   @media (max-width: 375px) { zoom: .8; }
@@ -162,6 +164,7 @@ const Page: React.FC = () => {
           <TopPane>
             <FloatingSettingsIcon onClick={onSettingsClick} style={{marginLeft: '5%'}} />
             <ClockPanel />
+            <PrimaryPanelPicker />
           </TopPane>
         </AtSizes>
 
