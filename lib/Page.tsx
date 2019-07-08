@@ -147,8 +147,6 @@ const AtSizes: React.FC<{
   return <span style={{display}}>{children}</span>;
 };
 
-// TODO: increase panel size to lower the threshold for going to med layout
-// TODO: wrap the display rules in custom container components that hide or show things
 const Page: React.FC = () => {
   const [ showSettings, setSettingsShowing ] = useState(false);
   const onSettingsClick = () => setSettingsShowing(isShowing => !isShowing);
