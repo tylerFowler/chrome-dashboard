@@ -90,22 +90,14 @@ interface BreakpointConfig {
 }
 
 function useBreakpoint(breakpoints: BreakpointConfig): keyof BreakpointConfig {
-  const lgMql = window.matchMedia(`(min-width: ${breakpoints.L}px)`);
-  const medMql = window.matchMedia(`(max-width: ${breakpoints.L}px) and (min-width: ${breakpoints.M}px)`);
-  const smMql = window.matchMedia(`(max-width: ${breakpoints.S}px)`);
+  const breakpointMatches: { [key in keyof BreakpointConfig]: MediaQueryList } = {
+    L: window.matchMedia(`(min-width: ${breakpoints.L}px)`),
+    M: window.matchMedia(`(max-width: ${breakpoints.L}px) and (min-width: ${breakpoints.M}px)`),
+    S: window.matchMedia(`(max-width: ${breakpoints.S}px)`),
+  };
 
-  let defaultValue: keyof BreakpointConfig = 'L';
-  if (lgMql.matches) {
-    defaultValue = 'L';
-  }
-
-  if (medMql.matches) {
-    defaultValue = 'M';
-  }
-
-  if (smMql.matches) {
-    defaultValue = 'S';
-  }
+  const defaultValue = Object.entries(breakpointMatches)
+    .reduce((match, [ bp, mql ]) => mql.matches ? bp : match, 'L') as keyof BreakpointConfig;
 
   const [ breakpoint, setBreakpoint ] = useState<keyof BreakpointConfig>(defaultValue);
 
@@ -116,19 +108,16 @@ function useBreakpoint(breakpoints: BreakpointConfig): keyof BreakpointConfig {
       }
     };
 
-    const lgHandler = handler('L');
-    lgMql.addListener(lgHandler);
+    const subscriptions = Object.entries(breakpointMatches)
+      .map(([ bp, mql ]: [ keyof BreakpointConfig, MediaQueryList ]) => {
+        const handlerFunc = handler(bp);
 
-    const medHandler = handler('M');
-    medMql.addListener(medHandler);
-
-    const smHandler = handler('S');
-    smMql.addListener(smHandler);
+        mql.addListener(handlerFunc);
+        return [ bp, handlerFunc ] as [ keyof BreakpointConfig, (e: MediaQueryListEvent) => void ];
+      });
 
     return () => {
-      lgMql.removeListener(lgHandler);
-      medMql.removeListener(medHandler);
-      smMql.removeListener(smHandler);
+      subscriptions.forEach(([ bp, handlerFunc ]) => breakpointMatches[bp].removeListener(handlerFunc));
     };
   });
 
