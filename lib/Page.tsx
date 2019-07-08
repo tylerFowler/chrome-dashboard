@@ -102,7 +102,7 @@ function useBreakpoint(breakpoints: BreakpointConfig): keyof BreakpointConfig {
   const [ breakpoint, setBreakpoint ] = useState<keyof BreakpointConfig>(defaultValue);
 
   useEffect(() => {
-    const handler = (size: keyof BreakpointConfig) => (event: MediaQueryListEvent) => {
+    const makeHandler = (size: keyof BreakpointConfig) => (event: MediaQueryListEvent) => {
       if (event.matches) {
         setBreakpoint(size);
       }
@@ -110,7 +110,7 @@ function useBreakpoint(breakpoints: BreakpointConfig): keyof BreakpointConfig {
 
     const subscriptions = Object.entries(breakpointMatches)
       .map(([ bp, mql ]: [ keyof BreakpointConfig, MediaQueryList ]) => {
-        const handlerFunc = handler(bp);
+        const handlerFunc = makeHandler(bp);
 
         mql.addListener(handlerFunc);
         return [ bp, handlerFunc ] as [ keyof BreakpointConfig, (e: MediaQueryListEvent) => void ];
