@@ -82,11 +82,24 @@ interface BreakpointConfig {
 }
 
 function useBreakpoint(breakpoints: BreakpointConfig): keyof BreakpointConfig {
-  const [ breakpoint, setBreakpoint ] = useState<keyof BreakpointConfig>('XL');
-
   const lgMql = window.matchMedia(`(min-width: ${breakpoints.XL}px)`);
   const medMql = window.matchMedia(`(max-width: ${breakpoints.XL}px) and (min-width: ${breakpoints.M}px)`);
   const smMql = window.matchMedia(`(max-width: ${breakpoints.S}px)`);
+
+  let defaultValue: keyof BreakpointConfig = 'XL';
+  if (lgMql.matches) {
+    defaultValue = 'XL';
+  }
+
+  if (medMql.matches) {
+    defaultValue = 'M';
+  }
+
+  if (smMql.matches) {
+    defaultValue = 'S';
+  }
+
+  const [ breakpoint, setBreakpoint ] = useState<keyof BreakpointConfig>(defaultValue);
 
   useEffect(() => {
     const handler = (size: keyof BreakpointConfig) => (event: MediaQueryListEvent) => {
