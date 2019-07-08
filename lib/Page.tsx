@@ -155,7 +155,7 @@ const Page: React.FC = () => {
       <PageBackground>
         <AtSizes breakpoint={breakpoint} breakpoints={[ 'S', 'M' ]}>
           <TopPane>
-            <FloatingSettingsIcon onClick={onSettingsClick} />
+            <FloatingSettingsIcon onClick={onSettingsClick} style={{marginLeft: '5%'}} />
             <ClockPanel />
           </TopPane>
         </AtSizes>
@@ -166,7 +166,7 @@ const Page: React.FC = () => {
 
         <AtSizes breakpoint={breakpoint} breakpoints={[ 'L' ]}>
           <CenterPane>
-            <SettingsIcon onClick={onSettingsClick} style={{marginLeft: '.25em', marginRight: '1em'}} />
+            <SettingsIcon onClick={onSettingsClick} style={{marginLeft: '1%', marginRight: '1em'}} />
             <ClockPanel />
 
             <CenterControls>
