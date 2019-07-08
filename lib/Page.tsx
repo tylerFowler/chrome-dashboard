@@ -75,50 +75,6 @@ const LeftDashPanel: React.FC<{ style?: React.CSSProperties }> = ({ style }) =>
 const RightDashPanel: React.FC<{ style?: React.CSSProperties }> = ({ style }) =>
   <DashboardPanel orientation="right" style={{...panelContainerStyles, ...style}} />;
 
-interface LayoutProps {
-  onSettingsClick(): void;
-}
-
-const LargeLayout: React.FC<LayoutProps> = ({ onSettingsClick }) => <>
-  <LeftDashPanel />
-
-  <CenterPane>
-    <SettingsIcon onClick={onSettingsClick} style={{marginLeft: '1em', marginRight: '1em'}} />
-    <ClockPanel />
-
-    <CenterControls>
-      <WeatherSettingsProvider>
-        <WeatherPanel />
-      </WeatherSettingsProvider>
-    </CenterControls>
-  </CenterPane>
-
-  <RightDashPanel />
-</>;
-
-const MedLayout: React.FC<LayoutProps> = ({ onSettingsClick }) => <>
-  <TopPane>
-    <SettingsIcon onClick={onSettingsClick} style={{marginLeft: '1em'}} />
-    <ClockPanel />
-  </TopPane>
-
-  <LeftDashPanel />
-  <RightDashPanel />
-</>;
-
-// TODO: replace right panel usage with a "primary" feed, add a selector to the
-// top pane
-// TODO: only use the styled clock panel here so that the media query doesn't hit
-// before ours does
-const SmallLayout: React.FC<LayoutProps> = ({ onSettingsClick }) => <>
-  <TopPane style={{paddingBottom: 0}}>
-    <FloatingSettingsIcon onClick={onSettingsClick} />
-    <ClockPanel />
-  </TopPane>
-
-  <RightDashPanel />
-</>;
-
 interface BreakpointConfig {
   XL: number;
   M: number;
