@@ -24,6 +24,7 @@ const PanelContainer = styled('section')<{isCollapsed: boolean}>`
   display: flex;
   flex-flow: column;
   height: 100%;
+  min-height: 400px;
 
   ${props => props.isCollapsed && 'width: 0; flex: 0 !important;'}
 `;
