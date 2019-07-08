@@ -68,12 +68,6 @@ const panelContainerStyles: React.CSSProperties = {
   maxWidth: '750px',
 };
 
-const LeftDashPanel: React.FC<{ style?: React.CSSProperties }> = ({ style }) =>
-  <DashboardPanel orientation="left" style={{...panelContainerStyles, ...style}} />;
-
-const RightDashPanel: React.FC<{ style?: React.CSSProperties }> = ({ style }) =>
-  <DashboardPanel orientation="right" style={{...panelContainerStyles, ...style}} />;
-
 interface BreakpointConfig {
   XL: number;
   M: number;
@@ -159,7 +153,7 @@ const Page: React.FC = () => {
         </AtSizes>
 
         <AtSizes breakpoint={breakpoint} breakpoints={[ 'XL', 'M' ]}>
-          <LeftDashPanel />
+          <DashboardPanel orientation="left" style={panelContainerStyles} />
         </AtSizes>
 
         <AtSizes breakpoint={breakpoint} breakpoints={[ 'XL' ]}>
@@ -175,7 +169,7 @@ const Page: React.FC = () => {
           </CenterPane>
         </AtSizes>
 
-        <RightDashPanel />
+        <DashboardPanel orientation="right" style={panelContainerStyles} />
 
         <SettingsModal key="settings-modal" isOpen={showSettings}
           onClose={() => setSettingsShowing(false)}
