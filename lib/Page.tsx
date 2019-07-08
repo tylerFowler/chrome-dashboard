@@ -89,9 +89,6 @@ interface BreakpointConfig {
   S: number;
 }
 
-// TODO: it might be worthwhile to activate this at the very top level and send
-// its value down in a context var so that anything can react to it, allowing the
-// AtSizes component to not have to take in a breakpoint
 function useBreakpoint(breakpoints: BreakpointConfig): keyof BreakpointConfig {
   const lgMql = window.matchMedia(`(min-width: ${breakpoints.L}px)`);
   const medMql = window.matchMedia(`(max-width: ${breakpoints.L}px) and (min-width: ${breakpoints.M}px)`);
@@ -140,6 +137,7 @@ function useBreakpoint(breakpoints: BreakpointConfig): keyof BreakpointConfig {
 
 const BreakpointContext = React.createContext<keyof BreakpointConfig>('L');
 
+// TODO: move this to its own file along with the breakpoint hook
 const AtSizes: React.FC<{ readonly breakpoints: Array<keyof BreakpointConfig> }> = ({ breakpoints = [], children }) => {
   const breakpoint = useContext(BreakpointContext);
 
