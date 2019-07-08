@@ -80,6 +80,9 @@ interface BreakpointConfig {
   S: number;
 }
 
+// TODO: it might be worthwhile to activate this at the very top level and send
+// its value down in a context var so that anything can react to it, allowing the
+// AtSizes component to not have to take in a breakpoint
 function useBreakpoint(breakpoints: BreakpointConfig): keyof BreakpointConfig {
   const lgMql = window.matchMedia(`(min-width: ${breakpoints.XL}px)`);
   const medMql = window.matchMedia(`(max-width: ${breakpoints.XL}px) and (min-width: ${breakpoints.M}px)`);
@@ -126,6 +129,17 @@ function useBreakpoint(breakpoints: BreakpointConfig): keyof BreakpointConfig {
   return breakpoint;
 }
 
+const AtSizes: React.FC<{
+  readonly breakpoints: Array<keyof BreakpointConfig>;
+  readonly breakpoint: keyof BreakpointConfig;
+}> = ({ breakpoints = [], breakpoint, children }) => {
+  const display = breakpoints.find(bp => bp === breakpoint)
+    ? 'contents' // don't affect the layout at all, making this a visual no-op
+    : 'none';    // don't show the element at all but allow React to keep it rendered
+
+  return <span style={{display}}>{children}</span>;
+};
+
 // TODO: increase panel size to lower the threshold for going to med layout
 // TODO: wrap the display rules in custom container components that hide or show things
 const Page: React.FC = () => {
@@ -137,23 +151,29 @@ const Page: React.FC = () => {
   return (
     <ThemeProvider theme={mainTheme}>
       <PageBackground>
-        <TopPane style={{display: (breakpoint === 'S' || breakpoint === 'M') ? 'unset' : 'none'}}>
-          <FloatingSettingsIcon onClick={onSettingsClick} />
-          <ClockPanel />
-        </TopPane>
+        <AtSizes breakpoint={breakpoint} breakpoints={[ 'S', 'M' ]}>
+          <TopPane>
+            <FloatingSettingsIcon onClick={onSettingsClick} />
+            <ClockPanel />
+          </TopPane>
+        </AtSizes>
 
-        <LeftDashPanel style={{display: breakpoint === 'S' ? 'none' : 'unset'}} />
+        <AtSizes breakpoint={breakpoint} breakpoints={[ 'XL', 'M' ]}>
+          <LeftDashPanel />
+        </AtSizes>
 
-        <CenterPane style={{display: breakpoint !== 'XL' ? 'none' : 'unset'}}>
-          <SettingsIcon onClick={onSettingsClick} style={{marginLeft: '1em', marginRight: '1em'}} />
-          <ClockPanel />
+        <AtSizes breakpoint={breakpoint} breakpoints={[ 'XL' ]}>
+          <CenterPane style={{display: breakpoint !== 'XL' ? 'none' : 'unset'}}>
+            <SettingsIcon onClick={onSettingsClick} style={{marginLeft: '1em', marginRight: '1em'}} />
+            <ClockPanel />
 
-          <CenterControls>
-            <WeatherSettingsProvider>
-              <WeatherPanel />
-            </WeatherSettingsProvider>
-          </CenterControls>
-        </CenterPane>
+            <CenterControls>
+              <WeatherSettingsProvider>
+                <WeatherPanel />
+              </WeatherSettingsProvider>
+            </CenterControls>
+          </CenterPane>
+        </AtSizes>
 
         <RightDashPanel />
 
