@@ -22,6 +22,7 @@ const PageBackground = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  place-content: flex-start;
 
   font-size: ${Styles.fontSize};
   font-family: ${Styles.fontFamily};
@@ -73,6 +74,10 @@ const DashboardPanel = styled(BaseDashboardPanel)`
 
   @media (max-width: ${LayoutBreakpoint.XL}px) and (min-width: ${LayoutBreakpoint.L}px) {
     flex-basis: 15%;
+  }
+
+  @media (max-width: ${LayoutBreakpoint.S}px) {
+    height: auto;
   }
 `;
 
