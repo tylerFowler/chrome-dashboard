@@ -164,7 +164,10 @@ const Page: React.FC = () => {
           <TopPane>
             <FloatingSettingsIcon onClick={onSettingsClick} style={{marginLeft: '5%'}} />
             <ClockPanel />
-            <PrimaryPanelPicker />
+
+            <AtSizes breakpoints={[ 'S' ]}>
+              <PrimaryPanelPicker />
+            </AtSizes>
           </TopPane>
         </AtSizes>
 
