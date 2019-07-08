@@ -19,8 +19,8 @@ const Panel = styled.div`
   margin: 0 auto;
   margin-top: -3px; /* pull up off the page */
   min-height: 175px;
-  width: 450px;
   min-width: 425px;
+  max-width: 450px;
 `;
 
 const Divider = styled.hr`

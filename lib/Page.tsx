@@ -10,7 +10,8 @@ import WeatherPanel from './weather/components/WeatherPanel';
 import { WeatherSettingsProvider } from './settings/context';
 
 enum LayoutBreakpoint {
-  XL = 1350,
+  XL = 1440,
+  L = 1200,
   S = 750,
 }
 
@@ -30,7 +31,7 @@ const PageBackground = styled.div`
 `;
 
 const CenterPane = styled.section`
-  flex: 5 450px;
+  flex: 5 350px;
   overflow: hidden;
 `;
 
@@ -49,8 +50,11 @@ const CenterControls = styled.section`
 `;
 
 const ClockPanel = styled(BaseClockPanel)`
+  width: 75%;
+
   @media (max-width: ${LayoutBreakpoint.S}px) {
     min-width: unset;
+    max-width: unset;
     width: auto;
     padding: 1em .5em;
     zoom: .9;
@@ -64,12 +68,16 @@ const ClockPanel = styled(BaseClockPanel)`
 `;
 
 const DashboardPanel = styled(BaseDashboardPanel)`
-  flex: 4 200px;
+  flex: 4 275px;
   max-width: 750px;
+
+  @media (max-width: ${LayoutBreakpoint.XL}px) and (min-width: ${LayoutBreakpoint.L}px) {
+    flex-basis: 15%;
+  }
 `;
 
 interface BreakpointConfig {
-  XL: number;
+  L: number;
   M: number;
   S: number;
 }
@@ -78,13 +86,13 @@ interface BreakpointConfig {
 // its value down in a context var so that anything can react to it, allowing the
 // AtSizes component to not have to take in a breakpoint
 function useBreakpoint(breakpoints: BreakpointConfig): keyof BreakpointConfig {
-  const lgMql = window.matchMedia(`(min-width: ${breakpoints.XL}px)`);
-  const medMql = window.matchMedia(`(max-width: ${breakpoints.XL}px) and (min-width: ${breakpoints.M}px)`);
+  const lgMql = window.matchMedia(`(min-width: ${breakpoints.L}px)`);
+  const medMql = window.matchMedia(`(max-width: ${breakpoints.L}px) and (min-width: ${breakpoints.M}px)`);
   const smMql = window.matchMedia(`(max-width: ${breakpoints.S}px)`);
 
-  let defaultValue: keyof BreakpointConfig = 'XL';
+  let defaultValue: keyof BreakpointConfig = 'L';
   if (lgMql.matches) {
-    defaultValue = 'XL';
+    defaultValue = 'L';
   }
 
   if (medMql.matches) {
@@ -104,8 +112,8 @@ function useBreakpoint(breakpoints: BreakpointConfig): keyof BreakpointConfig {
       }
     };
 
-    const xlHandler = handler('XL');
-    lgMql.addListener(xlHandler);
+    const lgHandler = handler('L');
+    lgMql.addListener(lgHandler);
 
     const medHandler = handler('M');
     medMql.addListener(medHandler);
@@ -114,7 +122,7 @@ function useBreakpoint(breakpoints: BreakpointConfig): keyof BreakpointConfig {
     smMql.addListener(smHandler);
 
     return () => {
-      lgMql.removeListener(xlHandler);
+      lgMql.removeListener(lgHandler);
       medMql.removeListener(medHandler);
       smMql.removeListener(smHandler);
     };
@@ -140,7 +148,7 @@ const Page: React.FC = () => {
   const [ showSettings, setSettingsShowing ] = useState(false);
   const onSettingsClick = () => setSettingsShowing(isShowing => !isShowing);
 
-  const breakpoint = useBreakpoint({ XL: LayoutBreakpoint.XL, M: LayoutBreakpoint.S, S: LayoutBreakpoint.S });
+  const breakpoint = useBreakpoint({ L: LayoutBreakpoint.L, M: LayoutBreakpoint.S, S: LayoutBreakpoint.S });
 
   return (
     <ThemeProvider theme={mainTheme}>
@@ -152,13 +160,13 @@ const Page: React.FC = () => {
           </TopPane>
         </AtSizes>
 
-        <AtSizes breakpoint={breakpoint} breakpoints={[ 'XL', 'M' ]}>
+        <AtSizes breakpoint={breakpoint} breakpoints={[ 'L', 'M' ]}>
           <DashboardPanel orientation="left" />
         </AtSizes>
 
-        <AtSizes breakpoint={breakpoint} breakpoints={[ 'XL' ]}>
-          <CenterPane style={{display: breakpoint !== 'XL' ? 'none' : 'unset'}}>
-            <SettingsIcon onClick={onSettingsClick} style={{marginLeft: '1em', marginRight: '1em'}} />
+        <AtSizes breakpoint={breakpoint} breakpoints={[ 'L' ]}>
+          <CenterPane>
+            <SettingsIcon onClick={onSettingsClick} style={{marginLeft: '.25em', marginRight: '1em'}} />
             <ClockPanel />
 
             <CenterControls>
