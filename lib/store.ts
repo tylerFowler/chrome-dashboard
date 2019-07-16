@@ -13,6 +13,8 @@ import settingsReducer, { State as SettingsState } from './settings/reducer';
 import settingsSaga from './settings/sagas';
 import weatherReducer, { State as WeatherState } from './weather/reducer';
 import weatherSaga from './weather/sagas';
+import rssFeedReducer, { State as RSSFeedState } from './rss/reducer';
+import rssFeedSaga from './rss/sagas';
 
 declare const ENV: string;
 
@@ -26,6 +28,7 @@ export interface GlobalState {
   clock: ClockState;
   hnFeed: HNFeedState;
   dnFeed: DNFeedState;
+  rssFeed: RSSFeedState;
   weather: WeatherState;
   settings: SettingsState;
 }
@@ -46,6 +49,7 @@ const store = createStore(
     clock: clockReducer,
     hnFeed: hnFeedReducer,
     dnFeed: dnFeedReducer,
+    rssFeed: rssFeedReducer,
     weather: weatherReducer,
     settings: settingsReducer,
   }),
@@ -58,6 +62,7 @@ saga.run(function* appSaga() {
     clock: clockSaga(),
     hnFeed: hnFeedSaga(),
     dnFeed: dnFeedSaga(),
+    rssFeed: rssFeedSaga(),
     weather: weatherSaga(),
   });
 });
