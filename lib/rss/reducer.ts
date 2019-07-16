@@ -33,7 +33,10 @@ const chanReducer = (state: FeedChannel = defaultChannel, action: RSSAction): Fe
       fetching: true, pullError: null,
     };
   case Actions.RefreshChannel:
-    return { ...state, fetching: false, items: action.payload.items };
+    return { ...state, fetching: false,
+      items: Array.from(action.payload.items)
+        .sort((a, b) => a.publishDate.valueOf() - b.publishDate.valueOf()),
+    };
   case Actions.FetchChannelFailure:
     return { ...state, fetching: false, pullError: action.payload.error };
   default:
