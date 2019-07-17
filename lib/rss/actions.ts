@@ -13,11 +13,13 @@ export type RSSAction = ActionType<
   | typeof rssFeedFetchFailure
 >;
 
+// TODO: remove name, use URL only
 export const fetchRSSFeed = (name: string, feedUrl: string) =>
   action(Actions.FetchChannel, { name, url: feedUrl });
 
-export const populateRSSFeed = (name: string, items: readonly RSSItem[]) =>
-  action(Actions.RefreshChannel, { name, items });
+export const populateRSSFeed = (name: string, title: string, items: readonly RSSItem[]) =>
+  action(Actions.RefreshChannel, { name, title, items });
 
+  // TODO: remove name, use URL only
 export const rssFeedFetchFailure = (name: string, error: Error) =>
   action(Actions.FetchChannelFailure, { name, error });
