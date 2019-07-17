@@ -17,6 +17,7 @@ const defaultChannel: FeedChannel = {
   items: [],
 } as const;
 
+// TODO: we may need to key this map by url to have stable identifiers
 export interface State {
   readonly channels: { [channel: string]: FeedChannel };
 }
