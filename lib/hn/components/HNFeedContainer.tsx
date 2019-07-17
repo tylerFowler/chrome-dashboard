@@ -12,6 +12,7 @@ export interface HNFeedContainerProps extends FeedProps {
   stopHNFeedRefresh(): void;
 }
 
+// TODO: remove this in favor of using Redux hooks
 const HNFeedContainer: React.SFC<HNFeedContainerProps> = ({
   fetchPosts, startHNFeedRefresh, stopHNFeedRefresh, ...panelProps
 }) => {
