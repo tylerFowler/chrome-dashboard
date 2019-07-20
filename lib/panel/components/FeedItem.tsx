@@ -99,6 +99,7 @@ const PostLink = styled(Link)`
 
 const CommentLink = styled(Link)``;
 
+// TODO: the <li> should probably be here
 const FeedItem: React.FC<FeedItemProps> = props => {
   const {
     id, index, title, url, upvotes, author, maxAuthorLength,
