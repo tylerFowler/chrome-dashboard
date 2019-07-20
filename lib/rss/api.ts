@@ -5,6 +5,7 @@ export interface RSSFeedChannel {
   items: RSSItem[];
 }
 
+// TODO: add max items
 export async function refreshRSSFeed(url: string): Promise<RSSFeedChannel> {
   const parseError = new Error('Malformed RSS feed');
   const xmlParser = new DOMParser();
@@ -45,11 +46,15 @@ const parseRSSItem = (rssItemNode: Element, key: number): RSSItem => {
     guid = rssItemNode.querySelector('guid').textContent;
   }
 
+  let author = '';
+  if (rssItemNode.querySelector('author')) {
+    author = rssItemNode.querySelector('author').textContent;
+  }
+
   return {
-    publishDate,
+    publishDate, author,
     guid: guid.toString(),
     title: rssItemNode.querySelector('title').textContent,
     link: rssItemNode.querySelector('link').textContent,
-    author: rssItemNode.querySelector('author').textContent,
   };
 };
