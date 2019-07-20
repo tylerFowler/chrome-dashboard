@@ -5,8 +5,7 @@ export interface RSSFeedChannel {
   items: RSSItem[];
 }
 
-// TODO: add max items
-export async function refreshRSSFeed(url: string): Promise<RSSFeedChannel> {
+export async function refreshRSSFeed(url: string, maxItems: number = 10): Promise<RSSFeedChannel> {
   const parseError = new Error('Malformed RSS feed');
   const xmlParser = new DOMParser();
 
@@ -28,7 +27,9 @@ export async function refreshRSSFeed(url: string): Promise<RSSFeedChannel> {
     throw parseError;
   }
 
-  return { title, items: rssItems };
+  rssItems.sort((a, b) => a.publishDate.valueOf() - b.publishDate.valueOf());
+
+  return { title, items: rssItems.slice(0, maxItems) };
 }
 
 const parseRSSItem = (rssItemNode: Element, key: number): RSSItem => {

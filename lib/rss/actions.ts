@@ -13,8 +13,8 @@ export type RSSAction = ActionType<
   | typeof rssFeedFetchFailure
 >;
 
-export const fetchRSSFeed = (feedUrl: string) =>
-  action(Actions.FetchChannel, { feedUrl });
+export const fetchRSSFeed = (feedUrl: string, maxItems?: number) =>
+  action(Actions.FetchChannel, { feedUrl, maxItems });
 
 export const populateRSSFeed = (feedUrl: string, title: string, items: readonly RSSItem[]) =>
   action(Actions.RefreshChannel, { feedUrl, title, items });

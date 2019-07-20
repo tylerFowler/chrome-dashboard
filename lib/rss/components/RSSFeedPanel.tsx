@@ -18,7 +18,7 @@ const RSSFeedPanel: React.FC<RSSFeedPanelProps> = ({ feedUrl, maxItems = 10, tit
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchRSSFeed(feedUrl));
+    dispatch(fetchRSSFeed(feedUrl, maxItems));
   }, [ feedUrl, maxItems, dispatch ]);
 
   const isFetching = useSelector<GlobalState, boolean>(state => isFetchingFeed(feedUrl, state));
