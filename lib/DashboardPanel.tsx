@@ -6,6 +6,7 @@ import { FeedType, PanelOrientation } from './settings/interface';
 import { HNFeedSettingsProvider, FeedSettingsProvider } from './settings/context';
 import DNFeedPanel from './dn/DNFeedContainer';
 import HNFeedPanel from './hn/HNFeedContainer';
+import RSSFeedPanel from './rss/components/RSSFeedPanel';
 
 interface DashboardPanelProps {
   readonly feedType: FeedType;
@@ -15,6 +16,16 @@ interface DashboardPanelProps {
 }
 
 const DashboardPanel: React.SFC<DashboardPanelProps> = ({ feedType, orientation, style, className }) => {
+  if (orientation === 'left') {
+    return (
+      <FeedSettingsProvider>
+        <RSSFeedPanel title="New York Times" feedUrl="https://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml"
+          panelOrientation={orientation}
+        />
+      </FeedSettingsProvider>
+    );
+  }
+
   switch (feedType) {
   case FeedType.HN:
     return (
