@@ -1,18 +1,24 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { GlobalState } from '../../store';
 import { isFetchingFeed, getFeedRefreshError, getItemsForFeed } from '../selectors';
 import { RSSItem } from '../interface';
 import FeedItem from '../../panel/components/FeedItem';
 import FeedPanel, { FeedProps } from '../../panel/components/FeedPanel';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchRSSFeed } from '../actions';
 
 export interface RSSFeedPanelProps extends FeedProps {
   readonly feedUrl: string;
-  readonly maxItems: number;
+  readonly maxItems?: number;
 }
 
 const RSSFeedPanel: React.FC<RSSFeedPanelProps> = ({ feedUrl, maxItems = 10, title, ...panelProps }) => {
   const rssFeedName = title;
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchRSSFeed(rssFeedName, feedUrl));
+  }, [ feedUrl, maxItems, dispatch ]);
 
   const isFetching = useSelector<GlobalState, boolean>(state => isFetchingFeed(feedUrl, state));
   const fetchError = useSelector<GlobalState, Error>(state => getFeedRefreshError(feedUrl, state));
