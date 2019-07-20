@@ -13,3 +13,6 @@ export const getFeedRefreshError = (url: string, { rssFeed }: State) =>
 
 export const isFetchingFeed = (url: string, { rssFeed }: State) =>
   hasFeed(url, {rssFeed}) && rssFeed.channels[url].fetching;
+
+export const getTitleForFeed = (url: string, { rssFeed }: State) =>
+  hasFeed(url, {rssFeed}) && rssFeed.channels[url].channelName;

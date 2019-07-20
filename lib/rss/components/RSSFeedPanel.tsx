@@ -1,13 +1,14 @@
 import React, { useEffect } from 'react';
 import { GlobalState } from '../../store';
-import { isFetchingFeed, getFeedRefreshError, getItemsForFeed } from '../selectors';
+import { isFetchingFeed, getFeedRefreshError, getItemsForFeed, getTitleForFeed } from '../selectors';
 import { RSSItem } from '../interface';
 import FeedItem from '../../panel/components/FeedItem';
 import FeedPanel, { FeedProps } from '../../panel/components/FeedPanel';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchRSSFeed } from '../actions';
 
-export interface RSSFeedPanelProps extends FeedProps {
+export interface RSSFeedPanelProps extends Omit<FeedProps, 'title'> {
+  readonly title?: string;
   readonly feedUrl: string;
   readonly maxItems?: number;
 }
@@ -17,15 +18,16 @@ const RSSFeedPanel: React.FC<RSSFeedPanelProps> = ({ feedUrl, maxItems = 10, tit
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchRSSFeed(rssFeedName, feedUrl));
+    dispatch(fetchRSSFeed(feedUrl));
   }, [ feedUrl, maxItems, dispatch ]);
 
   const isFetching = useSelector<GlobalState, boolean>(state => isFetchingFeed(feedUrl, state));
   const fetchError = useSelector<GlobalState, Error>(state => getFeedRefreshError(feedUrl, state));
   const feedItems = useSelector<GlobalState, readonly RSSItem[]>(state => getItemsForFeed(feedUrl, state));
+  const feedTitle = useSelector<GlobalState, string>(state => getTitleForFeed(feedUrl, state));
 
   return (
-    <FeedPanel {...panelProps} title={rssFeedName} loading={isFetching} fetchError={fetchError}>
+    <FeedPanel {...panelProps} title={rssFeedName || feedTitle} loading={isFetching} fetchError={fetchError}>
       {feedItems.map((item, idx) =>
         <li key={item.guid}>
           <FeedItem
