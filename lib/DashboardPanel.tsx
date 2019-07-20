@@ -20,7 +20,7 @@ const DashboardPanel: React.SFC<DashboardPanelProps> = ({ feedType, orientation,
     return (
       <FeedSettingsProvider>
         <RSSFeedPanel title="New York Times" feedUrl="https://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml"
-          panelOrientation={orientation}
+          panelOrientation={orientation} style={style} className={className}
         />
       </FeedSettingsProvider>
     );
