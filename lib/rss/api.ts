@@ -21,7 +21,7 @@ export async function refreshRSSFeed(url: string): Promise<RSSFeedChannel> {
   const rssItems: RSSItem[] = [];
   try {
     feedData.querySelectorAll('channel > item')
-      .forEach(chanItem => rssItems.push(parseRSSItem(chanItem)));
+      .forEach((chanItem, key) => rssItems.push(parseRSSItem(chanItem, key)));
   } catch (itemParseError) {
     console.error(`An error occurred while parsing channel item from "${url}"`, itemParseError);
     throw parseError;
@@ -30,7 +30,7 @@ export async function refreshRSSFeed(url: string): Promise<RSSFeedChannel> {
   return { title, items: rssItems };
 }
 
-const parseRSSItem = (rssItemNode: Element): RSSItem => {
+const parseRSSItem = (rssItemNode: Element, key: number): RSSItem => {
   if (!rssItemNode.querySelector('title')) {
     throw new Error('RSS feed items must contain title');
   }
@@ -40,8 +40,14 @@ const parseRSSItem = (rssItemNode: Element): RSSItem => {
     publishDate = new Date(rssItemNode.querySelector('pubDate').textContent);
   }
 
+  let guid: number | string = key;
+  if (rssItemNode.querySelector('guid')) {
+    guid = rssItemNode.querySelector('guid').textContent;
+  }
+
   return {
     publishDate,
+    guid: guid.toString(),
     title: rssItemNode.querySelector('title').textContent,
     link: rssItemNode.querySelector('link').textContent,
     author: rssItemNode.querySelector('author').textContent,
