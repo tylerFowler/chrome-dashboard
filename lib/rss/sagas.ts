@@ -4,14 +4,14 @@ import { fetchRSSFeed, rssFeedFetchFailure, Actions, populateRSSFeed } from './a
 import * as API from './api';
 
 function* refreshRSSFeed(action: ActionType<typeof fetchRSSFeed>) {
-  const { name, url } = action.payload;
+  const { feedUrl: url } = action.payload;
 
   try {
     const rssChannel: API.RSSFeedChannel = yield call(API.refreshRSSFeed, url);
 
-    yield put(populateRSSFeed(name, rssChannel.title, rssChannel.items));
+    yield put(populateRSSFeed(url, rssChannel.title, rssChannel.items));
   } catch (error) {
-    yield put(rssFeedFetchFailure(name, error));
+    yield put(rssFeedFetchFailure(url, error));
   }
 }
 

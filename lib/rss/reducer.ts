@@ -30,11 +30,11 @@ const chanReducer = (state: FeedChannel = defaultChannel, action: RSSAction): Fe
   switch (action.type) {
   case Actions.FetchChannel:
     return { ...state,
-      channelName: action.payload.name, channelUrl: action.payload.url,
+      channelUrl: action.payload.feedUrl,
       fetching: true, pullError: null,
     };
   case Actions.RefreshChannel:
-    return { ...state, fetching: false,
+    return { ...state, fetching: false, channelName: action.payload.title,
       items: Array.from(action.payload.items)
         .sort((a, b) => a.publishDate.valueOf() - b.publishDate.valueOf()),
     };
@@ -51,7 +51,7 @@ export default function rssReducer(state: State = defaultState, action: RSSActio
   case Actions.FetchChannelFailure:
   case Actions.RefreshChannel:
     return { ...state, channels: { ...state.channels,
-      [action.payload.name]: chanReducer(state.channels[action.payload.name], action),
+      [action.payload.feedUrl]: chanReducer(state.channels[action.payload.feedUrl], action),
     }};
   default:
     return state;
