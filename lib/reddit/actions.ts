@@ -1,5 +1,6 @@
 import { action, ActionType } from 'typesafe-actions';
 import { RedditPost } from './reducer';
+import { FeedType } from './interface';
 
 export enum Actions {
   FetchSub = 'REDDIT_FETCH_SUB',
@@ -13,13 +14,13 @@ export type RedditAction = ActionType<
   | typeof fetchSubredditError
 >;
 
-export const fetchSubreddit = (sub: string, pullSize: number) =>
-  action(Actions.FetchSub, { sub, pullSize });
+export const fetchSubreddit = (sub: string, feedType: FeedType, pullSize: number) =>
+  action(Actions.FetchSub, { pullSize }, { sub, feed: feedType });
 
-export const refreshSubreddit = (sub: string, posts: readonly RedditPost[]) =>
-  action(Actions.ReceiveSub, { sub, posts });
+export const refreshSubreddit = (sub: string, feedType: FeedType, posts: readonly RedditPost[]) =>
+  action(Actions.ReceiveSub, { posts }, { sub, feed: feedType });
 
-export const fetchSubredditError = (sub: string, error: Error) =>
-  action(Actions.SubFetchFailure, { sub, error });
+export const fetchSubredditError = (sub: string, feedType: FeedType, error: Error) =>
+  action(Actions.SubFetchFailure, { error }, { sub, feed: feedType });
 
 // TODO: add autorefresh actions
