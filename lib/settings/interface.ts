@@ -5,6 +5,7 @@ export type PanelOrientation = 'left' | 'right';
 export enum FeedType {
   HN = 'hn',
   DN = 'dn',
+  Reddit = 'reddit',
 }
 
 export namespace FeedType {
@@ -14,6 +15,8 @@ export namespace FeedType {
       return 'Hacker News';
     case FeedType.DN:
       return 'Designer News';
+    case FeedType.Reddit:
+      return 'Reddit';
     }
   };
 }
