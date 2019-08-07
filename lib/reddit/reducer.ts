@@ -14,14 +14,14 @@ export interface RedditPost {
 
 export interface SubredditFeed {
   readonly sub: string;
-  readonly postsById: { [id: string]: RedditPost };
+  readonly posts: readonly RedditPost[];
   readonly fetching: boolean;
   readonly pullError: Error;
 }
 
 const defaultSubFeed: SubredditFeed = {
   sub: '',
-  postsById: {},
+  posts: [],
   fetching: false,
   pullError: null,
 } as const;
@@ -33,7 +33,16 @@ interface Subreddits { [subredditFeedKey: string]: SubredditFeed; }
 const getSubFeedKey = (sub: string, feed: FeedType) => `${sub}/${feed}`;
 
 function subredditReducer(state: SubredditFeed = defaultSubFeed, action: RedditAction): SubredditFeed {
-  return state;
+  switch (action.type) {
+  case Actions.FetchSub:
+    return { ...state, fetching: true, pullError: null };
+  case Actions.ReceiveSub:
+    return { ...state, fetching: false, posts: action.payload.posts };
+  case Actions.SubFetchFailure:
+    return { ...state, fetching: false, pullError: action.payload.error };
+  default:
+    return state;
+  }
 }
 
 function subFeedsReducer(state: Subreddits = {}, action: RedditAction): Subreddits {
@@ -42,7 +51,9 @@ function subFeedsReducer(state: Subreddits = {}, action: RedditAction): Subreddi
   case Actions.ReceiveSub:
   case Actions.SubFetchFailure:
     const feedKey = getSubFeedKey(action.meta.sub, action.meta.feed);
-    return { ...state, [feedKey]: subredditReducer(state[feedKey], action) };
+    return { ...state, [feedKey]: {
+      sub: action.meta.sub, ...subredditReducer(state[feedKey], action),
+    }};
   default:
     return state;
   }
