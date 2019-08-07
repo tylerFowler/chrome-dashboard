@@ -9,6 +9,8 @@ import dnFeedReducer, { State as DNFeedState } from './dn/reducer';
 import dnFeedSaga from './dn/sagas';
 import hnFeedReducer, { State as HNFeedState } from './hn/reducer';
 import hnFeedSaga from './hn/sagas';
+import redditFeedReducer, { State as RedditFeedState } from './reddit/reducer';
+import redditFeedSaga from './reddit/sagas';
 import settingsReducer, { State as SettingsState } from './settings/reducer';
 import settingsSaga from './settings/sagas';
 import weatherReducer, { State as WeatherState } from './weather/reducer';
@@ -26,6 +28,7 @@ export interface GlobalState {
   clock: ClockState;
   hnFeed: HNFeedState;
   dnFeed: DNFeedState;
+  redditFeed: RedditFeedState;
   weather: WeatherState;
   settings: SettingsState;
 }
@@ -46,6 +49,7 @@ const store = createStore(
     clock: clockReducer,
     hnFeed: hnFeedReducer,
     dnFeed: dnFeedReducer,
+    redditFeed: redditFeedReducer,
     weather: weatherReducer,
     settings: settingsReducer,
   }),
@@ -58,6 +62,7 @@ saga.run(function* appSaga() {
     clock: clockSaga(),
     hnFeed: hnFeedSaga(),
     dnFeed: dnFeedSaga(),
+    redditFeed: redditFeedSaga(),
     weather: weatherSaga(),
   });
 });
