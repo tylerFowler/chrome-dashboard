@@ -18,7 +18,7 @@ const HNFeedPanel: React.SFC<HNFeedPanelProps> = ({ stories, feed, setFeed, ...p
     renderFeedControls={orientation => <FeedSelector orientation={orientation} feed={feed} onChange={setFeed} />}
   >
     {stories.map((post, idx) =>
-      <li key={idx}>
+      <li key={post.id}>
         <FeedItem
           id={post.id}
           index={idx + 1} key={post.id}
