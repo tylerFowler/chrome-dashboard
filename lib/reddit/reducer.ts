@@ -30,7 +30,8 @@ interface Subreddits { [subredditFeedKey: string]: SubredditFeed; }
 
 // SubredditFeedKey is a key that can be used to idenfity the combination of a
 // subreddit and a specific feed view of that subreddit.
-const getSubFeedKey = (sub: string, feed: FeedType) => `${sub}/${feed}`;
+// TODO: move this to selectors file
+export const getSubFeedKey = (sub: string, feed: FeedType) => `${sub}/${feed}`;
 
 function subredditReducer(state: SubredditFeed = defaultSubFeed, action: RedditAction): SubredditFeed {
   switch (action.type) {
