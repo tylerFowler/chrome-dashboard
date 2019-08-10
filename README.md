@@ -3,7 +3,7 @@ chrome-dashboard
 
 A (highly opinionated) new tab page extension for Chrome. Currently in development and should be considered very alpha.
 
-[!preview](https://user-images.githubusercontent.com/5419372/62814937-94e1b400-bad9-11e9-9e5a-a0baf541d314.png)
+![preview](https://user-images.githubusercontent.com/5419372/62814937-94e1b400-bad9-11e9-9e5a-a0baf541d314.png)
 
 ## Building & Local Usage
 1. Install the dependencies
