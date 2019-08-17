@@ -29,6 +29,7 @@ import { defaultCacheExpirationThreshold, feedBucketKey, weatherBucketKey } from
 import { isCachableRequest as isHNRequest } from 'lib/hn/api';
 import { isCachableRequest as isDNRequest } from 'lib/dn/api';
 import { isCacheableRequest as isWeatherRequest } from 'lib/weather/api';
+import { isCacheableRequest as isRedditRequest } from 'lib/reddit/api';
 
 // selectActiveCache iterates through all active caches, selecting the one that
 // is not yet expired, if one exists. If multiple active caches exist, the first
@@ -72,7 +73,7 @@ function cacheCleanupHandler(event: any) {
 self.addEventListener('fetch', cacheCleanupHandler);
 
 function isFeedRequest(req: Request): boolean {
-  return isHNRequest(req) || isDNRequest(req);
+  return isHNRequest(req) || isDNRequest(req) || isRedditRequest(req);
 }
 
 function feedFetchHandler(event: any) {
