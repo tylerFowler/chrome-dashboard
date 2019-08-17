@@ -11,7 +11,7 @@ function* fetchSubreddit(action: ActionType<typeof fetchSubredditAction>) {
     const subPosts: RedditPost[] = yield call(API.fetchSubreddit, sub, feed, action.payload.pullSize);
     yield put(refreshSubreddit(sub, feed, subPosts));
   } catch (error) {
-    put(fetchSubredditError(sub, feed, error));
+    yield put(fetchSubredditError(sub, feed, error));
   }
 }
 
