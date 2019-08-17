@@ -1,16 +1,6 @@
-import { FeedType } from './interface';
+import { RedditPost, FeedType } from './interface';
 import { RedditAction, Actions } from './actions';
 import { combineReducers } from 'redux';
-
-// TODO: the subreddit feeds give colors per-post, those could be incorporated somehow
-// "link_flair_text_color", "author_flair_background_color"
-export interface RedditPost {
-  readonly title: string;
-  readonly author: string;
-  readonly upvotes: number;
-  readonly createdAt: Date;
-  readonly permalink: string;
-}
 
 export interface SubredditFeed {
   readonly sub: string;

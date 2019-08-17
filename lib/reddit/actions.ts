@@ -1,6 +1,5 @@
 import { action, ActionType } from 'typesafe-actions';
-import { RedditPost } from './reducer';
-import { FeedType } from './interface';
+import { RedditPost, FeedType } from './interface';
 
 export enum Actions {
   FetchSub = 'REDDIT_FETCH_SUB',
