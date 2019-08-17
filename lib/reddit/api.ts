@@ -15,8 +15,6 @@ interface SubRedditFeedResponse {
   created: number;
 }
 
-export default async function fetchSubreddit(
-  subreddit: string, feedType: FeedType, pullSize: number,
-): Promise<RedditPost[]> {
+export async function fetchSubreddit(subreddit: string, feedType: FeedType, pullSize: number): Promise<RedditPost[]> {
   throw new Error('not implemented');
 }
