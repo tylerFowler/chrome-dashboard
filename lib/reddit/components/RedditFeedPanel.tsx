@@ -38,8 +38,10 @@ const RedditFeedPanel: React.FC<RedditFeedPanelProps> = ({ subreddit, feedType, 
           index={idx + 1} key={post.id}
           title={post.title}
           url={post.permalink}
-          upvotes={post.upvotes}
           author={post.author}
+          upvotes={post.upvotes}
+          commentCount={post.commentCount}
+          commentLink={post.permalink}
         />
       </li>,
     )}
