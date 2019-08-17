@@ -30,7 +30,7 @@ const RedditFeedPanel: React.FC<RedditFeedPanelProps> = ({ subreddit, feedType, 
   const fetchError = useSelector((state: GlobalState) => getSubFetchError(subreddit, feedType, state));
 
   // TODO: this will eventually need to have a feed selector, possibly reuse from HN state
-  return <FeedPanel loading={isFetching} fetchError={fetchError} {...panelProps}>
+  return <FeedPanel loading={isFetching} fetchError={fetchError} title={title} {...panelProps}>
     {posts.map((post, idx) =>
       <li key={post.id}>
         <FeedItem
