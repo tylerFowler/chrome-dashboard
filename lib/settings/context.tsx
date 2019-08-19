@@ -3,13 +3,13 @@ import { connect } from 'react-redux';
 import { GlobalState } from '../store';
 import { FeedSettings, WeatherSettings } from './reducer';
 import { HNFeedSettings, PanelOrientation, SubredditFeedSettings } from './interface';
+import defaultRedditTheme from '../reddit/theme';
 import { FeedType as HNFeedType } from '../hn/interface';
 import { FeedType as SubredditFeedType } from '../reddit/interface';
 import {
   getPanelFeedSettings, getFeedSettings,
   getWeatherLocationConfig, getWeatherUnits,
 } from './selectors';
-import { defaultTheme } from '../panel/panelTheme';
 
 // SettingsProviderProps is the set of properties given to each Settings Provider
 // component, which supplies arbitrary settings over a context provider, optionally,
@@ -50,11 +50,7 @@ export const HNFeedSettingsProvider = createSettingsProvider(
 
 export const SubredditSettingsContext = React.createContext<Partial<SubredditFeedSettings>>({
   defaultFeedType: SubredditFeedType.Top,
-  theme: { // default to the official reddit blue
-    primaryColor: '#0079d3',
-    primaryColorRGB: { red: 0, green: 121, blue: 211 },
-    ...defaultTheme,
-  },
+  theme: defaultRedditTheme,
 });
 
 export const SubredditFeedSettingsProvider = createSettingsProvider(

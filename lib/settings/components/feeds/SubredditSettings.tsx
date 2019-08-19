@@ -4,6 +4,7 @@ import { GlobalState } from '../../../store';
 import { updatePanelConfig } from '../../actions';
 import { getPanelFeedSettings } from '../../selectors';
 import { FeedType } from '../../../reddit/interface';
+import defaultRedditTheme from '../../../reddit/theme';
 import FeedOptionGroup from '../../../reddit/components/FeedOptionGroup';
 import { PanelOrientation, SubredditFeedSettings } from '../../interface';
 import PanelThemeInput from '../PanelThemeInput';
@@ -42,7 +43,7 @@ const SubredditSettings: React.FC<{ readonly panelOrientation: PanelOrientation 
 
     <SettingField>
       <SettingInlineLabel htmlFor={makeId('subreddit-panel-theme-color')}>Theme:</SettingInlineLabel>
-      <PanelThemeInput id={makeId('subreddit-panel-theme-color')} value={feedSettings.theme}
+      <PanelThemeInput id={makeId('subreddit-panel-theme-color')} value={feedSettings.theme || defaultRedditTheme}
         onChange={theme => updateFeedSettings('theme', theme)}
       />
     </SettingField>

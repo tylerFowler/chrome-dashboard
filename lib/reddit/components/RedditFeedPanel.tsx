@@ -2,7 +2,7 @@ import React, { useEffect, useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { GlobalState } from '../../store';
 import { SubredditSettingsContext, FeedSettingsContext } from '../../settings/context';
-import { defaultTheme } from '../../panel/panelTheme';
+import defaultTheme from '../theme';
 import { FeedType } from '../interface';
 import { fetchSubreddit } from '../actions';
 import { getPostsForSub, isFetchingSub, getSubFetchError } from '../selectors';
@@ -17,7 +17,7 @@ export interface RedditFeedPanelProps extends Omit<FeedProps, 'title'> {
 
 const RedditFeedPanel: React.FC<RedditFeedPanelProps> = ({ subreddit, feedType, ...panelProps }) => {
   const { pullSize: maxStoryCount } = useContext(FeedSettingsContext);
-  const { sub = subreddit, defaultFeedType, theme = {} } = useContext(SubredditSettingsContext);
+  const { sub = subreddit, defaultFeedType, theme } = useContext(SubredditSettingsContext);
 
   const curFeedType = feedType || defaultFeedType; // TODO: should probably be local state once we can change it
 
