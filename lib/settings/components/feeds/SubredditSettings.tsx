@@ -1,9 +1,9 @@
 import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { FeedType } from '../../../reddit/interface';
 import { PanelOrientation, SubredditFeedSettings } from '../../interface';
 import { SettingField, SettingInlineLabel, SettingSelect, SettingInput } from '../SettingsForm';
 import PanelThemeInput from '../PanelThemeInput';
-import { useSelector, useDispatch } from 'react-redux';
 import { GlobalState } from '../../../store';
 import { getPanelFeedSettings } from '../../selectors';
 import { updatePanelConfig } from '../../actions';
@@ -24,6 +24,8 @@ const SubredditSettings: React.FC<{ readonly panelOrientation: PanelOrientation 
 
   // TODO: when sub name is filled out, attempt a request to the subreddit and report any 404 errors
   //       and attempt to find a theme color for the sub, using that as the theme color
+  //       - if we do this, just use local state for settings changes and commit only when a request has been made
+  //         successfully, only problem here being the issue of the 'Too Many Requests' error
   // TODO: pull out the feed type options into generic component, will need it again later
   // TODO: add input for display name, use the request data to fill out the full subreddit name by default
   return (<>
