@@ -21,6 +21,7 @@
     "build-dist": "NODE_ENV=production npm run build && npm run build-assets"
   },
   "dependencies": {
+    "hex-rgb": "^4.1.0",
     "natural-scale": "^2.0.0",
     "normalize.css": "^8.0.1",
     "react": "^16.8.6",
