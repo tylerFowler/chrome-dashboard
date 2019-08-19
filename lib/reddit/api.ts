@@ -27,7 +27,7 @@ interface SubRedditFeedResponse {
 export async function fetchSubreddit(
   subreddit: string, feedType: FeedType, pullSize: number = 15,
 ): Promise<RedditPost[]> {
-  const response = await fetch(`${RedditAPI}/r/${subreddit}/${feedType}/.json?limit=${pullSize}`, {
+  const response = await fetch(`${RedditAPI}/${subreddit}/${feedType}/.json?limit=${pullSize}`, {
     headers: { 'User-Agent': userAgent },
   });
 
