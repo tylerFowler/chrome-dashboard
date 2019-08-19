@@ -28,10 +28,6 @@ const getLightnessValue = ({ red, green, blue }: RGB): number =>
 
 // PanelThemeInput is an input that can be used to choose a color scheme to use
 // for a Panel, generating the theme on the fly.
-//
-// TODO: need to decide on whether to use the light font or dark font based on
-// the color, can probably just avg together the RGB values, using dark font
-// or light font at some threshold of brightness.
 const PanelThemeInput: React.FC<PanelThemeInputProps> = ({ onChange, value, ...inputProps}) => {
   const inputValue = valueIsTheme(value)
     ? value.primaryColor
