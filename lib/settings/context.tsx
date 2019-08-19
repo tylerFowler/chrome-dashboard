@@ -42,7 +42,7 @@ export const HNSettingsContext = React.createContext<HNFeedSettings>({
 });
 
 export const HNFeedSettingsProvider = createSettingsProvider(
-  (state, orientation) => getPanelFeedSettings(orientation, state),
+  (state, orientation) => getPanelFeedSettings(orientation, state) as HNFeedSettings,
   HNSettingsContext,
 );
 
