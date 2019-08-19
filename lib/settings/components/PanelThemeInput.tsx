@@ -17,7 +17,7 @@ const customInputCSS: React.CSSProperties = {
 };
 
 const valueIsTheme = (value: PanelThemeInputProps['value']): value is PanelThemeCustomization =>
-  value.hasOwnProperty('primaryColor');
+  value && value.hasOwnProperty('primaryColor');
 
 // PanelThemeInput is an input that can be used to choose a color scheme to use
 // for a Panel, generating the theme on the fly.
