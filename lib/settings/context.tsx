@@ -2,8 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { GlobalState } from '../store';
 import { FeedSettings, WeatherSettings } from './reducer';
-import { HNFeedSettings, PanelOrientation } from './interface';
-import { FeedType } from '../hn/interface';
+import { HNFeedSettings, PanelOrientation, SubredditFeedSettings } from './interface';
+import { FeedType as HNFeedType } from '../hn/interface';
+import { FeedType as SubredditFeedType } from '../reddit/interface';
 import {
   getPanelFeedSettings, getFeedSettings,
   getWeatherLocationConfig, getWeatherUnits,
@@ -38,12 +39,21 @@ const createSettingsProvider = <T, _ = any>(settingsSelector: SettingsSelector<T
 ;
 
 export const HNSettingsContext = React.createContext<HNFeedSettings>({
-  defaultFeedType: FeedType.NewStories,
+  defaultFeedType: HNFeedType.NewStories,
 });
 
 export const HNFeedSettingsProvider = createSettingsProvider(
   (state, orientation) => getPanelFeedSettings(orientation, state) as HNFeedSettings,
   HNSettingsContext,
+);
+
+export const SubredditSettingsContext = React.createContext<Partial<SubredditFeedSettings>>({
+  defaultFeedType: SubredditFeedType.Top,
+});
+
+export const SubredditFeedSettingsProvider = createSettingsProvider(
+  (state, orientation) => getPanelFeedSettings(orientation, state) as SubredditFeedSettings,
+  SubredditSettingsContext,
 );
 
 export const FeedSettingsContext = React.createContext<FeedSettings>({

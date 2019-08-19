@@ -3,9 +3,10 @@ import { connect } from 'react-redux';
 import { GlobalState } from './store';
 import { getPanelFeedType } from './settings/selectors';
 import { FeedType, PanelOrientation } from './settings/interface';
-import { HNFeedSettingsProvider, FeedSettingsProvider } from './settings/context';
+import { HNFeedSettingsProvider, FeedSettingsProvider, SubredditFeedSettingsProvider } from './settings/context';
 import DNFeedPanel from './dn/DNFeedContainer';
 import HNFeedPanel from './hn/HNFeedContainer';
+import RedditFeedPanel from './reddit/components/RedditFeedPanel';
 
 interface DashboardPanelProps {
   readonly feedType: FeedType;
@@ -28,6 +29,14 @@ const DashboardPanel: React.SFC<DashboardPanelProps> = ({ feedType, orientation,
     return (
       <FeedSettingsProvider>
         <DNFeedPanel panelOrientation={orientation} style={style} className={className} />
+      </FeedSettingsProvider>
+    );
+  case FeedType.Reddit:
+    return (
+      <FeedSettingsProvider>
+        <SubredditFeedSettingsProvider orientation={orientation}>
+          <RedditFeedPanel panelOrientation={orientation} style={style} className={className} />
+        </SubredditFeedSettingsProvider>
       </FeedSettingsProvider>
     );
   default:
