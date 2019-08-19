@@ -32,7 +32,14 @@ export async function fetchSubreddit(
   });
 
   if (!response.ok) {
-    throw new Error(await response.text());
+    switch (response.status) {
+    case 404:
+      throw new Error(`Subreddit ${subreddit} not found`);
+    case 429:
+      throw new Error('Too many refreshes, try again in a few moments');
+    default:
+      throw new Error(await response.text());
+    }
   }
 
   const feedResp: SubRedditFeedResponse = await response.json();
