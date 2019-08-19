@@ -30,7 +30,7 @@ const RedditFeedPanel: React.FC<RedditFeedPanelProps> = ({ subreddit, feedType, 
       dispatch(fetchSubreddit(sub, curFeedType, maxStoryCount));
     }
     // TODO: start autorefresh, return stop autorefresh
-  }, [ curFeedType ]);
+  }, [ sub, curFeedType ]);
 
   const posts = useSelector((state: GlobalState) => getPostsForSub(sub, feedType, maxStoryCount, state));
   const isFetching = useSelector((state: GlobalState) => isFetchingSub(sub, feedType, state));
