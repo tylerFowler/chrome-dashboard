@@ -1,5 +1,6 @@
 import { FeedType as HNFeedType } from '../hn/interface';
 import { FeedType as RedditFeedType } from '../reddit/interface';
+import { PanelThemeCustomization } from '../panel/panelTheme';
 
 export type PanelOrientation = 'left' | 'right';
 
@@ -32,5 +33,5 @@ export interface SubredditFeedSettings {
   readonly sub: string;
   readonly displayName?: string;
   readonly defaultFeedType: RedditFeedType;
-  readonly themePrimaryColor: string;
+  readonly theme: PanelThemeCustomization;
 }
