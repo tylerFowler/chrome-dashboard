@@ -1,15 +1,24 @@
 import React from 'react';
 import { FeedType } from '../../../reddit/interface';
-import { PanelOrientation } from '../../interface';
+import { PanelOrientation, SubredditFeedSettings } from '../../interface';
 import { SettingField, SettingInlineLabel, SettingSelect, SettingInput } from '../SettingsForm';
 import PanelThemeInput from '../PanelThemeInput';
+import { useSelector, useDispatch } from 'react-redux';
+import { GlobalState } from '../../../store';
+import { getPanelFeedSettings } from '../../selectors';
+import { updatePanelConfig } from '../../actions';
 
 export interface SubredditSettingsProps {
   readonly panelOrientation: PanelOrientation;
 }
 
 const SubredditSettings: React.FC<{ readonly panelOrientation: PanelOrientation }> = ({ panelOrientation }) => {
-  // TODO: get the current values from settings state, ignore the setters - we'll only dispatch things
+  const dispatch = useDispatch();
+  const feedSettings =
+    useSelector((state: GlobalState) => getPanelFeedSettings(panelOrientation, state)) as SubredditFeedSettings;
+
+  const updateFeedSettings = <T extends keyof SubredditFeedSettings>(key: T, value: SubredditFeedSettings[T]) =>
+    dispatch(updatePanelConfig(panelOrientation, { ...feedSettings, [key]: value }));
 
   const makeId = (id: string) => `${id}-${panelOrientation}`;
 
@@ -20,12 +29,16 @@ const SubredditSettings: React.FC<{ readonly panelOrientation: PanelOrientation 
   return (<>
     <SettingField>
       <SettingInlineLabel htmlFor={makeId('subreddit-name')}>Sub Name:</SettingInlineLabel>
-      <SettingInput id={makeId('subreddit-name')} value="" />
+      <SettingInput id={makeId('subreddit-name')} value={feedSettings.sub}
+        onChange={e => updateFeedSettings('sub', e.target.value)}
+      />
     </SettingField>
 
     <SettingField>
       <SettingInlineLabel htmlFor={makeId('default-subreddit-feed-type')}>Default Feed Type:</SettingInlineLabel>
-      <SettingSelect id={makeId('default-subreddit-feed-type')} value="">
+      <SettingSelect id={makeId('default-subreddit-feed-type')} value={feedSettings.defaultFeedType}
+        onChange={e => updateFeedSettings('defaultFeedType', e.target.value as FeedType)}
+      >
         <option value={FeedType.Top} defaultChecked={true}>top</option>
         <option value={FeedType.New}>new</option>
         <option value={FeedType.Rising}>rising</option>
@@ -36,7 +49,9 @@ const SubredditSettings: React.FC<{ readonly panelOrientation: PanelOrientation 
 
     <SettingField>
       <SettingInlineLabel htmlFor={makeId('subreddit-panel-theme-color')}>Theme:</SettingInlineLabel>
-      <PanelThemeInput id={makeId('subreddit-panel-theme-color')} />
+      <PanelThemeInput id={makeId('subreddit-panel-theme-color')} value={feedSettings.theme}
+        onChange={theme => updateFeedSettings('theme', theme)}
+      />
     </SettingField>
   </>);
 };
