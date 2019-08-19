@@ -31,7 +31,7 @@ const SubredditSettings: React.FC<{ readonly panelOrientation: PanelOrientation 
   return (<>
     <SettingField>
       <SettingInlineLabel htmlFor={makeId('subreddit-name')}>Sub Name:</SettingInlineLabel>
-      <SettingInput id={makeId('subreddit-name')} value={feedSettings.sub}
+      <SettingInput id={makeId('subreddit-name')} value={feedSettings.sub} placeholder="r/sub"
         onChange={e => updateFeedSettings('sub', e.target.value)}
       />
     </SettingField>
