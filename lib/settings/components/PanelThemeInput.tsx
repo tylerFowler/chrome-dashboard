@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import hexToRGB from 'hex-rgb';
 import { defaultTheme, PanelThemeCustomization, RGB } from '../../panel/panelTheme';
 import { SettingInput } from './SettingsForm';
