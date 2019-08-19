@@ -26,12 +26,16 @@ const RedditFeedPanel: React.FC<RedditFeedPanelProps> = ({ subreddit, feedType, 
 
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(fetchSubreddit(sub, curFeedType, maxStoryCount));
+    if (sub) {
+      dispatch(fetchSubreddit(sub, curFeedType, maxStoryCount));
+    }
     // TODO: start autorefresh, return stop autorefresh
   }, [ curFeedType ]);
 
   const posts = useSelector((state: GlobalState) => getPostsForSub(sub, feedType, maxStoryCount, state));
   const isFetching = useSelector((state: GlobalState) => isFetchingSub(sub, feedType, state));
+
+  // TODO: need to check for 'Too Many Requests errors & display a message appropriately, likely in the API file
   const fetchError = useSelector((state: GlobalState) => getSubFetchError(sub, feedType, state));
 
   // TODO: this will eventually need to have a feed selector, possibly reuse from HN state
