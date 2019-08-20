@@ -8,7 +8,7 @@ import defaultRedditTheme from '../../../reddit/theme';
 import FeedOptionGroup from '../../../reddit/components/FeedOptionGroup';
 import { PanelOrientation, SubredditFeedSettings } from '../../interface';
 import PanelThemeInput from '../PanelThemeInput';
-import { SettingField, SettingInlineLabel, SettingSelect, SettingInput } from '../SettingsForm';
+import { SettingField, SettingInlineLabel, SettingSelect, SettingInput, SettingLinkButton } from '../SettingsForm';
 
 export interface SubredditSettingsProps {
   readonly panelOrientation: PanelOrientation;
@@ -46,6 +46,14 @@ const SubredditSettings: React.FC<{ readonly panelOrientation: PanelOrientation 
       <PanelThemeInput id={makeId('subreddit-panel-theme-color')} value={feedSettings.theme || defaultRedditTheme}
         onChange={theme => updateFeedSettings('theme', theme)}
       />
+
+      <SettingLinkButton onClick={e => {
+          e.preventDefault();
+          updateFeedSettings('theme', defaultRedditTheme);
+        }} style={{marginLeft: '.5em'}}
+      >
+        reset
+      </SettingLinkButton>
     </SettingField>
   </>);
 };
