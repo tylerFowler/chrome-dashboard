@@ -14,6 +14,7 @@ interface SubRedditRawFeed {
   author: string;
   ups: number;
   url: string;
+  permalink: string;
   num_comments: number;
   created: number;
 }
@@ -50,7 +51,8 @@ export async function fetchSubreddit(
     author: data.author,
     upvotes: data.ups,
     createdAt: new Date(data.created),
-    permalink: data.url,
+    contentUrl: data.url,
+    permalink: `${RedditAPI}${data.permalink}`,
     commentCount: data.num_comments,
   } as RedditPost));
 }

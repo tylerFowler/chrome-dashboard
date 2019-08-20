@@ -49,7 +49,7 @@ const RedditFeedPanel: React.FC<RedditFeedPanelProps> = ({ subreddit, feedType, 
           id={post.id}
           index={idx + 1} key={post.id}
           title={post.title}
-          url={post.permalink}
+          url={post.contentUrl}
           author={post.author}
           upvotes={post.upvotes}
           commentCount={post.commentCount}
