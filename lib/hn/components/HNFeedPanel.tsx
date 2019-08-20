@@ -1,9 +1,10 @@
 import React from 'react';
-import FeedItem from '../../panel/components/FeedItem';
-import FeedPanel, { FeedProps } from '../../panel/components/FeedPanel';
+import FeedItem from 'lib/panel/components/FeedItem';
+import FeedSelector from 'lib/panel/components/FeedSelector';
+import FeedPanel, { FeedProps } from 'lib/panel/components/FeedPanel';
 import { HNPost } from '../reducer';
 import { FeedType } from '../interface';
-import FeedSelector from './FeedSelector';
+import FeedOptionGroup from './FeedOptionGroup';
 
 export interface HNFeedPanelProps extends FeedProps {
   title: never;
@@ -15,7 +16,11 @@ export interface HNFeedPanelProps extends FeedProps {
 
 const HNFeedPanel: React.SFC<HNFeedPanelProps> = ({ stories, feed, setFeed, ...panelProps }) =>
   <FeedPanel {...panelProps} title="Hacker News"
-    renderFeedControls={orientation => <FeedSelector orientation={orientation} feed={feed} onChange={setFeed} />}
+    renderFeedControls={orientation =>
+      <FeedSelector orientation={orientation} feed={feed} onChange={setFeed}>
+        <FeedOptionGroup />
+      </FeedSelector>
+    }
   >
     {stories.map((post, idx) =>
       <li key={post.id}>
