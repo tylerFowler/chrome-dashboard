@@ -1,6 +1,6 @@
 import { RedditPost, FeedType } from './interface';
 
-export const RedditAPI = 'https://reddit.com';
+export const RedditAPI = 'https://www.reddit.com';
 
 // TODO: add version, bake in as part of build step (replacement)
 const userAgent = 'chrome:dash';
