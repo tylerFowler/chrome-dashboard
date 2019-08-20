@@ -19,10 +19,8 @@ const RedditFeedPanel: React.FC<RedditFeedPanelProps> = ({ subreddit, feedType, 
   const { pullSize: maxStoryCount } = useContext(FeedSettingsContext);
   const { sub = subreddit, defaultFeedType, theme } = useContext(SubredditSettingsContext);
 
-  const curFeedType = feedType || defaultFeedType; // TODO: should probably be local state once we can change it
-
-  // TODO: this should be from settings, falling back to actual sub name, falling back to props title
   const title = panelProps.title || sub;
+  const curFeedType = feedType || defaultFeedType; // TODO: should probably be local state once we can change it
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -34,8 +32,6 @@ const RedditFeedPanel: React.FC<RedditFeedPanelProps> = ({ subreddit, feedType, 
 
   const posts = useSelector((state: GlobalState) => getPostsForSub(sub, feedType, maxStoryCount, state));
   const isFetching = useSelector((state: GlobalState) => isFetchingSub(sub, feedType, state));
-
-  // TODO: need to check for 'Too Many Requests errors & display a message appropriately, likely in the API file
   const fetchError = useSelector((state: GlobalState) => getSubFetchError(sub, feedType, state));
 
   // TODO: this will eventually need to have a feed selector, possibly reuse from HN state
@@ -60,7 +56,7 @@ const RedditFeedPanel: React.FC<RedditFeedPanelProps> = ({ subreddit, feedType, 
 };
 
 RedditFeedPanel.defaultProps = {
-  feedType: FeedType.Rising, // TODO: review this decision
+  feedType: FeedType.New,
 };
 
 export default RedditFeedPanel;
