@@ -1,13 +1,15 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect, useContext, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { GlobalState } from '../../store';
-import { SubredditSettingsContext, FeedSettingsContext } from '../../settings/context';
+import { GlobalState } from 'lib/store';
+import { SubredditSettingsContext, FeedSettingsContext } from 'lib/settings/context';
+import FeedItem from 'lib/panel/components/FeedItem';
+import FeedSelector from 'lib/panel/components/FeedSelector';
+import FeedPanel, { FeedProps } from 'lib/panel/components/FeedPanel';
 import defaultTheme from '../theme';
 import { FeedType } from '../interface';
 import { fetchSubreddit } from '../actions';
+import FeedOptionGroup from './FeedOptionGroup';
 import { getPostsForSub, isFetchingSub, getSubFetchError } from '../selectors';
-import FeedPanel, { FeedProps } from '../../panel/components/FeedPanel';
-import FeedItem from '../../panel/components/FeedItem';
 
 export interface RedditFeedPanelProps extends Omit<FeedProps, 'title'> {
   readonly title?: string;
@@ -16,27 +18,30 @@ export interface RedditFeedPanelProps extends Omit<FeedProps, 'title'> {
 }
 
 const RedditFeedPanel: React.FC<RedditFeedPanelProps> = ({ subreddit, feedType, ...panelProps }) => {
+  const dispatch = useDispatch();
+
   const { pullSize: maxStoryCount } = useContext(FeedSettingsContext);
   const { sub = subreddit, defaultFeedType, theme } = useContext(SubredditSettingsContext);
+  const [ activeFeed, setActiveFeed ] = useState(feedType || defaultFeedType);
 
-  const title = panelProps.title || sub;
-  const curFeedType = feedType || defaultFeedType; // TODO: should probably be local state once we can change it
-
-  const dispatch = useDispatch();
   useEffect(() => {
     if (sub) {
-      dispatch(fetchSubreddit(sub, curFeedType, maxStoryCount));
+      dispatch(fetchSubreddit(sub, activeFeed, maxStoryCount));
     }
-    // TODO: start autorefresh, return stop autorefresh
-  }, [ sub, curFeedType ]);
 
-  const posts = useSelector((state: GlobalState) => getPostsForSub(sub, feedType, maxStoryCount, state));
-  const isFetching = useSelector((state: GlobalState) => isFetchingSub(sub, feedType, state));
+    // TODO: start autorefresh, return stop autorefresh
+  }, [ sub, activeFeed, maxStoryCount ]);
+
+  const posts = useSelector((state: GlobalState) => getPostsForSub(sub, activeFeed, maxStoryCount, state));
+  const isFetching = useSelector((state: GlobalState) => isFetchingSub(sub, activeFeed, state));
   const fetchError = useSelector((state: GlobalState) => getSubFetchError(sub, feedType, state));
 
-  // TODO: this will eventually need to have a feed selector, possibly reuse from HN state
-  return <FeedPanel loading={isFetching} fetchError={fetchError} title={title}
-    theme={{ ...defaultTheme, ...theme }} {...panelProps}
+  return <FeedPanel title={sub} {...panelProps} loading={isFetching} fetchError={fetchError}
+    theme={{ ...defaultTheme, ...theme }} renderFeedControls={orientation =>
+      <FeedSelector orientation={orientation} feed={activeFeed} onChange={ft => setActiveFeed(ft as FeedType)}>
+        <FeedOptionGroup />
+      </FeedSelector>
+    }
   >
     {posts.map((post, idx) =>
       <li key={post.id}>
@@ -53,10 +58,6 @@ const RedditFeedPanel: React.FC<RedditFeedPanelProps> = ({ subreddit, feedType, 
       </li>,
     )}
   </FeedPanel>;
-};
-
-RedditFeedPanel.defaultProps = {
-  feedType: FeedType.New,
 };
 
 export default RedditFeedPanel;
