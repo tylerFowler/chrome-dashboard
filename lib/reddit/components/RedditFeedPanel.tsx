@@ -37,7 +37,7 @@ const RedditFeedPanel: React.FC<RedditFeedPanelProps> = ({ subreddit, feedType, 
 
   const posts = useSelector((state: GlobalState) => getPostsForSub(sub, activeFeed, maxStoryCount, state));
   const isFetching = useSelector((state: GlobalState) => isFetchingSub(sub, activeFeed, state));
-  const fetchError = useSelector((state: GlobalState) => getSubFetchError(sub, feedType, state));
+  const fetchError = useSelector((state: GlobalState) => getSubFetchError(sub, activeFeed, state));
 
   return <FeedPanel title={sub} {...panelProps} loading={isFetching} fetchError={fetchError}
     theme={{ ...defaultTheme, ...theme }} renderFeedControls={orientation =>
