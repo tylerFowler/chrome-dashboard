@@ -1,5 +1,6 @@
 import { GlobalState } from '../store';
-import { PanelOrientation } from './interface';
+import { PanelOrientation, FeedType, HNFeedSettings, SubredditFeedSettings } from './interface';
+import { FeedType as HNFeedType } from 'lib/hn/interface';
 
 type State = Pick<GlobalState, 'settings'>;
 
@@ -29,3 +30,20 @@ export const getRightPanelFeedSettings = ({ settings }: State) => settings.panel
 
 export const getWeatherUnits = ({ settings }: State) => settings.weather.unit;
 export const getWeatherLocationConfig = ({ settings }: State) => settings.weather.location;
+
+export const getFeedName = (orientation: PanelOrientation, state: State) => {
+  switch (getPanelFeedType(orientation, state)) {
+  case FeedType.DN:
+    return `Designer News - ${orientation}`;
+  case FeedType.HN: {
+    const feedSettings = getPanelFeedSettings(orientation, state) as HNFeedSettings;
+    return `Hacker News - ${HNFeedType.getDisplayString(feedSettings.defaultFeedType)}`;
+  }
+  case FeedType.Reddit: {
+    const feedSettings = getPanelFeedSettings(orientation, state) as SubredditFeedSettings;
+    return `Subreddit ${feedSettings.sub} - ${feedSettings.defaultFeedType}`;
+  }
+  default:
+    return FeedType.getDisplayString(getPanelFeedType(orientation, state));
+  }
+};
