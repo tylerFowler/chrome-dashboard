@@ -31,7 +31,7 @@ const SubredditSettings: React.FC<{ readonly panelOrientation: PanelOrientation 
 
   // the subreddit needs local state that is only "committed" to settings when the
   // user is done with it to avoid trying to fetch all of their intermediate input,
-  // "done with it" here meaning the blur event
+  // "done with it" here meaning the blur event or the enter key being pressed
   const [ subreddit, setSubreddit ] = useState(feedSettings.sub);
 
   const makeId = (id: string) => `${id}-${panelOrientation}`;
@@ -42,6 +42,7 @@ const SubredditSettings: React.FC<{ readonly panelOrientation: PanelOrientation 
       <SettingInput id={makeId('subreddit-name')} value={subreddit} placeholder="r/sub"
         onChange={e => setSubreddit(e.target.value)}
         onBlur={() => subreddit.length > 0 && updateFeedSettings('sub', subreddit)}
+        onKeyPress={e => e.key === 'Enter' && updateFeedSettings('sub', subreddit)}
       />
     </SettingField>
 
