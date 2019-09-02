@@ -19,6 +19,7 @@ const HNFeedContainer: React.SFC<HNFeedContainerProps> = ({
   const { defaultFeedType } = useContext(HNSettingsContext);
 
   const [ currentFeed, setFeed ] = useState(defaultFeedType);
+  useEffect(() => { setFeed(defaultFeedType); }, [ defaultFeedType ]);
 
   useEffect(() => {
     fetchPosts(currentFeed, pullSize);

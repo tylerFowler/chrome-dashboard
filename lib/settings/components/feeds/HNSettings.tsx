@@ -1,6 +1,6 @@
-import React from 'react';
-import { PanelOrientation } from '../../interface';
-import { FeedType as HNFeedType } from '../../../hn/interface';
+import React, { useEffect } from 'react';
+import { PanelOrientation, HNFeedSettings } from '../../interface';
+import { FeedType as HNFeedType, FeedType } from '../../../hn/interface';
 import { SettingInlineLabel, SettingField, SettingSelect } from '../SettingsForm';
 import FeedSelectOptions from '../../../hn/components/FeedOptionGroup';
 
@@ -10,8 +10,18 @@ export interface HNSettingsProps {
   setDefaultFeedType(feed: HNFeedType): void;
 }
 
+const defaultSettings: HNFeedSettings = {
+  defaultFeedType: FeedType.TopStories,
+} as const;
+
 const HNSettings: React.SFC<HNSettingsProps> = props => {
   const { panelOrientation, defaultFeedType, setDefaultFeedType } = props;
+
+  useEffect(() => {
+    if (!defaultFeedType) {
+      setDefaultFeedType(defaultSettings.defaultFeedType);
+    }
+  }, []);
 
   const makeId = (id: string) => `${id}-${panelOrientation}`;
 
