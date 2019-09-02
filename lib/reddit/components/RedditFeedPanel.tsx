@@ -21,8 +21,10 @@ const RedditFeedPanel: React.FC<RedditFeedPanelProps> = ({ subreddit, feedType, 
   const dispatch = useDispatch();
 
   const { refreshInterval, pullSize: maxStoryCount } = useContext(FeedSettingsContext);
+
   const { sub = subreddit, defaultFeedType, theme } = useContext(SubredditSettingsContext);
   const [ activeFeed, setActiveFeed ] = useState(feedType || defaultFeedType);
+  useEffect(() => { setActiveFeed(defaultFeedType); }, [ defaultFeedType ]);
 
   useEffect(() => {
     if (sub) {
