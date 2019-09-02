@@ -10,10 +10,6 @@ import { PanelOrientation, SubredditFeedSettings } from '../../interface';
 import PanelThemeInput from '../PanelThemeInput';
 import { SettingField, SettingInlineLabel, SettingSelect, SettingInput, SettingLinkButton } from '../SettingsForm';
 
-export interface SubredditSettingsProps {
-  readonly panelOrientation: PanelOrientation;
-}
-
 const defaultSettings: Partial<SubredditFeedSettings> = {
   defaultFeedType: FeedType.Top,
   theme: defaultRedditTheme,
