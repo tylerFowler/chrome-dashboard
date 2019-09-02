@@ -100,6 +100,14 @@ export const SettingButton = styled.button`
   }
 `;
 
+export const SettingLinkButton = styled.button`
+  cursor: pointer;
+  text-decoration: underline;
+
+  background: none;
+  border: 0;
+`;
+
 export default styled.form`
   font-size: ${typeScale(3)};
   font-family: ${fontStacks.Monospace};

@@ -6,11 +6,15 @@ export interface RGB {
   blue: number;
 }
 
-export default interface PanelTheme extends AppTheme {
+export interface PanelThemeCustomization {
   primaryColor: string;
   primaryColorRGB: RGB;
   fontColor: string;
 }
+
+type PanelTheme = PanelThemeCustomization & AppTheme;
+
+export default PanelTheme;
 
 export const defaultTheme = {
   primaryColor: '#8a8a8a',

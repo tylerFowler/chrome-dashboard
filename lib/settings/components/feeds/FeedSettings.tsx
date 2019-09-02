@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { typeScale } from '../../../styles';
 import { FeedType, PanelOrientation } from '../../interface';
 import HNSettings from '../../containers/HNFeedPanelSettings';
+import SubredditSettings from './SubredditSettings';
 import SettingsForm, { SettingField, SettingFieldGroup, SettingInput, SettingLabel } from '../SettingsForm';
 
 export interface FeedSettingsProps {
@@ -124,13 +125,18 @@ const FeedPanelSelector: React.FC<FeedPanelSelectorProps> = ({ orientation, id, 
   switch (value) {
   case FeedType.HN:
     settingsForm = <HNSettings panelOrientation={orientation} />;
+    break;
+  case FeedType.Reddit:
+    settingsForm = <SubredditSettings panelOrientation={orientation} />;
+    break;
   }
 
   return (
     <>
       <FeedPanelSelect id={id} style={{margin: '1em 0 0'}} onChange={changeHandler} value={value}>
-        <option value={FeedType.HN} defaultChecked={true}>Hacker News</option>
-        <option value={FeedType.DN}>Designer News</option>
+        <option value={FeedType.HN} defaultChecked={true}>{FeedType.getDisplayString(FeedType.HN)}</option>
+        <option value={FeedType.DN}>{FeedType.getDisplayString(FeedType.DN)}</option>
+        <option value={FeedType.Reddit}>{FeedType.getDisplayString(FeedType.Reddit)}</option>
       </FeedPanelSelect>
 
       <SettingsMiniform>

@@ -13,7 +13,7 @@ export interface DNFeedPanelProps extends FeedProps {
 const DNFeedPanel: React.SFC<DNFeedPanelProps> = ({ stories, ...panelProps }) =>
   <FeedPanel {...panelProps} title="Designer News" theme={dnTheme}>
     {stories.map((post, idx) =>
-        <li key={idx}>
+        <li key={post.id}>
           <FeedItem
             id={post.id}
             index={idx + 1} key={post.id}

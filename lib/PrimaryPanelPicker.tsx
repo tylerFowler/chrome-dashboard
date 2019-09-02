@@ -11,6 +11,8 @@ const PanelPicker = styled.span`
   margin: .5em auto;
 `;
 
+// TODO: add the concept of a panel feed "name", which can be set on a type-by-type basis,
+// subreddits will want to use the actual subreddit as part of their display name
 const PrimaryPanelPicker: React.FC<{ panel: 'left'|'right', onChange(p: 'left'|'right'): void }> = ({
   panel, onChange,
 }) => {
