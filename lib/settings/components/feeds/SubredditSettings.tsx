@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { GlobalState } from '../../../store';
 import { updatePanelConfig } from '../../actions';
@@ -14,6 +14,11 @@ export interface SubredditSettingsProps {
   readonly panelOrientation: PanelOrientation;
 }
 
+const defaultSettings: Partial<SubredditFeedSettings> = {
+  defaultFeedType: FeedType.Top,
+  theme: defaultRedditTheme,
+} as const;
+
 const SubredditSettings: React.FC<{ readonly panelOrientation: PanelOrientation }> = ({ panelOrientation }) => {
   const dispatch = useDispatch();
   const feedSettings =
@@ -21,6 +26,12 @@ const SubredditSettings: React.FC<{ readonly panelOrientation: PanelOrientation 
 
   const updateFeedSettings = <T extends keyof SubredditFeedSettings>(key: T, value: SubredditFeedSettings[T]) =>
     dispatch(updatePanelConfig(panelOrientation, { ...feedSettings, [key]: value }));
+
+  useEffect(() => {
+    if (Object.keys(feedSettings).length === 0) {
+      dispatch(updatePanelConfig(panelOrientation, defaultSettings));
+    }
+  }, []);
 
   const makeId = (id: string) => `${id}-${panelOrientation}`;
 
@@ -34,7 +45,8 @@ const SubredditSettings: React.FC<{ readonly panelOrientation: PanelOrientation 
 
     <SettingField>
       <SettingInlineLabel htmlFor={makeId('default-subreddit-feed-type')}>Default Feed Type:</SettingInlineLabel>
-      <SettingSelect id={makeId('default-subreddit-feed-type')} value={feedSettings.defaultFeedType}
+      <SettingSelect id={makeId('default-subreddit-feed-type')}
+        value={feedSettings.defaultFeedType} defaultValue={defaultSettings.defaultFeedType}
         onChange={e => updateFeedSettings('defaultFeedType', e.target.value as FeedType)}
       >
         <FeedOptionGroup />
