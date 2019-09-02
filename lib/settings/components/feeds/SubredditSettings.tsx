@@ -41,8 +41,7 @@ const SubredditSettings: React.FC<{ readonly panelOrientation: PanelOrientation 
 
     <SettingField>
       <SettingInlineLabel htmlFor={makeId('default-subreddit-feed-type')}>Default Feed Type:</SettingInlineLabel>
-      <SettingSelect id={makeId('default-subreddit-feed-type')}
-        value={feedSettings.defaultFeedType} defaultValue={defaultSettings.defaultFeedType}
+      <SettingSelect id={makeId('default-subreddit-feed-type')} value={feedSettings.defaultFeedType}
         onChange={e => updateFeedSettings('defaultFeedType', e.target.value as FeedType)}
       >
         <FeedOptionGroup />
