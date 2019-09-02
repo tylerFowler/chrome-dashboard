@@ -61,7 +61,7 @@ const SubredditSettings: React.FC<{ readonly panelOrientation: PanelOrientation 
         onChange={theme => updateFeedSettings('theme', theme)}
       />
 
-      <SettingLinkButton onClick={e => {
+      <SettingLinkButton type="reset" tabIndex={-1} onClick={e => {
           e.preventDefault();
           updateFeedSettings('theme', defaultRedditTheme);
         }} style={{marginLeft: '.5em'}}
