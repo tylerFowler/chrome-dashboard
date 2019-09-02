@@ -7,7 +7,7 @@ import FeedSelector from 'lib/panel/components/FeedSelector';
 import FeedPanel, { FeedProps } from 'lib/panel/components/FeedPanel';
 import defaultTheme from '../theme';
 import { FeedType } from '../interface';
-import { fetchSubreddit } from '../actions';
+import { fetchSubreddit, startAutoRefresh, stopAutoRefresh } from '../actions';
 import FeedOptionGroup from './FeedOptionGroup';
 import { getPostsForSub, isFetchingSub, getSubFetchError } from '../selectors';
 
@@ -20,7 +20,7 @@ export interface RedditFeedPanelProps extends Omit<FeedProps, 'title'> {
 const RedditFeedPanel: React.FC<RedditFeedPanelProps> = ({ subreddit, feedType, ...panelProps }) => {
   const dispatch = useDispatch();
 
-  const { pullSize: maxStoryCount } = useContext(FeedSettingsContext);
+  const { refreshInterval, pullSize: maxStoryCount } = useContext(FeedSettingsContext);
   const { sub = subreddit, defaultFeedType, theme } = useContext(SubredditSettingsContext);
   const [ activeFeed, setActiveFeed ] = useState(feedType || defaultFeedType);
 
@@ -29,7 +29,10 @@ const RedditFeedPanel: React.FC<RedditFeedPanelProps> = ({ subreddit, feedType, 
       dispatch(fetchSubreddit(sub, activeFeed, maxStoryCount));
     }
 
-    // TODO: start autorefresh, return stop autorefresh
+    const refreshId = `reddit_${panelProps.panelOrientation}`;
+    dispatch(startAutoRefresh(refreshId, refreshInterval, sub, activeFeed, maxStoryCount));
+
+    return () => dispatch(stopAutoRefresh(refreshId));
   }, [ sub, activeFeed, maxStoryCount ]);
 
   const posts = useSelector((state: GlobalState) => getPostsForSub(sub, activeFeed, maxStoryCount, state));
