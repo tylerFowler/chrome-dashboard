@@ -1,6 +1,6 @@
 import { AnyAction } from 'redux';
 import { action } from 'typesafe-actions';
-import { buffers, EventChannel, eventChannel, channel } from 'redux-saga';
+import { buffers, EventChannel, eventChannel } from 'redux-saga';
 import { call, put, race, take, select, spawn } from 'redux-saga/effects';
 import { getFeedRefreshInterval } from './settings/selectors';
 
