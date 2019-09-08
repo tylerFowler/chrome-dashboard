@@ -30,7 +30,7 @@ const FeedList = styled.ul`
   > li {
     margin-bottom: 1em;
 
-    animation: ${feedListScrollIn} 1.5s cubic-bezier(0.43, 0.11, 0.48, 1.11);
+    animation: ${feedListScrollIn} 1.175s cubic-bezier(0.25, 0.05, 0.48, 1.11);
   }
 `;
 
