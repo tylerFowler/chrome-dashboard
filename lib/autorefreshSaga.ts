@@ -1,7 +1,7 @@
 import { AnyAction } from 'redux';
 import { action } from 'typesafe-actions';
 import { buffers, EventChannel, eventChannel } from 'redux-saga';
-import { call, put, race, take, select, fork } from 'redux-saga/effects';
+import { call, put, race, take, select, spawn } from 'redux-saga/effects';
 import { getFeedRefreshInterval } from './settings/selectors';
 
 enum ActionType {
@@ -63,5 +63,5 @@ function* startRefreshLoop() {
 }
 
 export default function* rootSaga() {
-  yield fork(startRefreshLoop);
+  yield spawn(startRefreshLoop);
 }
