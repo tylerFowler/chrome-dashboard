@@ -53,7 +53,7 @@ const FeedPanel: React.SFC<FeedProps> = props => {
       {fetchError &&
         <ErrorDisplay>
           Error loading feed<br />
-          <em>{fetchError.toString()}</em>
+          <em>{fetchError.message}</em>
         </ErrorDisplay>
       }
 
