@@ -1,6 +1,6 @@
 import { AnyAction } from 'redux';
 import { action } from 'typesafe-actions';
-import { buffers, EventChannel, eventChannel } from 'redux-saga';
+import { buffers, EventChannel, eventChannel, channel } from 'redux-saga';
 import { call, put, race, take, select, spawn } from 'redux-saga/effects';
 import { getFeedRefreshInterval } from './settings/selectors';
 
@@ -24,22 +24,21 @@ const refreshChan = (interval: number) => eventChannel(publish => {
 }, buffers.fixed(1)); // at most keep one tick while main loop is performing other actions
 
 function* startRefreshLoop() {
-  const refreshIntervalMinutes = yield select(getFeedRefreshInterval);
-
   const subscriptions = new Map<string, AnyAction>();
 
-  const chan: EventChannel<any> = yield call(refreshChan, refreshIntervalMinutes * 60 * 1000);
+  const refreshIntervalMinutes = yield select(getFeedRefreshInterval);
+  const newTickChannel = () => call(refreshChan, refreshIntervalMinutes * 60 * 1000);
+
+  let tickChan: EventChannel<any> = yield newTickChannel();
   while (true) {
     const { tick, registerSubscriber, unsubscribe } = yield race({
-      tick: take(chan),
+      tick: take(tickChan),
       registerSubscriber: take(ActionType.RegisterSubscriber),
       unsubscribe: take(ActionType.Unsubscribe),
     });
 
     if (tick) {
-      console.log('Dispatching all subscribers...');
-      for (const [ , refreshAction ] of subscriptions) {
-        console.log('Dispatching', refreshAction);
+      for (const [, refreshAction ] of subscriptions) {
         yield put(refreshAction);
       }
 
@@ -47,16 +46,18 @@ function* startRefreshLoop() {
     }
 
     if (registerSubscriber) {
-      console.log('Adding subscriber ', registerSubscriber);
       subscriptions.set(registerSubscriber.meta.name, registerSubscriber.payload);
 
+      // when a new subscriber is registered we want to avoid situations where
+      // it is added and then is refreshed very shortly after, so the timer to
+      // the next tick will be restarted each time
+      tickChan.close();
+      tickChan = yield newTickChannel();
       continue;
     }
 
     if (unsubscribe) {
-      console.log('Unsubscribing', unsubscribe);
       subscriptions.delete(unsubscribe.meta.name);
-
       continue;
     }
   }
