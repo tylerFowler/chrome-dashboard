@@ -1,6 +1,21 @@
+import { AnyAction } from 'redux';
+import { action } from 'typesafe-actions';
 import { buffers, EventChannel, eventChannel } from 'redux-saga';
-import { call, race, take, select } from 'redux-saga/effects';
+import { call, put, race, take, select, fork } from 'redux-saga/effects';
 import { getFeedRefreshInterval } from './settings/selectors';
+
+enum ActionType {
+  RegisterSubscriber = 'AUTOREFRESH_SUBSCRIBE',
+  Unsubscribe = 'AUTOREFRESH_UNSUBSCRIBE',
+}
+
+export namespace Actions {
+  export const subscribe = (name: string, refreshAction: AnyAction) =>
+    action(ActionType.RegisterSubscriber, refreshAction, { name });
+
+  export const unsubscribe = (name: string) =>
+    action(ActionType.Unsubscribe, null, { name });
+}
 
 const refreshChan = (interval: number) => eventChannel(publish => {
   const intervalId = setInterval(() => publish(true), interval);
@@ -8,15 +23,45 @@ const refreshChan = (interval: number) => eventChannel(publish => {
   return () => clearInterval(intervalId);
 }, buffers.none());
 
-export default function* startRefreshLoop() {
+function* startRefreshLoop() {
   const refreshIntervalMinutes = yield select(getFeedRefreshInterval);
+
+  const subscriptions = new Map<string, AnyAction>();
 
   const chan: EventChannel<any> = yield call(refreshChan, refreshIntervalMinutes * 60 * 1000);
   while (true) {
-    yield race({
+    const { tick, registerSubscriber, unsubscribe } = yield race({
       tick: take(chan),
+      registerSubscriber: take(ActionType.RegisterSubscriber),
+      unsubscribe: take(ActionType.Unsubscribe),
     });
 
-    console.debug('Ticking refresher...');
+    if (tick) {
+      console.log('Dispatching all subscribers...');
+      for (const [ , refreshAction ] of subscriptions) {
+        console.log('Dispatching', refreshAction);
+        yield put(refreshAction);
+      }
+
+      continue;
+    }
+
+    if (registerSubscriber) {
+      console.log('Adding subscriber ', registerSubscriber);
+      subscriptions.set(registerSubscriber.meta.name, registerSubscriber.payload);
+
+      continue;
+    }
+
+    if (unsubscribe) {
+      console.log('Unsubscribing', unsubscribe);
+      subscriptions.delete(unsubscribe.meta.name);
+
+      continue;
+    }
   }
+}
+
+export default function* rootSaga() {
+  yield fork(startRefreshLoop);
 }
