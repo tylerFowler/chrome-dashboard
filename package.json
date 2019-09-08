@@ -34,7 +34,6 @@
     "typesafe-actions": "^4.4.2"
   },
   "devDependencies": {
-    "@types/node": "^11.13.20",
     "@types/react": "^16.9.2",
     "@types/react-addons-css-transition-group": "^15.0.5",
     "@types/react-dom": "^16.9.0",
