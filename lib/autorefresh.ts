@@ -25,13 +25,10 @@ export namespace RefreshActions {
     action(ActionType.Unsubscribe, null, { name });
 }
 
-const refreshChan = (
-  interval: number,
-  timerFn = setInterval, timerCancelFn = clearInterval,
-) => eventChannel(publish => {
-  const intervalId = timerFn(() => publish(true), interval);
+const refreshChan = (interval: number) => eventChannel(publish => {
+  const intervalId = setInterval(() => publish(true), interval);
 
-  return () => timerCancelFn(intervalId);
+  return () => clearInterval(intervalId);
 }, buffers.fixed(1)); // at most keep one tick while main loop is performing other actions
 
 function* startRefreshLoop() {
