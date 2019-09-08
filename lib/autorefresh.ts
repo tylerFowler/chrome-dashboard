@@ -13,13 +13,13 @@ import { call, put, race, take, select, spawn } from 'redux-saga/effects';
 import { getFeedRefreshInterval } from './settings/selectors';
 
 enum ActionType {
-  RegisterSubscriber = 'AUTOREFRESH_SUBSCRIBE',
+  Subscribe = 'AUTOREFRESH_SUBSCRIBE',
   Unsubscribe = 'AUTOREFRESH_UNSUBSCRIBE',
 }
 
-export namespace Actions {
+export namespace RefreshActions {
   export const subscribe = (name: string, refreshAction: AnyAction) =>
-    action(ActionType.RegisterSubscriber, refreshAction, { name });
+    action(ActionType.Subscribe, refreshAction, { name });
 
   export const unsubscribe = (name: string) =>
     action(ActionType.Unsubscribe, null, { name });
@@ -39,9 +39,9 @@ function* startRefreshLoop() {
 
   let tickChan: EventChannel<any> = yield newTickChannel();
   while (true) {
-    const { tick, registerSubscriber, unsubscribe } = yield race({
+    const { tick, subscribe, unsubscribe } = yield race({
       tick: take(tickChan),
-      registerSubscriber: take(ActionType.RegisterSubscriber),
+      subscribe: take(ActionType.Subscribe),
       unsubscribe: take(ActionType.Unsubscribe),
     });
 
@@ -53,8 +53,8 @@ function* startRefreshLoop() {
       continue;
     }
 
-    if (registerSubscriber) {
-      subscriptions.set(registerSubscriber.meta.name, registerSubscriber.payload);
+    if (subscribe) {
+      subscriptions.set(subscribe.meta.name, subscribe.payload);
 
       // when a new subscriber is registered we want to avoid situations where
       // it is added and then is refreshed very shortly after, so the timer to

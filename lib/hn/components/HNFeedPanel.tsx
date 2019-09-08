@@ -6,7 +6,7 @@ import hnTheme from '../theme';
 import { FeedType } from '../interface';
 import { fetchPosts } from '../actions';
 import { isLoadingStories, getFetchError, getStoryPage } from '../selectors';
-import { Actions as RefreshActions } from 'lib/autorefresh';
+import { RefreshActions } from 'lib/autorefresh';
 import FeedItem from 'lib/panel/components/FeedItem';
 import FeedSelector from 'lib/panel/components/FeedSelector';
 import FeedPanel, { FeedProps } from 'lib/panel/components/FeedPanel';

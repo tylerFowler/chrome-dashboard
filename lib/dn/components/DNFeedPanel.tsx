@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { GlobalState } from 'lib/store';
-import { Actions as RefreshActions } from 'lib/autorefresh';
+import { RefreshActions } from 'lib/autorefresh';
 import { FeedSettingsContext } from 'lib/settings/context';
 import dnTheme from '../theme';
 import { fetchPosts } from '../actions';

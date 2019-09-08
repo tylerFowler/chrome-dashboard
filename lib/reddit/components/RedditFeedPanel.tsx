@@ -2,7 +2,7 @@ import React, { useEffect, useContext, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { GlobalState } from 'lib/store';
 import { SubredditSettingsContext, FeedSettingsContext } from 'lib/settings/context';
-import { Actions as Autorefresh } from 'lib/autorefresh';
+import { RefreshActions } from 'lib/autorefresh';
 import defaultTheme from '../theme';
 import { FeedType } from '../interface';
 import { getPostsForSub, isFetchingSub, getSubFetchError } from '../selectors';
@@ -35,12 +35,12 @@ const RedditFeedPanel: React.FC<RedditFeedPanelProps> = ({ subreddit, feedType, 
     dispatch(fetchSubreddit(sub, activeFeed, maxStoryCount));
 
     const refreshSubscriberName = `reddit_${sub}_${activeFeed}`;
-    dispatch(Autorefresh.subscribe(
+    dispatch(RefreshActions.subscribe(
       refreshSubscriberName,
       fetchSubreddit(sub, activeFeed, maxStoryCount),
     ));
 
-    return () => { dispatch(Autorefresh.unsubscribe(refreshSubscriberName)); };
+    return () => { dispatch(RefreshActions.unsubscribe(refreshSubscriberName)); };
   }, [ sub, activeFeed, maxStoryCount ]);
 
   const posts = useSelector((state: GlobalState) => getPostsForSub(sub, activeFeed, maxStoryCount, state));
