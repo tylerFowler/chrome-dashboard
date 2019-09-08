@@ -1,3 +1,11 @@
+/*
+ * This is a centralized Autorefreshing system that, while designed for use by feeds,
+ * can dispatch any action on a single unified schedule. Subscriptions can be made
+ * by dispatching the 'RegisterSubscriber' action with any Redux action, along with
+ * a unique name, that will be dispatched on a timer in the order that the subscriptions
+ * are registered.
+ */
+
 import { AnyAction } from 'redux';
 import { action } from 'typesafe-actions';
 import { buffers, EventChannel, eventChannel } from 'redux-saga';
