@@ -21,7 +21,7 @@ const refreshChan = (interval: number) => eventChannel(publish => {
   const intervalId = setInterval(() => publish(true), interval);
 
   return () => clearInterval(intervalId);
-}, buffers.none());
+}, buffers.fixed(1)); // at most keep one tick while main loop is performing other actions
 
 function* startRefreshLoop() {
   const refreshIntervalMinutes = yield select(getFeedRefreshInterval);
