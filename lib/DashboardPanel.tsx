@@ -5,7 +5,7 @@ import { getPanelFeedType } from './settings/selectors';
 import { FeedType, PanelOrientation } from './settings/interface';
 import { HNFeedSettingsProvider, FeedSettingsProvider, SubredditFeedSettingsProvider } from './settings/context';
 import DNFeedPanel from './dn/components/DNFeedPanel';
-import HNFeedPanel from './hn/HNFeedContainer';
+import HNFeedPanel from './hn/components/HNFeedPanel';
 import RedditFeedPanel from './reddit/components/RedditFeedPanel';
 
 interface DashboardPanelProps {
