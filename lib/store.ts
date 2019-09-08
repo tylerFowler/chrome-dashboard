@@ -16,7 +16,7 @@ import settingsSaga from './settings/sagas';
 import weatherReducer, { State as WeatherState } from './weather/reducer';
 import weatherSaga from './weather/sagas';
 
-import autorefreshSaga from './autorefreshSaga';
+import autorefreshSaga from './autorefresh';
 
 declare const ENV: string;
 
