@@ -5,8 +5,6 @@ export enum Actions {
   FetchSub = 'REDDIT_FETCH_SUB',
   ReceiveSub = 'REDDIT_RECV_SUB',
   SubFetchFailure = 'REDDIT_FETCH_SUB_FAILURE',
-  StartAutoRefresh = 'REDDIT_START_AUTO_REFRESH',
-  StopAutoRefresh = 'REDDIT_STOP_AUTO_REFRESH',
 }
 
 export type RedditAction = ActionType<
@@ -23,14 +21,3 @@ export const refreshSubreddit = (sub: string, feedType: FeedType, posts: readonl
 
 export const fetchSubredditError = (sub: string, feedType: FeedType, error: Error) =>
   action(Actions.SubFetchFailure, { error }, { sub, feed: feedType });
-
-export const startAutoRefresh = (
-  refreshId: string, intervalMinutes: number, sub: string, feed: FeedType, pullSize: number,
-) =>
-  action(Actions.StartAutoRefresh, {
-    refreshId, sub, feed, pullSize,
-    interval: intervalMinutes * 60 * 1000,
-  });
-
-export const stopAutoRefresh = (refreshId: string) =>
-  action(Actions.StopAutoRefresh, { refreshId });
