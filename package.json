@@ -15,17 +15,23 @@
   "main": "lib/main.tsx",
   "scripts": {
     "build": "npx rollup -c rollup.config.js",
-    "test": "TS_NODE_COMPILER_OPTIONS='{\"module\":\"commonjs\"}' npx ava lib/*.spec.ts",
+    "test": "npx ava",
     "lint": "npx tslint --project . --format stylish || exit 0",
     "start": "ROLLUP_WATCH=true; npx rollup -c rollup-devserver.config.js --watch",
     "build-assets": "(rm public/assets/* 2>/dev/null || true) && npx imagemin 'assets' --out-dir 'public/assets'",
     "build-dist": "NODE_ENV=production npm run build && npm run build-assets"
   },
   "ava": {
-    "compileEnhancements": false,
-    "extensions": [
-      "ts"
+    "files": [
+      "lib/*.spec.ts",
+      "lib/**/*.spec.ts"
     ],
+    "environmentVariables": {
+      "TS_NODE_COMPILER_OPTIONS": "{\"module\":\"commonjs\"}"
+    },
+    "verbose": true,
+    "compileEnhancements": false,
+    "extensions": [ "ts" ],
     "require": [
       "ts-node/register/transpile-only",
       "tsconfig-paths/register"
