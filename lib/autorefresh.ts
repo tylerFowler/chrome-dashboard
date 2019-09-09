@@ -31,11 +31,11 @@ export const refreshChan = (interval: number) => eventChannel(publish => {
   return () => clearInterval(intervalId);
 }, buffers.fixed(1)); // at most keep one tick while main loop is performing other actions
 
-export function* startRefreshLoop() {
+export function* startRefreshLoop(refreshChanCreator = refreshChan) {
   const subscriptions = new Map<string, AnyAction>();
 
   const refreshIntervalMinutes = yield select(getFeedRefreshInterval);
-  const newTickChannel = () => call(refreshChan, refreshIntervalMinutes * 60 * 1000);
+  const newTickChannel = () => call(refreshChanCreator, refreshIntervalMinutes * 60 * 1000);
 
   let tickChan: EventChannel<any> = yield newTickChannel();
   while (true) {
