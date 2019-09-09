@@ -16,6 +16,8 @@ import settingsSaga from './settings/sagas';
 import weatherReducer, { State as WeatherState } from './weather/reducer';
 import weatherSaga from './weather/sagas';
 
+import autorefreshSaga from './autorefresh';
+
 declare const ENV: string;
 
 if ('serviceWorker' in navigator) {
@@ -64,6 +66,7 @@ saga.run(function* appSaga() {
     dnFeed: dnFeedSaga(),
     redditFeed: redditFeedSaga(),
     weather: weatherSaga(),
+    autorefresh: autorefreshSaga(),
   });
 });
 

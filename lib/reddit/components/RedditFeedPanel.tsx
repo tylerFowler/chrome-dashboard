@@ -2,14 +2,15 @@ import React, { useEffect, useContext, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { GlobalState } from 'lib/store';
 import { SubredditSettingsContext, FeedSettingsContext } from 'lib/settings/context';
+import { RefreshActions } from 'lib/autorefresh';
+import defaultTheme from '../theme';
+import { FeedType } from '../interface';
+import { getPostsForSub, isFetchingSub, getSubFetchError } from '../selectors';
+import { fetchSubreddit } from '../actions';
 import FeedItem from 'lib/panel/components/FeedItem';
 import FeedSelector from 'lib/panel/components/FeedSelector';
 import FeedPanel, { FeedProps } from 'lib/panel/components/FeedPanel';
-import defaultTheme from '../theme';
-import { FeedType } from '../interface';
-import { fetchSubreddit, startAutoRefresh, stopAutoRefresh } from '../actions';
 import FeedOptionGroup from './FeedOptionGroup';
-import { getPostsForSub, isFetchingSub, getSubFetchError } from '../selectors';
 
 export interface RedditFeedPanelProps extends Omit<FeedProps, 'title'> {
   readonly title?: string;
@@ -20,21 +21,26 @@ export interface RedditFeedPanelProps extends Omit<FeedProps, 'title'> {
 const RedditFeedPanel: React.FC<RedditFeedPanelProps> = ({ subreddit, feedType, ...panelProps }) => {
   const dispatch = useDispatch();
 
-  const { refreshInterval, pullSize: maxStoryCount } = useContext(FeedSettingsContext);
+  const { pullSize: maxStoryCount } = useContext(FeedSettingsContext);
 
   const { sub = subreddit, defaultFeedType, theme } = useContext(SubredditSettingsContext);
   const [ activeFeed, setActiveFeed ] = useState(feedType || defaultFeedType);
   useEffect(() => { setActiveFeed(defaultFeedType); }, [ defaultFeedType ]);
 
   useEffect(() => {
-    if (sub) {
-      dispatch(fetchSubreddit(sub, activeFeed, maxStoryCount));
+    if (!sub) {
+      return;
     }
 
-    const refreshId = `reddit_${panelProps.panelOrientation}`;
-    dispatch(startAutoRefresh(refreshId, refreshInterval, sub, activeFeed, maxStoryCount));
+    dispatch(fetchSubreddit(sub, activeFeed, maxStoryCount));
 
-    return () => dispatch(stopAutoRefresh(refreshId));
+    const refreshSubscriberName = `reddit_${sub}_${activeFeed}`;
+    dispatch(RefreshActions.subscribe(
+      refreshSubscriberName,
+      fetchSubreddit(sub, activeFeed, maxStoryCount),
+    ));
+
+    return () => { dispatch(RefreshActions.unsubscribe(refreshSubscriberName)); };
   }, [ sub, activeFeed, maxStoryCount ]);
 
   const posts = useSelector((state: GlobalState) => getPostsForSub(sub, activeFeed, maxStoryCount, state));
