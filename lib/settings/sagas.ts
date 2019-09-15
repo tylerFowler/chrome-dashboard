@@ -17,6 +17,7 @@ import {
 // should be used as the settings storage mechanism
 declare var __SETTINGS_STORE__: string;
 
+// TODO: if possible we want to do conditional importing
 let settingsStore: SettingsStore;
 switch (__SETTINGS_STORE__) {
 case 'chromeStorage':
