@@ -5,6 +5,7 @@ import * as WeatherAPI from 'lib/weather/api';
 import { fetchForecastError } from 'lib/weather/actions';
 import { SettingsStore } from './storage';
 import LocalStorageSettingsStore from './storage/localStorage';
+import ChromeStorageSettingsStore from './storage/chromeStorage';
 import { State as Settings } from './reducer';
 import {
   committed, commitFailure, receiveSettings, addToast, Actions, removeToast,
@@ -18,6 +19,9 @@ declare var __SETTINGS_STORE__: string;
 
 let settingsStore: SettingsStore;
 switch (__SETTINGS_STORE__) {
+case 'chromeStorage':
+  settingsStore = new ChromeStorageSettingsStore();
+  break;
 case 'localstorage':
 default:
   settingsStore = new LocalStorageSettingsStore();

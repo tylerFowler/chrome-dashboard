@@ -8,5 +8,7 @@ export default {
   // Determines the storage mechanism that can be used for settings persistence. By
   // default the value is "localStorage". The possible values are
   // - localStorage: the browser's local storage API will be used to store settings
+  // - chromeStorage: use Chrome's extension storage mechanism to store settings
+  //   - See here for more information: https://developer.chrome.com/extensions/storage
   settingsStorage: "localStorage",
 };
