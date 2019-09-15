@@ -12,7 +12,17 @@ import {
   commit,
 } from './actions';
 
-const settingsStore: SettingsStore = new LocalStorageSettingsStore();
+// this global variable should be inserted by the build tooling to determine what
+// should be used as the settings storage mechanism
+declare var __SETTINGS_STORE__: string;
+
+let settingsStore: SettingsStore;
+switch (__SETTINGS_STORE__) {
+case 'localstorage':
+default:
+  settingsStore = new LocalStorageSettingsStore();
+  break;
+}
 
 const toastDebounce = 500;
 const toastLifetime = 3 * 1000;
