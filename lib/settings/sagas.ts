@@ -2,40 +2,42 @@ import { all, select, call, put, delay, takeLatest, debounce } from 'redux-saga/
 import { getSerializableSettings, getWeatherLocationConfig } from './selectors';
 import { WeatherLocation, WeatherLocationType } from 'lib/weather/interface';
 import * as WeatherAPI from 'lib/weather/api';
-import { fetchForecastError } from '../weather/actions';
+import { fetchForecastError } from 'lib/weather/actions';
+import { SettingsStore } from './storage';
+import LocalStorageSettingsStore from './storage/localStorage';
+import { State as Settings } from './reducer';
 import {
   committed, commitFailure, receiveSettings, addToast, Actions, removeToast,
   updateWeatherConfig,
   commit,
 } from './actions';
 
-// TODO: create some pluggable functions for getting & setting to/from local
-// storage, export saga generator creators that inject this for writing tests
-// - then write tests
+const settingsStore: SettingsStore = new LocalStorageSettingsStore();
 
-const settingsStorageKey = 'settings';
 const toastDebounce = 500;
 const toastLifetime = 3 * 1000;
 
-function* restoreSettings() {
-  try {
-    const settings = localStorage.getItem(settingsStorageKey);
-    if (settings) {
-      yield put(receiveSettings(JSON.parse(settings)));
-    }
-  } catch (err) {
-    console.warn('Unable to load settings:', err);
-  }
-}
-
-function* commitSettings() {
+async function* commitSettings() {
   const settings = yield select(getSerializableSettings);
 
   try {
-    localStorage.setItem(settingsStorageKey, JSON.stringify(settings));
+    await settingsStore.commitSettings(settings);
+
     yield put(committed());
   } catch (err) {
     yield put(commitFailure(err));
+  }
+}
+
+async function* restoreSettings() {
+  try {
+    const settings = await settingsStore.restoreSettings() as Settings;
+
+    if (settings) {
+      yield put(receiveSettings(settings));
+    }
+  } catch (err) {
+    console.warn('Unable to load settings:', err);
   }
 }
 
