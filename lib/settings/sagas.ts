@@ -17,11 +17,11 @@ const settingsStore: SettingsStore = new LocalStorageSettingsStore();
 const toastDebounce = 500;
 const toastLifetime = 3 * 1000;
 
-async function* commitSettings() {
+function* commitSettings() {
   const settings = yield select(getSerializableSettings);
 
   try {
-    await settingsStore.commitSettings(settings);
+    yield call(settingsStore.commitSettings, settings);
 
     yield put(committed());
   } catch (err) {
@@ -29,9 +29,9 @@ async function* commitSettings() {
   }
 }
 
-async function* restoreSettings() {
+function* restoreSettings() {
   try {
-    const settings = await settingsStore.restoreSettings() as Settings;
+    const settings: Settings = yield call(settingsStore.restoreSettings);
 
     if (settings) {
       yield put(receiveSettings(settings));
