@@ -20,6 +20,7 @@ export interface WeatherSettings {
 
 export interface State {
   readonly toast: string;
+  readonly storageError: Error;
   readonly feed: FeedSettings;
   readonly panelConfig: {
     readonly left: PanelSettings;
@@ -30,6 +31,7 @@ export interface State {
 
 export const defaultState: State = {
   toast: null,
+  storageError: null,
   feed: {
     refreshInterval: 10,
     pullSize: 10,
@@ -59,7 +61,12 @@ export default function settingsReducer(state: State = defaultState, action: Set
   case Actions.RemoveToast:
     return { ...state, toast: null };
   case Actions.ReceiveSettings:
-    return { ...state, ...action.payload };
+    return { ...state, ...action.payload, storageError: null };
+  case Actions.Committed:
+    return { ...state, storageError: null };
+  case Actions.CommitFailure:
+  case Actions.RestoreFailure:
+    return { ...state, storageError: action.payload.error };
   case Actions.UpdateFeedConfiguration:
     return { ...state, feed: { ...state.feed, ...action.payload.update } };
   case Actions.UpdatePanelType: {

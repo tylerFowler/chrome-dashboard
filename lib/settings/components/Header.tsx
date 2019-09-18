@@ -1,7 +1,10 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import ReactTransitionGroup from 'react-addons-css-transition-group';
 import styled from 'lib/styled-components';
-import { fontStacks, typeScale } from '../../styles';
+import { fontStacks, typeScale } from 'lib/styles';
+import { Error as ErrorAlert } from 'lib/styled/Alert';
+import { getActiveToast, getStorageError } from '../selectors';
 import CloseIcon from './CloseIcon';
 import Toast from './Toast';
 
@@ -41,29 +44,56 @@ const ToastTransitionRules = styled.span`
   &.popup-leave-active { transform: translateY(-50vh); transition: transform ${toastTransitionTime}ms ease-in; }
 `;
 
-const SettingsHeader: React.FC<HeaderProps> = ({ toast, onClose }) =>
-  <HeaderContainer>
-    <Heading>Settings</Heading>
+const ErrorContainer = styled.span`
+  flex: .9;
+  margin-top: 1em;
+  text-align: center;
 
-    <ReactTransitionGroup
-      transitionName="popup"
-      transitionEnterTimeout={toastTransitionTime}
-      transitionLeaveTimeout={toastTransitionTime}
-      style={{display: 'flex'}}
-    >
-      {toast &&
-        <ToastTransitionRules>
-          <Toast message={toast}
-            style={{margin: 'auto', position: 'relative', right: '5%'}}
-          />
-        </ToastTransitionRules>
-      }
-    </ReactTransitionGroup>
+  max-height: 3.5em;
+  overflow: hidden;
 
-    <div style={{margin: '1em', display: 'inline-block', float: 'right'}}>
-      <CloseIcon onClick={onClose} />
-    </div>
-  </HeaderContainer>
-;
+  em {
+    display: block;
+    margin: .5em auto 0;
+  }
+`;
+
+const SettingsHeader: React.FC<HeaderProps> = ({ onClose }) => {
+  const toast = useSelector(getActiveToast);
+  const storageError = useSelector(getStorageError);
+
+  return (
+    <HeaderContainer>
+      <Heading>Settings</Heading>
+
+      <ReactTransitionGroup
+        transitionName="popup"
+        transitionEnterTimeout={toastTransitionTime}
+        transitionLeaveTimeout={toastTransitionTime}
+        style={{display: 'flex'}}
+      >
+        {toast && !storageError &&
+          <ToastTransitionRules>
+            <Toast message={toast}
+              style={{margin: 'auto', position: 'relative', right: '5%'}}
+            />
+          </ToastTransitionRules>
+        }
+
+      </ReactTransitionGroup>
+
+      {storageError && <ErrorContainer>
+        <ErrorAlert>
+          There was an problem with settings storage: <br />
+          <em>{storageError.message}</em>
+        </ErrorAlert>
+      </ErrorContainer>}
+
+      <div style={{margin: '1em', display: 'inline-block', float: 'right'}}>
+        <CloseIcon onClick={onClose} />
+      </div>
+    </HeaderContainer>
+  );
+};
 
 export default SettingsHeader;

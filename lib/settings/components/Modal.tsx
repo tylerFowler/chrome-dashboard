@@ -2,9 +2,9 @@ import React, { useRef } from 'react';
 import ReactTransitionGroup from 'react-addons-css-transition-group';
 import { useOutOfBoundsClick, useEscapeKeyUp } from '../../hooks';
 import styled from 'lib/styled-components';
-import SettingsHeader from '../containers/Header';
 import FeedSettings from '../containers/FeedSettings';
 import WeatherSettings from '../containers/WeatherSettings';
+import SettingsHeader from './Header';
 
 export interface ModalProps {
   readonly isOpen: boolean;
@@ -54,10 +54,12 @@ const SettingsContainer = styled.section`
   padding: 1em;
 `;
 
-const Settings: React.SFC = () => <SettingsContainer>
-  <FeedSettings />
-  <WeatherSettings />
-</SettingsContainer>;
+const Settings: React.SFC = () =>
+  <SettingsContainer>
+    <FeedSettings />
+    <WeatherSettings />
+  </SettingsContainer>
+;
 
 const SettingsModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
   const $modal = useRef(null);
