@@ -1,11 +1,12 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import ReactTransitionGroup from 'react-addons-css-transition-group';
 import styled from 'lib/styled-components';
-import { fontStacks, typeScale } from '../../styles';
+import { fontStacks, typeScale } from 'lib/styles';
+import { Error as ErrorAlert } from 'lib/styled/Alert';
+import { getActiveToast, getStorageError } from '../selectors';
 import CloseIcon from './CloseIcon';
 import Toast from './Toast';
-import { useSelector } from 'react-redux';
-import { getActiveToast } from '../selectors';
 
 export interface HeaderProps {
   readonly toast?: string;
@@ -43,8 +44,23 @@ const ToastTransitionRules = styled.span`
   &.popup-leave-active { transform: translateY(-50vh); transition: transform ${toastTransitionTime}ms ease-in; }
 `;
 
+const ErrorContainer = styled.span`
+  flex: .9;
+  margin-top: 1em;
+  text-align: center;
+
+  max-height: 3.5em;
+  overflow: hidden;
+
+  em {
+    display: block;
+    margin: .5em auto 0;
+  }
+`;
+
 const SettingsHeader: React.FC<HeaderProps> = ({ onClose }) => {
   const toast = useSelector(getActiveToast);
+  const storageError = useSelector(getStorageError);
 
   return (
     <HeaderContainer>
@@ -56,14 +72,22 @@ const SettingsHeader: React.FC<HeaderProps> = ({ onClose }) => {
         transitionLeaveTimeout={toastTransitionTime}
         style={{display: 'flex'}}
       >
-        {toast &&
+        {toast && !storageError &&
           <ToastTransitionRules>
             <Toast message={toast}
               style={{margin: 'auto', position: 'relative', right: '5%'}}
             />
           </ToastTransitionRules>
         }
+
       </ReactTransitionGroup>
+
+      {storageError && <ErrorContainer>
+        <ErrorAlert>
+          There was an problem with settings storage: <br />
+          <em>{storageError.message}</em>
+        </ErrorAlert>
+      </ErrorContainer>}
 
       <div style={{margin: '1em', display: 'inline-block', float: 'right'}}>
         <CloseIcon onClick={onClose} />

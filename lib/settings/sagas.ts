@@ -11,6 +11,7 @@ import {
   committed, commitFailure, receiveSettings, addToast, Actions, removeToast,
   updateWeatherConfig,
   commit,
+  restoreFailure,
 } from './actions';
 
 // this global variable should be inserted by the build tooling to determine what
@@ -53,6 +54,7 @@ function* restoreSettings() {
     }
   } catch (err) {
     console.warn('Unable to load settings:', err);
+    yield put(restoreFailure(err));
   }
 }
 
