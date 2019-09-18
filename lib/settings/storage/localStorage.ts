@@ -9,11 +9,11 @@ export default class LocalStorageSettingsStore implements SettingsStore {
     this.storage = storageMechanism;
   }
 
-  public async commitSettings(settings: Settings) {
+  public commitSettings = async (settings: Settings) => {
     this.storage.setItem(LocalStorageSettingsStore.storageKey, JSON.stringify(settings));
   }
 
-  public async restoreSettings() {
+  public restoreSettings = async () => {
     const settingsString = this.storage.getItem(LocalStorageSettingsStore.storageKey);
 
     return JSON.parse(settingsString);
