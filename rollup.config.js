@@ -36,6 +36,7 @@ const commonPlugins = [
     ENV: env,
     'process.env.NODE_ENV': env,
     'process.env.OPENWEATHER_API_KEY': JSON.stringify(buildConfig.openweatherAPIKey),
+    __SETTINGS_STORE__: JSON.stringify(buildConfig.settingsStorage),
   }),
   commonjs({ namedExports }),
 ]

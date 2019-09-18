@@ -2,40 +2,57 @@ import { all, select, call, put, delay, takeLatest, debounce } from 'redux-saga/
 import { getSerializableSettings, getWeatherLocationConfig } from './selectors';
 import { WeatherLocation, WeatherLocationType } from 'lib/weather/interface';
 import * as WeatherAPI from 'lib/weather/api';
-import { fetchForecastError } from '../weather/actions';
+import { fetchForecastError } from 'lib/weather/actions';
+import { SettingsStore } from './storage';
+import LocalStorageSettingsStore from './storage/localStorage';
+import ChromeStorageSettingsStore from './storage/chromeStorage';
+import { State as Settings } from './reducer';
 import {
   committed, commitFailure, receiveSettings, addToast, Actions, removeToast,
   updateWeatherConfig,
   commit,
 } from './actions';
 
-// TODO: create some pluggable functions for getting & setting to/from local
-// storage, export saga generator creators that inject this for writing tests
-// - then write tests
+// this global variable should be inserted by the build tooling to determine what
+// should be used as the settings storage mechanism
+declare var __SETTINGS_STORE__: string;
 
-const settingsStorageKey = 'settings';
+// TODO: if possible we want to do conditional importing
+let settingsStore: SettingsStore;
+switch (__SETTINGS_STORE__) {
+case 'chromeStorage':
+  settingsStore = new ChromeStorageSettingsStore();
+  break;
+case 'localstorage':
+default:
+  settingsStore = new LocalStorageSettingsStore();
+  break;
+}
+
 const toastDebounce = 500;
 const toastLifetime = 3 * 1000;
-
-function* restoreSettings() {
-  try {
-    const settings = localStorage.getItem(settingsStorageKey);
-    if (settings) {
-      yield put(receiveSettings(JSON.parse(settings)));
-    }
-  } catch (err) {
-    console.warn('Unable to load settings:', err);
-  }
-}
 
 function* commitSettings() {
   const settings = yield select(getSerializableSettings);
 
   try {
-    localStorage.setItem(settingsStorageKey, JSON.stringify(settings));
+    yield call(settingsStore.commitSettings, settings);
+
     yield put(committed());
   } catch (err) {
     yield put(commitFailure(err));
+  }
+}
+
+function* restoreSettings() {
+  try {
+    const settings: Settings = yield call(settingsStore.restoreSettings);
+
+    if (settings) {
+      yield put(receiveSettings(settings));
+    }
+  } catch (err) {
+    console.warn('Unable to load settings:', err);
   }
 }
 
