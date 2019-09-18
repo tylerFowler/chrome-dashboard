@@ -18,12 +18,16 @@ import {
 // should be used as the settings storage mechanism
 declare var __SETTINGS_STORE__: string;
 
-// TODO: if possible we want to do conditional importing
+// TODO: when it's possible we want to do conditional importing
 let settingsStore: SettingsStore;
 switch (__SETTINGS_STORE__) {
 case 'chromeStorage':
-  settingsStore = new ChromeStorageSettingsStore();
-  break;
+  if (chrome && chrome.storage) {
+    settingsStore = new ChromeStorageSettingsStore();
+    break;
+  }
+
+  console.warn('Chrome storage not detected in this environment, falling back to localStorage');
 case 'localstorage':
 default:
   settingsStore = new LocalStorageSettingsStore();
