@@ -4,6 +4,8 @@ import styled from 'lib/styled-components';
 import { fontStacks, typeScale } from '../../styles';
 import CloseIcon from './CloseIcon';
 import Toast from './Toast';
+import { useSelector } from 'react-redux';
+import { getActiveToast } from '../selectors';
 
 export interface HeaderProps {
   readonly toast?: string;
@@ -41,29 +43,33 @@ const ToastTransitionRules = styled.span`
   &.popup-leave-active { transform: translateY(-50vh); transition: transform ${toastTransitionTime}ms ease-in; }
 `;
 
-const SettingsHeader: React.FC<HeaderProps> = ({ toast, onClose }) =>
-  <HeaderContainer>
-    <Heading>Settings</Heading>
+const SettingsHeader: React.FC<HeaderProps> = ({ onClose }) => {
+  const toast = useSelector(getActiveToast);
 
-    <ReactTransitionGroup
-      transitionName="popup"
-      transitionEnterTimeout={toastTransitionTime}
-      transitionLeaveTimeout={toastTransitionTime}
-      style={{display: 'flex'}}
-    >
-      {toast &&
-        <ToastTransitionRules>
-          <Toast message={toast}
-            style={{margin: 'auto', position: 'relative', right: '5%'}}
-          />
-        </ToastTransitionRules>
-      }
-    </ReactTransitionGroup>
+  return (
+    <HeaderContainer>
+      <Heading>Settings</Heading>
 
-    <div style={{margin: '1em', display: 'inline-block', float: 'right'}}>
-      <CloseIcon onClick={onClose} />
-    </div>
-  </HeaderContainer>
-;
+      <ReactTransitionGroup
+        transitionName="popup"
+        transitionEnterTimeout={toastTransitionTime}
+        transitionLeaveTimeout={toastTransitionTime}
+        style={{display: 'flex'}}
+      >
+        {toast &&
+          <ToastTransitionRules>
+            <Toast message={toast}
+              style={{margin: 'auto', position: 'relative', right: '5%'}}
+            />
+          </ToastTransitionRules>
+        }
+      </ReactTransitionGroup>
+
+      <div style={{margin: '1em', display: 'inline-block', float: 'right'}}>
+        <CloseIcon onClick={onClose} />
+      </div>
+    </HeaderContainer>
+  );
+};
 
 export default SettingsHeader;
