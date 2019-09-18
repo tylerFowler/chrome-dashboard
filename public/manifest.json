@@ -9,6 +9,7 @@
     "geolocation"
   ],
   "permissions": [
+    "storage",
     "management",
     "contentSettings",
     "https://hacker-news.firebaseio.com/*",
