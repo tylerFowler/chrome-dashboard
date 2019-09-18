@@ -27,11 +27,9 @@ const FeedList = styled.ul`
   margin: 0;
   padding: .5em ${feedHorizPadding} 1em;
 
-  > li {
-    margin-bottom: 1em;
+  animation: ${feedListScrollIn} 1.175s cubic-bezier(0.25, 0.05, 0.48, 1.11);
 
-    animation: ${feedListScrollIn} 1.175s cubic-bezier(0.25, 0.05, 0.48, 1.11);
-  }
+  > li { margin-bottom: 1em; }
 `;
 
 const FeedControlsContainer = styled.aside`
