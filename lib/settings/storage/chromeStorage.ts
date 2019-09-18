@@ -25,7 +25,11 @@ export default class ChromeStorageSettingsStore implements SettingsStore {
           return reject(new Error(chrome.runtime.lastError.message));
         }
 
-        return resolve(JSON.parse(items[ChromeStorageSettingsStore.storageKey]) as Settings);
+        if (items[ChromeStorageSettingsStore.storageKey]) {
+          return resolve(JSON.parse(items[ChromeStorageSettingsStore.storageKey]) as Settings);
+        }
+
+        resolve();
       }),
     );
   }
