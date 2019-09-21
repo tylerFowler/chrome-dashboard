@@ -38,6 +38,8 @@ export async function fetchSubreddit(
       throw new Error(`Subreddit ${subreddit} not found`);
     case 429:
       throw new Error('Too many refreshes, try again in a few moments');
+    case 503:
+      throw new Error('The Reddit servers are busy, try again later');
     default:
       throw new Error(await response.text());
     }
