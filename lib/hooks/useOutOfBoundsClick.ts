@@ -20,7 +20,7 @@ export default (function useOutOfBoundsClick(oobTargetRef, onClick, isActive = t
       }
     };
 
-    document.addEventListener('click', listener);
-    return () => document.removeEventListener('click', listener);
+    document.addEventListener('mousedown', listener);
+    return () => document.removeEventListener('mousedown', listener);
   });
 }) as UseOutOfBoundsClickHook;
