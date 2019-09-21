@@ -6,7 +6,7 @@ export type UseOutOfBoundsClickHook = (
   isActive?: boolean,
 ) => void;
 
-export default (function useOutOfBoundsClick(oobTargetRef, onClick, isActive) {
+export default (function useOutOfBoundsClick(oobTargetRef, onClick, isActive = true) {
   return useEffect(() => {
     if (isActive === false) {
       return;
