@@ -79,6 +79,10 @@ export const SettingButton = styled.button`
     border-color 350ms ease-out,
     box-shadow 350ms ease-out;
 
+  &:active {
+    transform: scale(1.075);
+  }
+
   &:hover:not(:disabled), &:focus:not(:disabled) {
     color: ${props => props.theme.typeLightDark};
     box-shadow: inset 0 -20rem ${props => props.theme.borderDarkLight};
