@@ -78,6 +78,10 @@ const LocationEditor: React.FC<Partial<LocationEditorProps>> = ({ config, update
     event.preventDefault();
     event.currentTarget.blur();
 
+    // give the illusion of doing something so that saving feels like an action was completed
+    dispatch({ type: 'waiting', payload: true });
+    setTimeout(() => dispatch({ type: 'waiting', payload: false }), 750);
+
     updateConfig({
       type: state.type, value: state.value,
       displayName: state.displayName, countryCode: state.countryCode,
