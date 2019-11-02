@@ -19,7 +19,7 @@ const namedExports = {
     'findDOMNode', 'render', 'unmountComponentAtNode', 'unstable_batchedUpdates',
   ],
   'node_modules/react-is/index.js': [
-    'isValidElementType', 'isElement', 'ForwardRef',
+    'isValidElementType', 'isElement', 'ForwardRef', 'isContextConsumer'
   ],
   'node_modules/react-redux/node_modules/react-is/index.js': [
     'isValidElementType', 'isContextConsumer',
