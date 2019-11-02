@@ -50,7 +50,7 @@
     "react-redux": "^7.1.1",
     "redux": "^4.0.4",
     "redux-saga": "^1.1.1",
-    "styled-components": "^4.3.2",
+    "styled-components": "^4.4.1",
     "typesafe-actions": "^4.4.2"
   },
   "devDependencies": {
@@ -59,7 +59,7 @@
     "@types/react-addons-css-transition-group": "^15.0.5",
     "@types/react-dom": "^16.9.3",
     "@types/react-redux": "^7.1.2",
-    "@types/styled-components": "^4.1.19",
+    "@types/styled-components": "^4.1.20",
     "ava": "^2.4.0",
     "imagemin-cli": "^5.0.0",
     "redux-devtools-extension": "^2.13.8",
