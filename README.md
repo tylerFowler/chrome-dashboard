@@ -1,4 +1,4 @@
-chrome-dashboard
+beat
 ================
 
 A (highly opinionated) new tab page extension for Chrome. Currently in development and should be considered very alpha.

@@ -43,15 +43,10 @@ export const defaultState: State = {
       feedSettings: { defaultFeedType: HNFeedType.TopStories },
     },
   },
-  weather: {
-    unit: 'F',
-    location: {
-      type: WeatherLocationType.CityName,
-      value: 'Kansas City',
-      countryCode: 'US',
-      displayName: 'KC',
-    },
-  },
+  weather: { unit: 'F', location: {
+    type: WeatherLocationType.CityName,
+    value: '',
+  }},
 };
 
 export default function settingsReducer(state: State = defaultState, action: SettingsAction): State {

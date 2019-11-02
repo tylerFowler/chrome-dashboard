@@ -6,6 +6,10 @@ import { Actions, fetchForecast as fetchForecastAction, recvForecast, fetchForec
 function* fetchForecast(action: ActionType<typeof fetchForecastAction>) {
   const { location, unit } = action.payload;
 
+  if (!location.value) {
+    return;
+  }
+
   try {
     const { current, future } = yield call(API.fetchForecasts, location, unit);
     yield put(recvForecast(current, future));
