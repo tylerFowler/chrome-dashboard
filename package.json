@@ -1,16 +1,16 @@
 {
-  "name": "chrome-dashboard",
+  "name": "beat",
   "version": "0.2.0",
-  "description": "A Chrome new tab page featuring HN/DN news feeds and other customizations",
+  "description": "A new tab replacement to keep you abreast of your regular news sources",
   "author": "Tyler Fowler <tylerfowler.1337@gmail.com>",
   "license": "MIT",
-  "homepage": "https://github.com/tylerFowler/chrome-dashboard",
+  "homepage": "https://github.com/tylerFowler/beat",
   "bugs": {
-    "url": "https://github.com/tylerFowler/chrome-dashboard/issues"
+    "url": "https://github.com/tylerFowler/beat/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/tylerFowler/chrome-dashboard"
+    "url": "https://github.com/tylerFowler/beat"
   },
   "main": "lib/main.tsx",
   "scripts": {
