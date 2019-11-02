@@ -49,6 +49,8 @@ export const defaultState: State = {
   }},
 };
 
+// TODO: this would be better off as several separate reducers w/ a single
+// combineReducer at the top
 export default function settingsReducer(state: State = defaultState, action: SettingsAction): State {
   switch (action.type) {
   case Actions.AddToast:
