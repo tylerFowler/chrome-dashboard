@@ -44,8 +44,8 @@ export const defaultState: State = {
     },
   },
   weather: { unit: 'F', location: {
-    type: WeatherLocationType.CityName,
-    value: '',
+    type: WeatherLocationType.Current,
+    value: { lat: '', lon: '' },
   }},
 };
 
