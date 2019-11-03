@@ -6,7 +6,9 @@ type State = Pick<GlobalState, 'settings'>;
 
 export const getSerializableSettings = ({ settings }: State) => {
   const serializableSettings = { ...settings };
+
   delete serializableSettings.toast;
+  delete serializableSettings.storageError;
 
   return serializableSettings;
 };
