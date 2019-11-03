@@ -232,6 +232,14 @@ export async function fetchForecasts(location: WeatherLocation, unit: 'F'|'C'): 
   future: Forecast,
   city?: CityDetails,
 }> {
+  if (WeatherLocation.isCoords(location)) {
+    if (!location.value.lat || !location.value.lon) {
+      throw new Error('Must specify location coordinates');
+    }
+  } else if (!location.value) {
+    throw new Error('Must specify a location');
+  }
+
   const [ current, future ] = await Promise.all([
     fetchCurrentWeather(location, unit), fetchFutureWeather(location, unit),
   ]);
