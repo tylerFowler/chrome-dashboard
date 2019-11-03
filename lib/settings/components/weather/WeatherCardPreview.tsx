@@ -49,8 +49,10 @@ const WeatherCardPreview: React.FC<WeatherCardPreviewProps> = ({ location, unit,
       }));
   }, [ unit, ...useDebouncedProps(750, location.type, location.countryCode, location.value, location.displayName) ]);
 
+  const locationName = location.displayName ? location.displayName.toString() : undefined;
+
   return <WeatherCard
-    futurePeriod={futurePeriod} location={location.displayName.toString() || undefined}
+    futurePeriod={futurePeriod} location={locationName}
     currentWeatherType={currentForecast.condition} currentTemperature={currentForecast.temperature}
     futureWeatherType={futureForecast.condition} futureTemperature={futureForecast.temperature}
   />;
