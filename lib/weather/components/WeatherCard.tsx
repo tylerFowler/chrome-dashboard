@@ -86,6 +86,7 @@ const WeatherCard: React.SFC<WeatherCardProps> = ({
   forecastFetchError,
 }) =>
     <WeatherCardContainer>
+      {/* TODO: show the navigator icon *or* a loading spinner if actively refining the location */}
       {refineLocation && <NavigatorIcon title="Update your location" alt="Update your location"
           onClick={refineLocation}
         />
