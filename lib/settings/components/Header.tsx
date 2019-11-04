@@ -5,7 +5,7 @@ import styled from 'lib/styled-components';
 import { fontStacks, typeScale } from 'lib/styles';
 import { Error as ErrorAlert } from 'lib/styled/Alert';
 import { getActiveToast, getStorageError } from '../selectors';
-import CloseIcon from './CloseIcon';
+import CloseIcon from '../../styled/CloseIcon';
 import Toast from './Toast';
 
 export interface HeaderProps {
