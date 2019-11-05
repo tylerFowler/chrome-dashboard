@@ -15,6 +15,7 @@ export const getSerializableSettings = ({ settings }: State) => {
 
 export const getActiveToast = ({ settings }: State) => settings.toast;
 export const getStorageError = ({ settings }: State) => settings.storageError;
+export const hasStoredSettings = ({ settings }: State) => settings.hasStoredSettings;
 
 export const getFeedSettings = ({ settings }: State) => settings.feed;
 export const getFeedRefreshInterval = ({ settings }: State) => settings.feed.refreshInterval;
