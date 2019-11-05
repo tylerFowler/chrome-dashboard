@@ -5,9 +5,9 @@ import { fontStacks } from 'lib/styles';
 import { hasStoredSettings } from 'lib/settings/selectors';
 import CloseIcon from './CloseIcon';
 
-interface TooltipContentProps { readonly arrowSize: string; }
+interface TooltipContainerProps { readonly arrowSize: string; }
 
-const TooltipContent = styled.span.attrs<TooltipContentProps, TooltipContentProps>(props => ({
+const TooltipContainer = styled.span.attrs<TooltipContainerProps, TooltipContainerProps>(props => ({
   arrowSize: props.arrowSize || '10px',
 }))`
   z-index: 1;
@@ -63,7 +63,7 @@ const OnboardingTooltip: React.FC<OnboardingTooltipProps> = ({ targetElement, ti
   }
 
   return (
-    <TooltipContent style={position} arrowSize={tipSize} ref={$ref => $tooltip.current = $ref}>
+    <TooltipContainer style={position} arrowSize={tipSize} ref={$ref => $tooltip.current = $ref}>
       <div>
         <CloseIcon
           style={{margin: '.25em .5em .25em .25em'}}
@@ -76,7 +76,7 @@ const OnboardingTooltip: React.FC<OnboardingTooltipProps> = ({ targetElement, ti
       <div style={{padding: '.25em'}}>
         {children}
       </div>
-    </TooltipContent>
+    </TooltipContainer>
   );
 };
 
