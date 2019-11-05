@@ -40,6 +40,7 @@ const TooltipContainer = styled.span.attrs<TooltipContainerProps, TooltipContain
 `;
 
 export interface OnboardingTooltipProps {
+  readonly id: string;
   readonly targetElement?: HTMLElement;
   readonly tipSize?: string;
 }
