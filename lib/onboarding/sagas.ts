@@ -19,7 +19,8 @@ function* storeProgress() {
 
 function* restoreProgress() {
   try {
-    const serializedProgress: SerializableOnboardingProgress = yield call(applicationStore.getData, storageKey);
+    const serializedProgress: SerializableOnboardingProgress =
+      yield retry(2, 5 * 1000, applicationStore.getData, storageKey);
 
     if (serializedProgress) {
       const deserializedProgress = deserializeProgress(serializedProgress);
