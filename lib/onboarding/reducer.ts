@@ -2,7 +2,7 @@ import { OnboardingAction, Actions } from './actions';
 
 export interface State {
   onboardingEnabled: boolean;
-  tooltipProgress: ReadonlySet<string>;
+  tooltipProgress: ReadonlySet<string>; // TODO: create a TooltipId type (string alias)
   storageError: Error;
 }
 
