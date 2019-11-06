@@ -3,17 +3,17 @@ import { State as OnboardingState, defaultState } from './reducer';
 
 type State = Pick<GlobalState, 'onboarding'>;
 
-export interface SerializableOnboardingProgressed {
+export interface SerializableOnboardingProgress {
   tooltipProgress: string[];
 }
 
-export function serializeProgress({ onboarding }: State): SerializableOnboardingProgressed {
+export function serializeProgress({ onboarding }: State): SerializableOnboardingProgress {
   return {
     tooltipProgress: Array.from(onboarding.tooltipProgress),
   };
 }
 
-export function deserializeProgress(serialized: SerializableOnboardingProgressed): OnboardingState {
+export function deserializeProgress(serialized: SerializableOnboardingProgress): OnboardingState {
   return { ...defaultState,
     tooltipProgress: new Set(serialized.tooltipProgress),
   };
