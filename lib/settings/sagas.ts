@@ -56,11 +56,13 @@ function* refreshCurrentLocationIfEnabled() {
     return;
   }
 
-  const getCurrentPosition = () => new Promise((resolve, reject) => navigator.geolocation.getCurrentPosition(
-    ({ coords }) => {
-      resolve(coords);
-    }, err => reject(err),
-  ));
+  const getCurrentPosition = () =>
+    new Promise<Coordinates>((resolve, reject) => navigator.geolocation.getCurrentPosition(
+      ({ coords }) => {
+        resolve(coords);
+      }, err => reject(err),
+    ),
+  );
 
   const locationConfig: WeatherLocation.Coords = yield select(getWeatherLocationConfig);
   const positionUpdatedLoc: WeatherLocation = { ...locationConfig };
@@ -71,7 +73,22 @@ function* refreshCurrentLocationIfEnabled() {
 
     yield put(refreshWeatherCoordsSuccess());
   } catch (error) {
-    yield put(refreshWeatherCoordsFailure(error));
+    let msg = 'Failed to retrieve location';
+
+    const posErr = error as PositionError; // can't narrow the type in the catch clause
+    switch (posErr.code) {
+    case posErr.PERMISSION_DENIED:
+      msg = 'Permissio denied';
+      break;
+    case posErr.POSITION_UNAVAILABLE:
+      msg = 'Location is unavailable at this time';
+      break;
+    case posErr.TIMEOUT:
+      msg = 'Timed out waiting to refresh location';
+      break;
+    }
+
+    yield put(refreshWeatherCoordsFailure(new Error(msg)));
     return;
   }
 
