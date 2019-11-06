@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import styled from 'lib/styled-components';
 import { fontStacks, typeScale } from 'lib/styles';
 import { Error as ErrorAlert } from 'lib/styled/Alert';
-import OnboardingTooltip from 'lib/styled/OnboardingTooltip';
+import OnboardingTooltip from 'lib/onboarding/components/OnboardingTooltip';
 import WeatherConditionIcon from './WeatherConditionIcon';
 import { WeatherConditionType } from '../interface';
 import SizeAdjustedLocation from './SizeAdjustedLocation';

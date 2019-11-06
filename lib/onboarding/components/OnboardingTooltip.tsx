@@ -2,8 +2,8 @@ import React, { useState, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'lib/styled-components';
 import { fontStacks } from 'lib/styles';
+import CloseIcon from 'lib/styled/CloseIcon';
 import { hasStoredSettings } from 'lib/settings/selectors';
-import CloseIcon from './CloseIcon';
 
 interface TooltipContainerProps { readonly arrowSize: string; }
 
