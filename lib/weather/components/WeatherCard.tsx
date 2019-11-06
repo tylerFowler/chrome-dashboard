@@ -87,7 +87,7 @@ const WeatherCard: React.SFC<WeatherCardProps> = ({
         <OnboardingTooltip id="weather-current-location-tip" whenNoSettings={true} targetElement={$navigator.current}>
           Click here to begin using your current location, or you can go to the settings to manually set a location.
         </OnboardingTooltip>
-        <WeatherLocationNavigator ref={$ref => $navigator.current = $ref} />
+        <WeatherLocationNavigator ref={$ref => $navigator.current = $ref} style={{float: 'right'}} />
       </>}
 
       {forecastFetchError &&

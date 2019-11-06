@@ -10,26 +10,33 @@ const NavigatorIcon = styled.img.attrs({
 })`
   cursor: pointer;
   opacity: .75;
+
+  width: 100%;
+  height: 100%;
+`;
+
+const IconContainer = styled.div`
   width: 1.5em;
   height: 1.5em;
-
-  float: right;
   padding: .25em;
 `;
 
-const ForwardedWeatherLocationNavigator = React.forwardRef<HTMLImageElement>(
-  function WeatherLocationNavigator(_, ref) {
+const ForwardedWeatherLocationNavigator = React.forwardRef<HTMLDivElement, { readonly style?: React.CSSProperties }>(
+  function WeatherLocationNavigator({ style }, ref) {
     const dispatch = useDispatch();
     const refreshing = useSelector(selector.isRefreshingWeatherLocation);
 
-    if (refreshing) {
-      return <Spinner ref={ref} />;
-    }
-
-    return <NavigatorIcon ref={ref}
-      title="Update your location" alt="Update your location"
-      onClick={() => dispatch(refreshWeatherCoords())}
-    />;
+    return (
+      <IconContainer ref={ref} style={style}>
+        {refreshing
+          ? <Spinner />
+          : <NavigatorIcon
+            title="Update your location" alt="Update your location"
+            onClick={() => dispatch(refreshWeatherCoords())}
+          />
+        }
+      </IconContainer>
+    );
   },
 );
 
