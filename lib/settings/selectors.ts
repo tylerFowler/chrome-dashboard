@@ -9,6 +9,7 @@ export const getSerializableSettings = ({ settings }: State) => {
 
   delete serializableSettings.toast;
   delete serializableSettings.storageError;
+  delete serializableSettings.hasStoredSettings;
 
   return serializableSettings;
 };
