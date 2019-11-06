@@ -18,3 +18,9 @@ export function deserializeProgress(serialized: SerializableOnboardingProgress):
     tooltipProgress: new Set(serialized.tooltipProgress),
   };
 }
+
+export const isOnboardingEnabled = ({ onboarding }: State) =>
+  onboarding.onboardingEnabled;
+
+export const isTooltipCompleted = (tooltipId: string, { onboarding }: State) =>
+  onboarding.tooltipProgress.has(tooltipId);

@@ -1,7 +1,9 @@
 import React, { useState, useRef } from 'react';
 import { useSelector } from 'react-redux';
-import CloseIcon from 'lib/styled/CloseIcon';
+import { GlobalState } from 'lib/store';
 import { hasStoredSettings } from 'lib/settings/selectors';
+import * as selectors from '../selectors';
+import CloseIcon from 'lib/styled/CloseIcon';
 import TooltipContainer from './TooltipContainer';
 
 export interface OnboardingTooltipProps {
@@ -10,12 +12,21 @@ export interface OnboardingTooltipProps {
   readonly tipSize?: string;
 }
 
-const OnboardingTooltip: React.FC<OnboardingTooltipProps> = ({ targetElement, tipSize = '10px', children }) => {
+const OnboardingTooltip: React.FC<OnboardingTooltipProps> = ({ id, targetElement, tipSize = '10px', children }) => {
   const $tooltip = useRef<HTMLElement>(null);
-  const [ closed, setClosed ] = useState(false);
+
+  const alreadyCompleted = useSelector((state: GlobalState) => selectors.isTooltipCompleted(id, state));
+  const [ closed, setClosed ] = useState(alreadyCompleted);
+
+  const onboardingEnabled = useSelector(selectors.isOnboardingEnabled);
   const isFirstLoad = !useSelector(hasStoredSettings);
 
-  if (!isFirstLoad || closed) { return null; }
+  if (
+    !onboardingEnabled
+    || !isFirstLoad
+    || alreadyCompleted
+    || closed
+  ) { return null; }
 
   const position: React.CSSProperties = {};
   if (targetElement && $tooltip.current) {
