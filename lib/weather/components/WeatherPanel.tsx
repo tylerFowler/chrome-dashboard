@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { WeatherSettingsContext } from '../../settings/context';
-import { getWeatherLocationConfig } from '../../settings/selectors';
 import { WeatherLocationType } from '../interface';
+import { refreshWeatherCoords } from 'lib/settings/actions';
+import { WeatherSettingsContext } from 'lib/settings/context';
+import { getWeatherLocationConfig, getWeatherLocationRefreshError } from 'lib/settings/selectors';
 import { fetchForecast } from '../actions';
-import WeatherCard from './WeatherCard';
 import { getCurrentForecast, getRelativeFuturePeriod, getFutureForecast, getForecastFetchError } from '../selectors';
-import { refreshWeatherCoords } from '../../settings/actions';
+import WeatherCard from './WeatherCard';
 
 const WeatherPanel: React.FC = () => {
   const dispatch = useDispatch();
@@ -23,6 +23,13 @@ const WeatherPanel: React.FC = () => {
 
   useEffect(requestForecast, [ requestForecast, ...weatherDeps ]);
 
+  const forecastFetchError = useSelector(getForecastFetchError);
+
+  let locationRefreshError = useSelector(getWeatherLocationRefreshError);
+  if (weatherSettings.location.type !== WeatherLocationType.Current) {
+    locationRefreshError = null; // never show geolocation errors when not using the location type that uses it
+  }
+
   return <WeatherCard
     location={useSelector(getWeatherLocationConfig).displayName || undefined}
     currentWeatherType={useSelector(getCurrentForecast).condition}
@@ -30,7 +37,7 @@ const WeatherPanel: React.FC = () => {
     futurePeriod={getRelativeFuturePeriod()}
     futureWeatherType={useSelector(getFutureForecast).condition}
     futureTemperature={useSelector(getFutureForecast).temperature}
-    forecastFetchError={useSelector(getForecastFetchError)}
+    forecastFetchError={forecastFetchError || locationRefreshError}
     refineLocation={weatherSettings.location.type === WeatherLocationType.Current && refineLocation}
   />;
 };
