@@ -1,10 +1,11 @@
 import React, { useState, useRef } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { GlobalState } from 'lib/store';
 import { hasStoredSettings } from 'lib/settings/selectors';
 import * as selectors from '../selectors';
 import CloseIcon from 'lib/styled/CloseIcon';
 import TooltipContainer from './TooltipContainer';
+import { completeTooltip } from '../actions';
 
 export interface OnboardingTooltipProps {
   readonly id: string;
@@ -45,14 +46,20 @@ const OnboardingTooltip: React.FC<OnboardingTooltipProps> = ({
     position.left = `calc(${tooltipMidwayPoint}px - (${tipSize} / 2))`;
   }
 
+  const dispatch = useDispatch();
+  const onTooltipClose = () => {
+    setClosed(true);
+    dispatch(completeTooltip(id));
+  };
+
   return (
     <TooltipContainer style={position} arrowSize={tipSize} ref={$ref => $tooltip.current = $ref}>
       <div>
         <CloseIcon
           style={{margin: '.25em .5em .25em .25em'}}
           size="1em"
-          iconColor={t => t.backgroundDarker}
-          onClick={() => setClosed(true)}
+          iconColor={theme => theme.backgroundDarker}
+          onClick={onTooltipClose}
         />
       </div>
 

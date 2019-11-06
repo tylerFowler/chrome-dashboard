@@ -15,7 +15,7 @@ export enum Actions {
 export type OnboardingAction = ActionType<
   | typeof enableOnboarding
   | typeof disableOnboarding
-  | typeof tooltipCompleted
+  | typeof completeTooltip
   | typeof progressStorageFailure
   | typeof restoreProgress
   | typeof progressRestorationFailure
@@ -24,7 +24,7 @@ export type OnboardingAction = ActionType<
 export const enableOnboarding = () => action(Actions.EnableOnboarding);
 export const disableOnboarding = () => action(Actions.DisableOnboarding);
 
-export const tooltipCompleted = (tooltipId: string) =>
+export const completeTooltip = (tooltipId: string) =>
   action(Actions.CompleteTooltip, { tooltipId });
 
 export const progressStorageFailure = (error: Error) =>
