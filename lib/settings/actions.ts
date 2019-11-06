@@ -32,6 +32,9 @@ export type SettingsAction = ActionType<
   | typeof setPanelFeedType
   | typeof receiveSettings
   | typeof updateWeatherConfig
+  | typeof refreshWeatherCoords
+  | typeof refreshWeatherCoordsSuccess
+  | typeof refreshWeatherCoordsFailure
 >;
 
 export const commit = () => action(Actions.Commit);

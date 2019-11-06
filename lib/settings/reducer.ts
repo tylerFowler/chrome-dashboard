@@ -134,6 +134,12 @@ function weatherReducer(state = defaultWeatherState, action: SettingsAction): We
     };
   case Actions.UpdateWeatherConfiguration:
     return { ...state, ...action.payload.update };
+  case Actions.RefreshWeatherCoordinates:
+    return { ...state, refreshingLocation: true, locationRefreshError: null };
+  case Actions.RefreshWeatherCoordinatesSuccess:
+    return { ...state, refreshingLocation: false };
+  case Actions.RefreshWeatherCoordinatesFailure:
+    return { ...state, refreshingLocation: false, locationRefreshError: action.payload.error };
   default:
     return state;
   }
