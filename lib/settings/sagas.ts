@@ -10,6 +10,8 @@ import {
   updateWeatherConfig,
   commit,
   restoreFailure,
+  refreshWeatherCoordsFailure,
+  refreshWeatherCoordsSuccess,
 } from './actions';
 
 const toastDebounce = 500;
@@ -61,13 +63,19 @@ function* refreshCurrentLocationIfEnabled() {
   ));
 
   const locationConfig: WeatherLocation.Coords = yield select(getWeatherLocationConfig);
+  const positionUpdatedLoc: WeatherLocation = { ...locationConfig };
 
   try {
     const { latitude, longitude } = yield call(getCurrentPosition);
-    const positionUpdatedLoc: WeatherLocation = { ...locationConfig,
-      value: { lat: latitude, lon: longitude },
-    };
+    positionUpdatedLoc.value = { lat: latitude, lon: longitude };
 
+    yield put(refreshWeatherCoordsSuccess());
+  } catch (error) {
+    yield put(refreshWeatherCoordsFailure(error));
+    return;
+  }
+
+  try {
     let coordsName = '';
     try {
       const { city } = yield call(WeatherAPI.fetchCurrentWeather, positionUpdatedLoc, 'F');
