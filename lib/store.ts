@@ -24,8 +24,8 @@ declare const ENV: string;
 
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('/apiCacheWorker.js', { scope: './' })
-    .then(reg => console.log('Registration succeeded', reg))
-    .catch(err => console.error('Registration failed', err));
+    .then(reg => console.debug('API Cache Worker registration succeeded', reg))
+    .catch(err => console.error('API Cache Worker registration failed', err));
 }
 
 export interface GlobalState {
