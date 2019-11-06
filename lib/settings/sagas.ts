@@ -3,10 +3,8 @@ import { getSerializableSettings, getWeatherLocationConfig } from './selectors';
 import { WeatherLocation, WeatherLocationType } from 'lib/weather/interface';
 import * as WeatherAPI from 'lib/weather/api';
 import { fetchForecastError } from 'lib/weather/actions';
-import { SettingsStore } from './storage';
-import LocalStorageSettingsStore from './storage/localStorage';
-import ChromeStorageSettingsStore from './storage/chromeStorage';
 import { State as Settings } from './reducer';
+import applicationStore from 'lib/storage';
 import {
   committed, commitFailure, receiveSettings, addToast, Actions, removeToast,
   updateWeatherConfig,
@@ -14,34 +12,16 @@ import {
   restoreFailure,
 } from './actions';
 
-// this global variable should be inserted by the build tooling to determine what
-// should be used as the settings storage mechanism
-declare var __SETTINGS_STORE__: string;
-
-// TODO: when it's possible we want to do conditional importing
-let settingsStore: SettingsStore;
-switch (__SETTINGS_STORE__) {
-case 'chromeStorage':
-  if (chrome && chrome.storage) {
-    settingsStore = new ChromeStorageSettingsStore();
-    break;
-  }
-
-  console.warn('Chrome storage not detected in this environment, falling back to localStorage');
-case 'localstorage':
-default:
-  settingsStore = new LocalStorageSettingsStore();
-  break;
-}
-
 const toastDebounce = 500;
 const toastLifetime = 3 * 1000;
+
+const settingsKey = 'settings';
 
 function* commitSettings() {
   const settings = yield select(getSerializableSettings);
 
   try {
-    yield call(settingsStore.commitSettings, settings);
+    yield call(applicationStore.setData, settingsKey, settings);
 
     yield put(committed());
   } catch (err) {
@@ -51,7 +31,7 @@ function* commitSettings() {
 
 function* restoreSettings() {
   try {
-    const settings: Settings = yield call(settingsStore.restoreSettings);
+    const settings: Settings = yield call(applicationStore.getData, settingsKey);
 
     if (settings) {
       yield put(receiveSettings(settings));
