@@ -9,23 +9,29 @@ import TooltipContainer from './TooltipContainer';
 export interface OnboardingTooltipProps {
   readonly id: string;
   readonly targetElement: HTMLElement;
+  readonly whenNoSettings?: boolean;
   readonly tipSize?: string;
 }
 
-const OnboardingTooltip: React.FC<OnboardingTooltipProps> = ({ id, targetElement, tipSize = '10px', children }) => {
+const OnboardingTooltip: React.FC<OnboardingTooltipProps> = ({
+  id, targetElement, children,
+  tipSize = '10px',
+  whenNoSettings = false,
+}) => {
   const $tooltip = useRef<HTMLElement>(null);
 
   const alreadyCompleted = useSelector((state: GlobalState) => selectors.isTooltipCompleted(id, state));
   const [ closed, setClosed ] = useState(alreadyCompleted);
 
   const onboardingEnabled = useSelector(selectors.isOnboardingEnabled);
-  const isFirstLoad = !useSelector(hasStoredSettings);
+  const settingsExist = useSelector(hasStoredSettings);
 
+  // never show if...
   if (
-    !onboardingEnabled
-    || !isFirstLoad
-    || alreadyCompleted
-    || closed
+    !onboardingEnabled                   // onboarding is disabled
+    || (whenNoSettings && settingsExist) // we require no settings but settings exist
+    || alreadyCompleted                  // this tooltip is already marked completed
+    || closed                            // this tooltip has been closed
   ) { return null; }
 
   const position: React.CSSProperties = {};
