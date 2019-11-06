@@ -6,7 +6,7 @@ export interface State {
   storageError: Error;
 }
 
-const defaultState: State = {
+export const defaultState: State = {
   onboardingEnabled: true,
   tooltipProgress: new Set<string>(),
   storageError: null,
