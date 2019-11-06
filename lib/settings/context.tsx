@@ -66,7 +66,7 @@ export const FeedSettingsContext = React.createContext<FeedSettings>({
 export const FeedSettingsProvider =
   createSettingsProvider(getFeedSettings, FeedSettingsContext);
 
-export const WeatherSettingsContext = React.createContext<WeatherSettings>({
+export const WeatherSettingsContext = React.createContext<Pick<WeatherSettings, 'unit'|'location'>>({
   unit: 'F',
   location: null,
 });

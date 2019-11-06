@@ -8,15 +8,14 @@ export const getSerializableSettings = ({ settings }: State) => {
   const serializableSettings = { ...settings };
 
   delete serializableSettings.toast;
-  delete serializableSettings.storageError;
-  delete serializableSettings.hasStoredSettings;
+  delete serializableSettings.storageMeta;
 
   return serializableSettings;
 };
 
 export const getActiveToast = ({ settings }: State) => settings.toast;
-export const getStorageError = ({ settings }: State) => settings.storageError;
-export const hasStoredSettings = ({ settings }: State) => settings.hasStoredSettings;
+export const getStorageError = ({ settings }: State) => settings.storageMeta.storageError;
+export const hasStoredSettings = ({ settings }: State) => settings.storageMeta.hasStoredSettings;
 
 export const getFeedSettings = ({ settings }: State) => settings.feed;
 export const getFeedRefreshInterval = ({ settings }: State) => settings.feed.refreshInterval;
@@ -34,6 +33,8 @@ export const getRightPanelFeedType = ({ settings }: State) => settings.panelConf
 export const getRightPanelFeedSettings = ({ settings }: State) => settings.panelConfig.right.feedSettings;
 
 export const getWeatherUnits = ({ settings }: State) => settings.weather.unit;
+export const isRefreshingWeatherLocation = ({ settings }: State) => settings.weather.refreshingLocation;
+export const getWeatherLocationRefreshError = ({ settings }: State) => settings.weather.locationRefreshError;
 export const getWeatherLocationConfig = ({ settings }: State) => settings.weather.location;
 
 export const getFeedName = (orientation: PanelOrientation, state: State) => {

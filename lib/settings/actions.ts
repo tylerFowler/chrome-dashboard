@@ -17,6 +17,8 @@ export enum Actions {
 
   UpdateWeatherConfiguration = 'SETTINGS_UPDATE_WEATHER',
   RefreshWeatherCoordinates = 'SETTINGS_REFRESH_WEATHER_COORDS',
+  RefreshWeatherCoordinatesSuccess = 'SETTINGS_REFRESH_WEATHER_COORDS_SUCCESS',
+  RefreshWeatherCoordinatesFailure = 'SETTINGS_REFRESH_WEATHER_COORDS_FAILURE',
 }
 
 export type SettingsAction = ActionType<
@@ -63,3 +65,6 @@ export const updateWeatherConfig = (config: Partial<WeatherSettings>) =>
   action(Actions.UpdateWeatherConfiguration, { update: config });
 
 export const refreshWeatherCoords = () => action(Actions.RefreshWeatherCoordinates);
+export const refreshWeatherCoordsSuccess = () => action(Actions.RefreshWeatherCoordinatesSuccess);
+export const refreshWeatherCoordsFailure = (error: Error) =>
+  action(Actions.RefreshWeatherCoordinatesFailure, { error });
