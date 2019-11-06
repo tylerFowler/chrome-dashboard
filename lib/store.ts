@@ -15,6 +15,8 @@ import settingsReducer, { State as SettingsState } from './settings/reducer';
 import settingsSaga from './settings/sagas';
 import weatherReducer, { State as WeatherState } from './weather/reducer';
 import weatherSaga from './weather/sagas';
+import onboardingReducer, { State as OnboardingState } from './onboarding/reducer';
+import onboardingSaga from './onboarding/sagas';
 
 import autorefreshSaga from './autorefresh';
 
@@ -22,8 +24,8 @@ declare const ENV: string;
 
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('/apiCacheWorker.js', { scope: './' })
-    .then(reg => console.log('Registration succeeded', reg))
-    .catch(err => console.error('Registration failed', err));
+    .then(reg => console.debug('API Cache Worker registration succeeded', reg))
+    .catch(err => console.error('API Cache Worker registration failed', err));
 }
 
 export interface GlobalState {
@@ -33,6 +35,7 @@ export interface GlobalState {
   redditFeed: RedditFeedState;
   weather: WeatherState;
   settings: SettingsState;
+  onboarding: OnboardingState;
 }
 
 const saga = createSagaMiddleware();
@@ -54,6 +57,7 @@ const store = createStore(
     redditFeed: redditFeedReducer,
     weather: weatherReducer,
     settings: settingsReducer,
+    onboarding: onboardingReducer,
   }),
   middlewareComposer(applyMiddleware(...middleware)),
 );
@@ -66,6 +70,7 @@ saga.run(function* appSaga() {
     dnFeed: dnFeedSaga(),
     redditFeed: redditFeedSaga(),
     weather: weatherSaga(),
+    onboarding: onboardingSaga(),
     autorefresh: autorefreshSaga(),
   });
 });

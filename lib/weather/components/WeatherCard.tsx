@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import styled from 'lib/styled-components';
 import { fontStacks, typeScale } from 'lib/styles';
 import { Error as ErrorAlert } from 'lib/styled/Alert';
-import OnboardingTooltip from 'lib/styled/OnboardingTooltip';
+import OnboardingTooltip from 'lib/onboarding/components/OnboardingTooltip';
 import WeatherConditionIcon from './WeatherConditionIcon';
 import { WeatherConditionType } from '../interface';
 import SizeAdjustedLocation from './SizeAdjustedLocation';
@@ -95,7 +95,7 @@ const WeatherCard: React.SFC<WeatherCardProps> = ({
           scroll to ensure the location editor is in view
       */}
       {refineLocation && <>
-        <OnboardingTooltip id="weather-current-location-tip" targetElement={$navigator.current}>
+        <OnboardingTooltip id="weather-current-location-tip" whenNoSettings={true} targetElement={$navigator.current}>
           Click here to begin using your current location, or you can go to the settings to manually set a location.
         </OnboardingTooltip>
         <NavigatorIcon ref={$nav => $navigator.current = $nav} title="Update your location" alt="Update your location"
