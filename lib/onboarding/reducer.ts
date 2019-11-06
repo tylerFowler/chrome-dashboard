@@ -25,7 +25,7 @@ export default function reducer(state = defaultState, action: OnboardingAction):
     return { ...state, tooltipProgress: updatedProgress };
   }
   case Actions.RestoreProgress:
-    return { ...state, tooltipProgress: action.payload.tooltipProgress };
+    return { ...state, ...action.payload };
   case Actions.ProgressStorageFailure:
   case Actions.ProgressRestorationFailure:
     return { ...state, storageError: action.payload.error };

@@ -1,4 +1,5 @@
 import { action, ActionType } from 'typesafe-actions';
+import { State } from './reducer';
 
 export enum Actions {
   EnableOnboarding = 'ONBOARDING_ENABLE',
@@ -29,8 +30,8 @@ export const tooltipCompleted = (tooltipId: string) =>
 export const progressStorageFailure = (error: Error) =>
   action(Actions.ProgressStorageFailure, { error });
 
-export const restoreProgress = (tooltipProgress: ReadonlySet<string>) =>
-  action(Actions.RestoreProgress, { tooltipProgress });
+export const restoreProgress = (state: State) =>
+  action(Actions.RestoreProgress, state);
 
 export const progressRestorationFailure = (error: Error) =>
   action(Actions.ProgressRestorationFailure, { error });
