@@ -21,8 +21,8 @@ export type OnboardingAction = ActionType<
   | typeof progressRestorationFailure
 >;
 
-export const enableOnboarding = action(Actions.EnableOnboarding);
-export const disableOnboarding = action(Actions.DisableOnboarding);
+export const enableOnboarding = () => action(Actions.EnableOnboarding);
+export const disableOnboarding = () => action(Actions.DisableOnboarding);
 
 export const tooltipCompleted = (tooltipId: string) =>
   action(Actions.CompleteTooltip, { tooltipId });
