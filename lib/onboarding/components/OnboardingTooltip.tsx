@@ -8,7 +8,7 @@ import TooltipContainer from './TooltipContainer';
 
 export interface OnboardingTooltipProps {
   readonly id: string;
-  readonly targetElement?: HTMLElement;
+  readonly targetElement: HTMLElement;
   readonly tipSize?: string;
 }
 
