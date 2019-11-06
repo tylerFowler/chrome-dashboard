@@ -67,7 +67,7 @@ export interface PanelSettings {
   readonly feedSettings?: FeedPanelSettings;
 }
 
-interface PanelConfig {
+export interface PanelConfig {
   readonly left: PanelSettings;
   readonly right: PanelSettings;
 }

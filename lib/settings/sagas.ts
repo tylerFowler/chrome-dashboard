@@ -1,5 +1,5 @@
 import { all, select, call, put, delay, takeLatest, debounce } from 'redux-saga/effects';
-import { getSerializableSettings, getWeatherLocationConfig } from './selectors';
+import { getSerializableSettings, getWeatherLocationConfig, serializeSettings, deserializeSettings } from './selectors';
 import { WeatherLocation, WeatherLocationType } from 'lib/weather/interface';
 import * as WeatherAPI from 'lib/weather/api';
 import { fetchForecastError } from 'lib/weather/actions';
@@ -20,10 +20,10 @@ const toastLifetime = 3 * 1000;
 const settingsKey = 'settings';
 
 function* commitSettings() {
-  const settings = yield select(getSerializableSettings);
+  const serializableSettings = yield select(serializeSettings);
 
   try {
-    yield call(applicationStore.setData, settingsKey, settings);
+    yield call(applicationStore.setData, settingsKey, serializableSettings);
 
     yield put(committed());
   } catch (err) {
@@ -33,10 +33,11 @@ function* commitSettings() {
 
 function* restoreSettings() {
   try {
-    const settings: Settings = yield call(applicationStore.getData, settingsKey);
+    const serializedSettings: Settings = yield call(applicationStore.getData, settingsKey);
 
-    if (settings) {
-      yield put(receiveSettings(settings));
+    if (serializedSettings) {
+      const deserializedSettings = deserializeSettings(serializedSettings);
+      yield put(receiveSettings(deserializedSettings));
     }
   } catch (err) {
     console.warn('Unable to load settings:', err);

@@ -48,7 +48,7 @@ export const restoreFailure = (error: Error) =>
 export const addToast = (content: string) => action(Actions.AddToast, { content });
 export const removeToast = () => action(Actions.RemoveToast);
 
-export const receiveSettings = (settings: SettingsState) =>
+export const receiveSettings = (settings: Partial<SettingsState>) =>
   action(Actions.ReceiveSettings, settings);
 
 export const updateFeedConfig = (config: Partial<FeedSettings>) =>

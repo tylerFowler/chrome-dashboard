@@ -1,17 +1,32 @@
 import { GlobalState } from '../store';
 import { PanelOrientation, FeedType, HNFeedSettings, SubredditFeedSettings } from './interface';
 import { FeedType as HNFeedType } from 'lib/hn/interface';
+import { State as SettingsState, FeedSettings, PanelConfig, WeatherSettings } from './reducer';
 
 type State = Pick<GlobalState, 'settings'>;
 
-export const getSerializableSettings = ({ settings }: State) => {
-  const serializableSettings = { ...settings };
+export interface SerializableSettings {
+  feed: FeedSettings;
+  panelConfig: PanelConfig;
+  weather: Omit<WeatherSettings, 'refreshingLocation'|'locationRefreshError'>;
+}
 
-  delete serializableSettings.toast;
-  delete serializableSettings.storageMeta;
+export function serializeSettings({ settings }: State): SerializableSettings {
+  return {
+    feed: settings.feed,
+    panelConfig: settings.panelConfig,
+    weather: {
+      unit: settings.weather.unit,
+      location: settings.weather.location,
+    },
+  };
+}
 
-  return serializableSettings;
-};
+export function deserializeSettings(serialized: SerializableSettings): Partial<SettingsState> {
+  return { ...serialized,
+    weather: { ...(serialized.weather as WeatherSettings) },
+  };
+}
 
 export const getActiveToast = ({ settings }: State) => settings.toast;
 export const getStorageError = ({ settings }: State) => settings.storageMeta.storageError;
