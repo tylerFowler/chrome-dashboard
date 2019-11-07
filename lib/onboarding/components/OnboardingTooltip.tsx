@@ -14,11 +14,11 @@ export interface OnboardingTooltipProps extends TooltipProps {
 const OnboardingTooltip: React.FC<OnboardingTooltipProps> = ({
   id, children, whenNoSettings = false, ...tooltipProps
 }) => {
+  const dispatch = useDispatch();
   const alreadyCompleted = useSelector((state: GlobalState) => selectors.isTooltipCompleted(id, state));
   const onboardingEnabled = useSelector(selectors.isOnboardingEnabled);
   const settingsExist = useSelector(hasStoredSettings);
 
-  const dispatch = useDispatch();
   // never show if...
   if (
     !onboardingEnabled                   // onboarding is disabled
@@ -26,9 +26,7 @@ const OnboardingTooltip: React.FC<OnboardingTooltipProps> = ({
     || alreadyCompleted                  // this tooltip is already marked completed
   ) { return null; }
 
-  const onTooltipClose = () => {
-    dispatch(completeTooltip(id));
-  };
+  const onTooltipClose = () => { dispatch(completeTooltip(id)); };
 
   return <Tooltip defaultClosed={alreadyCompleted} onClose={onTooltipClose} {...tooltipProps}>{children}</Tooltip>;
 };

@@ -37,15 +37,13 @@ const TooltipContainer = styled.span.attrs<TooltipContainerProps, TooltipContain
   }
 `;
 
-// TODO: change targetElement to be 'boundingClientRect', then the parent can wire that up w/ a useRect hook?
 export interface TooltipProps {
-  readonly targetElement: HTMLElement;
+  readonly targetElement: Readonly<HTMLElement>;
   readonly tipSize?: string;
   readonly defaultClosed?: boolean;
   onClose?(): void;
 }
 
-// TODO: consider using forwardRef instead?
 const Tooltip: React.FC<TooltipProps> = ({
   targetElement, children,
   defaultClosed = false, tipSize = '10px',
@@ -53,30 +51,32 @@ const Tooltip: React.FC<TooltipProps> = ({
 }) => {
   const [ closed, setClosed ] = useState(defaultClosed);
 
-  if (closed) { return null; }
-
   const onTooltipClose = () => {
     setClosed(true);
     onClose();
   };
 
   const [ position, setPosition ] = useState<React.CSSProperties>({});
-  const repositionerRef = useCallback(($node: HTMLElement) => {
-    if (!targetElement || !$node) { return; }
+  const repositionerRef = useCallback(($tooltip: HTMLElement) => {
+    if (!targetElement || !$tooltip) { return; }
 
-    const tempPos: React.CSSProperties = {};
+    const pos: React.CSSProperties = {};
     const tooltipBuffer = '.15em';
     const { right, bottom, width } = targetElement.getBoundingClientRect();
 
-    tempPos.top = `calc(${bottom}px + (${tipSize} / 2) + ${tooltipBuffer})`;
+    // fix the top of the tooltip to the bottom of the target, accounting for
+    // the protruding tip and adding a bit of a buffer
+    pos.top = `calc(${bottom}px + (${tipSize} / 2) + ${tooltipBuffer})`;
 
-    // Position the tooltip so that the middle of the tooltip is lined up vertically
-    // width the middle of the target element
-    const tooltipMidwayPoint = (right - (width / 2)) - ($node.getBoundingClientRect().width / 2);
-    tempPos.left = `calc(${tooltipMidwayPoint}px - (${tipSize} / 2))`;
+    // position the tooltip so that the middle of the tooltip is lined up
+    // vertically width the middle of the target element
+    const tooltipMidwayPoint = (right - (width / 2)) - ($tooltip.getBoundingClientRect().width / 2);
+    pos.left = `calc(${tooltipMidwayPoint}px - (${tipSize} / 2))`;
 
-    setPosition(tempPos);
+    setPosition(pos);
   }, [ targetElement ]);
+
+  if (closed || !targetElement) { return null; }
 
   return (
     <TooltipContainer style={position} arrowSize={tipSize} ref={repositionerRef}>

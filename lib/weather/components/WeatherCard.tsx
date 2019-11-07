@@ -1,6 +1,7 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import styled from 'lib/styled-components';
 import { fontStacks, typeScale } from 'lib/styles';
+import { useHTMLElement } from 'lib/hooks';
 import { Error as ErrorAlert } from 'lib/styled/Alert';
 import OnboardingTooltip from 'lib/onboarding/components/OnboardingTooltip';
 import WeatherConditionIcon from './WeatherConditionIcon';
@@ -75,15 +76,16 @@ const WeatherCard: React.SFC<WeatherCardProps> = ({
   futurePeriod, futureWeatherType, futureTemperature,
   forecastFetchError,
 }) => {
-  const $navigator = useRef<HTMLElement>(null);
+  const [ $navigator, navigatorRef ] = useHTMLElement();
 
   return (
     <WeatherCardContainer>
       {refineLocation && <>
-        <OnboardingTooltip id="weather-current-location-tip" whenNoSettings={true} targetElement={$navigator.current}>
+        <OnboardingTooltip id="weather-current-location-tip" whenNoSettings={true} targetElement={$navigator}>
           Click here to begin using your current location, or you can go to the settings to manually set a location.
         </OnboardingTooltip>
-        <WeatherLocationNavigator ref={$ref => $navigator.current = $ref} style={{float: 'right'}} />
+
+        <WeatherLocationNavigator ref={navigatorRef} style={{float: 'right'}} />
       </>}
 
       {forecastFetchError &&
