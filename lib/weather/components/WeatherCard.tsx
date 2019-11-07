@@ -26,6 +26,7 @@ export interface WeatherCardProps {
 export const WeatherCardContainer = styled.section`
   background: ${props => props.theme.backgroundExtraLight};
 
+  position: relative; // to allow absolute positioning
   padding: .75em 2em 1em;
   margin: 1em auto;
   overflow: hidden;
@@ -109,12 +110,12 @@ const WeatherCard: React.SFC<WeatherCardProps> = ({
         </OnboardingTooltip>
 
         <TooltipCompletionTarget tooltipId={locationNavTooltipId}>
-          <WeatherLocationNavigator ref={navigatorRef} style={{float: 'right'}} />
+          <WeatherLocationNavigator ref={navigatorRef} style={{position: 'absolute', right: '.5em', top: '.5em'}} />
         </TooltipCompletionTarget>
       </>}
 
       {forecastFetchError &&
-        <ErrorAlert style={{textAlign: 'center'}}>{forecastFetchError.message}</ErrorAlert>
+        <ErrorAlert style={{textAlign: 'center', margin: '0 1em'}}>{forecastFetchError.message}</ErrorAlert>
       }
 
       <SizeAdjustedLocation style={isFetchingForecast && {textAlign: 'left', marginLeft: 'calc(50% - .5em)'}}>
