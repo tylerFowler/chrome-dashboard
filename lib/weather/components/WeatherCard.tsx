@@ -4,6 +4,7 @@ import { fontStacks, typeScale } from 'lib/styles';
 import { useHTMLElement } from 'lib/hooks';
 import { Error as ErrorAlert } from 'lib/styled/Alert';
 import OnboardingTooltip from 'lib/onboarding/components/OnboardingTooltip';
+import TooltipCompletionTarget from 'lib/onboarding/components/TooltipCompletionTarget';
 import WeatherConditionIcon from './WeatherConditionIcon';
 import { WeatherConditionType } from '../interface';
 import SizeAdjustedLocation from './SizeAdjustedLocation';
@@ -70,6 +71,8 @@ const FutureTemperature = styled(Temperature)`
   color: ${props => props.theme.typeDarkLight};
 `;
 
+const locationNavTooltipId = 'weather-current-location-tip';
+
 const WeatherCard: React.SFC<WeatherCardProps> = ({
   location, refineLocation,
   currentWeatherType, currentTemperature,
@@ -81,11 +84,13 @@ const WeatherCard: React.SFC<WeatherCardProps> = ({
   return (
     <WeatherCardContainer>
       {refineLocation && <>
-        <OnboardingTooltip id="weather-current-location-tip" whenNoSettings={true} targetElement={$navigator}>
+        <OnboardingTooltip id={locationNavTooltipId} whenNoSettings={true} targetElement={$navigator}>
           Click here to begin using your current location, or you can go to the settings to manually set a location.
         </OnboardingTooltip>
 
-        <WeatherLocationNavigator ref={navigatorRef} style={{float: 'right'}} />
+        <TooltipCompletionTarget tooltipId={locationNavTooltipId}>
+          <WeatherLocationNavigator ref={navigatorRef} style={{float: 'right'}} />
+        </TooltipCompletionTarget>
       </>}
 
       {forecastFetchError &&
