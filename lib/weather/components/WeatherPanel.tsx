@@ -5,8 +5,11 @@ import { refreshWeatherCoords } from 'lib/settings/actions';
 import { WeatherSettingsContext } from 'lib/settings/context';
 import { getWeatherLocationConfig, getWeatherLocationRefreshError } from 'lib/settings/selectors';
 import { fetchForecast } from '../actions';
-import { getCurrentForecast, getRelativeFuturePeriod, getFutureForecast, getForecastFetchError } from '../selectors';
 import WeatherCard from './WeatherCard';
+import {
+  getCurrentForecast, getRelativeFuturePeriod, getFutureForecast,
+  getForecastFetchError, isFetchingForecast,
+} from '../selectors';
 
 const WeatherPanel: React.FC = () => {
   const dispatch = useDispatch();
@@ -40,6 +43,7 @@ const WeatherPanel: React.FC = () => {
     futureWeatherType={useSelector(getFutureForecast).condition}
     futureTemperature={useSelector(getFutureForecast).temperature}
     forecastFetchError={forecastFetchError || locationRefreshError}
+    isFetchingForecast={useSelector(isFetchingForecast)}
     refineLocation={weatherSettings.location.type === WeatherLocationType.Current && refineLocation}
   />;
 };

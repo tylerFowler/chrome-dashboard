@@ -14,7 +14,10 @@ const StyledLocation = styled.h1`
 // SizeAdjustedLocation is a component that displays a weather location, adjusting
 // the font size of the location according to the length of the inner content,
 // which must be a string.
-const SizeAdjustedLocation: React.SFC<{ readonly children: string }> = ({ children }) => {
+const SizeAdjustedLocation: React.SFC<{
+  readonly style?: React.CSSProperties;
+  readonly children: string
+}> = ({ style, children }) => {
   // use larger location font sizes for smaller display names
   let locationFontSize = typeScale(7);
   if (children.length < 6) {
@@ -23,7 +26,7 @@ const SizeAdjustedLocation: React.SFC<{ readonly children: string }> = ({ childr
     locationFontSize = typeScale(9);
   }
 
-  return <StyledLocation style={{fontSize: locationFontSize}}>{children}</StyledLocation>;
+  return <StyledLocation style={{fontSize: locationFontSize, ...style}}>{children}</StyledLocation>;
 };
 
 export default SizeAdjustedLocation;

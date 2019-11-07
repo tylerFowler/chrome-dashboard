@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'lib/styled-components';
 import { fontStacks, typeScale } from 'lib/styles';
 import { useHTMLElement } from 'lib/hooks';
@@ -18,6 +18,7 @@ export interface WeatherCardProps {
   readonly futureWeatherType?: WeatherConditionType;
   readonly futureTemperature?: number|string;
   readonly forecastFetchError?: Error;
+  readonly isFetchingForecast?: boolean;
 
   refineLocation?(): void;
 }
@@ -77,9 +78,28 @@ const WeatherCard: React.SFC<WeatherCardProps> = ({
   location, refineLocation,
   currentWeatherType, currentTemperature,
   futurePeriod, futureWeatherType, futureTemperature,
-  forecastFetchError,
+  forecastFetchError, isFetchingForecast,
 }) => {
   const [ $navigator, navigatorRef ] = useHTMLElement();
+
+  const [ displayLocation, setDisplayLocation ] = useState(location);
+  useEffect(() => {
+    if (!isFetchingForecast) {
+      setDisplayLocation(location);
+      return;
+    }
+
+    setDisplayLocation('.');
+    const intervalId = setInterval(() => setDisplayLocation(l => {
+      if (l.length < 3) {
+        return l + '.';
+      } else {
+        return '.';
+      }
+    }), 1000);
+
+    return () => clearInterval(intervalId);
+  }, [ isFetchingForecast ]);
 
   return (
     <WeatherCardContainer>
@@ -97,7 +117,9 @@ const WeatherCard: React.SFC<WeatherCardProps> = ({
         <ErrorAlert style={{textAlign: 'center'}}>{forecastFetchError.message}</ErrorAlert>
       }
 
-      <SizeAdjustedLocation>{location}</SizeAdjustedLocation>
+      <SizeAdjustedLocation style={isFetchingForecast && {textAlign: 'left', marginLeft: 'calc(50% - .5em)'}}>
+        {displayLocation}
+      </SizeAdjustedLocation>
 
       <TempSection style={{fontSize: typeScale(9), padding: '0 13%'}}>
         <WeatherConditionIcon type={currentWeatherType} style={{flex: 1}} />
@@ -129,6 +151,7 @@ WeatherCard.defaultProps = {
   currentTemperature: '∞',
   futurePeriod: 'Tonight',
   futureTemperature: '∞',
+  isFetchingForecast: false,
 };
 
 export default WeatherCard;
