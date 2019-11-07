@@ -1,9 +1,16 @@
 {
   "manifest_version": 2,
   "name": "beat",
-  "description": "",
+  "description": "Stay on top of your regular news beat with each tab",
   "author": "Tyler Fowler <tylerfowler.1337@gmail.com>",
-  "version": "0.1.0",
+  "version": "1.0.0",
+  "default_locale": "en",
+  "icons": {
+    "16": "assets/logo@16px.png",
+    "48": "assets/logo@48px.png",
+    "128": "assets/logo@128px.png"
+  },
+  "offline_enabled": true,
   "chrome_url_overrides": { "newtab": "index.html" },
   "optional_permissions": [
     "geolocation"

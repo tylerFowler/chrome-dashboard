@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="500px" height="500px" viewBox="0 0 500 500" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>logo</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="logo" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect id="middle-bar" fill="#4A4A4A" x="110" y="70" width="190" height="70"></rect>
+        <rect id="left-bar" fill-opacity="0.751613451" fill="#FFCAB3" x="35" y="40" width="165" height="420"></rect>
+        <rect id="right-bar" fill-opacity="0.75" fill="#BBDAF7" x="300" y="40" width="165" height="420"></rect>
+        <text id="Beat." font-family="Lora-Bold, Lora" font-size="200" font-weight="bold" letter-spacing="1" fill="#4A4A4A">
+            <tspan x="11.5" y="323">Beat</tspan>
+            <tspan x="441.9" y="323">.</tspan>
+        </text>
+    </g>
+</svg>
