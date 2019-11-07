@@ -79,10 +79,6 @@ const WeatherCard: React.SFC<WeatherCardProps> = ({
 
   return (
     <WeatherCardContainer>
-      {/* TODO: show the navigator icon or a loading spinner if actively refining the location */}
-      {/* TODO: in the tooltip, add a link button that will open the settings and
-          scroll to ensure the location editor is in view
-      */}
       {refineLocation && <>
         <OnboardingTooltip id="weather-current-location-tip" whenNoSettings={true} targetElement={$navigator.current}>
           Click here to begin using your current location, or you can go to the settings to manually set a location.
