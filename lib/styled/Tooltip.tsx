@@ -17,23 +17,23 @@ const TooltipContainer = styled.span.attrs<TooltipContainerProps, TooltipContain
   font-family: ${fontStacks.OpenSans};
   line-height: 1.2;
 
-  background-color: ${props => props.theme.backgroundLightDark};
-  color: ${props => props.theme.typeDark};
-  border: 2px solid ${props => props.theme.borderDarkLight};
+  background-color: ${props => props.theme.backgroundAccent};
+  color: ${props => props.theme.typeDarkSemiLight};
+  border: 2px solid ${props => props.theme.borderAccent};
   border-radius: 4px;
+  border-top-width: .5em;
 
-  box-shadow: 0 0 .5em .175em ${props => props.theme.darkShadowColor};
+  box-shadow: 0 0 .5em .2em ${props => props.theme.darkAccentShadowColor};
 
   &::after {
     content: '';
 
     position: absolute;
-    bottom: 100%;
     left: calc(50% - (${props => props.arrowSize} / 2));
-    top: calc(${props => props.arrowSize} * -2);
+    top: calc((${props => props.arrowSize} * -2) - .5em); // -.5em to compensate for top border
 
     border: ${props => props.arrowSize} solid transparent;
-    border-bottom: ${props => props.arrowSize} solid ${props => props.theme.borderDarkLight};
+    border-bottom: ${props => props.arrowSize} solid ${props => props.theme.borderAccent};
   }
 `;
 
@@ -61,7 +61,7 @@ const Tooltip: React.FC<TooltipProps> = ({
     if (!targetElement || !$tooltip) { return; }
 
     const pos: React.CSSProperties = {};
-    const tooltipBuffer = '.15em';
+    const tooltipBuffer = '5px';
     const { right, bottom, width } = targetElement.getBoundingClientRect();
 
     // fix the top of the tooltip to the bottom of the target, accounting for
@@ -84,7 +84,7 @@ const Tooltip: React.FC<TooltipProps> = ({
         <CloseIcon
           style={{margin: '.25em .5em .25em .25em'}}
           size="1em"
-          iconColor={theme => theme.backgroundDarker}
+          iconColor={theme => theme.borderAccent}
           onClick={onTooltipClose}
         />
       </div>
