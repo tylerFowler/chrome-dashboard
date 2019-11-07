@@ -9,7 +9,7 @@ const TooltipContainer = styled.span.attrs<TooltipContainerProps, TooltipContain
   arrowSize: props.arrowSize || '10px',
 }))`
   z-index: 1;
-  position: absolute;
+  position: fixed;
   display: inline-block;
   max-width: 200px;
 
