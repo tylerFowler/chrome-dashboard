@@ -66,6 +66,14 @@ export namespace WeatherLocation {
     (loc.type === WeatherLocationType.Coords || loc.type === WeatherLocationType.Current)
     && (loc.value && loc.value.hasOwnProperty('lat') && loc.value.hasOwnProperty('lon'))
   ;
+
+  export const isValid = (loc: WeatherLocation): boolean => {
+    if (isCoords(loc)) {
+      return loc.value.lat !== '' && loc.value.lon !== '';
+    } else {
+      return loc.value !== '';
+    }
+  };
 }
 
 export type WeatherLocation =

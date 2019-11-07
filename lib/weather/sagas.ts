@@ -7,13 +7,7 @@ import { WeatherLocation } from './interface';
 function* fetchForecast(action: ActionType<typeof fetchForecastAction>) {
   const { location, unit } = action.payload;
 
-  if (!location.value) {
-    return;
-  } else if (WeatherLocation.isCoords(location)) {
-    if (!location.value.lat || !location.value.lon) {
-      return;
-    }
-  }
+  if (!WeatherLocation.isValid(location)) { return; }
 
   try {
     const { current, future } = yield call(API.fetchForecasts, location, unit);

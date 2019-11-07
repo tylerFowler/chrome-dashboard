@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { WeatherLocationType } from '../interface';
+import { WeatherLocationType, WeatherLocation } from '../interface';
 import { refreshWeatherCoords } from 'lib/settings/actions';
 import { WeatherSettingsContext } from 'lib/settings/context';
 import { getWeatherLocationConfig, getWeatherLocationRefreshError } from 'lib/settings/selectors';
@@ -18,7 +18,9 @@ const WeatherPanel: React.FC = () => {
   const weatherDeps = [ weatherSettings.location && weatherSettings.location.value, weatherSettings.unit ];
 
   const requestForecast = useCallback(() => {
-    dispatch(fetchForecast(weatherSettings.location, weatherSettings.unit));
+    if (WeatherLocation.isValid(weatherSettings.location)) {
+      dispatch(fetchForecast(weatherSettings.location, weatherSettings.unit));
+    }
   }, [ dispatch, ...weatherDeps ]);
 
   useEffect(requestForecast, [ requestForecast, ...weatherDeps ]);
