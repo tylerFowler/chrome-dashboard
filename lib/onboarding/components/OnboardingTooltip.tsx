@@ -19,16 +19,16 @@ const OnboardingTooltip: React.FC<OnboardingTooltipProps> = ({
   const settingsExist = useSelector(hasStoredSettings);
 
   const dispatch = useDispatch();
-  const onTooltipClose = () => {
-    dispatch(completeTooltip(id));
-  };
-
   // never show if...
   if (
     !onboardingEnabled                   // onboarding is disabled
     || (whenNoSettings && settingsExist) // we require no settings but settings exist
     || alreadyCompleted                  // this tooltip is already marked completed
   ) { return null; }
+
+  const onTooltipClose = () => {
+    dispatch(completeTooltip(id));
+  };
 
   return <Tooltip defaultClosed={alreadyCompleted} onClose={onTooltipClose} {...tooltipProps}>{children}</Tooltip>;
 };
