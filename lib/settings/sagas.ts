@@ -1,5 +1,5 @@
 import { all, select, call, put, delay, takeLatest, debounce } from 'redux-saga/effects';
-import { getSerializableSettings, getWeatherLocationConfig, serializeSettings, deserializeSettings } from './selectors';
+import { getWeatherLocationConfig, serializeSettings, deserializeSettings } from './selectors';
 import { WeatherLocation, WeatherLocationType } from 'lib/weather/interface';
 import * as WeatherAPI from 'lib/weather/api';
 import { fetchForecastError } from 'lib/weather/actions';
