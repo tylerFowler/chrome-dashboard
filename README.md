@@ -4,7 +4,7 @@ beat
 > beat: a reporter's regular routine for covering news sources
 
 Stay on top of your regular news beat with each tab. beat is a new tab replacement for Chrome that show your frequent news sources, plus a quick check of the weather.
-![preview](https://user-images.githubusercontent.com/5419372/62814937-94e1b400-bad9-11e9-9e5a-a0baf541d314.png)
+![preview](./site_assets/preview.png)
 
 ## News Sources
 
