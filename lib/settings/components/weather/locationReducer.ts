@@ -17,7 +17,7 @@ function reducer(state: State, action: { type: string, payload: any }): State {
   switch (action.type) {
   case 'updateCity':
   case 'updateZipCode':
-    return { ...state, value: action.payload };
+    return { ...state, value: action.payload, displayName: '' };
   case 'updateCoords':
     // since updating coordinates might be an asynchronous process (i.e. using
     // the geolocation sensor) ensure before setting value that the type is correct
