@@ -15,11 +15,11 @@
   "main": "lib/main.tsx",
   "scripts": {
     "build": "npx rollup -c rollup.config.js",
-    "test": "npx ava",
+    "test": "NODE_ENV=test npx ava",
     "lint": "npx tslint --project . --format stylish || exit 0",
     "start": "ROLLUP_WATCH=true; npx rollup -c rollup-devserver.config.js --watch",
     "build-assets": "(rm public/assets/* 2>/dev/null || true) && npx imagemin 'assets' --out-dir 'public/assets'",
-    "build-dist": "NODE_ENV=production npm run build && npm run build-assets",
+    "build-dist": "npm test && NODE_ENV=production npm run build && npm run build-assets",
     "build-favicon": "convert assets/logo-favicon.png -define icon:auto-resize=64,48,32,16 public/favicon.ico"
   },
   "ava": {
