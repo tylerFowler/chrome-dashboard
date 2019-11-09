@@ -5,9 +5,9 @@
   "author": "Tyler Fowler <tylerfowler.1337@gmail.com>",
   "version": "1.0.0",
   "icons": {
-    "16": "assets/logo@16px.png",
-    "48": "assets/logo@48px.png",
-    "128": "assets/logo@128px.png"
+    "16": "assets/logo-favicon@16px.png",
+    "48": "assets/logo-favicon@48px.png",
+    "128": "assets/logo-favicon@128px.png"
   },
   "chrome_url_overrides": { "newtab": "index.html" },
   "optional_permissions": [
