@@ -9,7 +9,6 @@
     "48": "assets/logo@48px.png",
     "128": "assets/logo@128px.png"
   },
-  "offline_enabled": true,
   "chrome_url_overrides": { "newtab": "index.html" },
   "optional_permissions": [
     "geolocation"
