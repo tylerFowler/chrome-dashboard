@@ -26,3 +26,6 @@ Create a Github [issue](https://github.com/tylerFowler/beat/issues/new) and let 
 4. In Chrome, go to [chrome://extensions/](chrome://extensions/) and click "Load unpacked"
     - Ensure that "Developer mode" is turned on in the top right of that page
 5. Select the path: `/path/to/beat/public`
+
+## License
+See [here](./LICENSE) for more information.
