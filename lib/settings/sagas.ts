@@ -1,5 +1,5 @@
 import { all, select, call, put, delay, takeLatest, debounce } from 'redux-saga/effects';
-import { getWeatherLocationConfig, serializeSettings, deserializeSettings } from './selectors';
+import { getWeatherLocationConfig, serializeSettings, deserializeSettings, getWeatherUnits } from './selectors';
 import { WeatherLocation, WeatherLocationType } from 'lib/weather/interface';
 import * as WeatherAPI from 'lib/weather/api';
 import { fetchForecastError } from 'lib/weather/actions';
@@ -96,7 +96,8 @@ function* refreshCurrentLocationIfEnabled() {
   try {
     let coordsName = '';
     try {
-      const { city } = yield call(WeatherAPI.fetchCurrentWeather, positionUpdatedLoc, 'F');
+      const weatherUnit = yield select(getWeatherUnits);
+      const { city } = yield call(WeatherAPI.fetchCurrentWeather, positionUpdatedLoc, weatherUnit);
 
       if (city && city.name) {
         coordsName = city.name;
