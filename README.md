@@ -34,5 +34,10 @@ Create a Github [issue](https://github.com/tylerFowler/beat/issues/new) and let 
   - `localStorage`: Use the browser's local storage API for storage, used mostly for local development
   - `chromeStorage`: Use Chrome's extension storage API, which will allow other Chrome installations to use synced settings, for personal use this is typically what you want
 
+### It's open source but you're charging for it? What gives?
+While I want this extension to be as useful to as many people as possible, using the extension from the Chrome webstore means you're using my API keys which, well, aren't free for me either.
+
+I wanted to keep the project open source to encourage people to build it themselves and bring their own API keys if it makes sense for them. At the same time, I want to provide an avenue for those who want a more convenient experience - the price of that convenience being helping me out with service subscription costs.
+
 ## License
 See [here](./LICENSE) for more information.
