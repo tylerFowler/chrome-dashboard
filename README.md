@@ -3,27 +3,19 @@ beat
 
 > beat: a reporter's regular routine for covering news sources
 
-Stay on top of your regular news beat with each tab. beat is a new tab replacement for Chrome that show your frequent news sources, plus a quick check of the weather. News articles 
+Stay on top of your regular news beat with each tab. beat is a new tab replacement for Chrome that show your frequent news sources, plus a quick check of the weather.
 ![preview](https://user-images.githubusercontent.com/5419372/62814937-94e1b400-bad9-11e9-9e5a-a0baf541d314.png)
 
 ## News Sources
 
-### [Hacker News](https://news.ycombinator.com/)
-View the top stories on Hacker News, with the ability to choose between different story streams like the Top stories, or turn on the flood with all New stories.
+-  [Hacker News](https://news.ycombinator.com/) 
+   - View the top stories on Hacker News, with the ability to choose between different story streams like the Top stories, or turn on the flood with all New stories.
+- [Designer News](https://www.designernews.co/)
+- [Subreddits](https://www.reddit.com/)
+  - Keep track of any subreddit, with the ability to create a custom theme and choose from different streams like Top or Controversial.
 
-![Hacker News Panel](./site_assets/hn-right.png)
+**Not seeing a news source you'd like?**
 
-### [Designer News](https://www.designernews.co/)
-![Designer News Panel](./site_assets/dn-left.png)
-
-### [Subreddits](https://www.reddit.com/)
-Keep track of any subreddit, with the ability to create a custom theme and choose from different streams like Top or Controversial.
-
-![Reddit Panel](./site_assets/reddit-right.png)
-
-![Reddit Panel Settings](./site_assets/reddit-settings.png)
-
-### Not seeing a news source you'd like?
 Create a Github [issue](https://github.com/tylerFowler/beat/issues/new) and let me know!
 
 ## Building & Local Usage
