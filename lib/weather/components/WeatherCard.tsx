@@ -102,6 +102,8 @@ const WeatherCard: React.SFC<WeatherCardProps> = ({
     return () => clearInterval(intervalId);
   }, [ isFetchingForecast ]);
 
+  useEffect(() => setDisplayLocation(location), [ location ]);
+
   return (
     <WeatherCardContainer>
       {refineLocation && <>
