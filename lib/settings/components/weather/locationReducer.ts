@@ -19,7 +19,13 @@ function reducer(state: State, action: { type: string, payload: any }): State {
   case 'updateZipCode':
     return { ...state, value: action.payload };
   case 'updateCoords':
-    return { ...state, value: action.payload, countryCode: null };
+    // since updating coordinates might be an asynchronous process (i.e. using
+    // the geolocation sensor) ensure before setting value that the type is correct
+    if (state.type === WeatherLocationType.Coords || state.type === WeatherLocationType.Current) {
+      return { ...state, value: action.payload, countryCode: null };
+    } else {
+      return state;
+    }
   case 'updateDisplayName':
     return { ...state, displayName: action.payload };
   case 'updateDefaultDisplayName':
