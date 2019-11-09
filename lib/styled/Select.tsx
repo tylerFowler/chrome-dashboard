@@ -27,6 +27,7 @@ const StyledSelect = styled.select`
   vertical-align: middle;
   padding-right: 1.68em;
   margin-right: -1.25em;
+  line-height: 1.35; // any lower value will cut off any descenders
 `;
 
 // Select is a component that is a drop-in replacement for <select> with a custom
