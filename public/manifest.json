@@ -10,13 +10,11 @@
     "128": "assets/logo-favicon@128px.png"
   },
   "chrome_url_overrides": { "newtab": "index.html" },
-  "optional_permissions": [
-    "geolocation"
-  ],
   "permissions": [
     "storage",
     "management",
     "contentSettings",
+    "geolocation",
     "https://hacker-news.firebaseio.com/*",
     "https://api.designernews.co/api/v2/*",
     "https://api.openweathermap.org/data/2.5/weather*",
