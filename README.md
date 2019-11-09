@@ -25,7 +25,14 @@ Create a Github [issue](https://github.com/tylerFowler/beat/issues/new) and let 
 3. run `npm run build-dist`
 4. In Chrome, go to [chrome://extensions/](chrome://extensions/) and click "Load unpacked"
     - Ensure that "Developer mode" is turned on in the top right of that page
-5. Select the path: `/path/to/beat/public`
+1. Select the path: `/path/to/beat/public`
+
+### Build Configuration
+- `openweatherAPIKey`: An API key for the [OpenWeather](https://openweathermap.org/) service, simply sign up for a developer account there and provide your API key here
+  - Because of the fairly aggressive caching strategy used by the extension, it's likely that you can use the free tier and be ok
+- `settingsStorage`: The storage method for application data (settings, onboarding progress, etc...), possible values are:
+  - `localStorage`: Use the browser's local storage API for storage, used mostly for local development
+  - `chromeStorage`: Use Chrome's extension storage API, which will allow other Chrome installations to use synced settings, for personal use this is typically what you want
 
 ## License
 See [here](./LICENSE) for more information.
