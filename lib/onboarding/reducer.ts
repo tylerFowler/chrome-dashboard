@@ -7,7 +7,7 @@ export interface State {
 }
 
 export const defaultState: State = {
-  onboardingEnabled: true,
+  onboardingEnabled: false,
   tooltipProgress: new Set<string>(),
   storageError: null,
 } as const;
