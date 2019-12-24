@@ -59,7 +59,7 @@
     "@types/react-addons-css-transition-group": "^15.0.5",
     "@types/react-dom": "^16.9.4",
     "@types/react-redux": "^7.1.5",
-    "@types/styled-components": "^4.4.0",
+    "@types/styled-components": "^4.4.1",
     "ava": "^2.4.0",
     "imagemin-cli": "^5.1.0",
     "redux-devtools-extension": "^2.13.8",
