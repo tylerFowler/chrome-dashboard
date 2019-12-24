@@ -26,6 +26,12 @@ function* restoreProgress() {
       const deserializedProgress = deserializeProgress(serializedProgress);
       yield put(action.restoreProgress(deserializedProgress));
     }
+
+    // only enable onboarding when we've successfully restored progress or have
+    // seen that there is no progress, this is important because otherwise the
+    // tooltips the user has completed will flash on the screen while waiting
+    // for progress restoration
+    yield put(action.enableOnboarding());
   } catch (err) {
     console.warn('Unable to restore onboarding progress:', err);
     yield put(action.progressRestorationFailure(err));
