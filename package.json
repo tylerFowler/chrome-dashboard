@@ -20,7 +20,8 @@
     "start": "ROLLUP_WATCH=true; npx rollup -c rollup-devserver.config.js --watch",
     "build-assets": "(rm public/assets/* 2>/dev/null || true) && npx imagemin 'assets' --out-dir 'public/assets'",
     "build-dist": "npm test && NODE_ENV=production npm run build && npm run build-assets",
-    "build-favicon": "convert assets/logo-favicon.png -define icon:auto-resize=64,48,32,16 public/favicon.ico"
+    "build-favicon": "convert assets/logo-favicon.png -define icon:auto-resize=64,48,32,16 public/favicon.ico",
+    "package-chrome": "pushd ./public; zip -r ../beat-chrome-package.zip .; popd"
   },
   "ava": {
     "files": [
