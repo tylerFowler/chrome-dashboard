@@ -21,6 +21,7 @@
       "no-empty": false,
       "member-ordering": false,
       "no-namespace": false,
-      "ordered-imports": false
+      "ordered-imports": false,
+      "array-type": "array-simple"
     }
 }
