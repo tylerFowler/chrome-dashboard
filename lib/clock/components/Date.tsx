@@ -3,9 +3,9 @@ import React from 'react';
 import { fontStacks, typeScale } from '../../styles';
 
 const DateText = styled.span`
-  color: ${props => props.theme.typeDarkLight}
+  color: ${props => props.theme.typeDarkLight};
   font-family: ${fontStacks.OpenSans};
-  font-size: ${typeScale(6)}
+  font-size: ${typeScale(6)};
   font-weight: 300;
   letter-spacing: 4px;
   text-transform: uppercase;
