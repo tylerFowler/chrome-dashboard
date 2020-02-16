@@ -55,11 +55,11 @@
     "typesafe-actions": "^5.1.0"
   },
   "devDependencies": {
-    "@types/chrome": "0.0.91",
-    "@types/react": "^16.9.17",
+    "@types/chrome": "0.0.95",
+    "@types/react": "^16.9.19",
     "@types/react-addons-css-transition-group": "^15.0.5",
-    "@types/react-dom": "^16.9.4",
-    "@types/react-redux": "^7.1.5",
+    "@types/react-dom": "^16.9.5",
+    "@types/react-redux": "^7.1.7",
     "@types/styled-components": "^4.4.1",
     "ava": "^3.3.0",
     "imagemin-cli": "^5.1.0",
