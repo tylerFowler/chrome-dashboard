@@ -53,6 +53,9 @@ function* settingsStoredToast() {
 
 // TODO: this needs to check the local storage and prioritize that over whatever
 // is in sync'd chrome storage, which is what will always be loaded first
+// - however, when refreshing we should never write to sync'd storage, instead
+//   we should write to local storage
+//   - But then will any value ever make it to chrome sync'd storage? when?
 function* refreshCurrentLocationIfEnabled() {
   const weatherLocType: WeatherLocation = yield select(getWeatherLocationConfig);
   if (weatherLocType.type !== WeatherLocationType.Current) {
@@ -122,12 +125,24 @@ function* refreshCurrentLocationIfEnabled() {
   }
 }
 
+// TODO: Settings have just been restored, check to see if we have weather type set to
+// "current" and, if so, check to see if there are coordinates in local storage
+// and update location to be that (but don't cause the new location to be committed)
+function* attemptToLoadLocalWeatherSettings() {
+  throw new Error('not implemented');
+}
+
 export default function* rootSaga() {
+  // TODO: this will dispatch a 'recvSettings' action, we should look for this
+  // and create an effect that will fill in the weatehr coords w/ the ones from
+  // local storage if we have some
   yield call(restoreSettings);
 
   // TODO: if weather type == current & a lot/lon exists, we should assume that
   // we're allowed to refresh the location willy nilly and should do so now,
   // by dispaching refreshIfEnabled
+  // - But, caveat, this will be probably too frequent so we might need to set a
+  // "last refresh time" and go off of that
 
   yield all([
     takeLatest(Actions.Commit, commitSettings),
@@ -135,6 +150,7 @@ export default function* rootSaga() {
     debounce(toastDebounce, Actions.UpdatePanelConfiguration, commitSettings),
     debounce(toastDebounce, Actions.UpdatePanelType, commitSettings),
     debounce(toastDebounce, Actions.UpdateWeatherConfiguration, commitSettings),
+    takeLatest(Actions.ReceiveSettings, attemptToLoadLocalWeatherSettings),
     takeLatest(Actions.RefreshWeatherCoordinates, refreshCurrentLocationIfEnabled),
     takeLatest(Actions.Committed, settingsStoredToast),
   ]);
