@@ -51,6 +51,8 @@ function* settingsStoredToast() {
   yield put(removeToast());
 }
 
+// TODO: this needs to check the local storage and prioritize that over whatever
+// is in sync'd chrome storage, which is what will always be loaded first
 function* refreshCurrentLocationIfEnabled() {
   const weatherLocType: WeatherLocation = yield select(getWeatherLocationConfig);
   if (weatherLocType.type !== WeatherLocationType.Current) {
@@ -122,6 +124,11 @@ function* refreshCurrentLocationIfEnabled() {
 
 export default function* rootSaga() {
   yield call(restoreSettings);
+
+  // TODO: if weather type == current & a lot/lon exists, we should assume that
+  // we're allowed to refresh the location willy nilly and should do so now,
+  // by dispaching refreshIfEnabled
+
   yield all([
     takeLatest(Actions.Commit, commitSettings),
     debounce(toastDebounce, Actions.UpdateFeedConfiguration, commitSettings),
