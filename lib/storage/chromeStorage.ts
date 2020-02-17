@@ -1,10 +1,11 @@
 import { ApplicationStore } from './interface';
 
 export default class ChromeStorage implements ApplicationStore {
-  public setData(key: string, data: object): Promise<void> {
+  public setData(key: string, data: object, shouldSync = false): Promise<void> {
+    const storageMedium = shouldSync ? chrome.storage.sync : chrome.storage.local;
     const updateObject = { [key]: JSON.stringify(data) };
 
-    return new Promise((resolve, reject) => chrome.storage.sync.set(updateObject, () => {
+    return new Promise((resolve, reject) => storageMedium.set(updateObject, () => {
       if (chrome.runtime.lastError) {
         return reject(new Error(chrome.runtime.lastError.message));
       }
@@ -13,9 +14,11 @@ export default class ChromeStorage implements ApplicationStore {
     }));
   }
 
-  public getData<T = any>(key: string): Promise<T> {
+  public getData<T = any>(key: string, preferLocal = false): Promise<T> {
+    const storageMedium = preferLocal ? chrome.storage.local : chrome.storage.sync;
+
     return new Promise((resolve, reject) =>
-      chrome.storage.sync.get(key, items => {
+      storageMedium.get(key, items => {
         if (chrome.runtime.lastError) {
           return reject(new Error(chrome.runtime.lastError.message));
         }
