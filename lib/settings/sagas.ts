@@ -51,11 +51,27 @@ function* settingsStoredToast() {
   yield put(removeToast());
 }
 
-// TODO: this needs to check the local storage and prioritize that over whatever
-// is in sync'd chrome storage, which is what will always be loaded first
-// - however, when refreshing we should never write to sync'd storage, instead
-//   we should write to local storage
-//   - But then will any value ever make it to chrome sync'd storage? when?
+const localLocationCacheKey = 'currentLocation';
+
+function* cacheLocalCoordinates(location: WeatherLocation.Coords) {
+  applicationStore.setData(localLocationCacheKey, location, false);
+}
+
+function* useCachedLocalCoordinatesIfAvailable() {
+  const { type }: WeatherLocation = yield select(state => getWeatherLocationConfig(state));
+  if (type !== WeatherLocationType.Current) {
+    return;
+  }
+
+  const cachedLocation: Readonly<WeatherLocation> =
+    yield call(applicationStore.getData, localLocationCacheKey, true);
+
+  if (cachedLocation && WeatherLocation.isCoords(cachedLocation)) {
+    yield put(updateWeatherConfig({ location: cachedLocation }));
+  }
+}
+
+// TODO: write tests for this
 function* refreshCurrentLocationIfEnabled() {
   const weatherLocType: WeatherLocation = yield select(getWeatherLocationConfig);
   if (weatherLocType.type !== WeatherLocationType.Current) {
@@ -111,12 +127,16 @@ function* refreshCurrentLocationIfEnabled() {
       console.warn('Unable to determine location name from coordinates', error);
     }
 
-    yield put(updateWeatherConfig({ location: { ...positionUpdatedLoc,
+    const locationUpdate: WeatherLocation = { ...positionUpdatedLoc,
       displayName: coordsName, // reset display name as the location has changed
       countryCode: null, // coordinates should not populate country code
-    }}));
+    };
 
-    yield put(commit());
+    yield put(updateWeatherConfig({ location: locationUpdate }));
+    yield put(commit()); // TODO: should we commit at all?
+    // TODO: But then will any value ever make it to chrome sync'd storage? when?
+
+    yield call(cacheLocalCoordinates, locationUpdate);
   } catch {
     // there's no good place to put this, either we push an error to the weather
     // module or the weather module modifies settings so for now this is where it
@@ -125,17 +145,7 @@ function* refreshCurrentLocationIfEnabled() {
   }
 }
 
-// TODO: Settings have just been restored, check to see if we have weather type set to
-// "current" and, if so, check to see if there are coordinates in local storage
-// and update location to be that (but don't cause the new location to be committed)
-function* attemptToLoadLocalWeatherSettings() {
-  throw new Error('not implemented');
-}
-
 export default function* rootSaga() {
-  // TODO: this will dispatch a 'recvSettings' action, we should look for this
-  // and create an effect that will fill in the weatehr coords w/ the ones from
-  // local storage if we have some
   yield call(restoreSettings);
 
   // TODO: if weather type == current & a lot/lon exists, we should assume that
@@ -150,7 +160,7 @@ export default function* rootSaga() {
     debounce(toastDebounce, Actions.UpdatePanelConfiguration, commitSettings),
     debounce(toastDebounce, Actions.UpdatePanelType, commitSettings),
     debounce(toastDebounce, Actions.UpdateWeatherConfiguration, commitSettings),
-    takeLatest(Actions.ReceiveSettings, attemptToLoadLocalWeatherSettings),
+    takeLatest(Actions.ReceiveSettings, useCachedLocalCoordinatesIfAvailable),
     takeLatest(Actions.RefreshWeatherCoordinates, refreshCurrentLocationIfEnabled),
     takeLatest(Actions.Committed, settingsStoredToast),
   ]);
