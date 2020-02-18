@@ -52,9 +52,18 @@ function* settingsStoredToast() {
 }
 
 const localLocationCacheKey = 'currentLocation';
+const locationCacheLengthMs = 60 * 60 * 1000; // 1 hour
+
+interface LocationCache {
+  location: WeatherLocation.Coords;
+  cachedAt: Date|string;
+}
 
 function* cacheLocalCoordinates(location: WeatherLocation.Coords) {
-  applicationStore.setData(localLocationCacheKey, location, false);
+  const cachedAt = new Date();
+
+  const locationCache: LocationCache = { location, cachedAt: cachedAt.toISOString() };
+  applicationStore.setData(localLocationCacheKey, locationCache, false);
 }
 
 function* useCachedLocalCoordinatesIfAvailable() {
@@ -63,11 +72,16 @@ function* useCachedLocalCoordinatesIfAvailable() {
     return;
   }
 
-  const cachedLocation: Readonly<WeatherLocation> =
-    yield call(applicationStore.getData, localLocationCacheKey, true);
+  const cachedLocation: LocationCache = yield call(applicationStore.getData, localLocationCacheKey, true);
+  if (cachedLocation && WeatherLocation.isCoords(cachedLocation.location)) {
+    yield put(updateWeatherConfig({ location: cachedLocation.location }));
+  }
+}
 
-  if (cachedLocation && WeatherLocation.isCoords(cachedLocation)) {
-    yield put(updateWeatherConfig({ location: cachedLocation }));
+function* getLocalCoordinatesCacheDate() {
+  const cachedLocation: LocationCache = yield call(applicationStore.getData, localLocationCacheKey, true);
+  if (cachedLocation) {
+    return new Date(cachedLocation.cachedAt);
   }
 }
 
@@ -133,8 +147,10 @@ function* refreshCurrentLocationIfEnabled() {
     };
 
     yield put(updateWeatherConfig({ location: locationUpdate }));
-    yield put(commit()); // TODO: should we commit at all?
-    // TODO: But then will any value ever make it to chrome sync'd storage? when?
+
+    // commit after updating the weather configuration, new devices will now use
+    // that particular location, though it's not terribly vital that we commit now
+    yield put(commit());
 
     yield call(cacheLocalCoordinates, locationUpdate);
   } catch {
@@ -145,14 +161,24 @@ function* refreshCurrentLocationIfEnabled() {
   }
 }
 
+function* refreshLocationIfStale() {
+  const cachedAt: Date = yield call(getLocalCoordinatesCacheDate);
+
+  // if we have no cache don't attempt to refresh, can't guarantee that location
+  // permissions have been given for this device
+  if (!cachedAt) {
+    return;
+  }
+
+  const isStale = (new Date()).valueOf() - cachedAt.valueOf() > locationCacheLengthMs;
+  if (isStale) {
+    yield call(refreshCurrentLocationIfEnabled);
+  }
+}
+
 export default function* rootSaga() {
   yield call(restoreSettings);
-
-  // TODO: if weather type == current & a lot/lon exists, we should assume that
-  // we're allowed to refresh the location willy nilly and should do so now,
-  // by dispaching refreshIfEnabled
-  // - But, caveat, this will be probably too frequent so we might need to set a
-  // "last refresh time" and go off of that
+  yield call(refreshLocationIfStale);
 
   yield all([
     takeLatest(Actions.Commit, commitSettings),
