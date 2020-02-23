@@ -32,7 +32,6 @@
       "TS_NODE_COMPILER_OPTIONS": "{\"module\":\"commonjs\"}"
     },
     "verbose": true,
-    "compileEnhancements": false,
     "extensions": [
       "ts"
     ],
@@ -61,7 +60,7 @@
     "@types/react-dom": "^16.9.5",
     "@types/react-redux": "^7.1.7",
     "@types/styled-components": "^4.4.3",
-    "ava": "^3.3.0",
+    "ava": "^3.4.0",
     "imagemin-cli": "^5.1.0",
     "redux-devtools-extension": "^2.13.8",
     "rollup": "^1.31.1",
@@ -75,8 +74,8 @@
     "rollup-plugin-typescript2": "^0.26.0",
     "ts-node": "^8.6.2",
     "tsconfig-paths": "^3.9.0",
-    "tslib": "^1.10.0",
+    "tslib": "^1.11.0",
     "tslint": "^6.0.0",
-    "typescript": "^3.7.5"
+    "typescript": "^3.8.2"
   }
 }
