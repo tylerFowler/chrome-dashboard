@@ -60,10 +60,10 @@
     "@types/react-dom": "^16.9.5",
     "@types/react-redux": "^7.1.7",
     "@types/styled-components": "^5.0.0",
-    "ava": "^3.4.0",
+    "ava": "^3.5.0",
     "imagemin-cli": "^5.1.0",
     "redux-devtools-extension": "^2.13.8",
-    "rollup": "^1.31.1",
+    "rollup": "^1.32.1",
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-copy-glob": "^0.3.1",
     "rollup-plugin-livereload": "^1.0.4",
@@ -74,8 +74,8 @@
     "rollup-plugin-typescript2": "^0.26.0",
     "ts-node": "^8.6.2",
     "tsconfig-paths": "^3.9.0",
-    "tslib": "^1.11.0",
-    "tslint": "^6.0.0",
-    "typescript": "^3.8.2"
+    "tslib": "^1.11.1",
+    "tslint": "^6.1.0",
+    "typescript": "^3.8.3"
   }
 }
