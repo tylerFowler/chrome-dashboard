@@ -54,12 +54,12 @@
     "typesafe-actions": "^5.1.0"
   },
   "devDependencies": {
-    "@types/chrome": "0.0.96",
+    "@types/chrome": "0.0.100",
     "@types/react": "^16.9.23",
     "@types/react-addons-css-transition-group": "^15.0.5",
     "@types/react-dom": "^16.9.5",
     "@types/react-redux": "^7.1.7",
-    "@types/styled-components": "^5.0.0",
+    "@types/styled-components": "^5.0.1",
     "ava": "^3.5.0",
     "imagemin-cli": "^5.1.0",
     "redux-devtools-extension": "^2.13.8",
