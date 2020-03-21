@@ -3,7 +3,7 @@ import { RedditPost, FeedType } from './interface';
 export const RedditAPI = 'https://www.reddit.com';
 
 // TODO: add version, bake in as part of build step (replacement)
-const userAgent = 'chrome:dash';
+const userAgent = 'chrome:beat';
 
 export const isCacheableRequest = (request: Request): boolean =>
   request.url.startsWith(RedditAPI);
