@@ -1,7 +1,7 @@
 import { ApplicationStore } from './interface';
 
 export default class ChromeStorage implements ApplicationStore {
-  public setData(key: string, data: object, shouldSync = false): Promise<void> {
+  public setData(key: string, data: object, shouldSync = true): Promise<void> {
     const storageMedium = shouldSync ? chrome.storage.sync : chrome.storage.local;
     const updateObject = { [key]: JSON.stringify(data) };
 
