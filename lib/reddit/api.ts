@@ -41,6 +41,10 @@ export async function fetchSubreddit(
     case 503:
       throw new Error('The Reddit servers are busy, try again later');
     default:
+      if (response.headers.get('Content-Type') === 'text/html') {
+        throw new Error('An error occurred fetching subreddit, please try again later');
+      }
+
       throw new Error(await response.text());
     }
   }
