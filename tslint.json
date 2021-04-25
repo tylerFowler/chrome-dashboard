@@ -22,6 +22,7 @@
       "member-ordering": false,
       "no-namespace": false,
       "ordered-imports": false,
-      "array-type": false
+      "array-type": false,
+      "max-classes-per-file": false
     }
 }
