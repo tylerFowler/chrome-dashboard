@@ -1,5 +1,5 @@
 import { ActionType } from 'typesafe-actions';
-import { debounce, put, call } from 'redux-saga/effects';
+import { takeEvery, put, call } from 'redux-saga/effects';
 import * as API from './api';
 import { RedditPost } from './interface';
 import {
@@ -18,5 +18,5 @@ function* fetchSubreddit(action: ActionType<typeof fetchSubredditAction>) {
 }
 
 export default function* rootSaga() {
-  yield debounce(2500, Actions.FetchSub, fetchSubreddit);
+  yield takeEvery(Actions.FetchSub, fetchSubreddit);
 }
