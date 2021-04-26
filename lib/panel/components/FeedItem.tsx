@@ -72,6 +72,7 @@ const ItemDetail = styled.div`
   font-weight: 300;
   font-size: ${typeScale(3)};
 
+  white-space: nowrap;
   position: absolute;
   bottom: .5em;
 
