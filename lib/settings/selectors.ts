@@ -30,6 +30,7 @@ export function deserializeSettings(serialized: SerializableSettings): Partial<S
 
 export const getActiveToast = ({ settings }: State) => settings.toast;
 export const getStorageError = ({ settings }: State) => settings.storageMeta.storageError;
+export const hasAttemptedRestoration = ({ settings }: State) => settings.storageMeta.restorationCompleted;
 export const hasStoredSettings = ({ settings }: State) => settings.storageMeta.hasStoredSettings;
 
 export const getFeedSettings = ({ settings }: State) => settings.feed;

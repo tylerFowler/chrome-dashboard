@@ -12,6 +12,7 @@ import {
   restoreFailure,
   refreshWeatherCoordsFailure,
   refreshWeatherCoordsSuccess,
+  restoreSuccess,
 } from './actions';
 
 const toastDebounce = 500;
@@ -39,6 +40,8 @@ function* restoreSettings() {
       const deserializedSettings = deserializeSettings(serializedSettings);
       yield put(receiveSettings(deserializedSettings));
     }
+
+    yield put(restoreSuccess());
   } catch (err) {
     console.warn('Unable to load settings:', err);
     yield put(restoreFailure(err));

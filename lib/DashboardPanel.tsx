@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { GlobalState } from './store';
-import { getPanelFeedType } from './settings/selectors';
+import { getPanelFeedType, hasAttemptedRestoration } from './settings/selectors';
 import { FeedType, PanelOrientation } from './settings/interface';
 import { HNFeedSettingsProvider, FeedSettingsProvider, SubredditFeedSettingsProvider } from './settings/context';
 import DNFeedPanel from './dn/components/DNFeedPanel';
@@ -10,12 +10,21 @@ import RedditFeedPanel from './reddit/components/RedditFeedPanel';
 
 interface DashboardPanelProps {
   readonly feedType: FeedType;
+  readonly settingsRestorationComplete: boolean;
   readonly orientation: PanelOrientation;
   readonly style?: React.CSSProperties;
   readonly className?: string;
 }
 
-const DashboardPanel: React.SFC<DashboardPanelProps> = ({ feedType, orientation, style, className }) => {
+const DashboardPanel: React.SFC<DashboardPanelProps> = ({
+  feedType, settingsRestorationComplete, orientation, style, className,
+}) => {
+  // don't attempt to display until restoration is complete, doing so will result
+  // in premature data loading
+  if (!settingsRestorationComplete) {
+    return null;
+  }
+
   switch (feedType) {
   case FeedType.HN:
     return (
@@ -48,5 +57,6 @@ export default connect(
   (state: GlobalState, { orientation, ...ownProps }: Partial<DashboardPanelProps>): Partial<DashboardPanelProps> => ({
     ...ownProps,
     feedType: getPanelFeedType(orientation, state),
+    settingsRestorationComplete: hasAttemptedRestoration(state),
   }),
 )(DashboardPanel);

@@ -20,11 +20,13 @@ function toastReducer(state = defaultToastState, action: SettingsAction): string
 export interface StorageMeta {
   readonly storageError: Error;
   readonly hasStoredSettings: boolean;
+  readonly restorationCompleted: boolean;
 }
 
 const defaultStorageMetaState: StorageMeta = {
   storageError: null,
   hasStoredSettings: false,
+  restorationCompleted: false,
 } as const;
 
 function storageMetaReducer(state = defaultStorageMetaState, action: SettingsAction): StorageMeta {
@@ -34,8 +36,11 @@ function storageMetaReducer(state = defaultStorageMetaState, action: SettingsAct
   case Actions.Committed:
     return { ...state, storageError: null };
   case Actions.CommitFailure:
-  case Actions.RestoreFailure:
     return { ...state,  storageError: action.payload.error };
+  case Actions.RestoreSuccess:
+    return { ...state, restorationCompleted: true };
+  case Actions.RestoreFailure:
+    return { ...state,  storageError: action.payload.error, restorationCompleted: true };
   default:
     return state;
   }
