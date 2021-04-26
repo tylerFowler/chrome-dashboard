@@ -3,7 +3,7 @@
   "name": "beat",
   "description": "Stay on top of your regular news beat with each tab",
   "author": "Tyler Fowler <tylerfowler.1337@gmail.com>",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "icons": {
     "16": "assets/logo-favicon@16px.png",
     "48": "assets/logo-favicon@48px.png",
